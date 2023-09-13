@@ -2,26 +2,26 @@ package co.edu.uniquindio.agenciaViajes.services;
 
 import java.util.List;
 
-public class DuplicateRecursionList<T> extends AbstractRecursionList<T> {
+public class RecurArrayList<T> extends RecurAbstractList<T> {
 
 	/**
-	 * Es el constructor de {@link DuplicateRecursionList} con n elementos como
+	 * Es el constructor de {@link RecurArrayList} con n elementos como
 	 * parámetro separados por comas
 	 * 
 	 * @param elements
 	 */
 	@SafeVarargs
-	public DuplicateRecursionList(T... elements) {
+	public RecurArrayList(T... elements) {
 		super(elements);
 	}
 
 	/**
-	 * Es el constructor de {@link DuplicateRecursionList} con elementos base los
+	 * Es el constructor de {@link RecurArrayList} con elementos base los
 	 * que tiene la lista
 	 * 
 	 * @param list
 	 */
-	public DuplicateRecursionList(List<? extends T> list) {
+	public RecurArrayList(List<? extends T> list) {
 		super(list);
 	}
 

@@ -4,26 +4,26 @@ import java.util.Comparator;
 import java.util.List;
 
 @SuppressWarnings("unchecked")
-public class HashRecursionList<T extends Comparable<? super T>> extends AbstractRecursionList<T> {
+public class RecurStrictList<T extends Comparable<? super T>> extends RecurAbstractList<T> {
 
 	/**
-	 * Es el constructor de {@link HashRecursionList} con n elementos como parámetro
+	 * Es el constructor de {@link RecurStrictList} con n elementos como parámetro
 	 * separados por comas
 	 * 
 	 * @param elements
 	 */
 	@SafeVarargs
-	public HashRecursionList(T... elements) {
+	public RecurStrictList(T... elements) {
 		super(elements);
 	}
 
 	/**
-	 * Es el constructor de {@link HashRecursionList} con elementos base los que
+	 * Es el constructor de {@link RecurStrictList} con elementos base los que
 	 * tiene la lista
 	 * 
 	 * @param list
 	 */
-	public HashRecursionList(List<? extends T> list) {
+	public RecurStrictList(List<? extends T> list) {
 		super(list);
 	}
 
