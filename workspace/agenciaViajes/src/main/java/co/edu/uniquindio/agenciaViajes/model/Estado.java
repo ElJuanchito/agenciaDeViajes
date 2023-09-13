@@ -12,9 +12,9 @@ import lombok.Getter;
  * @author ElJuancho
  */
 @AllArgsConstructor
-public enum Clima {
-	TROPICAL("Tropical"), SECO("Seco"),  TEMPLADO("Templado"), FRIO("Frio"), CALUROSO("Caluroso"), POLAR("Polar");
-
+public enum Estado {
+	PENDIENTE("Pendiente"), CONFIRMADA("Confirmada"), CANCELADA("Cancelada");
+	
 	@Getter
-	private final String clima;
+	private final String estado;
 }

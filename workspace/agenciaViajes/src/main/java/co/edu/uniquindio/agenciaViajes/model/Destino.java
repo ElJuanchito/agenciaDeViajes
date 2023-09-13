@@ -4,25 +4,20 @@
  */
 package co.edu.uniquindio.agenciaViajes.model;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javafx.scene.image.Image;
-import lombok.AllArgsConstructor;
+
+import co.edu.uniquindio.agenciaViajes.services.RecurArrayList;
+import co.edu.uniquindio.agenciaViajes.services.RecurStrictList;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 
 /**
@@ -32,22 +27,28 @@ import lombok.Setter;
 @Entity
 @Table(name = "destinos")
 @NoArgsConstructor
-@Setter @Getter
-public class Destino {
+@Setter
+@Getter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+public class Destino implements Comparable<Destino> {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EqualsAndHashCode.Include
+	private Long id;
+	@NonNull
 	private String nombre;
+	@NonNull
 	private String ciudad;
+	@NonNull
 	private String descripcion;
-	
-	//Sujeto a revision
-	private byte[][] imagenes;
+
+	// Sujeto a revision
+	private RecurArrayList<byte[]> imagenes;
 	private Clima clima;
-	
+
 	@ManyToMany(mappedBy = "destinos")
-    private Set<Paquete> paquetes = new HashSet<Paquete>();
-	
+	private RecurStrictList<Paquete> paquetes;
+
 	/**
 	 * @param nombre
 	 * @param ciudad
@@ -63,31 +64,18 @@ public class Destino {
 		this.ciudad = ciudad;
 		this.descripcion = descripcion;
 		this.clima = clima;
-	}
-	
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Destino other = (Destino) obj;
-		return Objects.equals(id, other.id);
+		this.paquetes = new RecurStrictList<Paquete>();
 	}
 
 	@Override
 	public String toString() {
 		return "Destino [id=" + id + ", nombre=" + nombre + ", ciudad=" + ciudad + ", descripcion=" + descripcion
-				+ ", imagenes=" + Arrays.toString(imagenes) + ", clima=" + clima + "]";
+				+ ", imagenes=" + imagenes + ", clima=" + clima + "]";
 	}
-	
-	
+
+	@Override
+	public int compareTo(Destino o) {
+		return this.getId().compareTo(o.getId());
+	}
+
 }

@@ -7,9 +7,10 @@ package co.edu.uniquindio.agenciaViajes.model;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 
 /**
@@ -17,11 +18,27 @@ import lombok.Setter;
  * @author ElJuancho
  */
 @MappedSuperclass
-@Getter @Setter
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public abstract class Usuario {
-	
+
 	@Id
-	private Long identificacion;
-	private String nombreCompleto;
-	
+	@EqualsAndHashCode.Include
+	protected Long identificacion;
+	@NonNull
+	protected String nombreCompleto;
+
+	/**
+	 * @param identificacion
+	 * @param nombreCompleto
+	 * @author ElJuancho
+	 */
+	public Usuario(Long identificacion, String nombreCompleto) {
+		super();
+		this.identificacion = identificacion;
+		this.nombreCompleto = nombreCompleto;
+	}
+
 }

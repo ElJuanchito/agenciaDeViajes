@@ -6,8 +6,6 @@ package co.edu.uniquindio.agenciaViajes.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,35 +16,47 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "paquetes")
+import co.edu.uniquindio.agenciaViajes.services.RecurStrictList;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+
 /**
  * 
  * @author ElJuancho
  */
-public class Paquete {
+@Entity
+@Table(name = "paquetes")
+@NoArgsConstructor
+@Setter
+@Getter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+public class Paquete implements Comparable<Paquete>{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@EqualsAndHashCode.Include
 	private Long id;
+	@NonNull
 	private String nombre;
+	@NonNull
 	private Integer duracionDias;
+	@NonNull
 	private String serviciosAdicionales;
+	@NonNull
 	private BigDecimal precio;
+	@NonNull
 	private Integer cupoMaximo;
+	@NonNull
 	private LocalDateTime fechaIncio;
+	@NonNull
 	private LocalDateTime fechaFin;
 
 	@ManyToMany
 	@JoinTable(name = "paquete_destino", joinColumns = @JoinColumn(name = "paquete_id"), inverseJoinColumns = @JoinColumn(name = "destino_id"))
-	private Set<Destino> destinos = new HashSet<>();
-
-	/**
-	 * 
-	 * @author ElJuancho
-	 */
-	protected Paquete() {
-		// TODO Auto-generated constructor stub
-	}
+	private RecurStrictList<Destino> destinos;
 
 	/**
 	 * @param nombre
@@ -58,6 +68,7 @@ public class Paquete {
 	 * @param fechaFin
 	 * @author ElJuancho
 	 */
+	@Builder
 	public Paquete(String nombre, Integer duracionDias, String serviciosAdicionales, BigDecimal precio,
 			Integer cupoMaximo, LocalDateTime fechaIncio, LocalDateTime fechaFin) {
 		super();
@@ -68,7 +79,21 @@ public class Paquete {
 		this.cupoMaximo = cupoMaximo;
 		this.fechaIncio = fechaIncio;
 		this.fechaFin = fechaFin;
-		this.destinos = new HashSet<Destino>();
+		this.destinos = new RecurStrictList<Destino>();
 	}
+
+	@Override
+	public String toString() {
+		return "Paquete [id=" + id + ", nombre=" + nombre + ", duracionDias=" + duracionDias + ", serviciosAdicionales="
+				+ serviciosAdicionales + ", precio=" + precio + ", cupoMaximo=" + cupoMaximo + ", fechaIncio="
+				+ fechaIncio + ", fechaFin=" + fechaFin + "]";
+	}
+
+	@Override
+	public int compareTo(Paquete o) {
+		return this.getId().compareTo(o.getId());
+	}
+	
+	
 
 }
