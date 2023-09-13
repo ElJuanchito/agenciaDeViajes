@@ -19,15 +19,13 @@ import lombok.Setter;
  */
 @Entity
 @Table(name = "usuarios")
-@NoArgsConstructor
-@AllArgsConstructor
-@Setter @Getter
+@Getter @Setter
 @Builder
+@AllArgsConstructor
 public class Cliente extends Usuario {
 
 	private String email;
 	private String telefono;
 	private String direccion;
-	
 	
 }

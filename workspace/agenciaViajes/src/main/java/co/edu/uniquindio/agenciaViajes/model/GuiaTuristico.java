@@ -9,14 +9,13 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "guias")
 /**
  * 
  * @author ElJuancho
  */
+@Entity
+@Table(name = "guias")
 public class GuiaTuristico extends Usuario {
-	private Set<Idiomas> idomas;
+	private Set<Idioma> idomas;
 	private Integer expHoras;
-	
 }
