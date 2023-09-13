@@ -2,7 +2,7 @@ package co.edu.uniquindio.agenciaViajes.services;
 
 import java.util.List;
 
-public abstract class AbstractRecursionList<T> {
+public abstract class RecurAbstractList<T> {
 
 	/**
 	 * Es el arreglo de los elementos de la lista
@@ -16,7 +16,7 @@ public abstract class AbstractRecursionList<T> {
 	 * 
 	 * @param elements
 	 */
-	public AbstractRecursionList(T... elements) {
+	public RecurAbstractList(T... elements) {
 		addAll(elements);
 	}
 
@@ -25,7 +25,7 @@ public abstract class AbstractRecursionList<T> {
 	 * 
 	 * @param list
 	 */
-	public AbstractRecursionList(List<? extends T> list) {
+	public RecurAbstractList(List<? extends T> list) {
 		addAll(list);
 	}
 
@@ -77,7 +77,7 @@ public abstract class AbstractRecursionList<T> {
 	/**
 	 * Es el constructor de la lista sin parámetros
 	 */
-	public AbstractRecursionList() {
+	public RecurAbstractList() {
 		this.elements = new Object[0];
 	}
 
