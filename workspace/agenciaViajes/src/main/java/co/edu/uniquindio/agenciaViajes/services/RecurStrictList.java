@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 
 @SuppressWarnings("unchecked")
-public class RecurStrictList<T extends Comparable<? super T>> extends RecurAbstractList<T> {
+public class RecurStrictList<T> extends RecurAbstractList<T> {
 
 	/**
 	 * Es el constructor de {@link RecurStrictList} con n elementos como parámetro
@@ -18,37 +18,13 @@ public class RecurStrictList<T extends Comparable<? super T>> extends RecurAbstr
 	}
 
 	/**
-	 * Es el constructor de {@link RecurStrictList} con elementos base los que
-	 * tiene la lista
+	 * Es el constructor de {@link RecurStrictList} con elementos base los que tiene
+	 * la lista
 	 * 
 	 * @param list
 	 */
 	public RecurStrictList(List<? extends T> list) {
 		super(list);
-	}
-
-	/**
-	 * Ordena los elementos de la lista, el tipo de dato tiene que extender de
-	 * Comparable
-	 */
-	public void sort() {
-		sort(false);
-	}
-
-	/**
-	 * Ordena los elementos de la lista de atras para adelante
-	 * 
-	 * @param backwards
-	 */
-	public void sort(final boolean backwards) {
-		Comparator<T> comparator = new Comparator<T>() {
-
-			@Override
-			public int compare(T o1, T o2) {
-				return ((backwards ? -1 : 1)) * o1.compareTo(o2);
-			}
-		};
-		sort(comparator);
 	}
 
 	/**

@@ -39,10 +39,10 @@ public class Cliente extends Usuario {
 	 * @param email
 	 * @param telefono
 	 * @param direccion
-	 * @author ElJuancho
 	 */
 	@Builder
-	public Cliente(Long identificacion, String nombreCompleto, String email, String telefono, String direccion) {
+	public Cliente(Long identificacion, @NonNull String nombreCompleto, @NonNull String email, @NonNull String telefono,
+			@NonNull String direccion) {
 		super(identificacion, nombreCompleto);
 		this.email = email;
 		this.telefono = telefono;
