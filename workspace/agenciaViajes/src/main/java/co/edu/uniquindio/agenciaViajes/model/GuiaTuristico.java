@@ -4,10 +4,13 @@
  */
 package co.edu.uniquindio.agenciaViajes.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import co.edu.uniquindio.agenciaViajes.services.RecurStrictList;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +30,8 @@ import lombok.ToString;
 @NoArgsConstructor
 public class GuiaTuristico extends Usuario {
 	@NonNull
-	private RecurStrictList<Idioma> idomas = new RecurStrictList<Idioma>();
+	@ElementCollection(targetClass = Idioma.class)
+	private List<Idioma> idomas = new ArrayList<Idioma>();
 	@NonNull
 	private Integer expHoras;
 

@@ -14,7 +14,7 @@ public class ClienteDao {
     private final EntityManager em;
 
     public ClienteDao() {
-        emf = Persistence.createEntityManagerFactory("baseDatos"); // Reemplaza "nombre_unidad" con el nombre de tu unidad de persistencia
+        emf = Persistence.createEntityManagerFactory("aplicacion"); // Reemplaza "nombre_unidad" con el nombre de tu unidad de persistencia
         em = emf.createEntityManager();
     }
 

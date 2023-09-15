@@ -1,10 +1,11 @@
 package co.edu.uniquindio.agenciaViajes.services;
 
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 
 @SuppressWarnings("unchecked")
-public class RecurStrictList<T extends Comparable<? super T>> extends RecurAbstractList<T> {
+public class RecurStrictList<T extends Comparable<? super T>> extends RecurAbstractList<T>{
 
 	/**
 	 * Es el constructor de {@link RecurStrictList} con n elementos como parámetro

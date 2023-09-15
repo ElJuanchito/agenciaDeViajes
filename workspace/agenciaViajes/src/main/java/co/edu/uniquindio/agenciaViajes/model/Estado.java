@@ -11,10 +11,15 @@ import lombok.Getter;
  * 
  * @author ElJuancho
  */
-@AllArgsConstructor
 public enum Estado {
 	PENDIENTE("Pendiente"), CONFIRMADA("Confirmada"), CANCELADA("Cancelada");
 	
 	@Getter
 	private final String estado;
+
+	private Estado(String estado) {
+		this.estado = estado;
+	}
+	
+	
 }
