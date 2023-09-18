@@ -4,7 +4,7 @@
  */
 package co.edu.uniquindio.agenciaViajes.services;
 
-import co.edu.uniquindio.agenciaViajes.Dao.ClienteDao;
+import co.edu.uniquindio.agenciaViajes.dao.ClienteDao;
 import co.edu.uniquindio.agenciaViajes.model.Cliente;
 
 /**

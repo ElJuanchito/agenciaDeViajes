@@ -4,11 +4,14 @@ module co.edu.uniquindio.agenciaViajes {
 	requires java.persistence;
 	requires lombok;
 	requires java.sql;
+	requires org.hibernate.orm.core;
 
 	opens co.edu.uniquindio.agenciaViajes.application to javafx.fxml;
-	exports co.edu.uniquindio.agenciaViajes.application;
 
-	opens co.edu.uniquindio.agenciaViajes.model to org.hibernate.orm.core;
+	opens co.edu.uniquindio.agenciaViajes.model;
+
 	exports co.edu.uniquindio.agenciaViajes.model;
+
+	exports co.edu.uniquindio.agenciaViajes.application;
 
 }

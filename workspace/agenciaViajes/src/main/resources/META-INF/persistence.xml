@@ -12,7 +12,7 @@
   	<class>co.edu.uniquindio.agenciaViajes.model.GuiaTuristico</class>
   	<class>co.edu.uniquindio.agenciaViajes.model.Paquete</class>
   	<class>co.edu.uniquindio.agenciaViajes.model.Reserva</class>
-  	<class>co.edu.uniquindio.agenciaViajes.model.Usuario</class>
+  	<class>co.edu.uniquindio.agenciaViajes.model.Usuario</class> 
   	
     <properties>
         <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />

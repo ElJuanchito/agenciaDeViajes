@@ -31,7 +31,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Destino{
+public class Destino {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
@@ -44,8 +44,7 @@ public class Destino{
 	private String descripcion;
 
 	// Sujeto a revision
-	transient
-	private List<byte[]> imagenes;
+	transient private List<byte[]> imagenes;
 	private Clima clima;
 
 	@ManyToMany(mappedBy = "destinos")
@@ -60,7 +59,7 @@ public class Destino{
 	 * @author ElJuancho
 	 */
 	@Builder
-	private Destino(String nombre, String ciudad, String descripcion, Clima clima) {
+	public Destino(String nombre, String ciudad, String descripcion, Clima clima) {
 		super();
 		this.nombre = nombre;
 		this.ciudad = ciudad;

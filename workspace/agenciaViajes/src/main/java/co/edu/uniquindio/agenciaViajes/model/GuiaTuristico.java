@@ -26,12 +26,11 @@ import lombok.ToString;
 @Table(name = "guias")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class GuiaTuristico extends Usuario {
 	@NonNull
 	@ElementCollection(targetClass = Idioma.class)
-	private List<Idioma> idomas = new ArrayList<Idioma>();
+	private List<Idioma> idiomas = new ArrayList<Idioma>();
 	@NonNull
 	private Integer expHoras;
 
@@ -42,11 +41,16 @@ public class GuiaTuristico extends Usuario {
 	 * @author ElJuancho
 	 */
 	@Builder
-	public GuiaTuristico(Long identificacion, String nombreCompleto, Integer expHoras) {
+	public GuiaTuristico(Long identificacion, String nombreCompleto, Integer expHoras, List<Idioma> idiomas) {
 		super(identificacion, nombreCompleto);
 		this.expHoras = expHoras;
+		this.idiomas = idiomas;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "GuiaTuristico [nombreCompleto=" + nombreCompleto + ", idiomas=" + idiomas + ", expHoras=" + expHoras
+				+ ", identificacion=" + identificacion + "]";
+	}
 
 }

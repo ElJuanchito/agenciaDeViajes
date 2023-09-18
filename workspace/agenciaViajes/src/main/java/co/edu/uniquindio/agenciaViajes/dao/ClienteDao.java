@@ -1,21 +1,23 @@
-package co.edu.uniquindio.agenciaViajes.Dao;
+package co.edu.uniquindio.agenciaViajes.dao;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import co.edu.uniquindio.agenciaViajes.model.Cliente;
+import co.edu.uniquindio.agenciaViajes.services.UtilsJPA;
 
+/**
+ * 
+ * 
+ * @author ElJuancho
+ */
 public class ClienteDao {
 
-    private final EntityManagerFactory emf;
     private final EntityManager em;
 
     public ClienteDao() {
-        emf = Persistence.createEntityManagerFactory("aplicacion"); // Reemplaza "nombre_unidad" con el nombre de tu unidad de persistencia
-        em = emf.createEntityManager();
+        em = UtilsJPA.getEntityManager();
     }
 
     public void agregarCliente(Cliente cliente) {
@@ -28,8 +30,12 @@ public class ClienteDao {
         return em.find(Cliente.class, id);
     }
 
-    public List<Cliente> obtenerTodosLosClientes() {
+    public List<Cliente> getClientes() {
         return em.createQuery("SELECT c FROM Cliente c", Cliente.class).getResultList();
+    }
+    
+    public List<Cliente> obtenerPorBusquedaEspecifica(String jpql){
+    	return em.createQuery(jpql, Cliente.class).getResultList();
     }
 
     public void actualizarCliente(Cliente cliente) {
@@ -50,9 +56,6 @@ public class ClienteDao {
     public void cerrar() {
         if (em != null) {
             em.close();
-        }
-        if (emf != null) {
-            emf.close();
         }
     }
 }

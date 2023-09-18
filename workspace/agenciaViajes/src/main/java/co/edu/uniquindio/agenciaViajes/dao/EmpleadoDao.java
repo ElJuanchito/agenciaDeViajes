@@ -1,4 +1,4 @@
-package co.edu.uniquindio.agenciaViajes.Dao;
+package co.edu.uniquindio.agenciaViajes.dao;
 
 import java.util.List;
 
@@ -8,6 +8,11 @@ import javax.persistence.Persistence;
 
 import co.edu.uniquindio.agenciaViajes.model.Empleado;
 
+/**
+ * 
+ * 
+ * @author ElJuancho
+ */
 public class EmpleadoDao {
 
     private EntityManagerFactory entityManagerFactory;
