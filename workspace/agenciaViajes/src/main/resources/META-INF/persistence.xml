@@ -8,7 +8,6 @@
   	
   	<class>co.edu.uniquindio.agenciaViajes.model.Cliente</class>
   	<class>co.edu.uniquindio.agenciaViajes.model.Destino</class>
-  	<class>co.edu.uniquindio.agenciaViajes.model.Empleado</class>
   	<class>co.edu.uniquindio.agenciaViajes.model.GuiaTuristico</class>
   	<class>co.edu.uniquindio.agenciaViajes.model.Paquete</class>
   	<class>co.edu.uniquindio.agenciaViajes.model.Reserva</class>

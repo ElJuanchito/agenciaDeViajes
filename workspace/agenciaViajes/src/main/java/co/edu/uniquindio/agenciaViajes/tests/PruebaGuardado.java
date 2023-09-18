@@ -12,7 +12,7 @@ public class PruebaGuardado {
 		ClienteDao dao = new ClienteDao();
 		 
 		Cliente a = new Cliente(1L, "Juan", "perdomocardenas18@gmail.com", "3225179118", "Casa de perdomo");
-		Cliente e = new Cliente(2L, "Alejo", "breynerxd@gmail.com", "telefono de alejo", "Casa de alejo");
+		Cliente e = new Cliente(2L, "Alejo", "breynersanchezquintero@gmail.com", "3006123593", "Montenegro");
 		Cliente i = new Cliente(3L, "Circa", "circaman2004@gmail.com", "telefono de circa", "Casa de circa");
 		Cliente o = new Cliente(4L, "Yande", "yandelo@gmail.com", "telefono de yande", "Casa de yande");
 		Cliente u = new Cliente(5L, "Amador", "arroa03@gmail.com", "telefono de amador", "Casa de amador");
