@@ -1,11 +1,14 @@
 package co.edu.uniquindio.agenciaViajes.tests;
 
-import co.edu.uniquindio.agenciaViajes.model.Destino;
+import java.util.List;
+
+import co.edu.uniquindio.agenciaViajes.dao.ClienteDao;
+import co.edu.uniquindio.agenciaViajes.model.Cliente;
 
 public class PruebaGuardado {
 
 	public static void main(String[] args) {
-		/*
+		
 		ClienteDao dao = new ClienteDao();
 		 
 		Cliente a = new Cliente(1L, "Juan", "perdomocardenas18@gmail.com", "3225179118", "Casa de perdomo");
@@ -20,9 +23,9 @@ public class PruebaGuardado {
 		dao.agregarCliente(o);
 		dao.agregarCliente(u);
 				
-		List<Cliente> lista = dao.obtenerTodosLosClientes();
+		List<Cliente> lista = dao.getClientes();
 		System.out.println(lista);
-		*/
+		
 		
 		/*
 		EmpleadoDao dao = new EmpleadoDao();

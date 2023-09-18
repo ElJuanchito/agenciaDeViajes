@@ -6,12 +6,9 @@ package co.edu.uniquindio.agenciaViajes.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Access;
-import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +18,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import co.edu.uniquindio.agenciaViajes.services.RecurStrictList;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -82,7 +80,7 @@ public class Paquete {
 		this.cupoMaximo = cupoMaximo;
 		this.fechaIncio = fechaIncio;
 		this.fechaFin = fechaFin;
-		this.destinos = new ArrayList<Destino>();
+		this.destinos = new RecurStrictList<Destino>();
 	}
 	
 	@Override
