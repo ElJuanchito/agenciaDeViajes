@@ -5,15 +5,8 @@
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 
   <persistence-unit name="aplicacion">
-  	
-  	<class>co.edu.uniquindio.agenciaViajes.model.Cliente</class>
-  	<class>co.edu.uniquindio.agenciaViajes.model.Destino</class>
-  	<class>co.edu.uniquindio.agenciaViajes.model.Empleado</class>
-  	<class>co.edu.uniquindio.agenciaViajes.model.GuiaTuristico</class>
-  	<class>co.edu.uniquindio.agenciaViajes.model.Paquete</class>
-  	<class>co.edu.uniquindio.agenciaViajes.model.Reserva</class>
-  	<class>co.edu.uniquindio.agenciaViajes.model.Usuario</class> 
-  	
+  
+  
     <properties>
         <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
         <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:testdb"/>

@@ -6,7 +6,12 @@ package co.edu.uniquindio.agenciaViajes.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,9 +21,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import co.edu.uniquindio.agenciaViajes.services.RecurStrictList;
 import lombok.Builder;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -33,11 +36,11 @@ import lombok.Setter;
 @NoArgsConstructor
 @Setter
 @Getter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Paquete implements Comparable<Paquete>{
+public class Paquete {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@EqualsAndHashCode.Include
+	@Getter
+	@Setter
 	private Long id;
 	@NonNull
 	private String nombre;
@@ -56,7 +59,7 @@ public class Paquete implements Comparable<Paquete>{
 
 	@ManyToMany
 	@JoinTable(name = "paquete_destino", joinColumns = @JoinColumn(name = "paquete_id"), inverseJoinColumns = @JoinColumn(name = "destino_id"))
-	private RecurStrictList<Destino> destinos;
+	private List<Destino> destinos;
 
 	/**
 	 * @param nombre
@@ -79,9 +82,26 @@ public class Paquete implements Comparable<Paquete>{
 		this.cupoMaximo = cupoMaximo;
 		this.fechaIncio = fechaIncio;
 		this.fechaFin = fechaFin;
-		this.destinos = new RecurStrictList<Destino>();
+		this.destinos = new ArrayList<Destino>();
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Paquete other = (Paquete) obj;
+		return Objects.equals(id, other.id);
+	}
+	
 	@Override
 	public String toString() {
 		return "Paquete [id=" + id + ", nombre=" + nombre + ", duracionDias=" + duracionDias + ", serviciosAdicionales="
@@ -89,11 +109,5 @@ public class Paquete implements Comparable<Paquete>{
 				+ fechaIncio + ", fechaFin=" + fechaFin + "]";
 	}
 
-	@Override
-	public int compareTo(Paquete o) {
-		return this.getId().compareTo(o.getId());
-	}
-	
-	
 
 }

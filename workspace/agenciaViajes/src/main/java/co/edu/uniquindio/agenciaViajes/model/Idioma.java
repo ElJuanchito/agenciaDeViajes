@@ -11,7 +11,6 @@ import lombok.Getter;
  * 
  * @author ElJuancho
  */
-@AllArgsConstructor
 public enum Idioma {
 	INGLES("Ingles"), ESPANOL("Español"), PORTUGUES("Portugues"), FRANCES("Frances"), ITALIANO("Italiano"),
 	JAPONES("Japones"), MANDARIN("Mandarin"), COREANO("Coreano"), RUSO("Ruso"), ALEMAN("Aleman"), HINDU("Hindu"),
@@ -19,4 +18,10 @@ public enum Idioma {
 	
 	@Getter
 	private final String idioma;
+
+	private Idioma(String idioma) {
+		this.idioma = idioma;
+	}
+	
+	
 }
