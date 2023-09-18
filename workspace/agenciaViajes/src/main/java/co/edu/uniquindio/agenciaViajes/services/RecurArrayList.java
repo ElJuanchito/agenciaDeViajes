@@ -5,8 +5,8 @@ import java.util.List;
 public class RecurArrayList<T> extends RecurAbstractList<T> {
 
 	/**
-	 * Es el constructor de {@link RecurArrayList} con n elementos como
-	 * parámetro separados por comas
+	 * Es el constructor de {@link RecurArrayList} con n elementos como parámetro
+	 * separados por comas
 	 * 
 	 * @param elements
 	 */
@@ -16,8 +16,8 @@ public class RecurArrayList<T> extends RecurAbstractList<T> {
 	}
 
 	/**
-	 * Es el constructor de {@link RecurArrayList} con elementos base los
-	 * que tiene la lista
+	 * Es el constructor de {@link RecurArrayList} con elementos base los que tiene
+	 * la lista
 	 * 
 	 * @param list
 	 */
@@ -26,8 +26,7 @@ public class RecurArrayList<T> extends RecurAbstractList<T> {
 	}
 
 	@Override
-	public boolean add(T element) {
-		forceAdd(element);
+	protected boolean elementValidation(T element) {
 		return true;
 	}
 }
