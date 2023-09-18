@@ -4,7 +4,6 @@
  */
 package co.edu.uniquindio.agenciaViajes.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
