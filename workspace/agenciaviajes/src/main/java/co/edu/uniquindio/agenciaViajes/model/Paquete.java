@@ -84,7 +84,7 @@ public class Paquete {
 		this.fechaFin = fechaFin;
 		this.destinos = new RecurStrictList<Destino>();
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -101,17 +101,16 @@ public class Paquete {
 		Paquete other = (Paquete) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Paquete [id=" + id + ", nombre=" + nombre + ", duracionDias=" + duracionDias + ", serviciosAdicionales="
 				+ serviciosAdicionales + ", precio=" + precio + ", cupoMaximo=" + cupoMaximo + ", fechaIncio="
 				+ fechaIncio + ", fechaFin=" + fechaFin + "]";
 	}
-	
-<<<<<<< HEAD:workspace/agenciaViajes/src/main/java/co/edu/uniquindio/agenciaViajes/model/Paquete.java
+
 // INICIO DEL CRUD:
-	
+
 	/**
 	 * Verifica de manera recursiva para ver si el destino con el id introducido por
 	 * parametro existe en la lista. Retorna un valor booleano segun la busqueda.
@@ -121,9 +120,9 @@ public class Paquete {
 	 * @return
 	 * @author ElJuancho
 	 */
-	
+
 	private boolean verificarDestinoAux(Long id, int i) {
-		if (destinos.get(i).equals(id))
+		if (destinos.get(i).getId().equals(id))
 			return true;
 		if (destinos.size() == i)
 			return false;
@@ -274,9 +273,5 @@ public class Paquete {
 		throwDestinoNoExistente(id);
 		elminarDestinoAux(id, 0);
 	}
-=======
-	
->>>>>>> Juancho:workspace/agenciaviajes/src/main/java/co/edu/uniquindio/agenciaViajes/model/Paquete.java
-
 
 }

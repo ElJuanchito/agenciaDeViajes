@@ -4,7 +4,6 @@ import org.junit.Test;
 
 import co.edu.uniquindio.agenciaViajes.dao.ClienteDao;
 import co.edu.uniquindio.agenciaViajes.model.Cliente;
-import javafx.scene.control.ComboBox;
 
 public class PruebaConstructor {
 	@Test
