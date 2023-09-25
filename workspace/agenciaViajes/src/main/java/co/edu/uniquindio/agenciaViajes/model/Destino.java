@@ -78,9 +78,9 @@ public class Destino {
 
 	/**
 	 * Verifica de manera recursiva para ver si el paquete con el id introducido por
-	 * parametro existe en la lista. Retorna un valor booleano segun la busqueda.
-	 * 
-	 * @param paquete
+	 * parametro existe en la lista. Retorna un valor booleano segun la busqueda. 
+	 * @param id
+	 * @param i
 	 * @return
 	 * @author ElJuancho
 	 */

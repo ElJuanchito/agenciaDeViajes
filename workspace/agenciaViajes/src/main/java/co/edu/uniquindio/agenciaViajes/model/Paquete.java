@@ -106,6 +106,8 @@ public class Paquete {
 				+ serviciosAdicionales + ", precio=" + precio + ", cupoMaximo=" + cupoMaximo + ", fechaIncio="
 				+ fechaIncio + ", fechaFin=" + fechaFin + "]";
 	}
+	
+	
 
 
 }
