@@ -171,11 +171,9 @@ public class Cliente extends Usuario {
 	 * @author ElJuancho
 	 */
 	private void eliminarReservaAux(Long id, int i) {
-		if (reservas.size() == i)
-			return;
-		if (reservas.get(i).getId().equals(id))
-			reservas.remove(i);
-		eliminarReservaAux(id, ++i);
+		if (reservas.size() == i) return;
+		if (!reservas.get(i).getId().equals(id)) eliminarReservaAux(id, i+1);
+		reservas.remove(i);
 	}
 
 	/**
