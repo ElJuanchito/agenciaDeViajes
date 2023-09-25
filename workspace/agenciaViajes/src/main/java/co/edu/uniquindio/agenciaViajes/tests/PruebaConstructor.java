@@ -6,6 +6,7 @@ package co.edu.uniquindio.agenciaViajes.tests;
 
 import co.edu.uniquindio.agenciaViajes.dao.ClienteDao;
 import co.edu.uniquindio.agenciaViajes.model.Cliente;
+import javafx.scene.control.ComboBox;
 
 /**
  * 
