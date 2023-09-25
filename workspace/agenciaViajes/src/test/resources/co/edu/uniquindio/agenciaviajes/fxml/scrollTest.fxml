@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+
+<BorderPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaViajes.controllers.PruebaController">
+   <center>
+      <ScrollPane fx:id="scroll" fitToWidth="true">
+         <content>
+            <VBox prefHeight="1500.0">
+               <children>
+                  <HBox fx:id="box" alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" spacing="20.0">
+                     <children>
+                        <Circle fx:id="cicrle" fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                        <Circle fx:id="cicrle1" fill="#39556e" layoutX="303.0" layoutY="510.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox fx:id="box2" alignment="CENTER">
+                     <children>
+                        <BorderPane fx:id="ojo" maxWidth="1.7976931348623157E308" minWidth="0.0" prefHeight="200.0" prefWidth="0.0" style="-fx-background-color: red;" HBox.hgrow="ALWAYS" />
+                        <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" spacing="20.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                              <Circle fill="#39556e" layoutX="303.0" layoutY="510.0" radius="100.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+   <top>
+      <BorderPane prefHeight="30.0" BorderPane.alignment="CENTER" />
+   </top>
+</BorderPane>
