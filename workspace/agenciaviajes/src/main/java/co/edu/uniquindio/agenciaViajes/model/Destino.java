@@ -85,10 +85,8 @@ public class Destino {
 	 * @author ElJuancho
 	 */
 	private boolean verificarPaqueteAux(Long id, int i) {
-		if (paquetes.get(i).equals(id))
-			return true;
-		if (paquetes.size() == i)
-			return false;
+		if (paquetes.get(i).getId().equals(id)) return true;
+		if (paquetes.size() == i) return false;
 		return verificarPaqueteAux(id, ++i);
 	}
 
@@ -142,10 +140,8 @@ public class Destino {
 	 * @author ElJuancho
 	 */
 	private Paquete buscarPaqueteAux(Long id, int i) {
-		if (paquetes.size() == i)
-			return null;
-		if (paquetes.get(i).getId().equals(id))
-			return paquetes.get(i);
+		if (paquetes.size() == i) return null;
+		if (paquetes.get(i).getId().equals(id)) return paquetes.get(i);
 		return buscarPaqueteAux(id, ++i);
 	}
 
@@ -185,8 +181,7 @@ public class Destino {
 	 * @author ElJuancho
 	 */
 	private void actualizarPaqueteAux(Paquete paquete, int i) {
-		if (paquetes.size() == i)
-			return;
+		if (paquetes.size() == i) return;
 		if (!paquetes.get(i).equals(paquete))
 			actualizarPaqueteAux(paquete, i + 1);
 		paquetes.set(i, paquete);
@@ -215,10 +210,8 @@ public class Destino {
 	 * @author ElJuancho
 	 */
 	private void elminarPaqueteAux(Long id, int i) {
-		if (paquetes.size() == i)
-			return;
-		if (!paquetes.get(i).getId().equals(id))
-			elminarPaqueteAux(id, i + 1);
+		if (paquetes.size() == i) return;
+		if (!paquetes.get(i).getId().equals(id)) elminarPaqueteAux(id, i + 1);
 		paquetes.remove(i);
 		return;
 	}
