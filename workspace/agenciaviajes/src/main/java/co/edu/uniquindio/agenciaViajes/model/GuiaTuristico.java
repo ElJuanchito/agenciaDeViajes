@@ -1,9 +1,6 @@
-/**
- * 
- * @author ElJuancho
- */
 package co.edu.uniquindio.agenciaViajes.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -12,26 +9,23 @@ import javax.persistence.Table;
 
 import co.edu.uniquindio.agenciaViajes.exceptions.IdiomaNoExistenteException;
 import co.edu.uniquindio.agenciaViajes.exceptions.IdiomaYaExistenteException;
-import co.edu.uniquindio.agenciaViajes.services.RecurStrictList;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 
-/**
- * 
- * @author ElJuancho
- */
 @Entity
 @Table(name = "guias")
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class GuiaTuristico extends Usuario {
 	@NonNull
 	@ElementCollection(targetClass = Idioma.class)
-	private List<Idioma> idiomas = new RecurStrictList<Idioma>();
+	private List<Idioma> idiomas;
 	@NonNull
 	private Integer expHoras;
 
@@ -39,28 +33,20 @@ public class GuiaTuristico extends Usuario {
 	 * @param identificacion
 	 * @param nombreCompleto
 	 * @param expHoras
-	 * @author ElJuancho
 	 */
 	@Builder
-	public GuiaTuristico(Long identificacion, String nombreCompleto, Integer expHoras, List<Idioma> idiomas) {
+	private GuiaTuristico(String identificacion, String nombreCompleto, Integer expHoras, Idioma... idiomas) {
 		super(identificacion, nombreCompleto);
 		this.expHoras = expHoras;
-		this.idiomas = idiomas;
-	}
-
-	@Override
-	public String toString() {
-		return "GuiaTuristico [nombreCompleto=" + nombreCompleto + ", idiomas=" + idiomas + ", expHoras=" + expHoras
-				+ ", identificacion=" + identificacion + "]";
+		this.idiomas = new ArrayList<Idioma>(List.of(idiomas));
 	}
 
 	/**
-	 * Busca y verifica de forma recursiva si un <code>Idioma</code> esta dentro del
+	 * Busca y verifica de forma recursiva si un {@link Idioma} esta dentro del
 	 * 
 	 * @param idioma
 	 * @param i
 	 * @return
-	 * @author ElJuancho
 	 */
 	private boolean verificarIdiomaAux(Idioma idioma, int i) {
 		if (idiomas.get(0) == idioma)
@@ -71,12 +57,11 @@ public class GuiaTuristico extends Usuario {
 	}
 
 	/**
-	 * Verifica si existe un <code>Idioma</code> dentro de la lista. Retorna un
-	 * valor booleano dependiendo de la busqueda.
+	 * Verifica si existe un {@link Idioma} dentro de la lista. Retorna un valor
+	 * booleano dependiendo de la busqueda.
 	 * 
 	 * @param idioma
 	 * @return
-	 * @author ElJuancho
 	 */
 	public boolean verificarIdioma(Idioma idioma) {
 		return verificarIdiomaAux(idioma, 0);
@@ -93,13 +78,12 @@ public class GuiaTuristico extends Usuario {
 	}
 
 	/**
-	 * Agrega un <code>Idioma</code> a la lista. Lanza una
-	 * <code>IdiomaYaExistenteException</code> si el <code>Idioma</code> ya existe
-	 * en la lista.
+	 * Agrega un {@link Idioma} a la lista. Lanza una
+	 * {@link IdiomaYaExistenteException} si el {@link Idioma} ya existe en la
+	 * lista.
 	 * 
 	 * @param idioma
 	 * @throws IdiomaYaExistenteException
-	 * @author ElJuancho
 	 */
 	public void agregarIdioma(Idioma idioma) throws IdiomaYaExistenteException {
 		throwIdiomaYaExistente(idioma);
@@ -107,13 +91,12 @@ public class GuiaTuristico extends Usuario {
 	}
 
 	/**
-	 * Elimina un <code>Idioma</code> de la lista. Lanza una
-	 * <code>IdiomaNoExistenteException</code> si el <code>Idioma</code> no existe
-	 * en la lista.
+	 * Elimina un {@link Idioma} de la lista. Lanza una
+	 * {@link IdiomaNoExistenteException} si el {@link Idioma} no existe en la
+	 * lista.
 	 * 
 	 * @param idioma
 	 * @throws IdiomaNoExistenteException
-	 * @author ElJuancho
 	 */
 	public void eliminarIdioma(Idioma idioma) throws IdiomaNoExistenteException {
 		throwIdiomaNoExistente(idioma);

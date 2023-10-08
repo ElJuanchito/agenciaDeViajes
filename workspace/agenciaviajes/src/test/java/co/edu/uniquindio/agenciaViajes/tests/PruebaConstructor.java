@@ -8,7 +8,7 @@ import co.edu.uniquindio.agenciaViajes.model.Cliente;
 public class PruebaConstructor {
 	@Test
 	public void builderTest() {
-		Cliente cliente1 = Cliente.builder().identificacion(100L).nombreCompleto("DrBayter").email("drBayter@gmail.com")
+		Cliente cliente1 = Cliente.builder().identificacion("100").nombreCompleto("DrBayter").email("drBayter@gmail.com")
 				.telefono("3113214543").direccion("Casa del drBayter").build();
 
 		ClienteDao cDao = new ClienteDao();

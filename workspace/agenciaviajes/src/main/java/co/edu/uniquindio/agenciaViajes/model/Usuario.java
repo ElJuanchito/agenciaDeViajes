@@ -1,7 +1,3 @@
-/**
- * 
- * @author ElJuancho
- */
 package co.edu.uniquindio.agenciaViajes.model;
 
 import javax.persistence.Id;
@@ -14,10 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
 
-/**
- * 
- * @author ElJuancho
- */
 @MappedSuperclass
 @Getter
 @Setter
@@ -27,8 +19,9 @@ import lombok.Setter;
 public abstract class Usuario {
 
 	@Id
+	@NonNull
 	@EqualsAndHashCode.Include
-	protected Long identificacion;
+	protected String identificacion;
 	@NonNull
 	protected String nombreCompleto;
 

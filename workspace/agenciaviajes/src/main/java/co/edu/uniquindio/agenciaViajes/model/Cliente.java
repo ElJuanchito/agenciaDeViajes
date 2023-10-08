@@ -1,9 +1,6 @@
-/**
- * 
- * @author ElJuancho
- */
 package co.edu.uniquindio.agenciaViajes.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,7 +9,6 @@ import javax.persistence.Table;
 
 import co.edu.uniquindio.agenciaViajes.exceptions.ReservaNoExistenteException;
 import co.edu.uniquindio.agenciaViajes.exceptions.ReservaYaExistenteException;
-import co.edu.uniquindio.agenciaViajes.services.RecurArrayList;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,10 +16,6 @@ import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- * 
- * @author ElJuancho
- */
 @Entity
 @Table(name = "clientes")
 @Getter
@@ -50,13 +42,13 @@ public class Cliente extends Usuario {
 	 * @param direccion
 	 */
 	@Builder
-	public Cliente(Long identificacion, @NonNull String nombreCompleto, @NonNull String email, @NonNull String telefono,
-			@NonNull String direccion) {
+	private Cliente(@NonNull String identificacion, @NonNull String nombreCompleto, @NonNull String email,
+			@NonNull String telefono, @NonNull String direccion) {
 		super(identificacion, nombreCompleto);
 		this.email = email;
 		this.telefono = telefono;
 		this.direccion = direccion;
-		reservas = new RecurArrayList<Reserva>();
+		reservas = new ArrayList<Reserva>();
 	}
 
 	/**
@@ -66,7 +58,6 @@ public class Cliente extends Usuario {
 	 * @param id
 	 * @param i
 	 * @return
-	 * @author ElJuancho
 	 */
 	private boolean verificarReservaAux(Long id, int i) {
 		if (reservas.get(i).getId().equals(id))
@@ -82,19 +73,17 @@ public class Cliente extends Usuario {
 	 * 
 	 * @param id
 	 * @return
-	 * @author ElJuancho
 	 */
 	public boolean verificarReserva(Long id) {
 		return verificarReservaAux(id, 0);
 	}
 
 	/**
-	 * Lanza una <code>ReservaNoExistenteException</code> si la reserva no existe en
-	 * la lista.
+	 * Lanza una {@link ReservaNoExistenteException} si la reserva no existe en la
+	 * lista.
 	 * 
 	 * @param id
 	 * @throws ReservaNoExistenteException
-	 * @author ElJuancho
 	 */
 	private void throwReservaNoExistente(Long id) throws ReservaNoExistenteException {
 		if (!verificarReserva(id))
@@ -103,12 +92,11 @@ public class Cliente extends Usuario {
 	}
 
 	/**
-	 * Lanza una <code>ReservaYaExistenteException</code> si la reserva ya existe en
-	 * la lista.
+	 * Lanza una {@link ReservaYaExistenteException} si la reserva ya existe en la
+	 * lista.
 	 * 
 	 * @param id
 	 * @throws ReservaYaExistenteException
-	 * @author ElJuancho
 	 */
 	private void throwReservaYaExistente(Long id) throws ReservaYaExistenteException {
 		if (verificarReserva(id))
@@ -117,14 +105,12 @@ public class Cliente extends Usuario {
 	}
 
 	/**
-	 * Busca y retorna de manera recursiva la <code>Reserva</code> que posea el
-	 * <b>id</b> que se recibio por parametro. Retorna un null en caso de no
-	 * econtrarlo.
+	 * Busca y retorna de manera recursiva la {@link Reserva} que posea el <b>id</b>
+	 * que se recibio por parametro. Retorna un null en caso de no econtrarlo.
 	 * 
 	 * @param id
 	 * @param i
 	 * @return
-	 * @author ElJuancho
 	 */
 	private Reserva buscarReservaAux(Long id, int i) {
 		if (reservas.get(i).getId().equals(id))
@@ -142,7 +128,7 @@ public class Cliente extends Usuario {
 	 * @param id
 	 * @return
 	 * @throws ReservaNoExistenteException
-	 * @author ElJuancho
+	 * 
 	 */
 	public Reserva buscarReserva(Long id) throws ReservaNoExistenteException {
 		throwReservaNoExistente(id);
@@ -156,7 +142,7 @@ public class Cliente extends Usuario {
 	 * 
 	 * @param reserva
 	 * @throws ReservaYaExistenteException
-	 * @author ElJuancho
+	 * 
 	 */
 	public void agregarReserva(Reserva reserva) throws ReservaYaExistenteException {
 		throwReservaYaExistente(reserva.getId());
@@ -168,11 +154,13 @@ public class Cliente extends Usuario {
 	 * 
 	 * @param id
 	 * @param i
-	 * @author ElJuancho
+	 * 
 	 */
 	private void eliminarReservaAux(Long id, int i) {
-		if (reservas.size() == i) return;
-		if (!reservas.get(i).getId().equals(id)) eliminarReservaAux(id, i+1);
+		if (reservas.size() == i)
+			return;
+		if (!reservas.get(i).getId().equals(id))
+			eliminarReservaAux(id, i + 1);
 		reservas.remove(i);
 	}
 
@@ -183,7 +171,7 @@ public class Cliente extends Usuario {
 	 * 
 	 * @param id
 	 * @throws ReservaNoExistenteException
-	 * @author ElJuancho
+	 * 
 	 */
 	public void eliminarReserva(Long id) throws ReservaNoExistenteException {
 		throwReservaNoExistente(id);

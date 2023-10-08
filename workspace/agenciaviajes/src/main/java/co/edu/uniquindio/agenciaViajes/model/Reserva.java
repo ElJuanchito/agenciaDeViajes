@@ -22,6 +22,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * 
@@ -35,6 +36,7 @@ import lombok.Setter;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
 @Builder
+@ToString
 public class Reserva {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,7 +54,7 @@ public class Reserva {
 	@NonNull
 	@OneToOne
 	private Paquete paquete;
-	
+
 	@ManyToOne
 	private GuiaTuristico guia;
 	@NonNull

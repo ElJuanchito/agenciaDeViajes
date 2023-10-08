@@ -1,11 +1,8 @@
-/**
- * 
- * @author ElJuancho
- */
 package co.edu.uniquindio.agenciaViajes.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,27 +17,25 @@ import javax.persistence.Table;
 
 import co.edu.uniquindio.agenciaViajes.exceptions.DestinoNoExistenteException;
 import co.edu.uniquindio.agenciaViajes.exceptions.DestinoYaExistenteException;
-import co.edu.uniquindio.agenciaViajes.services.RecurStrictList;
+import co.edu.uniquindio.agenciaViajes.exceptions.PaqueteNoExistenteException;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.ToString;
 
-/**
- * 
- * @author ElJuancho
- */
 @Entity
 @Table(name = "paquetes")
 @NoArgsConstructor
 @Setter
 @Getter
+@ToString
 public class Paquete {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter
-	@Setter
+	@EqualsAndHashCode.Include
 	private Long id;
 	@NonNull
 	private String nombre;
@@ -69,10 +64,9 @@ public class Paquete {
 	 * @param cupoMaximo
 	 * @param fechaIncio
 	 * @param fechaFin
-	 * @author ElJuancho
 	 */
 	@Builder
-	public Paquete(String nombre, Integer duracionDias, String serviciosAdicionales, BigDecimal precio,
+	private Paquete(String nombre, Integer duracionDias, String serviciosAdicionales, BigDecimal precio,
 			Integer cupoMaximo, LocalDateTime fechaIncio, LocalDateTime fechaFin) {
 		super();
 		this.nombre = nombre;
@@ -82,7 +76,7 @@ public class Paquete {
 		this.cupoMaximo = cupoMaximo;
 		this.fechaIncio = fechaIncio;
 		this.fechaFin = fechaFin;
-		this.destinos = new RecurStrictList<Destino>();
+		this.destinos = new ArrayList<Destino>();
 	}
 
 	@Override
@@ -102,13 +96,6 @@ public class Paquete {
 		return Objects.equals(id, other.id);
 	}
 
-	@Override
-	public String toString() {
-		return "Paquete [id=" + id + ", nombre=" + nombre + ", duracionDias=" + duracionDias + ", serviciosAdicionales="
-				+ serviciosAdicionales + ", precio=" + precio + ", cupoMaximo=" + cupoMaximo + ", fechaIncio="
-				+ fechaIncio + ", fechaFin=" + fechaFin + "]";
-	}
-
 // INICIO DEL CRUD:
 
 	/**
@@ -120,7 +107,6 @@ public class Paquete {
 	 * @return
 	 * @author ElJuancho
 	 */
-
 	private boolean verificarDestinoAux(Long id, int i) {
 		if (destinos.get(i).getId().equals(id))
 			return true;
@@ -130,24 +116,22 @@ public class Paquete {
 	}
 
 	/**
-	 * Verifica si un Destino esta en la lista. Retorna un valor booleano como
-	 * resultado.
+	 * Verifica si un {@link Destino} esta en la lista. Retorna un valor booleano
+	 * como resultado.
 	 * 
 	 * @param id
 	 * @return
-	 * @author ElJuancho
 	 */
 	public boolean verificarDestino(Long id) {
 		return verificarDestinoAux(id, 0);
 	}
 
 	/**
-	 * Lanza una exception si el Destino con el id introducido por parametro no
-	 * existe en la lista.
+	 * Lanza una exception si el {@link Destino} con el id introducido por parametro
+	 * no existe en la lista.
 	 * 
 	 * @param id
 	 * @throws DestinoNoExistenteException
-	 * @author ElJuancho
 	 */
 	private void throwDestinoNoExistente(Long id) throws DestinoNoExistenteException {
 		if (!verificarDestino(id))
@@ -170,13 +154,12 @@ public class Paquete {
 	}
 
 	/**
-	 * Busca de forma recursiva en la lista y retorna el destino identificado con el
-	 * id del parametro.
+	 * Busca de forma recursiva en la lista y retorna el {@link Destino}
+	 * identificado con el id del parametro.
 	 * 
 	 * @param id
 	 * @param i
 	 * @return
-	 * @author ElJuancho
 	 */
 	private Destino buscarDestinoAux(Long id, int i) {
 		if (destinos.size() == i)
@@ -188,13 +171,12 @@ public class Paquete {
 
 	/**
 	 * Busca y retorna el destino identificado con el id recibio por parametro.
-	 * Lanza una <code>PaqueteNoExistenteException</code> si el destino no existe en
-	 * la lista.
+	 * Lanza una {@link PaqueteNoExistenteException} si el destino no existe en la
+	 * lista.
 	 * 
 	 * @param id
 	 * @throws DestinoNoExistenteException
 	 * @return
-	 * @author ElJuancho
 	 */
 	public Destino buscarDestino(Long id) throws DestinoNoExistenteException {
 		throwDestinoNoExistente(id);
@@ -203,7 +185,7 @@ public class Paquete {
 
 	/**
 	 * Agrega un nuevo destino a la lista. Lanza una
-	 * <code>DestinoYaExistenteException</code> si el destino ya existe en la lista.
+	 * {@link DestinoYaExistenteException} si el destino ya existe en la lista.
 	 * 
 	 * @param destino
 	 * @throws DestinoYaExistenteException
@@ -215,7 +197,7 @@ public class Paquete {
 	}
 
 	/**
-	 * Busca y actualiza de forma recursiva un <code>Destino</code> en la lista.
+	 * Busca y actualiza de forma recursiva un {@link Destino} en la lista.
 	 * 
 	 * @param destino
 	 * @param i
@@ -232,10 +214,9 @@ public class Paquete {
 
 	/**
 	 * Actualiza un destino en la lista con sus nuevos cambios. Lanza una
-	 * <code>DestinoNoExistenteException</code> si el Destino no existe en la lista.
+	 * {@link DestinoNoExistenteException} si el Destino no existe en la lista.
 	 * 
 	 * @param destino
-	 * @author ElJuancho
 	 * @throws DestinoNoExistenteException
 	 */
 	public void actualizarDestino(Destino destino) throws DestinoNoExistenteException {
@@ -244,12 +225,11 @@ public class Paquete {
 	}
 
 	/**
-	 * Busca y elimina de forma recursiva el <code>Destino</code> identificado con
-	 * el id recibido por parametro.
+	 * Busca y elimina de forma recursiva el {@link Destino} identificado con el id
+	 * recibido por parametro.
 	 * 
 	 * @param id
 	 * @param i
-	 * @author ElJuancho
 	 */
 	private void elminarDestinoAux(Long id, int i) {
 		if (destinos.size() == i)
@@ -261,13 +241,12 @@ public class Paquete {
 	}
 
 	/**
-	 * Elimina un <code>Destino</code> identificado con el id recibido por
-	 * parametro. Lanza una <code>DestinoNoExistenteException</code> si el destino
-	 * no existe en la lista.
+	 * Elimina un {@link Destino} identificado con el id recibido por parametro.
+	 * Lanza una {@link DestinoNoExistenteException} si el destino no existe en la
+	 * lista.
 	 * 
 	 * @param id
 	 * @throws DestinoNoExistenteException
-	 * @author ElJuancho
 	 */
 	public void eliminarDestino(Long id) throws DestinoNoExistenteException {
 		throwDestinoNoExistente(id);
