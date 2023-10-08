@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.SVGPath?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaViajes.controllers.MainMenuController">
    <top>
       <VBox BorderPane.alignment="CENTER">
          <children>
@@ -17,13 +17,13 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
                <children>
-                  <HBox alignment="CENTER" spacing="5.0">
+                  <HBox fx:id="btnMisPaquetes" alignment="CENTER" onMouseClicked="#misPaquetesEvent" spacing="5.0">
                      <children>
                         <SVGPath content="M8,8 L4,8 L4,13 L11,13 L13,13 L20,13 L20,8 L16,8 L8,8 Z M8,6 L8,5 C8,3.8954305 8.8954305,3 10,3 L14,3 C15.1045695,3 16,3.8954305 16,5 L16,6 L20,6 C21.1045695,6 22,6.8954305 22,8 L22,19 C22,20.1045695 21.1045695,21 20,21 L4,21 C2.8954305,21 2,20.1045695 2,19 L2,8 C2,6.8954305 2.8954305,6 4,6 L8,6 Z M11,15 L4,15 L4,19 L20,19 L20,15 L13,15 L13,16 L11,16 L11,15 Z M14,6 L14,5 L10,5 L10,6 L14,6 Z" />
-                        <Label text="Mis paquetes" />
+                        <Label fx:id="lblMisPaquetes" text="Mis paquetes" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" style="-fx-border-color: black; -fx-border-radius: 1.2em; -fx-background-radius: 1.2em;">
+                  <HBox fx:id="btnUsuario" alignment="CENTER" onMouseClicked="#usuarioEvent" style="-fx-border-color: black; -fx-border-radius: 1.2em; -fx-background-radius: 1.2em;">
                      <children>
                         <SVGPath content="M15.71,12.71a6,6,0,1,0-7.42,0,10,10,0,0,0-6.22,8.18,1,1,0,0,0,2,.22,8,8,0,0,1,15.9,0,1,1,0,0,0,1,.89h.11a1,1,0,0,0,.88-1.1A10,10,0,0,0,15.71,12.71ZM12,12a4,4,0,1,1,4-4A4,4,0,0,1,12,12Z" />
                      </children>
@@ -35,22 +35,22 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
-                  <VBox alignment="CENTER">
+                  <VBox fx:id="btnDestinos" alignment="CENTER" onMouseClicked="#destinosEvent">
                      <children>
                         <SVGPath content="M10,20h2.11a1,1,0,0,0,.81-.42L16.84,14H19a2,2,0,0,0,2-2h0a2,2,0,0,0-2-2H16.84L12.92,4.42A1,1,0,0,0,12.11,4H10l1,6H8L6.29,8.29A1,1,0,0,0,5.59,8H3l2,4L3,16H5.59a1,1,0,0,0,.7-.29L8,14h3Z" />
-                        <Label text="Destinos" />
+                        <Label fx:id="lblDestinos" text="Destinos" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER">
+                  <VBox fx:id="btnPaquetes" alignment="CENTER" onMouseClicked="#paquetesEvent">
                      <children>
                         <SVGPath content="M8,8 L4,8 L4,13 L11,13 L13,13 L20,13 L20,8 L16,8 L8,8 Z M8,6 L8,5 C8,3.8954305 8.8954305,3 10,3 L14,3 C15.1045695,3 16,3.8954305 16,5 L16,6 L20,6 C21.1045695,6 22,6.8954305 22,8 L22,19 C22,20.1045695 21.1045695,21 20,21 L4,21 C2.8954305,21 2,20.1045695 2,19 L2,8 C2,6.8954305 2.8954305,6 4,6 L8,6 Z M11,15 L4,15 L4,19 L20,19 L20,15 L13,15 L13,16 L11,16 L11,15 Z M14,6 L14,5 L10,5 L10,6 L14,6 Z" />
-                        <Label text="Paquetes" />
+                        <Label fx:id="lblPaquetes" text="Paquetes" />
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER">
+                  <VBox fx:id="btnGuias" alignment="CENTER" onMouseClicked="#guiasEvent">
                      <children>
                         <SVGPath content="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm1,17.93V19a1,1,0,0,0-2,0v.93A8,8,0,0,1,4.07,13H5a1,1,0,0,0,0-2H4.07A8,8,0,0,1,11,4.07V5a1,1,0,0,0,2,0V4.07A8,8,0,0,1,19.93,11H19a1,1,0,0,0,0,2h.93A8,8,0,0,1,13,19.93ZM15.14,7.55l-5,2.12a1,1,0,0,0-.52.52l-2.12,5a1,1,0,0,0,.21,1.1,1,1,0,0,0,.7.3.93.93,0,0,0,.4-.09l5-2.12a1,1,0,0,0,.52-.52l2.12-5a1,1,0,0,0-1.31-1.31Zm-2.49,5.1-2.28,1,1-2.28,2.28-1Z" />
-                        <Label text="Guias" />
+                        <Label fx:id="lblGuias" text="Guias" />
                      </children>
                   </VBox>
                </children>
@@ -59,6 +59,6 @@
       </VBox>
    </top>
    <center>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <BorderPane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
