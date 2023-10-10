@@ -1,0 +1,11 @@
+.cajaTexto{
+	-fx-text-fill: black;
+	-fx-font-size: 1.2em;
+	-fx-border-color: transparent;
+	-fx-border-width: 10px;
+	-fx-border-radius: 0.5em; /* Radio de borde */
+	-fx-background-color: white;
+	-fx-prompt-text-fill: grey;
+	-fx-padding: 0 1em; /* Relleno interno */
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
+}
