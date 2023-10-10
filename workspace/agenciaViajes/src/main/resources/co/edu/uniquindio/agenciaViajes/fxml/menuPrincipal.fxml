@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <StackPane BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </BorderPane.margin>
          <children>
-            <HBox alignment="CENTER">
+            <HBox alignment="CENTER_LEFT">
                <children>
                   <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);; -fx-cursor: hand; -fx-border-color: transparent;">
                      <graphic>
@@ -29,7 +29,7 @@
                         </Group>
                      </graphic>
                   </Button>
-                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" style="-fx-background-color: #270570; -fx-background-radius: 60;">
+                  <HBox alignment="CENTER" spacing="10.0" style="-fx-background-color: #270570; -fx-background-radius: 60;">
                      <children>
                         <VBox alignment="CENTER">
                            <children>
@@ -56,15 +56,23 @@
                               <Label text="Guias" textFill="WHITE" translateY="5.0" />
                            </children>
                         </VBox>
-                        <HBox alignment="CENTER_RIGHT">
+                        <VBox alignment="CENTER">
                            <children>
-                              <VBox alignment="CENTER">
-                                 <children>
-                                    <SVGPath content="M24,45A21,21,0,1,1,45,24,21,21,0,0,1,24,45Zm11.633-6c-.157-.231-.355-.518-.514-.742-.277-.394-.554-.788-.8-1.178C34.305,37.062,32.935,35.224,28,35a2.922,2.922,0,0,1-2.968-3.066L25,31c0-.135-.016.148,0,0V30l1-1a14.435,14.435,0,0,0,2.4-1.464l.135-.093A4.643,4.643,0,0,0,30,26l.036-.381A55.987,55.987,0,0,0,31,19c0-4.71-2.29-7-7-7-4.775,0-7,2.224-7,7a54.693,54.693,0,0,0,.963,6.616l.035.352a3.981,3.981,0,0,0,1.449,1.462l.1.062A19.174,19.174,0,0,0,22,29l1,1v1c.014.138,0-.146,0,0l-.033.934A2.9,2.9,0,0,1,20.084,35h0c-4.956.2-6.393,2.077-6.4,2.077-.252.4-.528.789-.807,1.184-.157.224-.355.51-.513.741a18.917,18.917,0,0,0,23.267,0ZM24,5A18.986,18.986,0,0,0,10.85,37.694c.382-.565.79-1.129,1.15-1.694,0,0,1.67-2.743,8-3,.645,0,.967-.422.967-1.066h0c0-.521,0-.934,0-.934,0-.13-.021-.247-.027-.373A17.5,17.5,0,0,1,18.4,29.133S16,27.657,16,26a60.16,60.16,0,0,1-1-7c0-4.644,1.986-9,9-9,6.92,0,9,4.356,9,9a61.784,61.784,0,0,1-1,7c0,1.611-2.4,3.133-2.4,3.133a13.873,13.873,0,0,1-2.543,1.546c0,.109-.023.209-.023.321,0,0,0,.413,0,.934h0c0,.644.32,1.066.965,1.066,6.424.288,8,3,8,3,.36.565.767,1.129,1.149,1.694A18.985,18.985,0,0,0,24,5Z" fill="WHITE" />
-                                 </children>
-                              </VBox>
+                              <SVGPath content="M9.12601749,6 C9.57006028,4.27477279 11.1361606,3 13,3 C15.209139,3 17,4.790861 17,7 C17,9.209139 15.209139,11 13,11 C11.1361606,11 9.57006028,9.72522721 9.12601749,8 L2,8 L2,6 L9.12601749,6 Z M4.12601749,16 C4.57006028,14.2747728 6.13616057,13 8,13 C10.209139,13 12,14.790861 12,17 C12,19.209139 10.209139,21 8,21 C6.13616057,21 4.57006028,19.7252272 4.12601749,18 L2,18 L2,16 L4.12601749,16 Z M14,18 L14,16 L22,16 L22,18 L14,18 Z M8,19 C9.1045695,19 10,18.1045695 10,17 C10,15.8954305 9.1045695,15 8,15 C6.8954305,15 6,15.8954305 6,17 C6,18.1045695 6.8954305,19 8,19 Z M19,8 L19,6 L22,6 L22,8 L19,8 Z M13,9 C14.1045695,9 15,8.1045695 15,7 C15,5.8954305 14.1045695,5 13,5 C11.8954305,5 11,5.8954305 11,7 C11,8.1045695 11.8954305,9 13,9 Z" fill="WHITE">
+                                 <VBox.margin>
+                                    <Insets top="1.0" />
+                                 </VBox.margin>
+                              </SVGPath>
+                              <Label text="Mas" textFill="WHITE">
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </Label>
                            </children>
-                        </HBox>
+                        </VBox>
                      </children>
                      <padding>
                         <Insets left="20.0" right="20.0" />
@@ -72,7 +80,36 @@
                   </HBox>
                </children>
             </HBox>
+            <HBox alignment="CENTER_RIGHT">
+               <children>
+                  <Button mnemonicParsing="false" style="-fx-background-color: transparent; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);; -fx-cursor: hand; -fx-border-color: transparent;">
+                     <graphic>
+                        <Group>
+                           <children>
+                              <SVGPath content="M14,7.5c0,3.5899-2.9101,6.5-6.5,6.5S1,11.0899,1,7.5S3.9101,1,7.5,1S14,3.9101,14,7.5z" fill="#270570" scaleX="4.0" scaleY="4.0" />
+                              <SVGPath content="M21,20a2,2,0,0,1-2,2H5a2,2,0,0,1-2-2,6,6,0,0,1,6-6h6A6,6,0,0,1,21,20Zm-9-8A5,5,0,1,0,7,7,5,5,0,0,0,12,12Z" fill="WHITE" scaleX="1.5" scaleY="1.5" translateX="-4.0" translateY="-4.0" />
+                           </children>
+                        </Group>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </StackPane>
    </top>
+   <bottom>
+      <HBox alignment="BASELINE_RIGHT" style="-fx-background-color: #270570; -fx-background-radius: 50;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="BASELINE_RIGHT">
+               <children>
+                  <Button mnemonicParsing="false" style="-fx-background-color: transparent;">
+                     <graphic>
+                        <SVGPath content="M19.9,12.66a1,1,0,0,1,0-1.32L21.18,9.9a1,1,0,0,0,.12-1.17l-2-3.46a1,1,0,0,0-1.07-.48l-1.88.38a1,1,0,0,1-1.15-.66l-.61-1.83A1,1,0,0,0,13.64,2h-4a1,1,0,0,0-1,.68L8.08,4.51a1,1,0,0,1-1.15.66L5,4.79A1,1,0,0,0,4,5.27L2,8.73A1,1,0,0,0,2.1,9.9l1.27,1.44a1,1,0,0,1,0,1.32L2.1,14.1A1,1,0,0,0,2,15.27l2,3.46a1,1,0,0,0,1.07.48l1.88-.38a1,1,0,0,1,1.15.66l.61,1.83a1,1,0,0,0,1,.68h4a1,1,0,0,0,.95-.68l.61-1.83a1,1,0,0,1,1.15-.66l1.88.38a1,1,0,0,0,1.07-.48l2-3.46a1,1,0,0,0-.12-1.17ZM18.41,14l.8.9-1.28,2.22-1.18-.24a3,3,0,0,0-3.45,2L12.92,20H10.36L10,18.86a3,3,0,0,0-3.45-2l-1.18.24L4.07,14.89l.8-.9a3,3,0,0,0,0-4l-.8-.9L5.35,6.89l1.18.24a3,3,0,0,0,3.45-2L10.36,4h2.56l.38,1.14a3,3,0,0,0,3.45,2l1.18-.24,1.28,2.22-.8.9A3,3,0,0,0,18.41,14ZM11.64,8a4,4,0,1,0,4,4A4,4,0,0,0,11.64,8Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,11.64,14Z" fill="WHITE" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+   </bottom>
 </BorderPane>
