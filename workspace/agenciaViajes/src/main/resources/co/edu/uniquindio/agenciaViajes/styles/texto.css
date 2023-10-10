@@ -1,0 +1,11 @@
+.label{
+	-fx-font-family: 'Heebo', sans-serif;
+	-fx-font-size: 1em;
+	-fx-text-fill: black;
+}
+
+.titulo{
+	-fx-font-size: 2em;
+	-fx-font-weight: bold;
+		-fx-text-fill: #270570;
+}
