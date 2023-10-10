@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<HBox alignment="CENTER_LEFT" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER_LEFT" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaViajes.controllers.loginController">
    <children>
       <StackPane prefHeight="150.0" prefWidth="200.0">
          <children>
@@ -40,10 +41,14 @@
             <Label fx:id="lblBienvenido" stylesheets="@../styles/texto.css" text="Bienvenido de nuevo, te hemos extrañado" />
             <VBox alignment="CENTER" spacing="10.0">
                <children>
-                  <TextField fx:id="txtUsuario" onAction="#usuarioEvent" promptText="Usuario" styleClass="cajaTexto" stylesheets="@../styles/cajaTexto.css">
+                  <TextField fx:id="txtUsuario" onAction="#usuarioEvent" promptText="Usuario" stylesheets="@../styles/cajaTexto.css">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
+                     <styleClass>
+                        <String fx:value="cajaTexto" />
+                        <String fx:value="cajaTexto" />
+                     </styleClass>
                   </TextField>
                   <PasswordField fx:id="txtPassword" onAction="#passwordEvent" promptText="Password" styleClass="cajaTexto" stylesheets="@../styles/cajaTexto.css">
                      <VBox.margin>
