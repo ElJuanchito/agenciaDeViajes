@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaViajes.controllers.MainMenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaViajes.controllers.MainMenuController">
    <top>
-      <VBox BorderPane.alignment="CENTER">
+      <StackPane style="-fx-background-color: #270570; -fx-background-radius: 1em;" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER_RIGHT" spacing="20.0">
                <padding>
@@ -35,6 +36,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                <children>
+                  <Button mnemonicParsing="false" text="Button" />
                   <VBox fx:id="btnDestinos" alignment="CENTER" onMouseClicked="#destinosEvent">
                      <children>
                         <SVGPath content="M10,20h2.11a1,1,0,0,0,.81-.42L16.84,14H19a2,2,0,0,0,2-2h0a2,2,0,0,0-2-2H16.84L12.92,4.42A1,1,0,0,0,12.11,4H10l1,6H8L6.29,8.29A1,1,0,0,0,5.59,8H3l2,4L3,16H5.59a1,1,0,0,0,.7-.29L8,14h3Z" />
@@ -56,9 +58,12 @@
                </children>
             </HBox>
          </children>
-      </VBox>
+      </StackPane>
    </top>
    <center>
       <BorderPane fx:id="centerPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
 </BorderPane>
