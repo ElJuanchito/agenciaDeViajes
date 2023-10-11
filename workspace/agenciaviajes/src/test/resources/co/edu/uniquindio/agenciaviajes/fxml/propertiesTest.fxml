@@ -5,24 +5,16 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-	prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="co.edu.uniquindio.agenciaViajes.controllers.PropiedadesTestController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../styles/boton.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaViajes.controllers.PropiedadesTestController">
 	<center>
-		<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0"
-			spacing="20.0" BorderPane.alignment="CENTER">
+		<VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
 			<children>
 				<Label fx:id="label1" text="prop1" />
-				<Label fx:id="label2" layoutX="10.0" layoutY="10.0"
-					text="prop2" />
-				<Label fx:id="label3" layoutX="10.0" layoutY="10.0"
-					text="prop3" />
-				<Button fx:id="englishBtn" mnemonicParsing="false" onAction="#changeToEnAction"
-					text="enButton" />
-				<Button fx:id="spanishBtn" mnemonicParsing="false" onAction="#changeToEsAction"
-					text="esButton" />
+				<Label fx:id="label2" layoutX="10.0" layoutY="10.0" text="prop2" />
+				<Label fx:id="label3" layoutX="10.0" layoutY="10.0" text="prop3" />
+				<Button fx:id="englishBtn" mnemonicParsing="false" onAction="#changeToEnAction" text="enButton" />
+				<Button fx:id="spanishBtn" mnemonicParsing="false" onAction="#changeToEsAction" text="esButton" />
+            <Button fx:id="btnInciarSesion" mnemonicParsing="false" onAction="#iniciarSesionAction" prefHeight="54.0" prefWidth="326.0" styleClass="boton" text="Iniciar Sesion" />
 			</children>
 		</VBox>
 	</center>
