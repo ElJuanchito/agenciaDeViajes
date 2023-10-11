@@ -68,6 +68,7 @@ public class PropiedadesTestController implements Initializable {
 		AnimationService.getInstance().ejecutarAccionBtn(btnInciarSesion, () -> {
 			try {
 				UtilsJPA.getEntityManager().contains(null);
+				// se demora un poco al inicio, sirve para ver la animación bien
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

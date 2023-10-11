@@ -2,7 +2,6 @@ package co.edu.uniquindio.agenciaViajes.services;
 
 import co.edu.uniquindio.agenciaViajes.application.App;
 import javafx.application.Platform;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.scene.control.Button;
 
 public class AnimationService {
@@ -25,7 +24,7 @@ public class AnimationService {
 				button.setText("");
 				button.setDisable(true);
 			} catch (Exception e) {
-				button.setText("Cargando...");
+				button.setText("Cargando..."); // en caso de emergencia
 			}
 			new Thread(() -> {
 				runnable.run();
