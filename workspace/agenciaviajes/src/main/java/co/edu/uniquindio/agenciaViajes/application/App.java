@@ -20,17 +20,17 @@ public class App extends Application {
 	private static Scene scene;
 
 	@Override
-	public void start(Stage stage) throws IOException {
+	public void start(Stage stage) throws Exception {
 		scene = new Scene(loadFXML("main"), 640, 480);
 		stage.setScene(scene);
 		stage.show();
 	}
 
-	static void setRoot(String fxml) throws IOException {
+	static void setRoot(String fxml) throws Exception {
 		scene.setRoot(loadFXML(fxml));
 	}
 
-	private static Parent loadFXML(String fxml) throws IOException {
+	public static Parent loadFXML(String fxml) throws Exception {
 		return new FXMLLoader(App.class.getResource("/co/edu/uniquindio/agenciaviajes/fxml/" + fxml + ".fxml")).load();
 	}
 
