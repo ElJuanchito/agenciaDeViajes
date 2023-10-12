@@ -8,12 +8,12 @@ public enum Clima {
 	TROPICAL("Tropical"), SECO("Seco"), TEMPLADO("Templado"), FRIO("Frio"), CALUROSO("Caluroso"), POLAR("Polar");
 
 	@Getter
-	private final String clima;
+	private final String text;
 
 	public static Clima getClimaByString(String climaString) {
 		Clima[] values = values();
 		for (Clima clima : values)
-			if (clima.getClima().equals(climaString))
+			if (clima.getText().equals(climaString))
 				return clima;
 		return null;
 	}
@@ -22,7 +22,7 @@ public enum Clima {
 		Clima[] values = values();
 		String[] stringValues = new String[values.length];
 		for (int i = 0; i < values.length; i++)
-			stringValues[i] = values[i].getClima();
+			stringValues[i] = values[i].getText();
 		return stringValues;
 	}
 

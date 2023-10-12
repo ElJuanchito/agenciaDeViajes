@@ -1,11 +1,18 @@
-.label{
+.ordinaryText{
 	-fx-font-family: 'Heebo', sans-serif;
-	-fx-font-size: 1em;
-	-fx-text-fill: black;
+	-fx-text-fill: #270570;
+	-fx-font-size: 1.5em;
+	-fx-font-weight: bold;
+	
+}
+
+.descriptionText{
+	-fx-font-size: 1.2em;
+	-fx-text-fill: darkblue;
 }
 
 .titulo{
 	-fx-font-size: 2em;
 	-fx-font-weight: bold;
-		-fx-text-fill: #270570;
+	-fx-text-fill: #270570;
 }
