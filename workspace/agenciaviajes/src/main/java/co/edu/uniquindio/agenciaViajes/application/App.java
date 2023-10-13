@@ -20,7 +20,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		scene = new Scene(loadFXML("prueba"));
+		scene = new Scene(loadFXML("viewDestinos"));
 		stage.setScene(scene);
 		
 		Image icon = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/login.png"));

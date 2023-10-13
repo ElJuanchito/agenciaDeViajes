@@ -1,0 +1,31 @@
+.scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+}
+
+.scroll-pane .scroll-bar:vertical {
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+}
+
+.scroll-pane .scroll-arrow {
+ -fx-padding: 0 0 0 0;
+}
+
+.scroll-pane .scroll-bar .increment-button,
+.scroll-pane .scroll-bar .decrement-button {
+	-fx-text-fill: white;
+    -fx-background-color: white;
+    -fx-background-insets: 0;
+    -fx-shape: "";
+}
+
+.scroll-pane .scroll-bar .track {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #270570;
+    -fx-background-insets: 0;
+    -fx-shape: "";
+}
