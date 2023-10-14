@@ -1,0 +1,3 @@
+James Rodríguez;19;Colombia;centrocampista
+Lionel Messi;10;Argentina;delantero
+Marc-André ter Stegen;1;Alemania;portero
