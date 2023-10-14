@@ -10,7 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-public class Login {
+public class LoginController {
 
     @FXML
     private ResourceBundle resources;
