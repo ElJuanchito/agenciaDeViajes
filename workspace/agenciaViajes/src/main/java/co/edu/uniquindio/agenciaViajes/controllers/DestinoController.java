@@ -1,25 +1,23 @@
 package co.edu.uniquindio.agenciaViajes.controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaViajes.model.Destino;
+import co.edu.uniquindio.agenciaViajes.services.DataControllable;
 import co.edu.uniquindio.agenciaViajes.utils.UtilsFX;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-public class DestinoController implements Initializable {
+public class DestinoController implements DataControllable<Destino> {
 
 	@FXML
 	private ResourceBundle resources;
@@ -66,23 +64,9 @@ public class DestinoController implements Initializable {
 	@Getter
 	private Destino destino;
 
-	private List<Image> listaImagenes;
+	private List<Image> listaImagenes = new ArrayList<Image>();
 
-	private int currentIndex;
-
-	/**
-	 * 
-	 * @author ElJuancho
-	 */
-	@Builder
-	public DestinoController(Destino destino) {
-		this.destino = destino;
-	}
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-
-	}
+	private int currentIndex = 0;
 
 	@FXML
 	void nextEvent(ActionEvent event) {
@@ -124,8 +108,29 @@ public class DestinoController implements Initializable {
 		}
 	}
 
-	public void setDestino(Destino destino) {
-		this.destino = destino;
+	@Override
+	public void updateLanguage(ResourceBundle bundle) {
+	}
+
+	@Override
+	public void clearData() {
+		txtName.setText("");
+		txtCity.setText("");
+		txtDescription.setText("");
+		txtWeather.setText("");
+		listaImagenes.clear();
+		showActualImage();
+		currentIndex = 0;
+		this.destino = null;
+	}
+
+	@Override
+	public void inicializarDatos(Destino dato) {
+		this.destino = dato;
+		if (destino == null) {
+			clearData();
+			return;
+		}
 		txtName.setText(destino.getNombre());
 		txtCity.setText(destino.getCiudad());
 		txtDescription.setText(destino.getDescripcion());

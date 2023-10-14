@@ -1,9 +1,13 @@
 package co.edu.uniquindio.agenciaViajes.services;
 
-import co.edu.uniquindio.agenciaViajes.application.App;
+import co.edu.uniquindio.agenciaViajes.i18n.LanguageManager;
+import co.edu.uniquindio.agenciaViajes.ui.Vista;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class AnimationService {
 	private static AnimationService instance;
 
@@ -13,18 +17,17 @@ public class AnimationService {
 		return instance;
 	}
 
-	private AnimationService() {
-	}
-
 	public void ejecutarAccionBtn(Button button, Runnable runnable) {
 		if (button.getGraphic() == null) {
 			String originalText = button.getText();
 			try {
-				button.setGraphic(App.loadFXML("loadingBtn"));
+				button.setGraphic(Vista.buildView("loadingBtn").getParent());
 				button.setText("");
 				button.setDisable(true);
 			} catch (Exception e) {
-				button.setText("Cargando..."); // en caso de emergencia
+				// en caso de emergencia
+				button.setText(LanguageManager.getInstance().getString("loadingState"));
+				button.setDisable(true);
 			}
 			new Thread(() -> {
 				runnable.run();
