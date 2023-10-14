@@ -4,8 +4,8 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.agenciaViajes.i18n.LanguageManager;
 import co.edu.uniquindio.agenciaViajes.services.AnimationService;
-import co.edu.uniquindio.agenciaViajes.services.Propiedades;
 import co.edu.uniquindio.agenciaViajes.services.UtilsJPA;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,7 +43,7 @@ public class PropiedadesTestController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		this.location = location;
 		this.resources = resources;
-		Propiedades.getInstance().addListener(bundle -> {
+		LanguageManager.getInstance().addListener(bundle -> {
 			System.out.println("hola");
 			label1.setText(bundle.getString("prop1"));
 			label2.setText(bundle.getString("prop2"));
@@ -55,12 +55,12 @@ public class PropiedadesTestController implements Initializable {
 
 	@FXML
 	void changeToEnAction(ActionEvent event) {
-		Propiedades.getInstance().setLanguage(Locale.US);
+		LanguageManager.getInstance().setLanguage(Locale.US);
 	}
 
 	@FXML
 	void changeToEsAction(ActionEvent event) {
-		Propiedades.getInstance().setLanguage("es");
+		LanguageManager.getInstance().setLanguage("es");
 	}
 
 	@FXML
