@@ -16,24 +16,14 @@ public class App extends Application {
 		launch(args);
 	}
 
-	private static Scene scene;
-
 	@Override
 	public void start(Stage stage) throws Exception {
-		scene = new Scene(loadFXML("viewDestinos"));
+		Scene scene = new Scene(loadFXML("viewDestinos"));
 		stage.setScene(scene);
-		
 		Image icon = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/login.png"));
-		
 		stage.setTitle("PokeViajes");
-		
         stage.getIcons().add(icon);
-		
 		stage.show();
-	}
-
-	static void setRoot(String fxml) throws Exception {
-		scene.setRoot(loadFXML(fxml));
 	}
 
 	public static Parent loadFXML(String fxml) throws Exception {

@@ -2,7 +2,6 @@ package co.edu.uniquindio.agenciaViajes.services;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.function.Consumer;
 
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -18,22 +17,25 @@ public class Propiedades {
 	}
 
 	private Propiedades() {
-		bundleProperty = new SimpleObjectProperty<>();
-		bundleProperty.setValue(ResourceBundle.getBundle(ROUTE));
+		bundleProperty = new SimpleObjectProperty<>(ResourceBundle.getBundle(ROUTE));
+	}
+
+	public void addListener(Traducible traducible) {
+		applyTranslation(traducible);
+		bundleProperty.addListener((observable, oldValue, newValue) -> traducible.updateLanguage(newValue));
+	}
+
+	public void applyTranslation(Traducible traducible) {
+		traducible.updateLanguage(getBundle());
+	}
+
+	private ResourceBundle getBundle() {
+		return bundleProperty.getValue();
 	}
 
 	public void setLanguage(Locale locale) {
 		if (!locale.equals(getBundle().getLocale()))
 			bundleProperty.setValue(ResourceBundle.getBundle(ROUTE, locale));
-	}
-
-	public void addListener(Consumer<ResourceBundle> consumer) {
-		consumer.accept(getBundle());
-		bundleProperty.addListener((observable, oldValue, newValue) -> consumer.accept(newValue));
-	}
-
-	private ResourceBundle getBundle() {
-		return bundleProperty.getValue();
 	}
 
 	public void setLanguage(String localeString) {
