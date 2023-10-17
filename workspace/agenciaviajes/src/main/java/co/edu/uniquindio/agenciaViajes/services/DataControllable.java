@@ -20,6 +20,9 @@ public interface DataControllable<T> extends Initializable, Traducible, Clearabl
 
 	@Override
 	default void initialize(URL location, ResourceBundle resources) {
+		preInicializar();
 		LanguageManager.getInstance().addListener(this);
 	}
+
+	public void preInicializar();
 }

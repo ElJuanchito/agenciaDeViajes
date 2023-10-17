@@ -139,4 +139,8 @@ public class DestinoController implements DataControllable<Destino> {
 		showActualImage();
 	}
 
+	@Override
+	public void preInicializar() {
+	}
+
 }

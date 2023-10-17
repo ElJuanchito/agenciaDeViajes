@@ -1,6 +1,9 @@
 package co.edu.uniquindio.agenciaViajes.ui;
 
-import co.edu.uniquindio.agenciaViajes.application.App;
+import java.util.ResourceBundle;
+
+import co.edu.uniquindio.agenciaViajes.exceptions.FXMLException;
+import co.edu.uniquindio.agenciaViajes.services.DataControllable;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import lombok.AccessLevel;
@@ -9,15 +12,32 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Vista {
-	private Object controller;
+public class Vista<T> {
+	private DataControllable<T> controller;
 	private Parent parent;
 
-	public static Vista buildView(String fxml) throws Exception {
+	public static <Y> Vista<Y> buildView(String fxml) throws FXMLException {
 		FXMLLoader fxmlLoader = new FXMLLoader(
-				App.class.getResource("/co/edu/uniquindio/agenciaviajes/fxml/" + fxml + ".fxml"));
-		Parent parent = fxmlLoader.load();
-		Object controller = fxmlLoader.getController();
-		return new Vista(controller, parent);
+				Vista.class.getResource("/co/edu/uniquindio/agenciaviajes/fxml/" + fxml + ".fxml"));
+		Parent parent;
+		try {
+			parent = fxmlLoader.load();
+		} catch (Exception e) {
+			throw new FXMLException("No se pudo cargar el fxml:'" + fxml + "'", e);
+		}
+		DataControllable<Y> controller = fxmlLoader.getController();
+		return new Vista<Y>(controller, parent);
+	}
+
+	public void clearData() {
+		controller.clearData();
+	}
+
+	public void inicializarDatos(T dato) {
+		controller.inicializarDatos(dato);
+	}
+
+	public void updateLanguage(ResourceBundle resourceBundle) {
+		controller.updateLanguage(resourceBundle);
 	}
 }
