@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaViajes.exceptions.FXMLException;
-import co.edu.uniquindio.agenciaViajes.exceptions.ObjetoNoEncontradoException;
 import co.edu.uniquindio.agenciaViajes.services.AnimationService;
 import co.edu.uniquindio.agenciaViajes.services.Controllable;
 import co.edu.uniquindio.agenciaViajes.ui.TipoVista;
@@ -61,7 +60,7 @@ public class LoginController implements Controllable {
 		AnimationService.getInstance().ejecutarAccionBtn(btnIniciar, () -> {
 			try {
 				VistaManager.getInstance().cambiarVista(TipoVista.DESTINOS, null);
-			} catch (ObjetoNoEncontradoException | FXMLException e) {
+			} catch (FXMLException e) {
 				e.printStackTrace();
 			}
 		});

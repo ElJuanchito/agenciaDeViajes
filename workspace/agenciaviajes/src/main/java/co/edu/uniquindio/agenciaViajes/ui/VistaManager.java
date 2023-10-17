@@ -5,7 +5,6 @@ import java.util.Map;
 
 import co.edu.uniquindio.agenciaViajes.application.App;
 import co.edu.uniquindio.agenciaViajes.exceptions.FXMLException;
-import co.edu.uniquindio.agenciaViajes.exceptions.ObjetoNoEncontradoException;
 import co.edu.uniquindio.agenciaViajes.i18n.LanguageManager;
 
 public class VistaManager {
@@ -24,7 +23,7 @@ public class VistaManager {
 	private Map<TipoVista, Vista<? extends Object>> mapaVistas;
 
 	@SuppressWarnings("unchecked")
-	public <T> void cambiarVista(TipoVista tipo, T dato) throws ObjetoNoEncontradoException, FXMLException {
+	public <T> void cambiarVista(TipoVista tipo, T dato) throws FXMLException {
 		Vista<T> vista = (Vista<T>) mapaVistas.get(tipo);
 		if (vista == null) {
 			vista = Vista.buildView(tipo.getRuta());
