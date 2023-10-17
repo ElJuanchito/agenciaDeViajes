@@ -21,8 +21,8 @@ public abstract class Usuario {
 	@Id
 	@NonNull
 	@EqualsAndHashCode.Include
-	protected String identificacion;
+	private String identificacion;
 	@NonNull
-	protected String nombreCompleto;
+	private String nombreCompleto;
 
 }

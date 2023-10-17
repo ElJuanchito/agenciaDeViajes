@@ -4,9 +4,10 @@
  */
 package co.edu.uniquindio.agenciaViajes.utils;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import co.edu.uniquindio.agenciaViajes.model.Imagen;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
@@ -26,18 +27,8 @@ import javafx.util.Duration;
  */
 public class UtilsFX {
 
-	public static List<Image> cargarImagenes(List<String> rutasImagenes) {
-		List<Image> imagenes = new ArrayList<>();
-		for (String ruta : rutasImagenes) {
-			try {
-				Image imagen = new Image(ruta);
-				imagenes.add(imagen);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		return imagenes;
+	public static List<Image> cargarImagenes(List<Imagen> listaImagenes) {
+		return listaImagenes.stream().map(Imagen::getImage).collect(Collectors.toList());
 	}
 
 	public static void setAsNumberTextfield(TextField tf) {

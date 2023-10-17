@@ -6,6 +6,8 @@ open module co.edu.uniquindio.agenciaViajes {
 	requires java.sql;
 	requires org.hibernate.orm.core;
 	requires transitive javafx.graphics;
+	requires java.desktop;
+	requires javafx.swing;
 
 	exports co.edu.uniquindio.agenciaViajes.model;
 	exports co.edu.uniquindio.agenciaViajes.application;

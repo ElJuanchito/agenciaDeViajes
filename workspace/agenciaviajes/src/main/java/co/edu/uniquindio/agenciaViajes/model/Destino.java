@@ -7,21 +7,23 @@ package co.edu.uniquindio.agenciaViajes.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.ElementCollection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import co.edu.uniquindio.agenciaViajes.exceptions.ImagenNoExistenteException;
-import co.edu.uniquindio.agenciaViajes.exceptions.ImagenYaExistenteException;
+import co.edu.uniquindio.agenciaViajes.exceptions.ImagenNoObtenidaException;
 import co.edu.uniquindio.agenciaViajes.exceptions.PaqueteNoExistenteException;
 import co.edu.uniquindio.agenciaViajes.exceptions.PaqueteYaExistenteException;
+import javafx.scene.image.Image;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -56,9 +58,8 @@ public class Destino {
 	@ToString.Include
 	private String descripcion;
 
-	@ElementCollection
-	@Lob
-	private List<String> imagenes;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	private List<Imagen> imagenes;
 
 	@Enumerated(EnumType.STRING)
 	@ToString.Include
@@ -82,11 +83,9 @@ public class Destino {
 		this.ciudad = ciudad;
 		this.descripcion = descripcion;
 		this.clima = clima;
-		this.imagenes = new ArrayList<String>();
+		this.imagenes = new ArrayList<Imagen>();
 		this.paquetes = new ArrayList<Paquete>();
 	}
-	
-	
 
 	/**
 	 * Verifica de manera recursiva para ver si el paquete con el id introducido por
@@ -238,36 +237,29 @@ public class Destino {
 		throwPaqueteNoExistente(id);
 		eliminarPaqueteAux(id, 0);
 	}
-	
-	private boolean verificarImagen(String image) {
-		return imagenes.contains(image);
-	}
-	
-	private int buscarIndexImagenAux(String imagen, int i) {
-		if(imagenes.get(i).equals(imagen)) return i;
-		if(imagenes.size() == i) return -1;
+
+	private int buscarIndexImagenAux(Imagen imagen, int i) {
+		if (imagenes.get(i).equals(imagen))
+			return i;
+		if (imagenes.size() == i)
+			return -1;
 		return buscarIndexImagenAux(imagen, ++i);
 	}
-	
-	public int buscarIndexImagen(String imagen) {
+
+	public int buscarIndexImagen(Imagen imagen) {
 		return buscarIndexImagenAux(imagen, 0);
 	}
-	
-	private void throwImagenYaExistente(String image) throws ImagenYaExistenteException {
-		if(verificarImagen(image)) throw new ImagenYaExistenteException("La imagen ya existe en la lista");
+
+	public void addImagen(Imagen imagen) {
+		imagenes.add(imagen);
 	}
-	
-	private void throwImagenNoExistente(String image) throws ImagenNoExistenteException {
-		if(!verificarImagen(image)) throw new ImagenNoExistenteException("La imagen no existe en la lista");
+
+	public void addImagen(String resource) throws ImagenNoObtenidaException {
+		addImagen(Imagen.createImage(new Image(getClass().getResourceAsStream(resource))));
 	}
-	
-	public void addImagen(String msg) throws ImagenYaExistenteException {
-		throwImagenYaExistente(msg);
-		imagenes.add(msg);
-	}
-	
-	public void removeImagen(String imagen) throws ImagenNoExistenteException {
-		throwImagenNoExistente(imagen);
-		imagenes.remove(buscarIndexImagen(imagen));
+
+	public void removeImagen(Imagen imagen) throws ImagenNoExistenteException {
+		if (!imagenes.remove(imagen))
+			throw new ImagenNoExistenteException("La imagen no existe en la lista");
 	}
 }
