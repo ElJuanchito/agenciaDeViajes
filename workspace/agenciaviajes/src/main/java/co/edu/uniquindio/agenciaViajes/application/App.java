@@ -24,7 +24,7 @@ public class App extends Application {
 	public void start(Stage stage) throws Exception {
 		scene = new Scene(new BorderPane());
 		stage.setScene(scene);
-		VistaManager.getInstance().cambiarVista(TipoVista.INICIO, null);
+		VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, null);
 		Image icon = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/login.png"));
 		stage.setTitle("PokeViajes");
 		stage.getIcons().add(icon);

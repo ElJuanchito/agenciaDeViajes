@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaViajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaViajes.services.AnimationService;
+import co.edu.uniquindio.agenciaViajes.services.Controllable;
 import co.edu.uniquindio.agenciaViajes.ui.TipoVista;
 import co.edu.uniquindio.agenciaViajes.ui.VistaManager;
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-public class LoginController {
+public class LoginController implements Controllable{
 
     @FXML
     private ResourceBundle resources;
@@ -77,6 +78,24 @@ public class LoginController {
 				e.printStackTrace();
 			}
 		});
+	}
+
+	@Override
+	public void preInicializar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateLanguage(ResourceBundle bundle) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clearData() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
