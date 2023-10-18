@@ -33,6 +33,9 @@ public class Cliente extends Usuario {
 	@NonNull
 	private String direccion;
 
+	@NonNull
+	private String contrasena;
+
 	@OneToMany
 	private List<Reserva> reservas;
 
@@ -48,11 +51,12 @@ public class Cliente extends Usuario {
 	 */
 	@Builder
 	private Cliente(@NonNull String identificacion, @NonNull String nombreCompleto, @NonNull String email,
-			@NonNull String telefono, @NonNull String direccion) {
+			@NonNull String contrasena, @NonNull String telefono, @NonNull String direccion) {
 		super(identificacion, nombreCompleto);
 		this.email = email;
 		this.telefono = telefono;
 		this.direccion = direccion;
+		this.contrasena = contrasena;
 		reservas = new ArrayList<Reserva>();
 	}
 

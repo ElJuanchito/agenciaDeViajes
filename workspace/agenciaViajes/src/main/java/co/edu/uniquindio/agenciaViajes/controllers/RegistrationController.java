@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaViajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaViajes.services.AnimationService;
+import co.edu.uniquindio.agenciaViajes.services.Controllable;
 import co.edu.uniquindio.agenciaViajes.ui.TipoVista;
 import co.edu.uniquindio.agenciaViajes.ui.VistaManager;
 import javafx.event.ActionEvent;
@@ -15,7 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 
-public class LoginController {
+public class RegistrationController implements Controllable{
 
     @FXML
     private ResourceBundle resources;
@@ -27,28 +28,40 @@ public class LoginController {
     private Button btnBack;
 
     @FXML
-    private Button btnIniciar;
+    private Button btnLogin;
 
     @FXML
-    private Button btnRegistrar;
+    private Button btnRegistro;
 
     @FXML
     private Label lblInfo;
 
     @FXML
-    private Label lblNoRegistrado;
+    private Label lblTitle;
 
     @FXML
-    private Label lblTitle;
+    private Label lblYaRegistrado;
 
     @FXML
     private ImageView pikachuImg;
 
     @FXML
+    private TextField txtDireccion;
+
+    @FXML
     private TextField txtEmail;
 
     @FXML
+    private TextField txtIdentificacion;
+
+    @FXML
+    private TextField txtNombre;
+
+    @FXML
     private PasswordField txtPassword;
+
+    @FXML
+    private TextField txtTelefono;
 
     @FXML
     void backEvent(ActionEvent event) {
@@ -56,20 +69,39 @@ public class LoginController {
     }
 
     @FXML
-	void iniciarEvent(ActionEvent event) {
-    	cambiarVentana(btnIniciar, TipoVista.DESTINOS);
-	}
+    void loginEvent(ActionEvent event) {
+    	cambiarVentana(btnLogin, TipoVista.LOGIN);
+    }
 
     @FXML
-    void registrarEvent(ActionEvent event) {
-    	cambiarVentana(btnRegistrar, TipoVista.REGISTRO);
+    void registroEvent(ActionEvent event) {
+
     }
 
     @FXML
     void initialize() {
+
     }
-    
-    private void cambiarVentana(Button btn, TipoVista tipo) {
+
+	@Override
+	public void preInicializar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateLanguage(ResourceBundle bundle) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clearData() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	private void cambiarVentana(Button btn, TipoVista tipo) {
 		AnimationService.getInstance().ejecutarAccionBtn(btn, () -> {
 			try {
 				VistaManager.getInstance().cambiarVista(tipo, null);
