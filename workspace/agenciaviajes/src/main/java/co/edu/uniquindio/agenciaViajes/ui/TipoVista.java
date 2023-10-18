@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum TipoVista {
-	INICIO("login"), DESTINOS("viewDestinos");
+	LOGIN("login"), DESTINOS("viewDestinos"), REGISTRO("registration");
 
 	private String ruta;
 }
