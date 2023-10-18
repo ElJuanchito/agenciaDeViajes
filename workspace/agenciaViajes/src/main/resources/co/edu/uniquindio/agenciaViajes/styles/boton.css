@@ -22,6 +22,10 @@
 .boton:pressed {
     -fx-background-color: #5321BD; /* Color de fondo al hacer clic */
 }
+.boton:disabled {
+	-fx-background-color: rgb(148, 108, 230); 
+    -fx-opacity: 1.0;
+}
 
 .arrowButton{
 	-fx-background-color: transparent;

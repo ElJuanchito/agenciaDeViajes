@@ -3,9 +3,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.SVGPath?>
 
-<StackPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaViajes.controllers.LoadingBtnController">
+<StackPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="35.0" prefWidth="35.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaViajes.controllers.LoadingBtnController">
    <children>
-      <SVGPath fx:id="svg2" content="M36 24C36 17.3726 30.6274 12 24 12C17.3726 12 12 17.3726 12 24C12 30.6274 17.3726 36 24 36V36" fill="TRANSPARENT" fillRule="EVEN_ODD" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="4.0" />
-      <SVGPath fx:id="svg1" content="M4 24C4 35.0457 12.9543 44 24 44V44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4" fill="TRANSPARENT" fillRule="EVEN_ODD" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="4.0" />
+      <SVGPath fx:id="svg2" content="M36 24C36 17.3726 30.6274 12 24 12C17.3726 12 12 17.3726 12 24C12 30.6274 17.3726 36 24 36V36" fill="TRANSPARENT" fillRule="EVEN_ODD" scaleX="0.7" scaleY="0.7" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="4.0" />
+      <SVGPath fx:id="svg1" content="M4 24C4 35.0457 12.9543 44 24 44V44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4" fill="TRANSPARENT" fillRule="EVEN_ODD" scaleX="0.7" scaleY="0.7" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="4.0" />
    </children>
 </StackPane>
