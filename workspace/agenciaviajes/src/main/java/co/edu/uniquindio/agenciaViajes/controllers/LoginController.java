@@ -13,64 +13,59 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 
-public class LoginController implements Controllable{
+public class LoginController implements Controllable {
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private URL location;
+	@FXML
+	private Button btnBack;
 
-    @FXML
-    private Button btnBack;
+	@FXML
+	private Button btnIniciar;
 
-    @FXML
-    private Button btnIniciar;
+	@FXML
+	private Button btnRegistrar;
 
-    @FXML
-    private Button btnRegistrar;
+	@FXML
+	private Label lblInfo;
 
-    @FXML
-    private Label lblInfo;
+	@FXML
+	private Label lblNoRegistrado;
 
-    @FXML
-    private Label lblNoRegistrado;
+	@FXML
+	private Label lblTitle;
 
-    @FXML
-    private Label lblTitle;
+	@FXML
+	private SplitPane root;
 
-    @FXML
-    private ImageView pikachuImg;
+	@FXML
+	private TextField txtEmail;
 
-    @FXML
-    private TextField txtEmail;
+	@FXML
+	private PasswordField txtPassword;
 
-    @FXML
-    private PasswordField txtPassword;
+	@FXML
+	void backEvent(ActionEvent event) {
 
-    @FXML
-    void backEvent(ActionEvent event) {
-
-    }
-
-    @FXML
-	void iniciarEvent(ActionEvent event) {
-    	cambiarVentana(btnIniciar, TipoVista.DESTINOS);
 	}
 
-    @FXML
-    void registrarEvent(ActionEvent event) {
-    	cambiarVentana(btnRegistrar, TipoVista.REGISTRO);
-    }
+	@FXML
+	void iniciarEvent(ActionEvent event) {
+		cambiarVentana(btnIniciar, TipoVista.DESTINOS);
+	}
 
-    @FXML
-    void initialize() {
-    }
-    
-    private void cambiarVentana(Button btn, TipoVista tipo) {
+	@FXML
+	void registrarEvent(ActionEvent event) {
+		cambiarVentana(btnRegistrar, TipoVista.REGISTRO);
+	}
+
+	private void cambiarVentana(Button btn, TipoVista tipo) {
 		AnimationService.getInstance().ejecutarAccionBtn(btn, () -> {
 			try {
 				VistaManager.getInstance().cambiarVista(tipo, null);
@@ -83,19 +78,19 @@ public class LoginController implements Controllable{
 	@Override
 	public void preInicializar() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void clearData() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
