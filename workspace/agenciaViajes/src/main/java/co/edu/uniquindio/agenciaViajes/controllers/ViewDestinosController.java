@@ -61,7 +61,7 @@ public class ViewDestinosController implements Controllable {
 
 			destino2.addImagen("/co/edu/uniquindio/agenciaviajes/imagenes/squirtle.png");
 
-			destino3.addImagen("/co/edu/uniquindio/agenciaviajes/imagenes/bulbasaur.png");
+			destino3.addImagen("/co/edu/uniquindio/agenciaviajes/imagenes/hola3.png");
 
 			destino4.addImagen("/co/edu/uniquindio/agenciaviajes/imagenes/eevee.png");
 

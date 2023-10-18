@@ -1,47 +1,48 @@
-
 .boton {
-    -fx-background-color: #270570; /* Color de fondo */
-    -fx-text-fill: white; /* Color del texto */
+	-fx-background-color: #270570;
+	/* Color de fondo */
+	-fx-text-fill: white;
+	/* Color del texto */
 	-fx-font-size: 1.2em;
-    -fx-padding: 0.0 1.0em; /* Relleno interno */
-    -fx-border-radius: 0.5em; /* Radio de borde */
-   	-fx-border-width: 10.0px;
-    -fx-font-weight: bold;
-    -fx-cursor: hand;
+	-fx-padding: 0.0 1.0em;
+	/* Relleno interno */
+	-fx-border-radius: 0.5em;
+	/* Radio de borde */
+	-fx-border-width: 10.0px;
+	-fx-font-weight: bold;
+	-fx-cursor: hand;
 	-fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.3), 5.0, 0.0, 0.0, 2.0);
-    
+
 }
 
 /* Estilo al pasar el mouse sobre el botón */
 .boton:hover {
-    -fx-background-color: #34029F; /* Color de fondo al pasar el mouse */
-    -fx-effect: innershadow(gaussian, #5321BD, 1.0em, 0.5, 0.0, 0.0);
+	-fx-background-color: #34029F;
+	/* Color de fondo al pasar el mouse */
+	-fx-effect: innershadow(gaussian, #5321BD, 1.0em, 0.5, 0.0, 0.0);
 }
 
 /* Estilo al hacer clic en el botón */
 .boton:pressed {
-    -fx-background-color: #5321BD; /* Color de fondo al hacer clic */
+	-fx-background-color: #5321BD;
+	/* Color de fondo al hacer clic */
 }
+
 .boton:disabled {
-	-fx-background-color: rgb(148, 108, 230); 
-    -fx-opacity: 1.0;
+	-fx-background-color: rgb(148, 108, 230);
+	-fx-opacity: 1.0;
 }
 
-.arrowButton{
-	-fx-background-color: transparent;
-	-fx-padding: 0.5em 0.25em;
-	-fx-background-color: rgb(191.0, 194.0, 189.0, 0.1);	
-	-fx-background-radius: 1.0em;
+.arrowButton {
+	-fx-background-color: rgb(255, 255, 255, 0.6);
+	-fx-padding: 0.7em 0.5em;
+	-fx-background-radius: 50%;
 }
 
-.arrowButton:hover{
-	-fx-background-color: rgb(191.0, 194.0, 189.0, 1.0);
+.arrowButton:hover {
+	-fx-background-color: rgb(255, 255, 255, 1.0);
 }
 
-.arrowButton .svg-path{
+.arrowButton .svg-path {
 	-fx-fill: black;
-}
-
-.arrowButton:hover .svg-path{
-	-fx-fill: white;
 }
