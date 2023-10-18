@@ -13,8 +13,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 
 public class LoginController implements Controllable {
 
@@ -42,7 +44,10 @@ public class LoginController implements Controllable {
 	private Label lblTitle;
 
 	@FXML
-	private SplitPane root;
+	private HBox root;
+
+	@FXML
+	private StackPane stackImg;
 
 	@FXML
 	private TextField txtEmail;
@@ -77,8 +82,10 @@ public class LoginController implements Controllable {
 
 	@Override
 	public void preInicializar() {
-		// TODO Auto-generated method stub
-
+		Image imgPika = new Image(
+				getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/login.png"));
+		final double relacionAspecto = imgPika.getWidth() / imgPika.getHeight();
+		stackImg.prefWidthProperty().bind(root.heightProperty().multiply(relacionAspecto));
 	}
 
 	@Override
