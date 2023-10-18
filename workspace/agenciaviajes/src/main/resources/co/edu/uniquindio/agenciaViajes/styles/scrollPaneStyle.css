@@ -1,0 +1,6 @@
+.scroll-pane {
+	-fx-vbar-policy: never;
+	-fx-hbar-policy: never;
+	-fx-background-color: white;
+	-fx-border-width: 0;
+}
