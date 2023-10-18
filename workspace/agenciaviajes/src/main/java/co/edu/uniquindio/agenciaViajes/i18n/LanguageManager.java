@@ -29,7 +29,7 @@ public class LanguageManager {
 		traducible.updateLanguage(getBundle());
 	}
 
-	private ResourceBundle getBundle() {
+	public ResourceBundle getBundle() {
 		return bundleProperty.getValue();
 	}
 

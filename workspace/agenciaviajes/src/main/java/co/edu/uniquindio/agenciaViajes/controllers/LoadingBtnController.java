@@ -1,17 +1,16 @@
 package co.edu.uniquindio.agenciaViajes.controllers;
 
-import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.agenciaViajes.services.Controllable;
 import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
 
-public class LoadingBtnController implements Initializable {
+public class LoadingBtnController implements Controllable {
 
 	@FXML
 	private SVGPath svg1;
@@ -22,7 +21,7 @@ public class LoadingBtnController implements Initializable {
 	private Interpolator interpolator;
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	public void preInicializar() {
 		RotateTransition animacion = createRotateAnim(svg1, 0, 360);
 		RotateTransition animacion2 = createRotateAnim(svg2, 360, 0);
 		new ParallelTransition(animacion, animacion2).play();
@@ -47,6 +46,14 @@ public class LoadingBtnController implements Initializable {
 				}
 			};
 		return interpolator;
+	}
+
+	@Override
+	public void updateLanguage(ResourceBundle bundle) {
+	}
+
+	@Override
+	public void clearData() {
 	}
 
 }

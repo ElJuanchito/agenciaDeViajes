@@ -3,8 +3,10 @@ package co.edu.uniquindio.agenciaViajes.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import co.edu.uniquindio.agenciaViajes.exceptions.ReservaNoExistenteException;
@@ -33,6 +35,9 @@ public class Cliente extends Usuario {
 
 	@OneToMany
 	private List<Reserva> reservas;
+
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, optional = true)
+	private Imagen imagen;
 
 	/**
 	 * @param identificacion
