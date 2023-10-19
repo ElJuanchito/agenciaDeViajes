@@ -27,6 +27,9 @@ public class App extends Application {
 		VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, null);
 		Image icon = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/login.png"));
 		stage.setTitle("PokeViajes");
+		stage.heightProperty().addListener((obser, oldV, newV) -> stage.setMinWidth((Double) newV * 1.3));
+		stage.setMinHeight(380);
+		stage.centerOnScreen();
 		stage.getIcons().add(icon);
 		stage.show();
 	}
