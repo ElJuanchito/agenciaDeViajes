@@ -14,7 +14,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
@@ -82,10 +81,10 @@ public class LoginController implements Controllable {
 
 	@Override
 	public void preInicializar() {
-		Image imgPika = new Image(
-				getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/login.png"));
-		final double relacionAspecto = imgPika.getWidth() / imgPika.getHeight();
-		stackImg.prefWidthProperty().bind(root.heightProperty().multiply(relacionAspecto));
+//		width: 540.0 
+//		height: 720.0
+//		relacionAspecto: 3:4 || 0.75
+		stackImg.prefWidthProperty().bind(root.heightProperty().multiply(0.75d));
 	}
 
 	@Override
