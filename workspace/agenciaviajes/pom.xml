@@ -33,7 +33,7 @@
 						<!-- Usage: mvn clean javafx:run -->
 						<id>default-cli</id>
 						<configuration>
-							<mainClass>co.edu.uniquindio.agenciaViajes.application.App</mainClass>
+							<mainClass>co.edu.uniquindio.agenciaviaje.application.App</mainClass>
 							<annotationProcessorPaths>
 								<path>
 									<groupId>org.projectlombok</groupId>

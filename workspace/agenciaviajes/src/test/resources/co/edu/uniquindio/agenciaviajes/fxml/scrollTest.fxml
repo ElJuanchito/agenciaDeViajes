@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Circle?>
 
 
-<BorderPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaViajes.controllers.PruebaController">
+<BorderPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviaje.controllers.PruebaController">
    <center>
       <ScrollPane fx:id="scroll" fitToWidth="true">
          <content>
