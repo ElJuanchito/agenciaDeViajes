@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<HBox fx:id="root" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.LoginController">
+   <children>
+      <StackPane fx:id="stackImg" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="320.0" prefWidth="247.0" styleClass="img">
+         <children>
+            <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backEvent" prefHeight="50.0" prefWidth="50.0" styleClass="arrowButton" StackPane.alignment="TOP_LEFT">
+               <graphic>
+                  <SVGPath content="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" scaleX="1.5" scaleY="1.5" />
+               </graphic>
+               <StackPane.margin>
+                  <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+               </StackPane.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </StackPane>
+      <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="0.0" prefHeight="320.0" prefWidth="238.0" HBox.hgrow="ALWAYS">
+         <children>
+            <Label fx:id="lblTitle" styleClass="titulo" stylesheets="@../styles/texto.css" text="¡Hola de nuevo!" textOverrun="CLIP" />
+            <Label fx:id="lblInfo" stylesheets="@../styles/texto.css" text="Bienvenido de nuevo, te hemos extrañado" textOverrun="CLIP" />
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+               <children>
+                  <TextField fx:id="txtEmail" maxWidth="600.0" minWidth="0.0" promptText="Usuario" styleClass="cajaTexto" stylesheets="@../styles/cajaTexto.css">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </TextField>
+                  <PasswordField fx:id="txtPassword" maxWidth="600.0" minWidth="0.0" promptText="Password" styleClass="cajaTexto" stylesheets="@../styles/cajaTexto.css">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </PasswordField>
+                  <Button fx:id="btnIniciar" minWidth="0.0" mnemonicParsing="false" onAction="#iniciarEvent" prefHeight="40.0" prefWidth="474.0" styleClass="boton" stylesheets="@../styles/boton.css" text="Iniciar sesion" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="600.0" prefWidth="600.0">
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+               <children>
+                  <Label fx:id="lblNoRegistrado" alignment="CENTER_RIGHT" maxWidth="600.0" text="No esta registrado?" textOverrun="CLIP">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Label>
+                  <Button fx:id="btnRegistrar" alignment="CENTER_RIGHT" contentDisplay="CENTER" maxWidth="600.0" mnemonicParsing="false" onAction="#registrarEvent" style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-cursor: hand;" text="Registrarse ahora" textFill="#270570" textOverrun="CLIP">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+   <stylesheets>
+      <URL value="@../styles/login.css" />
+      <URL value="@../styles/boton.css" />
+   </stylesheets>
+</HBox>

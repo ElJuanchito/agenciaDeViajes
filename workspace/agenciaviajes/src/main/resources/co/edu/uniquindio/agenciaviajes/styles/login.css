@@ -1,0 +1,5 @@
+.img {
+	-fx-background-image: url('../imagenes/login.png');
+	-fx-background-size: cover; /* Ajusta la imagen para que cubra todo el elemento */
+    -fx-background-repeat: no-repeat; /* Evita la repetición de la imagen */
+}
