@@ -9,29 +9,29 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaViajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaViajes.services.AnimationService;
-import co.edu.uniquindio.agenciaViajes.services.Controllable;
+import co.edu.uniquindio.agenciaViajes.services.DataControllable;
 import co.edu.uniquindio.agenciaViajes.ui.TipoVista;
 import co.edu.uniquindio.agenciaViajes.ui.VistaManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-public class LoginController implements Controllable {
+public class LoginController implements DataControllable<String> {
 
 	@FXML
 	private ResourceBundle resources;
 
 	@FXML
 	private URL location;
-
 	@FXML
 	private Button btnBack;
 
@@ -51,7 +51,10 @@ public class LoginController implements Controllable {
 	private Label lblTitle;
 
 	@FXML
-	private ImageView pikachuImg;
+	private HBox root;
+
+	@FXML
+	private StackPane stackImg;
 
 	@FXML
 	private TextField txtEmail;
@@ -96,7 +99,10 @@ public class LoginController implements Controllable {
 
 	@Override
 	public void preInicializar() {
-
+//		width: 540.0 
+//		height: 720.0
+//		relacionAspecto: 3:4 || 0.75
+		stackImg.prefWidthProperty().bind(root.heightProperty().multiply(0.75d));
 		DJPerdomo();
 	}
 
@@ -135,8 +141,17 @@ public class LoginController implements Controllable {
 
 	@Override
 	public void clearData() {
-		// TODO Auto-generated method stub
+		txtEmail.clear();
+		txtPassword.clear();
+	}
 
+	@Override
+	public void inicializarDatos(String dato) {
+		if (dato == null)
+			clearData();
+		else {
+			txtEmail.setText(dato);
+		}
 	}
 
 }
