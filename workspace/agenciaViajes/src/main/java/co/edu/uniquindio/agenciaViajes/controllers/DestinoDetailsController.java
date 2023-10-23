@@ -16,13 +16,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import lombok.Getter;
 
-public class DestinoController implements DataControllable<Destino> {
+public class DestinoDetailsController implements DataControllable<Destino> {
 
 	@FXML
 	private ResourceBundle resources;
@@ -40,28 +40,35 @@ public class DestinoController implements DataControllable<Destino> {
 	private ImageView imgDestino;
 
 	@FXML
-	private Label lblCity;
+	private Label lblCiudad;
 
 	@FXML
 	private Label lblClima;
 
 	@FXML
-	private Label txtCity;
+	private Label lblDescription;
+
+	@FXML
+	private Label lblTitle;
+
+	@FXML
+	private Label txtCiudad;
 
 	@FXML
 	private Label txtClima;
 
 	@FXML
-	private Label txtName;
+	private TextArea txtDescription;
 
 	@Getter
 	private Destino destino;
 
-	private List<Image> listaImagenes = new ArrayList<Image>();
-
 	private int currentIndex = 0;
 
+	private List<Image> listaImagenes = new ArrayList<Image>();
+
 	private Timeline timelinePt1;
+
 	private ParallelTransition timelineHover;
 
 	@FXML
@@ -72,27 +79,6 @@ public class DestinoController implements DataControllable<Destino> {
 	@FXML
 	void previousEvent(ActionEvent event) {
 		previousAction();
-	}
-
-	@FXML
-	void hoverPanelEvent(MouseEvent event) {
-		hoverPanelAction();
-	}
-
-	@FXML
-	void unhoverPanelEvent(MouseEvent event) {
-		unhoverPanelAction();
-	}
-
-	private void hoverPanelAction() {
-		timelineHover.playFromStart();
-	}
-
-	private void unhoverPanelAction() {
-		timelineHover.stop();
-		timelineHover.setRate(-1);
-		timelineHover.jumpTo(Duration.millis(100));
-		timelineHover.play();
 	}
 
 	private void previousAction() {
@@ -139,13 +125,16 @@ public class DestinoController implements DataControllable<Destino> {
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
+		// TODO Auto-generated method stub
+
 	}
 
 	@Override
 	public void clearData() {
-		txtName.setText("");
-		txtCity.setText("");
+		lblTitle.setText("");
+		txtCiudad.setText("");
 		txtClima.setText("");
+		txtDescription.setText("");
 		listaImagenes.clear();
 		showActualImage();
 		currentIndex = 0;
@@ -154,16 +143,18 @@ public class DestinoController implements DataControllable<Destino> {
 
 	@Override
 	public void inicializarDatos(Destino dato) {
-		this.destino = dato;
+		destino = dato;
 		if (destino == null) {
 			clearData();
 			return;
 		}
-		txtName.setText(destino.getNombre());
-		txtCity.setText(destino.getCiudad());
+		lblTitle.setText(destino.getNombre());
+		txtCiudad.setText(destino.getCiudad());
 		txtClima.setText(destino.getClima().getText());
+		txtDescription.setText(destino.getDescripcion());
 		listaImagenes = UtilsFX.cargarImagenes(destino.getImagenes());
 		showActualImage();
+
 	}
 
 	@Override

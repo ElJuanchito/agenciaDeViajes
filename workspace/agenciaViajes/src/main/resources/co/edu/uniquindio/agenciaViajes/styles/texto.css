@@ -11,6 +11,12 @@
 	-fx-text-fill: darkblue;
 }
 
+.subTitle{
+	-fx-font-size: 1.75em;
+	-fx-text-fill: #270570;
+	-fx-font-weight: bold;
+}
+
 .titulo{
 	-fx-font-size: 2em;
 	-fx-font-weight: bold;

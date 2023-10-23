@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="322.0" maxWidth="310.0" onMouseEntered="#hoverPanelEvent" onMouseExited="#unhoverPanelEvent" prefHeight="322.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaViajes.controllers.DestinoController">
+<BorderPane maxHeight="322.0" maxWidth="310.0" onMouseEntered="#hoverPanelEvent" onMouseExited="#unhoverPanelEvent" prefHeight="322.0" prefWidth="310.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaViajes.controllers.DestinoController">
    <top>
       <StackPane maxWidth="310.0" minWidth="310.0" prefWidth="310.0">
          <children>
@@ -83,13 +83,13 @@
                         <Insets right="30.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="lblDescription" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" styleClass="ordinaryText" stylesheets="@../styles/texto.css" text="Descripcion:" GridPane.rowIndex="2">
+                  <Label fx:id="lblClima" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" styleClass="ordinaryText" stylesheets="@../styles/texto.css" text="Clima:" GridPane.rowIndex="2">
                      <padding>
                         <Insets right="30.0" />
                      </padding>
                   </Label>
                   <Label fx:id="txtCity" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" styleClass="descriptionText" stylesheets="@../styles/texto.css" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label fx:id="txtDescription" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" styleClass="descriptionText" stylesheets="@../styles/texto.css" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="txtClima" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" styleClass="descriptionText" stylesheets="@../styles/texto.css" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
                <padding>
                   <Insets top="5.0" />
