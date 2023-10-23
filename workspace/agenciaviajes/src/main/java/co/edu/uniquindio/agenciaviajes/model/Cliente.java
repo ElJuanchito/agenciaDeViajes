@@ -186,4 +186,5 @@ public class Cliente extends Usuario {
 		throwReservaNoExistente(id);
 		eliminarReservaAux(id, 0);
 	}
+
 }

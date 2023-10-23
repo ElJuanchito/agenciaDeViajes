@@ -6,6 +6,7 @@ package co.edu.uniquindio.agenciaviajes.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -64,6 +65,8 @@ public class Destino {
 	@Enumerated(EnumType.STRING)
 	@ToString.Include
 	private Clima clima;
+
+	private Map<Cliente, Comentario> mapComentarios;
 
 	@ManyToMany(mappedBy = "destinos")
 	private List<Paquete> paquetes;
