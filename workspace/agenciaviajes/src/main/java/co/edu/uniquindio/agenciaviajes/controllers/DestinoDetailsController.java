@@ -1,13 +1,13 @@
-package co.edu.uniquindio.agenciaViajes.controllers;
+package co.edu.uniquindio.agenciaviajes.controllers;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import co.edu.uniquindio.agenciaViajes.model.Destino;
-import co.edu.uniquindio.agenciaViajes.services.DataControllable;
-import co.edu.uniquindio.agenciaViajes.utils.UtilsFX;
+import co.edu.uniquindio.agenciaviajes.model.Destino;
+import co.edu.uniquindio.agenciaviajes.services.DataControllable;
+import co.edu.uniquindio.agenciaviajes.utils.UtilsFX;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.ParallelTransition;

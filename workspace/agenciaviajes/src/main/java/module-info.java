@@ -10,6 +10,6 @@ open module co.edu.uniquindio.agenciaViajes {
 	requires javafx.swing;
 	requires javafx.media;
 	
-	exports co.edu.uniquindio.agenciaViajes.model;
-	exports co.edu.uniquindio.agenciaViajes.application;
+	exports co.edu.uniquindio.agenciaviajes.model;
+	exports co.edu.uniquindio.agenciaviajes.application;
 }
