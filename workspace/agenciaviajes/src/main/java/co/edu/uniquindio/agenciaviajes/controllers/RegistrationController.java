@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.services.AnimationService;
-import co.edu.uniquindio.agenciaviajes.services.Controllable;
+import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import co.edu.uniquindio.agenciaviajes.ui.TipoVista;
 import co.edu.uniquindio.agenciaviajes.ui.VistaManager;
 import javafx.event.ActionEvent;
@@ -15,100 +15,111 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 
-public class RegistrationController implements Controllable{
+public class RegistrationController implements DataControllable<String> {
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private URL location;
 
-    @FXML
-    private Button btnBack;
+	@FXML
+	private Button btnBack;
 
-    @FXML
-    private Button btnLogin;
+	@FXML
+	private Button btnLogin;
 
-    @FXML
-    private Button btnRegistro;
+	@FXML
+	private Button btnRegistro;
 
-    @FXML
-    private Label lblInfo;
+	@FXML
+	private Label lblInfo;
 
-    @FXML
-    private Label lblTitle;
+	@FXML
+	private Label lblTitle;
 
-    @FXML
-    private Label lblYaRegistrado;
+	@FXML
+	private Label lblYaRegistrado;
 
-    @FXML
-    private ImageView pikachuImg;
+	@FXML
+	private ImageView pikachuImg;
 
-    @FXML
-    private TextField txtDireccion;
+	@FXML
+	private TextField txtDireccion;
 
-    @FXML
-    private TextField txtEmail;
+	@FXML
+	private TextField txtEmail;
 
-    @FXML
-    private TextField txtIdentificacion;
+	@FXML
+	private TextField txtIdentificacion;
 
-    @FXML
-    private TextField txtNombre;
+	@FXML
+	private TextField txtNombre;
 
-    @FXML
-    private PasswordField txtPassword;
+	@FXML
+	private PasswordField txtPassword;
 
-    @FXML
-    private TextField txtTelefono;
+	@FXML
+	private TextField txtTelefono;
 
-    @FXML
-    void backEvent(ActionEvent event) {
+	@FXML
+	private HBox root;
 
-    }
+	@FXML
+	private StackPane stackImg;
 
-    @FXML
-    void loginEvent(ActionEvent event) {
-    	cambiarVentana(btnLogin, TipoVista.LOGIN);
-    }
+	@FXML
+	void backEvent(ActionEvent event) {
 
-    @FXML
-    void registroEvent(ActionEvent event) {
+	}
 
-    }
+	@FXML
+	void loginEvent(ActionEvent event) {
+		loginAction();
+	}
 
-    @FXML
-    void initialize() {
+	private void loginAction() {
+		AnimationService.getInstance().ejecutarAccionBtn(btnLogin, () -> {
+			try {
+				VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, txtIdentificacion.getText());
+			} catch (FXMLException e) {
+				e.printStackTrace();
+			}
+		});
+	}
 
-    }
+	@FXML
+	void registroEvent(ActionEvent event) {
+
+	}
 
 	@Override
 	public void preInicializar() {
-		// TODO Auto-generated method stub
-		
+		stackImg.prefWidthProperty().bind(root.heightProperty().multiply(0.75d));
 	}
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void clearData() {
-		// TODO Auto-generated method stub
-		
+		txtDireccion.clear();
+		txtEmail.clear();
+		txtNombre.clear();
+		txtTelefono.clear();
+		txtPassword.clear();
+		txtIdentificacion.clear();
 	}
-	
-	private void cambiarVentana(Button btn, TipoVista tipo) {
-		AnimationService.getInstance().ejecutarAccionBtn(btn, () -> {
-			try {
-				VistaManager.getInstance().cambiarVista(tipo, null);
-			} catch (FXMLException e) {
-				e.printStackTrace();
-			}
-		});
+
+	@Override
+	public void inicializarDatos(String dato) {
+		txtIdentificacion.setText(dato);
 	}
 
 }

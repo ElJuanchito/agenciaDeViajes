@@ -1,80 +1,66 @@
 package co.edu.uniquindio.agenciaviajes.controllers;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.shape.SVGPath;
 
 public class MainMenuController {
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private Button btnBack;
 
-    @FXML
-    private URL location;
+	@FXML
+	private Button btnExtra;
 
-    @FXML
-    private VBox btnDestinos;
+	@FXML
+	private Button btnNext;
 
-    @FXML
-    private VBox btnGuias;
+	@FXML
+	private SVGPath btnPerfil;
 
-    @FXML
-    private HBox btnMisPaquetes;
+	@FXML
+	private Label lblBtnDestinos;
 
-    @FXML
-    private VBox btnPaquetes;
+	@FXML
+	private Label lblBtnGuias;
 
-    @FXML
-    private HBox btnUsuario;
+	@FXML
+	private Label lblbtnPaquetes;
 
-    @FXML
-    private BorderPane centerPane;
+	@FXML
+	private ScrollPane scrollCenter;
 
-    @FXML
-    private Label lblDestinos;
+	@FXML
+	void backEvent(ActionEvent event) {
 
-    @FXML
-    private Label lblGuias;
+	}
 
-    @FXML
-    private Label lblMisPaquetes;
+	@FXML
+	void destinosEvent(ActionEvent event) {
 
-    @FXML
-    private Label lblPaquetes;
+	}
 
-    @FXML
-    void destinosEvent(MouseEvent event) {
-    	
-    }
+	@FXML
+	void extraEvent(ActionEvent event) {
 
-    @FXML
-    void guiasEvent(MouseEvent event) {
+	}
 
-    }
+	@FXML
+	void guiasEvent(ActionEvent event) {
 
-    @FXML
-    void misPaquetesEvent(MouseEvent event) {
+	}
 
-    }
+	@FXML
+	void nextEvent(ActionEvent event) {
 
-    @FXML
-    void paquetesEvent(MouseEvent event) {
+	}
 
-    }
+	@FXML
+	void paquetesEvent(ActionEvent event) {
 
-    @FXML
-    void usuarioEvent(MouseEvent event) {
-
-    }
-
-    @FXML
-    void initialize() {
-
-    }
+	}
 
 }

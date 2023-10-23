@@ -5,7 +5,7 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.services.AnimationService;
-import co.edu.uniquindio.agenciaviajes.services.Controllable;
+import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import co.edu.uniquindio.agenciaviajes.ui.TipoVista;
 import co.edu.uniquindio.agenciaviajes.ui.VistaManager;
 import javafx.event.ActionEvent;
@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
-public class LoginController implements Controllable {
+public class LoginController implements DataControllable<String> {
 
 	@FXML
 	private ResourceBundle resources;
@@ -61,18 +61,24 @@ public class LoginController implements Controllable {
 
 	@FXML
 	void iniciarEvent(ActionEvent event) {
-		cambiarVentana(btnIniciar, TipoVista.DESTINOS);
+		iniciarAction();
+	}
+
+	private void iniciarAction() {
+		AnimationService.getInstance().ejecutarAccionBtn(btnIniciar, () -> {
+			try {
+				VistaManager.getInstance().cambiarVista(TipoVista.DESTINOS, null);
+			} catch (FXMLException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	@FXML
 	void registrarEvent(ActionEvent event) {
-		cambiarVentana(btnRegistrar, TipoVista.REGISTRO);
-	}
-
-	private void cambiarVentana(Button btn, TipoVista tipo) {
-		AnimationService.getInstance().ejecutarAccionBtn(btn, () -> {
+		AnimationService.getInstance().ejecutarAccionBtn(btnIniciar, () -> {
 			try {
-				VistaManager.getInstance().cambiarVista(tipo, null);
+				VistaManager.getInstance().cambiarVista(TipoVista.REGISTRO, txtEmail.getText());
 			} catch (FXMLException e) {
 				e.printStackTrace();
 			}
@@ -95,8 +101,17 @@ public class LoginController implements Controllable {
 
 	@Override
 	public void clearData() {
-		// TODO Auto-generated method stub
+		txtEmail.clear();
+		txtPassword.clear();
+	}
 
+	@Override
+	public void inicializarDatos(String dato) {
+		if (dato == null)
+			clearData();
+		else {
+			txtEmail.setText(dato);
+		}
 	}
 
 }

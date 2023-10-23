@@ -6,6 +6,7 @@ import java.util.Map;
 import co.edu.uniquindio.agenciaviajes.application.App;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.i18n.LanguageManager;
+import javafx.application.Platform;
 
 public class VistaManager {
 	private static VistaManager instance;
@@ -29,9 +30,12 @@ public class VistaManager {
 			vista = Vista.buildView(tipo.getRuta());
 			mapaVistas.put(tipo, vista);
 		}
-		vista.clearData();
-		vista.updateLanguage(LanguageManager.getInstance().getBundle());
-		vista.inicializarDatos(dato);
-		App.setRoot(vista.getParent());
+		Vista<T> vistaFinal = vista;
+		Platform.runLater(() -> {
+			vistaFinal.clearData();
+			vistaFinal.updateLanguage(LanguageManager.getInstance().getBundle());
+			vistaFinal.inicializarDatos(dato);
+			App.setRoot(vistaFinal.getParent());
+		});
 	}
 }

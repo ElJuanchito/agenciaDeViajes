@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="TOP_CENTER" minWidth="0.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane minWidth="0.0">
+         <children>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="200.0" minWidth="0.0" prefHeight="400.0" styleClass="invisible" stylesheets="@../styles/scrollPaneStyle.css" vbarPolicy="NEVER" vmax="0.0">
+               <content>
+                  <ImageView fx:id="imgDestino" fitWidth="580.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/hola3.png" />
+                     </image>
+                  </ImageView>
+               </content>
+            </ScrollPane>
+         </children>
+      </StackPane>
+   </children>
+</VBox>

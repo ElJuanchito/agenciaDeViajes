@@ -37,6 +37,7 @@
 	-fx-background-color: rgb(255, 255, 255, 0.6);
 	-fx-padding: 0.7em 0.5em;
 	-fx-background-radius: 50%;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
 }
 
 .arrowButton:hover {
@@ -45,4 +46,13 @@
 
 .arrowButton .svg-path {
 	-fx-fill: black;
+}
+
+.upper-button {
+	-fx-background-color: transparent;
+	-fx-background-radius: 10;
+}
+
+.upper-button:hover {
+	-fx-background-color: rgba(0, 0, 0, 0.2);
 }

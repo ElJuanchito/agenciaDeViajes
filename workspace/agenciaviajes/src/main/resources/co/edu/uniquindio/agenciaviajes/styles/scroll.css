@@ -11,6 +11,9 @@
 .scroll-pane .scroll-arrow {
  -fx-padding: 0 0 0 0;
 }
+.scroll-pane .viewport {
+	-fx-background-color: white;
+}
 
 .scroll-pane .scroll-bar .increment-button,
 .scroll-pane .scroll-bar .decrement-button {
@@ -28,4 +31,9 @@
     -fx-background-color: #270570;
     -fx-background-insets: 0;
     -fx-shape: "";
+}
+
+.invisible {
+	-fx-background-color: white;
+	-fx-border-width: 0;
 }
