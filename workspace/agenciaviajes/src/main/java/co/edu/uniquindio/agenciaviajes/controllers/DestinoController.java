@@ -43,13 +43,13 @@ public class DestinoController implements DataControllable<Destino> {
 	private Label lblCity;
 
 	@FXML
-	private Label lblClima;
+	private Label lblDescription;
 
 	@FXML
 	private Label txtCity;
 
 	@FXML
-	private Label txtClima;
+	private Label txtDescription;
 
 	@FXML
 	private Label txtName;
@@ -145,7 +145,6 @@ public class DestinoController implements DataControllable<Destino> {
 	public void clearData() {
 		txtName.setText("");
 		txtCity.setText("");
-		txtClima.setText("");
 		listaImagenes.clear();
 		showActualImage();
 		currentIndex = 0;
@@ -161,7 +160,6 @@ public class DestinoController implements DataControllable<Destino> {
 		}
 		txtName.setText(destino.getNombre());
 		txtCity.setText(destino.getCiudad());
-		txtClima.setText(destino.getClima().getText());
 		listaImagenes = UtilsFX.cargarImagenes(destino.getImagenes());
 		showActualImage();
 	}
