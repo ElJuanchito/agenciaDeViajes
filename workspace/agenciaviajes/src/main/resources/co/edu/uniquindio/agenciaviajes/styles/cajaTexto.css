@@ -9,3 +9,11 @@
 	-fx-padding: 0 1em; /* Relleno interno */
 	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
 }
+
+.cajaLlenado{
+	-fx-text-fill: black;
+	-fx-font-size: 1.2em;
+	-fx-background-color: transparent;
+	-fx-border-color: #270570;
+	-fx-border-width: 0 0 0.1em 0;
+	}
