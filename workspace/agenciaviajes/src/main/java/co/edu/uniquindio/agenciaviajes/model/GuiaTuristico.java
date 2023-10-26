@@ -3,10 +3,8 @@ package co.edu.uniquindio.agenciaviajes.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.IdiomaNoExistenteException;
@@ -31,8 +29,7 @@ public class GuiaTuristico extends Usuario {
 	@NonNull
 	private Integer expHoras;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Imagen> imagenes;
+	private Imagen imagen;
 
 	/**
 	 * @param identificacion
@@ -40,11 +37,11 @@ public class GuiaTuristico extends Usuario {
 	 * @param expHoras
 	 */
 	@Builder
-	private GuiaTuristico(String identificacion, String nombreCompleto, Integer expHoras, Idioma... idiomas) {
+	private GuiaTuristico(String identificacion, String nombreCompleto, Integer expHoras, Imagen imagen, Idioma... idiomas) {
 		super(identificacion, nombreCompleto);
 		this.expHoras = expHoras;
 		this.idiomas = new ArrayList<Idioma>(List.of(idiomas));
-		this.imagenes = new ArrayList<Imagen>();
+		this.imagen = imagen;
 	}
 
 	/**
