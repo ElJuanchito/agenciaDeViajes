@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
-import co.edu.uniquindio.agenciaviajes.services.AnimationService;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import co.edu.uniquindio.agenciaviajes.ui.TipoVista;
 import co.edu.uniquindio.agenciaviajes.ui.VistaManager;
@@ -82,7 +81,7 @@ public class RegistrationController implements DataControllable<String> {
 	}
 
 	private void loginAction() {
-		AnimationService.getInstance().ejecutarAccionBtn(btnLogin, () -> {
+		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
 				VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, txtIdentificacion.getText());
 			} catch (FXMLException e) {

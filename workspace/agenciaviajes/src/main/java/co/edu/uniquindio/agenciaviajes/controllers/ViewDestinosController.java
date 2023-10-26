@@ -8,10 +8,14 @@ import co.edu.uniquindio.agenciaviajes.model.Clima;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
 import co.edu.uniquindio.agenciaviajes.ui.Vista;
+import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 public class ViewDestinosController implements Controllable {
 
@@ -35,7 +39,10 @@ public class ViewDestinosController implements Controllable {
 
 	@Override
 	public void preInicializar() {
+		new Thread(this::inicializarDestinos).start();
+	}
 
+	private void inicializarDestinos() {
 		Destino destino1 = Destino.builder().nombre("PokemonRojo").ciudad("Kanto").descripcion("Pokemon lagartija")
 				.clima(Clima.SECO).build();
 
@@ -84,15 +91,23 @@ public class ViewDestinosController implements Controllable {
 		try {
 			Vista<Destino> view = Vista.buildView("destino");
 			view.getController().inicializarDatos(destino);
-			contentPane.add(view.getParent(), colIndex, rowIndex);
-
-			colIndex = 1 - colIndex;
-			if (colIndex == 0)
-				rowIndex++;
+			Platform.runLater(() -> cargarDestinoVista(view));
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void cargarDestinoVista(Vista<Destino> view) {
+		Parent parent = view.getParent();
+		FadeTransition anim = new FadeTransition(Duration.millis(750), parent);
+		anim.setFromValue(0);
+		anim.setToValue(1);
+		contentPane.add(parent, colIndex, rowIndex);
+		anim.play();
+		colIndex = 1 - colIndex;
+		if (colIndex == 0)
+			rowIndex++;
 	}
 
 	@Override
