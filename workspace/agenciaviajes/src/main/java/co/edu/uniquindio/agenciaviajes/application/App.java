@@ -1,13 +1,14 @@
 package co.edu.uniquindio.agenciaviajes.application;
 
+import co.edu.uniquindio.agenciaviajes.controllers.MainPaneController;
 import co.edu.uniquindio.agenciaviajes.ui.TipoVista;
+import co.edu.uniquindio.agenciaviajes.ui.Vista;
 import co.edu.uniquindio.agenciaviajes.ui.VistaManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
@@ -23,9 +24,9 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-//		scene = new Scene(new BorderPane());
-//		stage.setScene(scene);
-//		VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, null);
+		scene = new Scene(Vista.buildView("mainPane").getParent());
+		stage.setScene(scene);
+		VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, null);
 		Image icon = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/login.png"));
 //		stage.setTitle("PokeViajes");
 //		stage.heightProperty().addListener((obser, oldV, newV) -> stage.setMinWidth((Double) newV * 1.3));
@@ -38,7 +39,7 @@ public class App extends Application {
 	}
 
 	public static void setRoot(Parent value) {
-		scene.setRoot(value);
+		MainPaneController.getInstance().setRoot(value);
 	}
 
 }

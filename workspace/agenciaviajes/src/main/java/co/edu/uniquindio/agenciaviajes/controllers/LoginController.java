@@ -8,14 +8,11 @@ import java.util.Random;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
-import co.edu.uniquindio.agenciaviajes.services.AnimationService;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import co.edu.uniquindio.agenciaviajes.ui.TipoVista;
 import co.edu.uniquindio.agenciaviajes.ui.VistaManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -81,7 +78,7 @@ public class LoginController implements DataControllable<String> {
 	}
 
 	private void iniciarAction() {
-		AnimationService.getInstance().ejecutarAccionBtn(btnIniciar, () -> {
+		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
 				VistaManager.getInstance().cambiarVista(TipoVista.DESTINOS, null);
 			} catch (FXMLException e) {
@@ -92,7 +89,7 @@ public class LoginController implements DataControllable<String> {
 
 	@FXML
 	void registrarEvent(ActionEvent event) {
-		AnimationService.getInstance().ejecutarAccionBtn(btnIniciar, () -> {
+		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
 				VistaManager.getInstance().cambiarVista(TipoVista.REGISTRO, txtEmail.getText());
 			} catch (FXMLException e) {
@@ -146,7 +143,6 @@ public class LoginController implements DataControllable<String> {
 
 		mediaPlayer.play();
 
-		new Alert(AlertType.CONFIRMATION, "Entre el cielo y la tierra soy el unico Dios").show();
 	}
 
 }
