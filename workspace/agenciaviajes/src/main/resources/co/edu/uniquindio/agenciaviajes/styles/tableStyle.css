@@ -1,0 +1,23 @@
+/* Estilos para TableView */
+.table-view {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Estilos para celdas seleccionadas */
+.table-row-cell:filled:selected {
+    -fx-background-color: #3498db;
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Estilos para encabezados de columnas */
+.table-view .column-header {
+    -fx-background-color: #3498db;
+    -fx-text-fill: #FFFFFF;
+}
+
+/* Estilos para separadores de columnas */
+.table-column {
+    -fx-background-color: #270570;
+}

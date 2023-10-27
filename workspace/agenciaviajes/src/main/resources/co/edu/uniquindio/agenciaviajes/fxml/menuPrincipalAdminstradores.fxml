@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<BorderPane minWidth="0.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="fondo" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.MenuPrincipalAdminController">
+   <top>
+      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #270570; -fx-background-radius: 50;">
+         <children>
+            <Group scaleX="0.9" scaleY="0.9">
+               <children>
+                  <SVGPath content="M14,7.5c0,3.5899-2.9101,6.5-6.5,6.5S1,11.0899,1,7.5S3.9101,1,7.5,1S14,3.9101,14,7.5z" fill="WHITE" scaleX="4.0" scaleY="4.0" />
+                  <SVGPath content="M16,17H8a1,1,0,0,1,0-2h8a1,1,0,0,1,0,2Zm0-4H8a1,1,0,0,1,0-2h8a1,1,0,0,1,0,2Zm0-4H8A1,1,0,0,1,8,7h8a1,1,0,0,1,0,2Z" fill="#270570" scaleX="2.5" scaleY="2.0" translateX="-4.0" translateY="-4.0" />
+               </children>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </Group>
+            <Button mnemonicParsing="false" onAction="#destinosEvent" prefHeight="50.0" prefWidth="80.0" styleClass="upper-button">
+               <graphic>
+                  <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="60.0">
+                     <children>
+                        <SVGPath content="M9.123 30.464l-1.33-6.268-6.318-1.397 1.291-2.475 5.785-0.316c0.297-0.386 0.96-1.234 1.374-1.648l5.271-5.271-10.989-5.388 2.782-2.782 13.932 2.444 4.933-4.933c0.585-0.585 1.496-0.894 2.634-0.894 0.776 0 1.395 0.143 1.421 0.149l0.3 0.070 0.089 0.295c0.469 1.55 0.187 3.298-0.67 4.155l-4.956 4.956 2.434 13.875-2.782 2.782-5.367-10.945-4.923 4.924c-0.518 0.517-1.623 1.536-2.033 1.912l-0.431 5.425-2.449 1.329zM3.065 22.059l5.63 1.244 1.176 5.544 0.685-0.372 0.418-5.268 0.155-0.142c0.016-0.014 1.542-1.409 2.153-2.020l5.978-5.979 5.367 10.945 1.334-1.335-2.434-13.876 5.349-5.348c0.464-0.464 0.745-1.598 0.484-2.783-0.216-0.032-0.526-0.066-0.87-0.066-0.593 0-1.399 0.101-1.881 0.582l-5.325 5.325-13.933-2.444-1.335 1.334 10.989 5.388-6.326 6.326c-0.483 0.482-1.418 1.722-1.428 1.734l-0.149 0.198-5.672 0.31-0.366 0.702z" fill="WHITE" />
+                        <Label fx:id="lblBtnDestinos" text="Destinos" textFill="WHITE" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+            <Button layoutX="77.0" layoutY="12.0" mnemonicParsing="false" onAction="#paquetesEvent" prefHeight="50.0" prefWidth="80.0" styleClass="upper-button">
+               <graphic>
+                  <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="60.0">
+                     <children>
+                        <SVGPath content="M24,9h-4V4c0.552,0,1-0.448,1-1c0-1.657-1.343-3-3-3h-4c-1.657,0-3,1.343-3,3c0,0.552,0.448,1,1,1v5H8c-1.657,0-3,1.343-3,3v14c0,1.657,1.343,3,3,3h0.277c-0.25,0.43-0.36,0.953-0.207,1.518c0.201,0.745,0.826,1.327,1.587,1.453C10.913,32.18,12,31.217,12,30c0-0.366-0.106-0.705-0.277-1h8.555c-0.25,0.43-0.36,0.953-0.207,1.518c0.201,0.745,0.826,1.327,1.587,1.453C22.913,32.18,24,31.217,24,30c0-0.366-0.106-0.705-0.277-1H24c1.657,0,3-1.343,3-3V12C27,10.343,25.657,9,24,9z M14,1h4c1.105,0,2,0.895,2,2h-1c0-0.552-0.448-1-1-1h-4c-0.552,0-1,0.448-1,1h-1C12,1.895,12.895,1,14,1z M19,4v5h-6V4c0.552,0,1-0.448,1-1h4C18,3.552,18.448,4,19,4z M10,31c-0.551,0-1-0.449-1-1s0.449-1,1-1s1,0.449,1,1S10.551,31,10,31z M22,31c-0.551,0-1-0.449-1-1s0.449-1,1-1s1,0.449,1,1S22.551,31,22,31z M26,26c0,1.105-0.895,2-2,2H8c-1.105,0-2-0.895-2-2V16h8v1c0,0.552,0.448,1,1,1h2c0.552,0,1-0.448,1-1v-1h8V26z M15,17v-3h2v3H15z M26,15h-8v-1c0-0.552-0.448-1-1-1h-2c-0.552,0-1,0.448-1,1v1H6v-3c0-1.105,0.895-2,2-2h16c1.105,0,2,0.895,2,2V15z" fill="WHITE" />
+                        <Label fx:id="lblbtnPaquetes" text="Paquetes" textFill="WHITE" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+            <Button layoutX="164.0" layoutY="11.0" mnemonicParsing="false" onAction="#guiasEvent" prefHeight="50.0" prefWidth="80.0" styleClass="upper-button">
+               <graphic>
+                  <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="60.0">
+                     <children>
+                        <SVGPath content="M13.9683434,13.6754326 C13.9440557,13.7403921 13.9057924,13.8013144 13.8535534,13.8535534 C13.8013144,13.9057924 13.7403921,13.9440557 13.6754326,13.9683434 L8.68569534,15.9642383 C8.27753936,16.1275007 7.87249926,15.7224606 8.03576165,15.3143047 L10.0316566,10.3245674 C10.0559443,10.2596079 10.0942076,10.1986856 10.1464466,10.1464466 C10.1986856,10.0942076 10.2596079,10.0559443 10.3245674,10.0316566 L15.3143047,8.03576165 C15.7224606,7.87249926 16.1275007,8.27753936 15.9642383,8.68569534 L13.9683434,13.6754326 L13.9683434,13.6754326 Z M11.3897309,10.6826241 L13.3173759,12.6102691 L14.6024725,9.39752747 L11.3897309,10.6826241 L11.3897309,10.6826241 Z M12.6102691,13.3173759 L10.6826241,11.3897309 L9.39752747,14.6024725 L12.6102691,13.3173759 L12.6102691,13.3173759 Z M12,22 C6.4771525,22 2,17.5228475 2,12 C2,6.4771525 6.4771525,2 12,2 C17.5228475,2 22,6.4771525 22,12 C22,17.5228475 17.5228475,22 12,22 Z M12,21 C16.9705627,21 21,16.9705627 21,12 C21,7.02943725 16.9705627,3 12,3 C7.02943725,3 3,7.02943725 3,12 C3,16.9705627 7.02943725,21 12,21 Z" fill="WHITE" scaleX="1.3" scaleY="1.3">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </SVGPath>
+                        <Label fx:id="lblBtnGuias" text="Guias" textFill="WHITE" translateY="5.0" />
+                     </children>
+                  </VBox>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#ClientesEvent" prefHeight="50.0" prefWidth="80.0" styleClass="upper-button">
+               <graphic>
+                  <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="60.0" spacing="5.0">
+                     <children>
+                        <SVGPath content="M4,16 L15,16.001 C16.0538182,16.001 16.9181157,16.8164855 16.9945109,17.8516842 L17,18.001 L17,20.5 C16.999,24.7 12.713,26 9.5,26 C6.35126,26 2.1710504,24.75148 2.00510151,20.7485328 L2,20.5 L2,18 C2,16.9461818 2.81639669,16.0818843 3.85080841,16.0054891 L4,16 Z M24,16 L24.1491916,16.0054891 C25.1318827,16.0780645 25.9178153,16.8617218 25.9939518,17.8434235 L26,18 L26,20 C25.999,23.759 22.57,25 20,25 C18.942,25 17.741,24.785 16.691,24.275 C17.009,23.897 17.278,23.477 17.488,23.007 C18.4456,23.427 19.4789867,23.4924578 19.9157784,23.4993188 L20.2043433,23.4963225 C21.2400556,23.4606629 24.334766,23.1116572 24.4936471,20.2325914 L24.5,20 L24.5,18 C24.5,17.7546667 24.3222222,17.5504198 24.0895748,17.5080604 L24,17.5 L17.949,17.501 C17.865,16.999625 17.6554375,16.5434219 17.3544785,16.1605273 L17.22,16.001 L24,16 Z M4,17.5 L3.899344,17.51 C3.77496,17.53528 3.69,17.6028 3.646,17.646 C3.6028,17.69 3.53528,17.77432 3.51,17.89896 L3.5,18 L3.5,20.5 C3.5,21.839 4.087,22.829 5.295,23.525 C6.29135714,24.1007143 7.68434694,24.4479337 9.15851093,24.4945991 L9.5,24.5 L9.93487113,24.4897846 C11.4554554,24.4219073 15.3140372,23.9331951 15.4935181,20.7322803 L15.5,20.499 L15.5,18.001 C15.5,17.7565556 15.3222222,17.5516173 15.0895748,17.5090933 L15,17.501 L4,17.5 Z M9.5,3 C12.538,3 15,5.463 15,8.5 C15,11.537 12.538,14 9.5,14 C6.462,14 4,11.537 4,8.5 C4,5.463 6.462,3 9.5,3 Z M20.5,5 C22.985,5 25,7.015 25,9.5 C25,11.985 22.985,14 20.5,14 C18.015,14 16,11.985 16,9.5 C16,7.015 18.015,5 20.5,5 Z M9.5,4.5 C7.294,4.5 5.5,6.294 5.5,8.5 C5.5,10.706 7.294,12.5 9.5,12.5 C11.706,12.5 13.5,10.706 13.5,8.5 C13.5,6.294 11.706,4.5 9.5,4.5 Z M20.5,6.5 C18.846,6.5 17.5,7.846 17.5,9.5 C17.5,11.154 18.846,12.5 20.5,12.5 C22.154,12.5 23.5,11.154 23.5,9.5 C23.5,7.846 22.154,6.5 20.5,6.5 Z" fill="WHITE" />
+                        <Label fx:id="lblBtnDestinos1" text="Clientes" textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </VBox>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#masEvent" prefHeight="50.0" prefWidth="80.0" styleClass="upper-button">
+               <graphic>
+                  <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="60.0" spacing="7.0">
+                     <children>
+                        <SVGPath content="M5.88 15h-5.040c-0.48 0-0.84-0.36-0.84-0.84v-5.040c0-0.48 0.36-0.84 0.84-0.84h5.040c0.48 0 0.84 0.36 0.84 0.84v5.040c0 0.44-0.4 0.84-0.84 0.84zM1.68 13.32h3.36v-3.36h-3.36v3.36zM14.6 15h-5.040c-0.48 0-0.84-0.36-0.84-0.84v-5.040c0-0.48 0.36-0.84 0.84-0.84h5.040c0.48 0 0.84 0.36 0.84 0.84v5.040c0 0.44-0.4 0.84-0.84 0.84zM10.4 13.32h3.36v-3.36h-3.36c0 0 0 3.36 0 3.36zM5.88 23.72h-5.040c-0.48 0-0.84-0.36-0.84-0.84v-5.040c0-0.48 0.36-0.84 0.84-0.84h5.040c0.48 0 0.84 0.36 0.84 0.84v5.040c0 0.48-0.4 0.84-0.84 0.84zM1.68 22.040h3.36v-3.36h-3.36v3.36zM14.6 23.72h-5.040c-0.48 0-0.84-0.36-0.84-0.84v-5.040c0-0.48 0.36-0.84 0.84-0.84h5.040c0.48 0 0.84 0.36 0.84 0.84v5.040c0 0.48-0.4 0.84-0.84 0.84zM10.4 22.040h3.36v-3.36h-3.36c0 0 0 3.36 0 3.36z" fill="WHITE" scaleX="1.5" scaleY="1.5" />
+                        <Label fx:id="lblBtnDestinos2" text="Mas" textFill="WHITE" />
+                     </children>
+                     <padding>
+                        <Insets top="8.0" />
+                     </padding>
+                  </VBox>
+               </graphic>
+            </Button>
+            <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+               <children>
+                  <SVGPath fx:id="btnPerfil" content="M24,45A21,21,0,1,1,45,24,21,21,0,0,1,24,45Zm11.633-6c-.157-.231-.355-.518-.514-.742-.277-.394-.554-.788-.8-1.178C34.305,37.062,32.935,35.224,28,35a2.922,2.922,0,0,1-2.968-3.066L25,31c0-.135-.016.148,0,0V30l1-1a14.435,14.435,0,0,0,2.4-1.464l.135-.093A4.643,4.643,0,0,0,30,26l.036-.381A55.987,55.987,0,0,0,31,19c0-4.71-2.29-7-7-7-4.775,0-7,2.224-7,7a54.693,54.693,0,0,0,.963,6.616l.035.352a3.981,3.981,0,0,0,1.449,1.462l.1.062A19.174,19.174,0,0,0,22,29l1,1v1c.014.138,0-.146,0,0l-.033.934A2.9,2.9,0,0,1,20.084,35h0c-4.956.2-6.393,2.077-6.4,2.077-.252.4-.528.789-.807,1.184-.157.224-.355.51-.513.741a18.917,18.917,0,0,0,23.267,0ZM24,5A18.986,18.986,0,0,0,10.85,37.694c.382-.565.79-1.129,1.15-1.694,0,0,1.67-2.743,8-3,.645,0,.967-.422.967-1.066h0c0-.521,0-.934,0-.934,0-.13-.021-.247-.027-.373A17.5,17.5,0,0,1,18.4,29.133S16,27.657,16,26a60.16,60.16,0,0,1-1-7c0-4.644,1.986-9,9-9,6.92,0,9,4.356,9,9a61.784,61.784,0,0,1-1,7c0,1.611-2.4,3.133-2.4,3.133a13.873,13.873,0,0,1-2.543,1.546c0,.109-.023.209-.023.321,0,0,0,.413,0,.934h0c0,.644.32,1.066.965,1.066,6.424.288,8,3,8,3,.36.565.767,1.129,1.149,1.694A18.985,18.985,0,0,0,24,5Z" fill="WHITE" />
+               </children>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </HBox>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <AnchorPane minWidth="0.0">
+         <children>
+            <ScrollPane fx:id="scrollCenter" fitToWidth="true" minWidth="0.0" style="-fx-background-color: transparent;" styleClass="invisible" stylesheets="@../styles/scroll.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Button fx:id="btnBack" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#backEvent" prefHeight="50.0" prefWidth="50.0" styleClass="arrowButton" stylesheets="@../styles/boton.css">
+               <graphic>
+                  <SVGPath content="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" scaleX="1.5" scaleY="1.5" />
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="btnNext" layoutX="70.0" layoutY="10.0" mnemonicParsing="false" onAction="#nextEvent" prefHeight="50.0" prefWidth="50.0" rotate="180.0" styleClass="arrowButton" stylesheets="@../styles/boton.css">
+               <graphic>
+                  <SVGPath content="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" scaleX="1.5" scaleY="1.5" />
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <rotationAxis>
+                  <Point3D y="10.0" />
+               </rotationAxis>
+            </Button>
+            <Button fx:id="btnExtra" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#extraEvent" prefHeight="50.0" prefWidth="50.0" styleClass="arrowButton" stylesheets="@../styles/boton.css" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+               <graphic>
+                  <SVGPath content="M15.33252,9.5A3.5001,3.5001,0,0,0,8.80127,7.75a1.00016,1.00016,0,0,0,1.73242,1A1.50266,1.50266,0,0,1,11.83252,8a1.5,1.5,0,1,1,0,3h-.00244a.94984.94984,0,0,0-.18927.0387,1.03181,1.03181,0,0,0-.19861.04065.98275.98275,0,0,0-.15552.10485,1.00813,1.00813,0,0,0-.162.10975,1.00464,1.00464,0,0,0-.11706.1737.97789.97789,0,0,0-.09668.14417,1.02252,1.02252,0,0,0-.04285.21191A.94847.94847,0,0,0,10.83252,12v1l.00232.01135.0011.49109a1.00016,1.00016,0,0,0,1,.99756h.00244a1.00006,1.00006,0,0,0,.99756-1.00244l-.00153-.66138A3.49363,3.49363,0,0,0,15.33252,9.5Zm-4.20264,6.79A1,1,0,0,0,11.82959,18a1.036,1.036,0,0,0,.71045-.29,1.01517,1.01517,0,0,0,0-1.41992A1.03425,1.03425,0,0,0,11.12988,16.29Z" fill="WHITE" scaleX="2.0" scaleY="2.0" />
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+         <BorderPane.margin>
+            <Insets top="20.0" />
+         </BorderPane.margin>
+      </AnchorPane>
+   </center>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <stylesheets>
+      <URL value="@../styles/boton.css" />
+      <URL value="@../styles/backgroundAdmin.css" />
+   </stylesheets>
+</BorderPane>

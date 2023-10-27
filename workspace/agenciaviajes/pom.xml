@@ -9,10 +9,10 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>19</maven.compiler.source>
-		<maven.compiler.target>19</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 		<lombok-version>1.18.28</lombok-version>
-		<javafx-version>20.0.1</javafx-version>
+		<javafx-version>19</javafx-version>
 	</properties>
 
 	<packaging>jar</packaging>
