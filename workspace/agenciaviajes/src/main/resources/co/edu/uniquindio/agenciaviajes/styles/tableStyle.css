@@ -13,8 +13,11 @@
 
 /* Estilos para encabezados de columnas */
 .table-view .column-header {
-    -fx-background-color: #3498db;
-    -fx-text-fill: #FFFFFF;
+    -fx-background-color: #270570;
+}
+
+.table-view .column-header .label {
+	-fx-text-fill: white;
 }
 
 /* Estilos para separadores de columnas */
