@@ -1,15 +1,23 @@
 package co.edu.uniquindio.agenciaviajes.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import co.edu.uniquindio.agenciaviajes.application.App;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.SVGPath;
 
 public class MenuPrincipalAdminController {
+	
+    @FXML
+    private BorderPane centerPane;
 
     @FXML
     private ResourceBundle resources;
@@ -53,12 +61,13 @@ public class MenuPrincipalAdminController {
     }
 
     @FXML
-    void backEvent(ActionEvent event) {
+    void backEvent(ActionEvent event){
 
     }
 
     @FXML
     void destinosEvent(ActionEvent event) {
+    	cambiarVentana("gestionarDestinos");
 
     }
 
@@ -69,6 +78,7 @@ public class MenuPrincipalAdminController {
 
     @FXML
     void guiasEvent(ActionEvent event) {
+    	cambiarVentana("gestionarGuias");
 
     }
 
@@ -84,6 +94,7 @@ public class MenuPrincipalAdminController {
 
     @FXML
     void paquetesEvent(ActionEvent event) {
+    	cambiarVentana("gestionarPaquetes");
 
     }
 
@@ -91,4 +102,18 @@ public class MenuPrincipalAdminController {
     void initialize() {
 
     }
+    
+    private void cambiarVentana(String fxmlname) {
+		try {
+			Node nodo = App.loadFXML(fxmlname);
+			setCenter(nodo);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void setCenter(Node node) {
+		centerPane.setCenter(node);
+	}
+
 }

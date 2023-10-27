@@ -2,8 +2,6 @@ package co.edu.uniquindio.agenciaviajes.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import co.edu.uniquindio.agenciaviajes.model.GuiaTuristico;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class GestionarGuiasController {
+public class SolicitudGuiaController {
 
     @FXML
     private ResourceBundle resources;
@@ -27,39 +25,38 @@ public class GestionarGuiasController {
     private TextField txtBuscar;
 
     @FXML
-    private TableView<GuiaTuristico> tableClientes;
+    private TableView<?> tableClientes;
 
     @FXML
-    private TableColumn<GuiaTuristico, String> colNombre;
+    private TableColumn<?, ?> colNombre;
 
     @FXML
-    private TableColumn<GuiaTuristico, String> colIdentificacion;
+    private TableColumn<?, ?> colIdentificacion;
 
     @FXML
-    private TableColumn<GuiaTuristico, String> colHorasExperiencia;
+    private TableColumn<?, ?> colHorasExperiencia;
 
     @FXML
-    private TableColumn<GuiaTuristico, String> colIdiomas;
+    private TableColumn<?, ?> colIdiomas;
 
     @FXML
-    private Button btnEliminar;
+    private Button btnAceptar;
 
     @FXML
-    private Button btnSolicitudes;
+    private Button btnDenegar;
 
     @FXML
-    void solicitudesEvent(ActionEvent event) {
+    void aceptarEvent(ActionEvent event) {
 
     }
 
     @FXML
-    void eliminarEvent(ActionEvent event) {
+    void denegarEvent(ActionEvent event) {
 
     }
 
     @FXML
     void initialize() {
     	
-
     }
 }

@@ -1,10 +1,13 @@
 package co.edu.uniquindio.agenciaviajes.application;
 
+import java.io.IOException;
+
 import co.edu.uniquindio.agenciaviajes.controllers.MainPaneController;
 import co.edu.uniquindio.agenciaviajes.ui.TipoVista;
 import co.edu.uniquindio.agenciaviajes.ui.Vista;
 import co.edu.uniquindio.agenciaviajes.ui.VistaManager;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -26,7 +29,7 @@ public class App extends Application {
 		scene = new Scene(Vista.buildView("mainPane").getParent());
 		stage.setScene(scene);
 		VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, null);
-		Image icon = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/login.png"));
+		Image icon = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/pikachuViajero.png"));
 		stage.setTitle("PokeViajes");
 		stage.heightProperty().addListener((obser, oldV, newV) -> stage.setMinWidth((Double) newV * 1.3));
 		stage.setMinHeight(380);
@@ -38,5 +41,10 @@ public class App extends Application {
 	public static void setRoot(Parent value) {
 		MainPaneController.getInstance().setRoot(value);
 	}
+
+	public static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/co/edu/uniquindio/fxml/" + fxml + ".fxml"));
+        return fxmlLoader.load();
+    }
 
 }
