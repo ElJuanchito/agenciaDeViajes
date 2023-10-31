@@ -90,7 +90,17 @@ public class MainPaneController implements Controllable {
 			hidePane(loadingLayer);
 			animacionBtn.stop();
 		}).start();
+	}
 
+	public void ejecutarProcesoDoble(Runnable runnable, Runnable atEnd) {
+		new Thread(() -> {
+			showPane(loadingLayer);
+			animacionBtn.playFromStart();
+			runnable.run();
+			hidePane(loadingLayer);
+			animacionBtn.stop();
+			atEnd.run();
+		}).start();
 	}
 
 	public MainPaneController() {

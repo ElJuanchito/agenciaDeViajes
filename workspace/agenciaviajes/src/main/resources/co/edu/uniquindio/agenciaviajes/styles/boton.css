@@ -32,6 +32,9 @@
 	-fx-background-color: rgb(148, 108, 230);
 	-fx-opacity: 1.0;
 }
+.main-arrow {
+	-fx-background-radius: 50% 50% 0 0;
+}
 
 .arrowButton {
 	-fx-background-color: rgb(255, 255, 255, 0.6);
