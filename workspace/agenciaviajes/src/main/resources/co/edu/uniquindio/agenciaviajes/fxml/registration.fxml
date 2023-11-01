@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<HBox fx:id="root" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.RegistrationController">
+<HBox fx:id="root" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.RegistrationController">
    <children>
-      <StackPane fx:id="stackImg" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="397.0" styleClass="img" stylesheets="@../styles/login.css">
+      <StackPane fx:id="stackImg" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="397.0" styleClass="fondoPEjecutivo" stylesheets="@../styles/fondos.css">
          <children>
             <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backEvent" style="-fx-border-color: transparent; -fx-background-color: transparent; -fx-cursor: hand;" StackPane.alignment="TOP_LEFT">
                <graphic>

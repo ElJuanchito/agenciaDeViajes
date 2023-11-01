@@ -13,9 +13,9 @@
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="root" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.LoginController">
+<HBox fx:id="root" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.LoginController">
    <children>
-      <StackPane fx:id="stackImg" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="320.0" prefWidth="247.0" styleClass="img">
+      <StackPane fx:id="stackImg" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="320.0" prefWidth="247.0" styleClass="fondoPViajero">
          <children>
             <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backEvent" prefHeight="50.0" prefWidth="50.0" styleClass="arrowButton" StackPane.alignment="TOP_LEFT">
                <graphic>
@@ -79,7 +79,7 @@
       </VBox>
    </children>
    <stylesheets>
-      <URL value="@../styles/login.css" />
       <URL value="@../styles/boton.css" />
+      <URL value="@../styles/fondos.css" />
    </stylesheets>
 </HBox>
