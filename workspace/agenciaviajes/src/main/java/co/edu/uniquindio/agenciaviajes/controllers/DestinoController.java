@@ -8,14 +8,15 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import co.edu.uniquindio.agenciaviajes.utils.UtilsFX;
+import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.ParallelTransition;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -29,6 +30,7 @@ import javafx.scene.shape.SVGPath;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.util.Duration;
 import lombok.Getter;
+import lombok.Setter;
 
 public class DestinoController implements DataControllable<Destino> {
 
@@ -55,32 +57,33 @@ public class DestinoController implements DataControllable<Destino> {
 	@Getter
 	private Destino destino;
 
+	@FXML
+	private ScrollPane scrollDescripcion;
+
 	private List<Image> listaImagenes = new ArrayList<Image>();
 
 	private int currentIndex = 0;
 
-	private Timeline timelinePt1;
-
-	private ParallelTransition timelineHover;
+	private boolean isFistImageShowing = false;
 
 	@FXML
 	private SVGPath stars[];
 
 	private Color starFill;
 
-	@FXML
-	void nextEvent(ActionEvent event) {
-		nextAction();
-	}
+	@Setter
+	private boolean vivo;
 
-	@FXML
-	void previousEvent(ActionEvent event) {
-		previousAction();
-	}
+	private Timeline animacionHover;
 
 	@FXML
 	void hoverPanelEvent(MouseEvent event) {
 		hoverPanelAction();
+	}
+
+	@FXML
+	void changeViewEvent(MouseEvent event) {
+
 	}
 
 	@FXML
@@ -89,56 +92,50 @@ public class DestinoController implements DataControllable<Destino> {
 	}
 
 	private void hoverPanelAction() {
-		timelineHover.playFromStart();
+		animacionHover.playFromStart();
 	}
 
 	private void unhoverPanelAction() {
-		timelineHover.stop();
-		timelineHover.setRate(-1);
-		timelineHover.jumpTo(Duration.millis(100));
-		timelineHover.play();
+		animacionHover.stop();
+		animacionHover.setRate(-1);
+		animacionHover.jumpTo(Duration.millis(100));
+		animacionHover.play();
 	}
 
-	private void previousAction() {
-		showPreviousImage();
-	}
-
-	private void nextAction() {
-		showNextImage();
-
-	}
-
-	private void showActualImage() {
+	private void showImage() {
 		if (currentIndex >= 0 && currentIndex < listaImagenes.size()) {
 			Image imagen = listaImagenes.get(currentIndex);
-			imgDestino.setImage(imagen);
+			isFistImageShowing = !isFistImageShowing;
+			ImageView imagenD = isFistImageShowing ? imgDestino : imgDestino2;
 
+			imagenD.setImage(imagen);
 			double relacionAspecto = imagen.getWidth() / imagen.getHeight();
 			double xSmallPos = (310 - 220 * relacionAspecto) / 2;
-			double xBigPos = (310 - 280 * relacionAspecto) / 2;
 
-			imgDestino.setX(timelinePt1.getRate() == -1 ? xSmallPos : xBigPos);
-
-			KeyFrame keyFrame = new KeyFrame(Duration.millis(0), new KeyValue(imgDestino.xProperty(), xSmallPos));
-			KeyFrame keyFrame2 = new KeyFrame(Duration.millis(100), new KeyValue(imgDestino.xProperty(), xBigPos));
-			timelineHover = new ParallelTransition(new Timeline(keyFrame, keyFrame2), timelinePt1);
+			FadeTransition fade1 = new FadeTransition(Duration.millis(500), imgDestino);
+			FadeTransition fade2 = new FadeTransition(Duration.millis(500), imgDestino2);
+			if (isFistImageShowing) {
+				imgDestino.setX(xSmallPos);
+				fade1.setFromValue(0);
+				fade1.setToValue(1);
+				fade2.setFromValue(1);
+				fade2.setToValue(0);
+			} else {
+				imgDestino2.setX(xSmallPos);
+				fade1.setFromValue(1);
+				fade1.setToValue(0);
+				fade2.setFromValue(0);
+				fade2.setToValue(1);
+			}
+			new ParallelTransition(fade1, fade2).playFromStart();
 		}
-	}
-
-	private void showPreviousImage() {
-		currentIndex--;
-		timelinePt1.setRate(1);
-		if (currentIndex < 0)
-			currentIndex = listaImagenes.size() - 1;
-		showActualImage();
 	}
 
 	private void showNextImage() {
 		currentIndex++;
-		timelinePt1.setRate(1);
 		if (currentIndex >= listaImagenes.size())
 			currentIndex = 0;
-		showActualImage();
+		showImage();
 	}
 
 	@Override
@@ -149,7 +146,7 @@ public class DestinoController implements DataControllable<Destino> {
 	public void clearData() {
 		txtName.setText("");
 		listaImagenes.clear();
-		showActualImage();
+		showImage();
 		currentIndex = 0;
 		this.destino = null;
 	}
@@ -164,7 +161,9 @@ public class DestinoController implements DataControllable<Destino> {
 		txtName.setText(destino.getNombre());
 		listaImagenes = UtilsFX.cargarImagenes(destino.getImagenes());
 		actualizarPuntaje(dato.getPromedio());
-		showActualImage();
+		vivo = true;
+		isFistImageShowing = false;
+		ejecutarAnimacionHilos();
 	}
 
 	private void actualizarPuntaje(double puntuacion) {
@@ -185,13 +184,8 @@ public class DestinoController implements DataControllable<Destino> {
 
 	@Override
 	public void preInicializar() {
-		KeyFrame keyFrame = new KeyFrame(Duration.millis(0), new KeyValue(imgDestino.fitHeightProperty(), 220));
-		KeyFrame keyFrame2 = new KeyFrame(Duration.millis(100), new KeyValue(imgDestino.fitHeightProperty(), 280));
-		timelineHover = new ParallelTransition();
 		starFill = new Color(0.1529, 0.0196, 0.4392, 1.0);
 
-		timelinePt1 = new Timeline(keyFrame, keyFrame2);
-		timelinePt1.setRate(-1);
 		stars = new SVGPath[5];
 		for (int i = 0; i < stars.length; i++) {
 			stars[i] = new SVGPath();
@@ -204,6 +198,18 @@ public class DestinoController implements DataControllable<Destino> {
 			stars[i].setStroke(starFill);
 			boxStars.getChildren().add(stars[i]);
 		}
+		KeyFrame valorInicial = new KeyFrame(Duration.millis(0),
+				new KeyValue(scrollDescripcion.prefHeightProperty(), 0d));
+		KeyFrame valorFinal = new KeyFrame(Duration.millis(100),
+				new KeyValue(scrollDescripcion.prefHeightProperty(), 80d));
+		animacionHover = new Timeline(valorInicial, valorFinal);
 	}
 
+	private void ejecutarAnimacionHilos() {
+		currentIndex = -1;
+		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), e -> showNextImage()),
+				new KeyFrame(Duration.millis(5000)));
+		timeline.setCycleCount(-1);
+		timeline.play();
+	}
 }
