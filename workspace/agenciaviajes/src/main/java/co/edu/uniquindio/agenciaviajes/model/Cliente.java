@@ -1,7 +1,10 @@
 package co.edu.uniquindio.agenciaviajes.model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,7 +27,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Cliente extends Usuario {
+public class Cliente extends Usuario implements Loginable {
 
 	@NonNull
 	private String email;
@@ -38,6 +41,8 @@ public class Cliente extends Usuario {
 
 	@OneToMany
 	private List<Reserva> reservas;
+
+	private List<Preferencia> preferencias;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, optional = true)
 	private Imagen imagen;
@@ -185,6 +190,51 @@ public class Cliente extends Usuario {
 	public void eliminarReserva(Long id) throws ReservaNoExistenteException {
 		throwReservaNoExistente(id);
 		eliminarReservaAux(id, 0);
+	}
+
+	public void agregarPreferencia(Destino destino) {
+		Preferencia preferencia = Preferencia.builder().tipoDestino(destino.getTipoDestino()).clima(destino.getClima())
+				.idDestino(destino.getId()).build();
+		if (!preferencias.contains(preferencia))
+			preferencias.add(preferencia);
+	}
+
+	public Preferencia getMayorPreferencia() {
+		if (preferencias.isEmpty()) {
+			return null;
+		}
+
+		Map<Clima, Integer> mapaClimas = new HashMap<>();
+		Map<TipoDestino, Integer> mapaTipoDestinos = new HashMap<>();
+
+		preferencias.forEach(preferencia -> {
+			Clima clima = preferencia.getClima();
+			TipoDestino tipoDestino = preferencia.getTipoDestino();
+
+			mapaClimas.put(clima, mapaClimas.getOrDefault(clima, 0) + 1);
+			mapaTipoDestinos.put(tipoDestino, mapaTipoDestinos.getOrDefault(tipoDestino, 0) + 1);
+		});
+
+		Map.Entry<Clima, Integer> entryClimaMayor = Collections.max(mapaClimas.entrySet(),
+				Map.Entry.comparingByValue());
+		Map.Entry<TipoDestino, Integer> entryTipoDestinoMayor = Collections.max(mapaTipoDestinos.entrySet(),
+				Map.Entry.comparingByValue());
+
+		return Preferencia.builder().clima(entryClimaMayor.getKey()).tipoDestino(entryTipoDestinoMayor.getKey())
+				.build();
+	}
+
+	public List<Destino> listarDestinosOrdenPreferencia(List<Destino> destinos) {
+		List<Destino> destinosSort = new ArrayList<Destino>();
+		Preferencia preferencia = getMayorPreferencia();
+		Collections.copy(destinosSort, destinos);
+		destinosSort.sort((o1, o2) -> o1.equivaleciaPref(preferencia) - o2.equivaleciaPref(preferencia));
+		return destinosSort;
+	}
+
+	@Override
+	public boolean hacerLogin(String contrasena) {
+		return this.contrasena.equals(contrasena);
 	}
 
 }

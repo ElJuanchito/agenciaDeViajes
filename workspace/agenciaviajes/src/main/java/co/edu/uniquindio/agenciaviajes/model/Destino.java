@@ -68,6 +68,10 @@ public class Destino {
 	@ToString.Include
 	private Clima clima;
 
+	@Enumerated(EnumType.STRING)
+	@ToString.Include
+	private TipoDestino tipoDestino;
+
 	private Map<Cliente, Comentario> mapComentarios;
 
 	@ManyToMany(mappedBy = "destinos")
@@ -274,10 +278,20 @@ public class Destino {
 		if (cant == 0)
 			return 5;
 		return MathUtils.round(
-				(mapComentarios.entrySet().stream().mapToDouble(t -> t.getValue().getPuntuacion()).sum() + 0d) / cant, 1);
+				(mapComentarios.entrySet().stream().mapToDouble(t -> t.getValue().getPuntuacion()).sum() + 0d) / cant,
+				1);
 	}
 
 	public void addComentario(Comentario comentario) {
 		mapComentarios.put(comentario.getCliente(), comentario);
+	}
+
+	public int equivaleciaPref(Preferencia preferencia) {
+		int cont = 0;
+		if (clima == preferencia.getClima())
+			cont++;
+		if (tipoDestino == preferencia.getTipoDestino())
+			cont++;
+		return cont;
 	}
 }

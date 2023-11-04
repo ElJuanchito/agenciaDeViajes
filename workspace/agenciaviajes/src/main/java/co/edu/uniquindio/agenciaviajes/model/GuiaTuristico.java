@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.IdiomaNoExistenteException;
@@ -29,6 +30,7 @@ public class GuiaTuristico extends Usuario {
 	@NonNull
 	private Integer expHoras;
 
+	@OneToOne
 	private Imagen imagen;
 
 	/**
@@ -37,7 +39,8 @@ public class GuiaTuristico extends Usuario {
 	 * @param expHoras
 	 */
 	@Builder
-	private GuiaTuristico(String identificacion, String nombreCompleto, Integer expHoras, Imagen imagen, Idioma... idiomas) {
+	private GuiaTuristico(String identificacion, String nombreCompleto, Integer expHoras, Imagen imagen,
+			Idioma... idiomas) {
 		super(identificacion, nombreCompleto);
 		this.expHoras = expHoras;
 		this.idiomas = new ArrayList<Idioma>(List.of(idiomas));
