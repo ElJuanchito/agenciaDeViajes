@@ -3,6 +3,7 @@ package co.edu.uniquindio.agenciaviajes.controllers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import animatefx.animation.FadeIn;
 import co.edu.uniquindio.agenciaviajes.exceptions.ImagenNoObtenidaException;
 import co.edu.uniquindio.agenciaviajes.model.Cliente;
 import co.edu.uniquindio.agenciaviajes.model.Clima;
@@ -111,11 +112,9 @@ public class ViewDestinosController implements Controllable {
 	}
 
 	private void cargarDestinoVista(Parent parent) {
-		FadeTransition anim = new FadeTransition(Duration.millis(750), parent);
-		anim.setFromValue(0);
-		anim.setToValue(1);
+		FadeIn fadeIn = new FadeIn(parent);
 		contentPane.add(parent, colIndex, rowIndex);
-		anim.play();
+		fadeIn.play();
 		colIndex = 1 - colIndex;
 		if (colIndex == 0)
 			rowIndex++;

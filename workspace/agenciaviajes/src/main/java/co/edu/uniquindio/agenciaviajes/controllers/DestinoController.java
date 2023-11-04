@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import animatefx.animation.FadeIn;
+import animatefx.animation.FadeOut;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import co.edu.uniquindio.agenciaviajes.utils.UtilsFX;
-import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.ParallelTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -41,9 +41,6 @@ public class DestinoController implements DataControllable<Destino> {
 
 	@FXML
 	private URL location;
-
-	@FXML
-	private Button btnNext, btnPrevious;
 
 	@FXML
 	private ImageView imgDestino, imgDestino2;
@@ -83,7 +80,6 @@ public class DestinoController implements DataControllable<Destino> {
 
 	@FXML
 	void changeViewEvent(MouseEvent event) {
-
 	}
 
 	@FXML
@@ -112,22 +108,20 @@ public class DestinoController implements DataControllable<Destino> {
 			double relacionAspecto = imagen.getWidth() / imagen.getHeight();
 			double xSmallPos = (310 - 220 * relacionAspecto) / 2;
 
-			FadeTransition fade1 = new FadeTransition(Duration.millis(500), imgDestino);
-			FadeTransition fade2 = new FadeTransition(Duration.millis(500), imgDestino2);
+			FadeIn fadeInUp;
+			FadeOut fadeOutDown;
+
 			if (isFistImageShowing) {
 				imgDestino.setX(xSmallPos);
-				fade1.setFromValue(0);
-				fade1.setToValue(1);
-				fade2.setFromValue(1);
-				fade2.setToValue(0);
+
+				fadeInUp = new FadeIn(imgDestino);
+				fadeOutDown = new FadeOut(imgDestino2);
 			} else {
 				imgDestino2.setX(xSmallPos);
-				fade1.setFromValue(1);
-				fade1.setToValue(0);
-				fade2.setFromValue(0);
-				fade2.setToValue(1);
+				fadeInUp = new FadeIn(imgDestino2);
+				fadeOutDown = new FadeOut(imgDestino);
 			}
-			new ParallelTransition(fade1, fade2).playFromStart();
+			new ParallelTransition(fadeInUp.getTimeline(), fadeOutDown.getTimeline()).playFromStart();
 		}
 	}
 
@@ -191,7 +185,7 @@ public class DestinoController implements DataControllable<Destino> {
 			stars[i] = new SVGPath();
 			stars[i].setFillRule(FillRule.EVEN_ODD);
 			stars[i].setStrokeLineCap(StrokeLineCap.ROUND);
-			stars[i].setStrokeWidth(2);
+			stars[i].setStrokeWidth(1.5);
 			stars[i].setScaleX(1.5);
 			stars[i].setScaleY(1.5);
 			stars[i].setContent(starPath);

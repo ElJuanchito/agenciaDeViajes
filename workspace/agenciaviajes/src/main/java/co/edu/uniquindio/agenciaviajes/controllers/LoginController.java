@@ -30,9 +30,6 @@ public class LoginController implements DataControllable<String> {
 	@FXML
 	private URL location;
 	@FXML
-	private Button btnBack;
-
-	@FXML
 	private Button btnIniciar;
 
 	@FXML
@@ -66,11 +63,6 @@ public class LoginController implements DataControllable<String> {
 	private Media media;
 
 	private MediaPlayer mediaPlayer;
-
-	@FXML
-	void backEvent(ActionEvent event) {
-
-	}
 
 	@FXML
 	void iniciarEvent(ActionEvent event) {
