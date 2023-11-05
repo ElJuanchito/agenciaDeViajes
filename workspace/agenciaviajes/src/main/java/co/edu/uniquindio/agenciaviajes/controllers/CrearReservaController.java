@@ -67,24 +67,9 @@ public class CrearReservaController implements Controllable {
 
     @FXML
     void reservarEvent(ActionEvent event) {
-
+    	
     }
-    /*
-    @FXML
-    private void decrementSpinner() {
-        int currentValue = spnCant.getValue();
-        int newValue = currentValue - 1;
-        if (newValue >= 0) {
-            spnCant.getValueFactory().setValue(newValue);
-        }
-    }
-    
-    @FXML
-    private void incrementSpinner() {
-        int currentValue = spnCant.getValue();
-        spnCant.getValueFactory().setValue(currentValue + 1);
-    }
-	*/
+  
 	@Override
 	public void preInicializar() {
 		
