@@ -72,7 +72,7 @@ public class LoginController implements DataControllable<String> {
 	private void iniciarAction() {
 		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
-				VistaManager.getInstance().cambiarVista(TipoVista.DESTINOS, null);
+				VistaManager.getInstance().cambiarVista(TipoVista.PAQUETE_VIEW, null);
 			} catch (FXMLException e) {
 				e.printStackTrace();
 			}

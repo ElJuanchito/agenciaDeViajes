@@ -3,6 +3,7 @@ package co.edu.uniquindio.agenciaviajes.ui;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
+import co.edu.uniquindio.agenciaviajes.i18n.LanguageManager;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,15 +30,25 @@ public class Vista<T> {
 		return new Vista<Y>(controller, parent);
 	}
 
-	public void clearData() {
+	public void cargarDatos(T dato, ResourceBundle bundle) {
+		limpiarDatos();
+		updateLanguage(bundle);
+		controller.inicializarDatos(dato);
+	}
+
+	public void limpiarDatos() {
 		controller.clearData();
 	}
 
-	public void inicializarDatos(T dato) {
+	public void cargarDato(T dato) {
 		controller.inicializarDatos(dato);
 	}
 
 	public void updateLanguage(ResourceBundle resourceBundle) {
 		controller.updateLanguage(resourceBundle);
+	}
+
+	public void cargarIdioma() {
+		updateLanguage(LanguageManager.getInstance().getBundle());
 	}
 }
