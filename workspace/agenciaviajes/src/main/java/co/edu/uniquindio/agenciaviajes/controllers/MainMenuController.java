@@ -75,7 +75,7 @@ public class MainMenuController implements Controllable {
 	void nextEvent(ActionEvent event) {
 		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
-				VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETE_VIEW,
+				VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETE_DETAILS,
 						DatosQuemadosAux.getInstance().getPaquete());
 			} catch (FXMLException e) {
 				throw new RuntimeException(e);

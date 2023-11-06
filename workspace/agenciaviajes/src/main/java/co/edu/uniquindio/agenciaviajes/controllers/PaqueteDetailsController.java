@@ -26,7 +26,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
-public class PaqueteViewController implements DataControllable<Paquete> {
+public class PaqueteDetailsController implements DataControllable<Paquete> {
 
 	@FXML
 	private HBox boxDestinos;
@@ -178,9 +178,11 @@ public class PaqueteViewController implements DataControllable<Paquete> {
 		int size = destinos.size();
 		if (destinos.isEmpty() || size == 1)
 			return;
+		arrCirculos[actualIndex].setFill(Color.WHITE);
 		actualIndex--;
 		if (actualIndex < 0)
 			actualIndex = size - 1;
+		arrCirculos[actualIndex].setFill(colorCirculos);
 		showDestino(false);
 	}
 

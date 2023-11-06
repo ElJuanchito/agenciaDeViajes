@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<VBox fx:id="mainPane" alignment="TOP_CENTER" prefWidth="515.0" spacing="10.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.PaqueteViewController">
+<VBox fx:id="mainPane" alignment="TOP_CENTER" prefWidth="515.0" spacing="10.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.PaqueteDetailsController">
    <children>
       <Label fx:id="lblPaquete" styleClass="titulo" text="Paquete " textFill="#270570" />
       <Label fx:id="lblInfoPaquete" styleClass="titulo" text="Cartagena Aventurero" textFill="#270570" />
@@ -38,7 +38,7 @@
          <children>
             <StackPane alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
                <children>
-                  <StackPane fx:id="stackDestino" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="420.0" prefWidth="200.0" />
+                  <StackPane fx:id="stackDestino" alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="420.0" prefWidth="200.0" />
                   <Button fx:id="btnBackDestinos" mnemonicParsing="false" onAction="#backDestinosEvent" styleClass="arrowButtonAdmin">
                      <graphic>
                         <SVGPath content="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" fill="WHITE" />
