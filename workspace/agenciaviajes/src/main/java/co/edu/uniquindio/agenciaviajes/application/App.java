@@ -28,7 +28,7 @@ public class App extends Application {
 	public void start(Stage stage) throws Exception {
 		scene = new Scene(Vista.buildView("mainPane").getParent());
 		stage.setScene(scene);
-		VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, null);
+		VistaManager.getInstance().cambiarVista(TipoVista.MENU_PRINCIPAL, null);
 		Image icon = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/pikachuViajero.png"));
 		stage.setTitle("PokeViajes");
 		stage.heightProperty().addListener((obser, oldV, newV) -> stage.setMinWidth((Double) newV * 1.3));

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.SVGPath?>
-
 
 <StackPane alignment="BOTTOM_CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.MainPaneController">
    <children>
@@ -45,18 +43,5 @@
             </BorderPane>
          </center>
       </BorderPane>
-      <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
-         <children>
-            <Button maxHeight="-Infinity" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" stylesheets="@../styles/boton.css">
-               <graphic>
-                  <SVGPath content="m 0 30 l 30 -30 l 30 30" fill="TRANSPARENT" fillRule="EVEN_ODD" scaleX="0.5" scaleY="0.5" stroke="WHITE" strokeLineCap="ROUND" strokeWidth="15.0" />
-               </graphic>
-               <styleClass>
-                  <String fx:value="main-arrow" />
-                  <String fx:value="boton" />
-               </styleClass>
-            </Button>
-         </children>
-      </StackPane>
    </children>
 </StackPane>

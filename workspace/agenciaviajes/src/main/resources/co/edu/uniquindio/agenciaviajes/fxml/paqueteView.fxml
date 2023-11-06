@@ -4,7 +4,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -14,48 +13,50 @@
    <children>
       <Label fx:id="lblPaquete" styleClass="titulo" text="Paquete " textFill="#270570" />
       <Label fx:id="lblInfoPaquete" styleClass="titulo" text="Cartagena Aventurero" textFill="#270570" />
+      <Label fx:id="lblInfoCupos" styleClass="descriptionText" text="¡Quedan 10 cupos!" />
+      <Button fx:id="btnReservar" mnemonicParsing="false" onAction="#pasarReservarEvent" prefHeight="30.0" prefWidth="200.0" styleClass="boton" text="Reserva ahora">
+         <VBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </VBox.margin>
+      </Button>
       <HBox alignment="CENTER">
          <children>
             <Label fx:id="lblPrecio" alignment="CENTER" styleClass="ordinaryText" text="Precio COP $ " />
             <Label fx:id="lblInfoPrecio" alignment="CENTER" styleClass="ordinaryText" text="0" />
          </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
       </HBox>
       <Label fx:id="lblInfoDescripcion" layoutX="143.0" layoutY="45.0" maxWidth="1.7976931348623157E308" styleClass="descriptionText" text="Esta es la descripcion de Cartagena Aventurero asjdnasd jsd sajd adjsa ajdad jdnadjsndjasd asjdnaja djas dsjdnsdjks ajd sajdsa dnsb sbnd sndb sdbns sn dsdnd dfn d bvfbfvbn vbn fnv dsjdbdsjn csn jewfbksn daskfewf" textFill="#270570" wrapText="true">
          <VBox.margin>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </VBox.margin>
       </Label>
-      <BorderPane>
-         <left>
-            <Button fx:id="btnBackDestinos" mnemonicParsing="false" onAction="#backDestinosEvent" styleClass="arrowButtonAdmin" BorderPane.alignment="CENTER">
-               <graphic>
-                  <SVGPath content="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" fill="WHITE" />
-               </graphic>
-            </Button>
-         </left>
-         <right>
-            <Button fx:id="btnNextDestinos" mnemonicParsing="false" onAction="#nextDestinosEvent" styleClass="arrowButtonAdmin" BorderPane.alignment="CENTER">
+      <Label fx:id="lblDestinos" styleClass="subTitle" text="Destinos" />
+      <HBox alignment="CENTER">
+         <children>
+            <StackPane alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+               <children>
+                  <StackPane fx:id="stackDestino" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="420.0" prefWidth="200.0" />
+                  <Button fx:id="btnBackDestinos" mnemonicParsing="false" onAction="#backDestinosEvent" styleClass="arrowButtonAdmin">
+                     <graphic>
+                        <SVGPath content="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" fill="WHITE" />
+                     </graphic>
+                  </Button>
+               </children>
+            </StackPane>
+            <Button fx:id="btnNextDestinos" mnemonicParsing="false" onAction="#nextDestinosEvent" styleClass="arrowButtonAdmin">
                <graphic>
                   <SVGPath content="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" fill="WHITE" scaleX="-1.0" />
                </graphic>
             </Button>
-         </right>
-         <center>
-            <StackPane fx:id="stackDestino" prefHeight="420.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets left="5.0" right="5.0" />
-               </BorderPane.margin></StackPane>
-         </center>
-         <bottom>
-            <HBox fx:id="boxDestinos" alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER" />
-         </bottom>
-         <top>
-            <Label fx:id="lblDestinos" styleClass="subTitle" text="Destinos" BorderPane.alignment="CENTER" />
-         </top>
+         </children>
          <VBox.margin>
-            <Insets left="15.0" right="15.0" />
+            <Insets left="10.0" right="10.0" />
          </VBox.margin>
-      </BorderPane>
+      </HBox>
+      <HBox fx:id="boxDestinos" alignment="CENTER" spacing="10.0" />
       <HBox alignment="CENTER" spacing="4.0">
          <children>
             <Label fx:id="lblFechaInicial" styleClass="ordinaryText" text="Fecha Inicial:" />
@@ -78,12 +79,6 @@
             <Insets bottom="15.0" left="15.0" right="15.0" />
          </VBox.margin>
       </Label>
-      <Label fx:id="lblInfoCupos" styleClass="descriptionText" text="¡Quedan 10 cupos!" />
-      <Button fx:id="btnReservar" mnemonicParsing="false" onAction="#pasarReservarEvent" prefHeight="30.0" prefWidth="200.0" styleClass="boton" text="Reserva ahora">
-         <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </VBox.margin>
-      </Button>
    </children>
    <stylesheets>
       <URL value="@../styles/texto.css" />

@@ -73,6 +73,8 @@ public class DestinoController implements DataControllable<Destino> {
 
 	private Timeline animacionHover;
 
+	private Timeline timeline;
+
 	@FXML
 	void hoverPanelEvent(MouseEvent event) {
 		hoverPanelAction();
@@ -157,7 +159,9 @@ public class DestinoController implements DataControllable<Destino> {
 		actualizarPuntaje(dato.getPromedio());
 		vivo = true;
 		isFistImageShowing = false;
-		ejecutarAnimacionHilos();
+		currentIndex = -1;
+		timeline.stop();
+		timeline.playFromStart();
 	}
 
 	private void actualizarPuntaje(double puntuacion) {
@@ -172,7 +176,7 @@ public class DestinoController implements DataControllable<Destino> {
 				star.setFill(new LinearGradient(value, 1.0, value + 0.001, 1.0, true, CycleMethod.NO_CYCLE,
 						new Stop(0.0, starFill), new Stop(1.0, Color.TRANSPARENT)));
 			else
-				star.setFill(Color.TRANSPARENT);
+				star.setFill(Color.WHITE);
 		}
 	}
 
@@ -197,11 +201,12 @@ public class DestinoController implements DataControllable<Destino> {
 		KeyFrame valorFinal = new KeyFrame(Duration.millis(100),
 				new KeyValue(scrollDescripcion.prefHeightProperty(), 80d));
 		animacionHover = new Timeline(valorInicial, valorFinal);
+		ejecutarAnimacionImagenes();
 	}
 
-	private void ejecutarAnimacionHilos() {
+	private void ejecutarAnimacionImagenes() {
 		currentIndex = -1;
-		Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10), e -> showNextImage()),
+		timeline = new Timeline(new KeyFrame(Duration.millis(10), e -> showNextImage()),
 				new KeyFrame(Duration.millis(5000)));
 		timeline.setCycleCount(-1);
 		timeline.play();
