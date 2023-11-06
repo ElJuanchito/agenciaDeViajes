@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.RegistroPaquetesController">
+   <top>
+      <HBox alignment="CENTER" minHeight="100.0" minWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <children>
+            <SVGPath content="M24,9h-4V4c0.552,0,1-0.448,1-1c0-1.657-1.343-3-3-3h-4c-1.657,0-3,1.343-3,3c0,0.552,0.448,1,1,1v5H8c-1.657,0-3,1.343-3,3v14c0,1.657,1.343,3,3,3h0.277c-0.25,0.43-0.36,0.953-0.207,1.518c0.201,0.745,0.826,1.327,1.587,1.453C10.913,32.18,12,31.217,12,30c0-0.366-0.106-0.705-0.277-1h8.555c-0.25,0.43-0.36,0.953-0.207,1.518c0.201,0.745,0.826,1.327,1.587,1.453C22.913,32.18,24,31.217,24,30c0-0.366-0.106-0.705-0.277-1H24c1.657,0,3-1.343,3-3V12C27,10.343,25.657,9,24,9z M14,1h4c1.105,0,2,0.895,2,2h-1c0-0.552-0.448-1-1-1h-4c-0.552,0-1,0.448-1,1h-1C12,1.895,12.895,1,14,1z M19,4v5h-6V4c0.552,0,1-0.448,1-1h4C18,3.552,18.448,4,19,4z M10,31c-0.551,0-1-0.449-1-1s0.449-1,1-1s1,0.449,1,1S10.551,31,10,31z M22,31c-0.551,0-1-0.449-1-1s0.449-1,1-1s1,0.449,1,1S22.551,31,22,31z M26,26c0,1.105-0.895,2-2,2H8c-1.105,0-2-0.895-2-2V16h8v1c0,0.552,0.448,1,1,1h2c0.552,0,1-0.448,1-1v-1h8V26z M15,17v-3h2v3H15z M26,15h-8v-1c0-0.552-0.448-1-1-1h-2c-0.552,0-1,0.448-1,1v1H6v-3c0-1.105,0.895-2,2-2h16c1.105,0,2,0.895,2,2V15z" fill="#270570" />
+            <Label fx:id="lblTitulo" styleClass="titulo" text="REGISTRO DE PAQUETES" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="600.0" stylesheets="@../styles/scroll.css" BorderPane.alignment="CENTER">
+         <content>
+            <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="20.0">
+               <children>
+                  <GridPane hgap="10.0" vgap="20.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label fx:id="lblNombre" styleClass="ordinaryText" text="Nombre:" />
+                        <Label fx:id="lblDuracion" styleClass="ordinaryText" text="Duracion en dias:" GridPane.rowIndex="1" />
+                        <Label fx:id="lblServicios" styleClass="ordinaryText" text="Servicios adicionales:" GridPane.rowIndex="2" />
+                        <Label fx:id="lblPrecio" styleClass="ordinaryText" text="Precio:" GridPane.rowIndex="3" />
+                        <Label fx:id="lblFechaInicio" styleClass="ordinaryText" text="Fecha inicio:" GridPane.rowIndex="5" />
+                        <Label fx:id="lblCupo" styleClass="ordinaryText" text="Cupo maximo:" GridPane.rowIndex="4" />
+                        <Label fx:id="lblFechaFin" styleClass="ordinaryText" text="Fecha fin:" GridPane.rowIndex="6" />
+                        <TextField fx:id="txtNombre" promptText="Ingrese el nombre" styleClass="cajaTexto" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtDuracion" promptText="Ingrese la duracion del paquete" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtServicios" promptText="Ingrese los servicios adicionales" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtPrecio" promptText="Digite el precio" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="txtCupo" promptText="Digite el cupo maximo" styleClass="cajaTexto" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <DatePicker fx:id="dpInicio" maxWidth="1.7976931348623157E308" promptText="Ingrese la fecha de inicio del paquete" styleClass="fechaBox" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <DatePicker fx:id="dpFin" maxWidth="1.7976931348623157E308" promptText="Ingrese la fecha de finalizacion del paquete" styleClass="fechaBox" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                     </children>
+                  </GridPane>
+                  <Label fx:id="lblSeleccionar" styleClass="ordinaryText" text="Seleccione los destinos que va a contener el paquete" />
+                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="20.0">
+                     <children>
+                        <TableView fx:id="tblDestinos" maxWidth="1.7976931348623157E308" onMouseClicked="#seleccionarDestinoEvent" prefHeight="300.0" stylesheets="@../styles/tableStyle.css">
+                          <columns>
+                            <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="colNombre" prefWidth="75.0" text="NOMBRE" />
+                              <TableColumn fx:id="colCiudad" prefWidth="75.0" text="CIUDAD" />
+                              <TableColumn fx:id="colDescripcion" prefWidth="75.0" text="DESCRIPCION" />
+                              <TableColumn fx:id="colClima" prefWidth="75.0" text="CLIMA" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <TableView fx:id="tblSeleccionados" onMouseClicked="#deseleccionarDestinoEvent" prefHeight="300.0" stylesheets="@../styles/tableStyle.css">
+                          <columns>
+                            <TableColumn fx:id="colIdSelect" prefWidth="75.0" text="ID" />
+                            <TableColumn fx:id="colNombreSelect" prefWidth="75.0" text="NOMBRE" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </VBox>
+         </content>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </ScrollPane>
+   </center>
+   <stylesheets>
+      <URL value="@../styles/texto.css" />
+      <URL value="@../styles/cajaTexto.css" />
+      <URL value="@../styles/boton.css" />
+      <URL value="@../styles/boxStyle.css" />
+   </stylesheets>
+   <bottom>
+      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnRegistrar" mnemonicParsing="false" onAction="#registrarEvent" styleClass="boton" stylesheets="@../styles/boton.css" text="REGISTRAR" />
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+   </bottom>
+</BorderPane>
