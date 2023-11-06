@@ -8,7 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public enum TipoVista {
 	LOGIN("login"), DESTINOS("viewDestinos"), REGISTRO("registration"), PAQUETE_DETAILS("paqueteDetails"),
-	MENU_PRINCIPAL("menuPrincipal");
+	MENU_PRINCIPAL("menuPrincipal"), CREAR_RESERVA("crearReserva"), REGISTRO_GUIA("registroGuia");
 
 	private String ruta;
 }

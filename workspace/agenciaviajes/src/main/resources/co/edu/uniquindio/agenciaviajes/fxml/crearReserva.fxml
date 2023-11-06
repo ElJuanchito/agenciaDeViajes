@@ -8,42 +8,60 @@
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="20.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.CrearReservaController">
+<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.CrearReservaController">
    <children>
       <Label fx:id="lblTitle" alignment="CENTER" prefHeight="70.0" prefWidth="520.0" styleClass="titulo" text="¡Confirma Tu Reserva!">
          <padding>
             <Insets top="20.0" />
          </padding></Label>
-      <GridPane vgap="30.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <HBox alignment="CENTER">
          <children>
-            <Label fx:id="lblFecha" alignment="CENTER" prefHeight="17.0" prefWidth="303.0" styleClass="ordinaryText" text="Fecha de Viaje" GridPane.rowIndex="1" />
-            <DatePicker fx:id="dtpFecha" prefHeight="25.0" prefWidth="311.0" stylesheets="@../styles/boxStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="lblCant" alignment="CENTER" prefHeight="17.0" prefWidth="305.0" styleClass="ordinaryText" text="Cantidad Personas" GridPane.rowIndex="2" />
-            <Spinner fx:id="spnCant" editable="true" prefHeight="25.0" prefWidth="311.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="lblinfoPackage" alignment="CENTER" prefHeight="17.0" prefWidth="332.0" styleClass="ordinaryText" text="Paquete Seleccionado" />
-            <Label fx:id="lblNamePackage" alignment="CENTER" prefHeight="17.0" prefWidth="322.0" styleClass="ordinaryText" text="Label" GridPane.columnIndex="1" />
+            <Label fx:id="lblNamePackage" alignment="CENTER" prefHeight="17.0" prefWidth="322.0" styleClass="ordinaryText" text="Label" />
          </children>
-      </GridPane>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Label fx:id="lblFecha" alignment="CENTER" prefHeight="17.0" prefWidth="303.0" styleClass="ordinaryText" text="Fecha de Viaje" />
+            <DatePicker fx:id="dtpFecha" prefHeight="25.0" prefWidth="311.0" stylesheets="@../styles/boxStyle.css" />
+         </children>
+      </HBox>
+      <VBox alignment="CENTER">
+         <children>
+            <Label fx:id="lblRangoDisponible" styleClass="descriptionText" text="* Recuerda el rango en el que está disponible" />
+            <HBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label fx:id="lblFechaInicial" styleClass="descriptionText" text="Desde:" />
+                  <Label fx:id="lblInfoFechaInicial" layoutX="10.0" layoutY="10.0" styleClass="descriptionText" text="10/10/2023 6:00 am" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" spacing="5.0">
+               <children>
+                  <Label fx:id="lblFechaFinal" styleClass="descriptionText" text="Hasta:" />
+                  <Label fx:id="lblInfoFechaFinal" layoutX="10.0" layoutY="10.0" styleClass="descriptionText" text="20/10/2023 8:00 pm" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Label fx:id="lblCant" alignment="CENTER" prefHeight="17.0" prefWidth="305.0" styleClass="ordinaryText" text="Cantidad Personas" />
+            <Spinner fx:id="spnCant" editable="true" prefHeight="25.0" prefWidth="311.0" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" spacing="5.0">
+         <children>
+            <Label fx:id="lblCupoMaximo" styleClass="descriptionText" text="* Cupo máximo:" />
+            <Label fx:id="lblInfoCupoMaximo" layoutX="10.0" layoutY="10.0" styleClass="descriptionText" text="5" />
+         </children>
+      </HBox>
       <Label fx:id="lblGuia" styleClass="subTitle" text="¿Deseas Seleccionar Un Guia Turistico?" />
       <HBox alignment="CENTER" spacing="20.0">
          <children>
-            <TableView fx:id="tblGuias" prefHeight="62.0" prefWidth="370.0">
+            <TableView fx:id="tblGuias" prefHeight="300.0" HBox.hgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="clmId" prefWidth="75.0" text="Identificacion" />
                 <TableColumn fx:id="clmName" prefWidth="75.0" text="Nombre" />
@@ -53,7 +71,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView fx:id="tblIdiomas" prefHeight="198.0" prefWidth="214.0">
+            <TableView fx:id="tblIdiomas" prefHeight="300.0" HBox.hgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="clmIdioma" prefWidth="75.0" text="Idiomas" />
               </columns>
@@ -63,7 +81,8 @@
             </TableView>
          </children>
       </HBox>
-      <Button fx:id="btnReservar" mnemonicParsing="false" onAction="#reservarEvent" styleClass="boton" text="¡Reserva Ya!">
+      <Button fx:id="btnLimpiarSeleccion" disable="true" layoutX="254.0" layoutY="368.0" mnemonicParsing="false" onAction="#limpiarSeleccionEvent" prefHeight="30.0" prefWidth="200.0" styleClass="boton" text="Limpiar Selección" />
+      <Button fx:id="btnReservar" mnemonicParsing="false" onAction="#reservarEvent" prefHeight="30.0" prefWidth="200.0" styleClass="boton" text="¡Reserva Ya!">
          <VBox.margin>
             <Insets bottom="20.0" />
          </VBox.margin>
@@ -76,4 +95,7 @@
       <URL value="@../styles/boxStyle.css" />
       <URL value="@../styles/spinner.css" />
    </stylesheets>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </VBox>

@@ -29,7 +29,11 @@ public class DatosQuemadosAux {
 			return paquete;
 		paquete = Paquete.builder().fechaFin(LocalDateTime.now().plusMonths(10)).fechaIncio(LocalDateTime.now())
 				.cupoMaximo(100).duracionDias(300).nombre("Paquete chileno").precio(BigDecimal.valueOf(10000000))
-				.serviciosAdicionales("Ninguno").build();
+				.serviciosAdicionales("Ninguno")
+				.descripcion(
+						"Sumérgete en la magia de Cartagena, donde la historia cobra vida a través de sus calles empedradas y edificios coloniales meticulosamente conservados. Esta ciudad costera combina perfectamente el encanto del viejo mundo con la energía contemporánea, creando un destino turístico que enamora a todos sus visitantes.")
+				.descripcionCorta("Encanto caribeño, historia viva, playas paradisíacas y gastronomía exquisita.")
+				.build();
 
 		Destino[] destinos = new Destino[6];
 		destinos[0] = Destino.builder().nombre("PokemonRojo").ciudad("Kanto").descripcion("Pokemon lagartija")

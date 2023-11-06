@@ -28,7 +28,7 @@
             <Insets />
          </VBox.margin>
       </HBox>
-      <Label fx:id="lblInfoDescripcion" layoutX="143.0" layoutY="45.0" maxWidth="1.7976931348623157E308" styleClass="descriptionText" text="Esta es la descripcion de Cartagena Aventurero asjdnasd jsd sajd adjsa ajdad jdnadjsndjasd asjdnaja djas dsjdnsdjks ajd sajdsa dnsb sbnd sndb sdbns sn dsdnd dfn d bvfbfvbn vbn fnv dsjdbdsjn csn jewfbksn daskfewf" textFill="#270570" wrapText="true">
+      <Label fx:id="lblInfoDescripcion" layoutX="143.0" layoutY="45.0" maxWidth="1.7976931348623157E308" styleClass="descriptionText" text="Descripcion" textFill="#270570" wrapText="true">
          <VBox.margin>
             <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
          </VBox.margin>
