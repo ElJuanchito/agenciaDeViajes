@@ -4,10 +4,12 @@
  */
 package co.edu.uniquindio.agenciaviajes.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import java.util.HashSet;
+import java.util.Set;
 
-@AllArgsConstructor
+import lombok.Getter;
+import lombok.Setter;
+
 public enum Idioma {
 	INGLES("Ingles"), ESPANOL("Español"), PORTUGUES("Portugues"), FRANCES("Frances"), ITALIANO("Italiano"),
 	JAPONES("Japones"), MANDARIN("Mandarin"), COREANO("Coreano"), RUSO("Ruso"), ALEMAN("Aleman"), HINDU("Hindu"),
@@ -15,6 +17,14 @@ public enum Idioma {
 
 	@Getter
 	private final String idioma;
+	@Getter
+	@Setter
+	private boolean seleccionado;
+	
+	private Idioma(String idioma) {
+		this.idioma = idioma;
+		this.seleccionado = false;
+	}
 
 	public static String[] stringValues() {
 		Idioma[] values = values();
@@ -31,4 +41,11 @@ public enum Idioma {
 				return estado;
 		return null;
 	}
+	
+	public static Set<Idioma> getSet(){
+		Set<Idioma> set = new HashSet<Idioma>();
+		for(Idioma idioma : values()) set.add(idioma);
+		return set;
+	}
+	
 }

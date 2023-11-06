@@ -23,7 +23,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		scene = new Scene(Vista.buildView("mainPane").getParent());
+		scene = new Scene(Vista.buildView("registroDestino").getParent());
 		stage.setScene(scene);
 		VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, null);
 		Image icon = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/login.png"));
