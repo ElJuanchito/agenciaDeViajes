@@ -1,8 +1,12 @@
 /* Estilos para TableView */
 .table-view {
-    -fx-background-color: white;
-    -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 0);
+    -fx-background-color: #270570;
+    -fx-background-radius: 0.5em;
+    -fx-effect: dropshadow(three-pass-box, grey, 10.0, 0.0, 0.0, 0.0);
     -fx-text-fill: #FFFFFF;
+    -fx-border-color: #270570;
+    -fx-border-radius: 0.5em;
+    -fx-border-width: 0.3em;
 }
 
 /* Estilos para celdas seleccionadas */
@@ -18,9 +22,29 @@
 
 .table-view .column-header .label {
 	-fx-text-fill: white;
+	-fx-font-weight: bold;
 }
 
 /* Estilos para separadores de columnas */
 .table-column {
+    -fx-background-color: white;
+    -fx-border-color: #270570;
+    -fx-border-width: 0.0 0.1em 0.0 0.1em;
+}
+
+.table-cell {
+	-fx-font-weight: bold;
+	-fx-alignment: center;
+}
+
+.scroll-bar:vertical {
+    -fx-background-color: #270570; /* Cambia el color de fondo de la barra vertical a azul (#3498db) */
+}
+
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: #270570;
+}
+
+.scroll-bar:vertical .increment-button {
     -fx-background-color: #270570;
 }
