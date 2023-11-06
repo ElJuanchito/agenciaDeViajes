@@ -52,6 +52,8 @@ public class Paquete {
 	@NonNull
 	private LocalDateTime fechaFin;
 
+	@NonNull
+	private String descripcionCorta, descripcion;
 	@ManyToMany
 	@JoinTable(name = "paquete_destino", joinColumns = @JoinColumn(name = "paquete_id"), inverseJoinColumns = @JoinColumn(name = "destino_id"))
 	private List<Destino> destinos;
@@ -67,7 +69,8 @@ public class Paquete {
 	 */
 	@Builder
 	private Paquete(String nombre, Integer duracionDias, String serviciosAdicionales, BigDecimal precio,
-			Integer cupoMaximo, LocalDateTime fechaIncio, LocalDateTime fechaFin) {
+			Integer cupoMaximo, LocalDateTime fechaIncio, LocalDateTime fechaFin, String descripcionCorta,
+			String descripcion) {
 		super();
 		this.nombre = nombre;
 		this.duracionDias = duracionDias;
@@ -76,6 +79,8 @@ public class Paquete {
 		this.cupoMaximo = cupoMaximo;
 		this.fechaIncio = fechaIncio;
 		this.fechaFin = fechaFin;
+		this.descripcion = descripcion;
+		this.descripcionCorta = descripcionCorta;
 		this.destinos = new ArrayList<Destino>();
 	}
 

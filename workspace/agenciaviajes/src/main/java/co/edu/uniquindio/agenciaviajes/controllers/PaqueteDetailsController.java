@@ -15,7 +15,9 @@ import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
+import co.edu.uniquindio.agenciaviajes.ui.TipoVista;
 import co.edu.uniquindio.agenciaviajes.ui.Vista;
+import co.edu.uniquindio.agenciaviajes.ui.VistaManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -99,6 +101,8 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 
 	private Color colorCirculos;
 
+	private Paquete paquete;
+
 	@FXML
 	void backDestinosEvent(ActionEvent event) {
 		backDestinosAction();
@@ -111,12 +115,12 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 
 	@FXML
 	void pasarReservarEvent(ActionEvent event) {
-		// TODO
+		pasarReservaAction();
 	}
 
 	@Override
 	public void preInicializar() {
-		// TODO Auto-generated method stub
+		colorCirculos = new Color(0.1529, 0.0196, 0.4392, 1.0);
 
 	}
 
@@ -134,8 +138,17 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 
 	@Override
 	public void inicializarDatos(Paquete paquete) {
+		this.paquete = paquete;
 		if (paquete == null)
 			return;
+
+		lblInfoPaquete.setText(paquete.getNombre());
+		lblInfoCupos.setText(String.format("¡Quedan %d cupos!", paquete.getCupoMaximo()));
+		lblInfoPrecio.setText(paquete.getPrecio().toString());
+		lblInfoDescripcion.setText(paquete.getDescripcion());
+		lblInfoServiciosExtra.setText(paquete.getServiciosAdicionales());
+
+		boxDestinos.getChildren().clear();
 		stackDestino.getChildren().clear();
 		destinos = paquete.getDestinos();
 		if (destinos.isEmpty()) {
@@ -152,7 +165,6 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 			vistaDestino2.cargarDato(destinos.get(0));
 			stackDestino.getChildren().add(vistaDestino1.getParent());
 			stackDestino.getChildren().add(vistaDestino2.getParent());
-			colorCirculos = new Color(0.1529, 0.0196, 0.4392, 1.0);
 			arrCirculos = new Circle[destinos.size()];
 			for (int i = 0; i < arrCirculos.length; i++) {
 				arrCirculos[i] = new Circle(5);
@@ -160,9 +172,7 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 				arrCirculos[i].setStrokeWidth(1);
 				arrCirculos[i].setFill(Color.WHITE);
 				final int index = i;
-				arrCirculos[i].setOnMouseClicked(e -> {
-					moverImagen(index);
-				});
+				arrCirculos[i].setOnMouseClicked(e -> moverImagen(index));
 				if (i == actualIndex) {
 					arrCirculos[i].setFill(colorCirculos);
 				}
@@ -172,6 +182,17 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 			throw new RuntimeException(e);
 		}
 
+	}
+
+	private void pasarReservaAction() {
+		MainPaneController.getInstance().showAlert("Validacion de cliente");
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				VistaManager.getInstance().cambiarVistaCliente(TipoVista.CREAR_RESERVA, paquete);
+			} catch (FXMLException e) {
+				throw new RuntimeException(e);
+			}
+		});
 	}
 
 	private void backDestinosAction() {
