@@ -32,6 +32,45 @@
 	-fx-background-color: rgb(148, 108, 230);
 	-fx-opacity: 1.0;
 }
+.main-arrow {
+	-fx-background-radius: 50% 50% 0 0;
+}
+
+.botonRed {
+	-fx-background-color: #C81010;
+	/* Color de fondo */
+	-fx-text-fill: white;
+	/* Color del texto */
+	-fx-font-size: 1.2em;
+	-fx-padding: 0.0 1.0em;
+	/* Relleno interno */
+	-fx-border-radius: 0.5em;
+	/* Radio de borde */
+	-fx-border-width: 10.0px;
+	-fx-font-weight: bold;
+	-fx-cursor: hand;
+	-fx-effect: dropshadow(gaussian, rgba(0.0, 0.0, 0.0, 0.3), 5.0, 0.0, 0.0, 2.0);
+
+}
+
+/* Estilo al pasar el mouse sobre el botón */
+.botonRed:hover {
+	-fx-background-color: red;
+	/* Color de fondo al pasar el mouse */
+	-fx-effect: innershadow(gaussian, #DE3131, 1.0em, 0.5, 0.0, 0.0);
+}
+
+/* Estilo al hacer clic en el botón */
+.botonRed:pressed {
+	-fx-background-color: #DE3131;
+	/* Color de fondo al hacer clic */
+}
+
+.botonRed:disabled {
+	-fx-background-color: rgb(148, 108, 230);
+	-fx-opacity: 1.0;
+}
+
 
 .arrowButton {
 	-fx-background-color: rgb(255, 255, 255, 0.6);
@@ -40,8 +79,19 @@
 	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
 }
 
+.arrowButtonAdmin {
+	-fx-background-color: #270570;
+	-fx-padding: 0.7em 0.5em;
+	-fx-background-radius: 50%;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 5, 0, 0, 2);
+}
+
 .arrowButton:hover {
 	-fx-background-color: rgb(255, 255, 255, 1.0);
+}
+
+.arrowButtonAdmin:hover {
+	-fx-background-color: #3E0BAD;
 }
 
 .arrowButton .svg-path {

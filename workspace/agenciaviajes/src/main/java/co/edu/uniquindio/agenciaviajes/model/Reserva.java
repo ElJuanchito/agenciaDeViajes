@@ -35,7 +35,7 @@ import lombok.ToString;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
-@Builder
+
 @ToString
 public class Reserva {
 	@Id
@@ -59,5 +59,18 @@ public class Reserva {
 	private GuiaTuristico guia;
 	@NonNull
 	private Estado estado;
+
+	@Builder
+	public Reserva(@NonNull LocalDateTime fechaViaje, @NonNull Cliente cliente, @NonNull Integer cantPersonas,
+			@NonNull Paquete paquete, GuiaTuristico guiaTuristico, @NonNull Estado estado) {
+		
+		this.fechaSolicitud = LocalDate.now();
+		this.cantPersonas = cantPersonas;
+		this.fechaViaje = fechaViaje;
+		this.cliente = cliente;
+		this.paquete = paquete;
+		this.guia = guiaTuristico;
+		this.estado = estado;
+	}
 
 }

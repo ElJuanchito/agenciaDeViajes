@@ -108,10 +108,10 @@ public class Paquete {
 	 * @author ElJuancho
 	 */
 	private boolean verificarDestinoAux(Long id, int i) {
-		if (destinos.get(i).getId().equals(id))
-			return true;
 		if (destinos.size() == i)
 			return false;
+		if (destinos.get(i).getId().equals(id))
+			return true;
 		return verificarDestinoAux(id, ++i);
 	}
 
@@ -123,6 +123,8 @@ public class Paquete {
 	 * @return
 	 */
 	public boolean verificarDestino(Long id) {
+		if (destinos.isEmpty())
+			return false;
 		return verificarDestinoAux(id, 0);
 	}
 

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<BorderPane minWidth="0.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="fondo" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.MenuPrincipalAdminController">
+<BorderPane fx:id="centerPane" minWidth="0.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" styleClass="fondoAdmin" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.MenuPrincipalAdminController">
    <top>
       <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: #270570; -fx-background-radius: 50;">
          <children>
@@ -74,19 +74,6 @@
                   </VBox>
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" onAction="#masEvent" prefHeight="50.0" prefWidth="80.0" styleClass="upper-button">
-               <graphic>
-                  <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="60.0" spacing="7.0">
-                     <children>
-                        <SVGPath content="M5.88 15h-5.040c-0.48 0-0.84-0.36-0.84-0.84v-5.040c0-0.48 0.36-0.84 0.84-0.84h5.040c0.48 0 0.84 0.36 0.84 0.84v5.040c0 0.44-0.4 0.84-0.84 0.84zM1.68 13.32h3.36v-3.36h-3.36v3.36zM14.6 15h-5.040c-0.48 0-0.84-0.36-0.84-0.84v-5.040c0-0.48 0.36-0.84 0.84-0.84h5.040c0.48 0 0.84 0.36 0.84 0.84v5.040c0 0.44-0.4 0.84-0.84 0.84zM10.4 13.32h3.36v-3.36h-3.36c0 0 0 3.36 0 3.36zM5.88 23.72h-5.040c-0.48 0-0.84-0.36-0.84-0.84v-5.040c0-0.48 0.36-0.84 0.84-0.84h5.040c0.48 0 0.84 0.36 0.84 0.84v5.040c0 0.48-0.4 0.84-0.84 0.84zM1.68 22.040h3.36v-3.36h-3.36v3.36zM14.6 23.72h-5.040c-0.48 0-0.84-0.36-0.84-0.84v-5.040c0-0.48 0.36-0.84 0.84-0.84h5.040c0.48 0 0.84 0.36 0.84 0.84v5.040c0 0.48-0.4 0.84-0.84 0.84zM10.4 22.040h3.36v-3.36h-3.36c0 0 0 3.36 0 3.36z" fill="WHITE" scaleX="1.5" scaleY="1.5" />
-                        <Label fx:id="lblBtnDestinos2" text="Mas" textFill="WHITE" />
-                     </children>
-                     <padding>
-                        <Insets top="8.0" />
-                     </padding>
-                  </VBox>
-               </graphic>
-            </Button>
             <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                <children>
                   <SVGPath fx:id="btnPerfil" content="M24,45A21,21,0,1,1,45,24,21,21,0,0,1,24,45Zm11.633-6c-.157-.231-.355-.518-.514-.742-.277-.394-.554-.788-.8-1.178C34.305,37.062,32.935,35.224,28,35a2.922,2.922,0,0,1-2.968-3.066L25,31c0-.135-.016.148,0,0V30l1-1a14.435,14.435,0,0,0,2.4-1.464l.135-.093A4.643,4.643,0,0,0,30,26l.036-.381A55.987,55.987,0,0,0,31,19c0-4.71-2.29-7-7-7-4.775,0-7,2.224-7,7a54.693,54.693,0,0,0,.963,6.616l.035.352a3.981,3.981,0,0,0,1.449,1.462l.1.062A19.174,19.174,0,0,0,22,29l1,1v1c.014.138,0-.146,0,0l-.033.934A2.9,2.9,0,0,1,20.084,35h0c-4.956.2-6.393,2.077-6.4,2.077-.252.4-.528.789-.807,1.184-.157.224-.355.51-.513.741a18.917,18.917,0,0,0,23.267,0ZM24,5A18.986,18.986,0,0,0,10.85,37.694c.382-.565.79-1.129,1.15-1.694,0,0,1.67-2.743,8-3,.645,0,.967-.422.967-1.066h0c0-.521,0-.934,0-.934,0-.13-.021-.247-.027-.373A17.5,17.5,0,0,1,18.4,29.133S16,27.657,16,26a60.16,60.16,0,0,1-1-7c0-4.644,1.986-9,9-9,6.92,0,9,4.356,9,9a61.784,61.784,0,0,1-1,7c0,1.611-2.4,3.133-2.4,3.133a13.873,13.873,0,0,1-2.543,1.546c0,.109-.023.209-.023.321,0,0,0,.413,0,.934h0c0,.644.32,1.066.965,1.066,6.424.288,8,3,8,3,.36.565.767,1.129,1.149,1.694A18.985,18.985,0,0,0,24,5Z" fill="WHITE" />
@@ -127,7 +114,7 @@
                   <Point3D y="10.0" />
                </rotationAxis>
             </Button>
-            <Button fx:id="btnExtra" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#extraEvent" prefHeight="50.0" prefWidth="50.0" styleClass="arrowButton" stylesheets="@../styles/boton.css" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <Button fx:id="btnExtra" minHeight="0.0" minWidth="0.0" mnemonicParsing="false" onAction="#extraEvent" prefHeight="50.0" prefWidth="50.0" styleClass="arrowButtonAdmin" stylesheets="@../styles/boton.css" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="0.0">
                <graphic>
                   <SVGPath content="M15.33252,9.5A3.5001,3.5001,0,0,0,8.80127,7.75a1.00016,1.00016,0,0,0,1.73242,1A1.50266,1.50266,0,0,1,11.83252,8a1.5,1.5,0,1,1,0,3h-.00244a.94984.94984,0,0,0-.18927.0387,1.03181,1.03181,0,0,0-.19861.04065.98275.98275,0,0,0-.15552.10485,1.00813,1.00813,0,0,0-.162.10975,1.00464,1.00464,0,0,0-.11706.1737.97789.97789,0,0,0-.09668.14417,1.02252,1.02252,0,0,0-.04285.21191A.94847.94847,0,0,0,10.83252,12v1l.00232.01135.0011.49109a1.00016,1.00016,0,0,0,1,.99756h.00244a1.00006,1.00006,0,0,0,.99756-1.00244l-.00153-.66138A3.49363,3.49363,0,0,0,15.33252,9.5Zm-4.20264,6.79A1,1,0,0,0,11.82959,18a1.036,1.036,0,0,0,.71045-.29,1.01517,1.01517,0,0,0,0-1.41992A1.03425,1.03425,0,0,0,11.12988,16.29Z" fill="WHITE" scaleX="2.0" scaleY="2.0" />
                </graphic>
@@ -145,10 +132,13 @@
       </AnchorPane>
    </center>
    <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      <Insets left="10.0" right="10.0" top="10.0" />
    </padding>
    <stylesheets>
       <URL value="@../styles/boton.css" />
-      <URL value="@../styles/backgroundAdmin.css" />
+      <URL value="@../styles/fondos.css" />
    </stylesheets>
+   <bottom>
+      <HBox alignment="CENTER_LEFT" maxWidth="1.7976931348623157E308" prefHeight="40.0" style="-fx-background-color: #270570; -fx-background-radius: 50 50 0 0;" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

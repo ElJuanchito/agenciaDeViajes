@@ -1,0 +1,21 @@
+/* Cambiar el color de las flechas en un Spinner de JavaFX */
+
+.spinner {
+    -fx-background-color: #E5E5E5; /* Cambia el color a tu preferencia */
+    
+    
+ 
+}
+
+.spinner .text-field {
+	-fx-background-radius: 0.0 0.5em 0.5em 0.0;
+	-fx-border-color: white;
+	
+}
+
+
+.spinner .increment-arrow, .spinner .decrement-arrow {
+    -fx-background-color: #270570; /* Cambia el color a tu preferencia */
+    /*-fx-shape: "M 0 0 L 4 5 L 8 0 Z"; /* Opcional: Cambia la forma de las flechas */
+    -fx-padding: 4.0 8.0 4.0 8.0; /* Opcional: Ajusta el espaciado de las flechas */
+}

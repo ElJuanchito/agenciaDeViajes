@@ -5,6 +5,7 @@
 package co.edu.uniquindio.agenciaviajes.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,7 @@ import co.edu.uniquindio.agenciaviajes.exceptions.ImagenNoExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.ImagenNoObtenidaException;
 import co.edu.uniquindio.agenciaviajes.exceptions.PaqueteNoExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.PaqueteYaExistenteException;
+import co.edu.uniquindio.agenciaviajes.utils.MathUtils;
 import javafx.scene.image.Image;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -66,6 +68,10 @@ public class Destino {
 	@ToString.Include
 	private Clima clima;
 
+	@Enumerated(EnumType.STRING)
+	@ToString.Include
+	private TipoDestino tipoDestino;
+
 	private Map<Cliente, Comentario> mapComentarios;
 
 	@ManyToMany(mappedBy = "destinos")
@@ -88,6 +94,7 @@ public class Destino {
 		this.clima = clima;
 		this.imagenes = new ArrayList<Imagen>();
 		this.paquetes = new ArrayList<Paquete>();
+		this.mapComentarios = new HashMap<Cliente, Comentario>();
 	}
 
 	/**
@@ -264,5 +271,27 @@ public class Destino {
 	public void removeImagen(Imagen imagen) throws ImagenNoExistenteException {
 		if (!imagenes.remove(imagen))
 			throw new ImagenNoExistenteException("La imagen no existe en la lista");
+	}
+
+	public double getPromedio() {
+		int cant = mapComentarios.size();
+		if (cant == 0)
+			return 5;
+		return MathUtils.round(
+				(mapComentarios.entrySet().stream().mapToDouble(t -> t.getValue().getPuntuacion()).sum() + 0d) / cant,
+				1);
+	}
+
+	public void addComentario(Comentario comentario) {
+		mapComentarios.put(comentario.getCliente(), comentario);
+	}
+
+	public int equivaleciaPref(Preferencia preferencia) {
+		int cont = 0;
+		if (clima == preferencia.getClima())
+			cont++;
+		if (tipoDestino == preferencia.getTipoDestino())
+			cont++;
+		return cont;
 	}
 }

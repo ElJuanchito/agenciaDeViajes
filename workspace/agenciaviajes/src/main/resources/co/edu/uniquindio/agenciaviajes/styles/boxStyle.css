@@ -1,13 +1,13 @@
-.fechaBox{
+.date-picker{
 	-fx-background-radius: 0 0.5em 0.5em 0;
 	-fx-border-color: white;
 }
 
-.fechaBox .text-field{
+.date-picker .text-field{
 	-fx-border-color: white;
 }
 
-.fechaBox .arrow-button{
+.date-picker .arrow-button{
 	-fx-border-color: #270570;
 	-fx-border-radius: 0 0.5em 0.5em 0;
 }

@@ -30,9 +30,6 @@ public class LoginController implements DataControllable<String> {
 	@FXML
 	private URL location;
 	@FXML
-	private Button btnBack;
-
-	@FXML
 	private Button btnIniciar;
 
 	@FXML
@@ -68,11 +65,6 @@ public class LoginController implements DataControllable<String> {
 	private MediaPlayer mediaPlayer;
 
 	@FXML
-	void backEvent(ActionEvent event) {
-
-	}
-
-	@FXML
 	void iniciarEvent(ActionEvent event) {
 		iniciarAction();
 	}
@@ -80,7 +72,7 @@ public class LoginController implements DataControllable<String> {
 	private void iniciarAction() {
 		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
-				VistaManager.getInstance().cambiarVista(TipoVista.DESTINOS, null);
+				VistaManager.getInstance().cambiarVista(TipoVista.PAQUETE_DETAILS, null);
 			} catch (FXMLException e) {
 				e.printStackTrace();
 			}

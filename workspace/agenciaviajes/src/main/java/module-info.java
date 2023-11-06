@@ -1,3 +1,4 @@
+
 open module co.edu.uniquindio.agenciaViajes {
 	requires javafx.controls;
 	requires javafx.fxml;
@@ -9,7 +10,8 @@ open module co.edu.uniquindio.agenciaViajes {
 	requires java.desktop;
 	requires javafx.swing;
 	requires javafx.media;
-	
+	requires AnimateFX;
+
 	exports co.edu.uniquindio.agenciaviajes.model;
 	exports co.edu.uniquindio.agenciaviajes.application;
 }
