@@ -75,6 +75,8 @@ public class DestinoController implements DataControllable<Destino> {
 
 	private Timeline timeline;
 
+	private Image defaultImage;
+
 	@FXML
 	void hoverPanelEvent(MouseEvent event) {
 		hoverPanelAction();
@@ -142,8 +144,11 @@ public class DestinoController implements DataControllable<Destino> {
 	public void clearData() {
 		txtName.setText("");
 		listaImagenes.clear();
+		imgDestino.setImage(defaultImage);
+		imgDestino2.setImage(defaultImage);
 		showImage();
 		currentIndex = 0;
+
 		this.destino = null;
 	}
 
@@ -183,7 +188,7 @@ public class DestinoController implements DataControllable<Destino> {
 	@Override
 	public void preInicializar() {
 		starFill = new Color(0.1529, 0.0196, 0.4392, 1.0);
-
+		defaultImage = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/white.png"));
 		stars = new SVGPath[5];
 		for (int i = 0; i < stars.length; i++) {
 			stars[i] = new SVGPath();

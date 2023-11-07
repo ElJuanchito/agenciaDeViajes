@@ -93,9 +93,9 @@ public class VistaManager {
 			historialVistasCliente.add(obtenerInfoVista(tipo, dato));
 			indiceCliente.setValue(historialVistasCliente.size() - 1);
 		}
-		vista.cargarDato(dato);
 		if (limpiarCampos)
 			vista.limpiarDatos();
+		vista.cargarDato(dato);
 		Platform.runLater(() -> {
 			MainMenuController.getInstance().setContent(vista.getParent());
 		});

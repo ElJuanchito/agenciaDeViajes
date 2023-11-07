@@ -1,5 +1,6 @@
 package co.edu.uniquindio.agenciaviajes.controllers;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -35,52 +36,12 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 	private HBox boxDestinos;
 
 	@FXML
-	private Button btnBackDestinos;
+	private Button btnBackDestinos, btnNextDestinos, btnReservar;
 
 	@FXML
-	private Button btnNextDestinos;
-
-	@FXML
-	private Button btnReservar;
-
-	@FXML
-	private Label lblDestinos;
-
-	@FXML
-	private Label lblFechaFinal;
-
-	@FXML
-	private Label lblFechaInicial;
-
-	@FXML
-	private Label lblInfoCupos;
-
-	@FXML
-	private Label lblInfoDescripcion;
-
-	@FXML
-	private Label lblInfoFechaFinal;
-
-	@FXML
-	private Label lblInfoFechaInicial;
-
-	@FXML
-	private Label lblInfoPaquete;
-
-	@FXML
-	private Label lblInfoPrecio;
-
-	@FXML
-	private Label lblInfoServiciosExtra;
-
-	@FXML
-	private Label lblPaquete;
-
-	@FXML
-	private Label lblPrecio;
-
-	@FXML
-	private Label lblServiciosExtra;
+	private Label lblDestinos, lblFechaFinal, lblFechaInicial, lblInfoCupos, lblInfoDescripcion, lblInfoFechaFinal,
+			lblInfoFechaInicial, lblInfoPaquete, lblInfoPrecio, lblInfoServiciosExtra, lblPaquete, lblPrecio,
+			lblServiciosExtra;
 
 	@FXML
 	private VBox mainPane;
@@ -88,9 +49,7 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 	@FXML
 	private StackPane stackDestino;
 
-	private Vista<Destino> vistaDestino1;
-
-	private Vista<Destino> vistaDestino2;
+	private Vista<Destino> vistaDestino1, vistaDestino2;
 
 	private boolean isFirstShowing = false;
 
@@ -122,7 +81,16 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 	@Override
 	public void preInicializar() {
 		colorCirculos = new Color(0.1529, 0.0196, 0.4392, 1.0);
-
+		try {
+			vistaDestino1 = Vista.buildView("destino");
+		} catch (FXMLException e) {
+			throw new RuntimeException(e);
+		}
+		try {
+			vistaDestino2 = Vista.buildView("destino");
+		} catch (FXMLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
@@ -148,40 +116,49 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 			lblInfoPrecio.setText(paquete.getPrecio().toString());
 			lblInfoDescripcion.setText(paquete.getDescripcion());
 			lblInfoServiciosExtra.setText(paquete.getServiciosAdicionales());
-			boxDestinos.getChildren().clear();
-			stackDestino.getChildren().clear();
-			destinos = paquete.getDestinos();
-			if (destinos.isEmpty()) {
-				Label lblNoDestinos = new Label("Este paquete no tiene destinos");
-				lblNoDestinos.setMaxWidth(Double.MAX_VALUE);
-				lblNoDestinos.setWrapText(true);
-				stackDestino.getChildren().add(lblNoDestinos);
-			}
-			try {
-				vistaDestino1 = Vista.buildView("destino");
-				vistaDestino2 = Vista.buildView("destino");
-				vistaDestino1.cargarIdioma();
-				vistaDestino2.cargarIdioma();
-				vistaDestino2.cargarDato(destinos.get(0));
-				stackDestino.getChildren().add(vistaDestino1.getParent());
-				stackDestino.getChildren().add(vistaDestino2.getParent());
-				arrCirculos = new Circle[destinos.size()];
-				for (int i = 0; i < arrCirculos.length; i++) {
-					arrCirculos[i] = new Circle(5);
-					arrCirculos[i].setStroke(colorCirculos);
-					arrCirculos[i].setStrokeWidth(1);
-					arrCirculos[i].setFill(Color.WHITE);
-					final int index = i;
-					arrCirculos[i].setOnMouseClicked(e -> moverImagen(index));
-					if (i == actualIndex) {
-						arrCirculos[i].setFill(colorCirculos);
-					}
-					boxDestinos.getChildren().add(arrCirculos[i]);
-				}
-			} catch (FXMLException e) {
-				throw new RuntimeException(e);
-			}
+			cargarInfoDestinos(paquete);
+			DateTimeFormatter pattern = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			lblInfoFechaInicial.setText(paquete.getFechaIncio().format(pattern));
+			lblInfoFechaFinal.setText(paquete.getFechaFin().format(pattern));
 		});
+
+	}
+
+	private void cargarInfoDestinos(Paquete paquete) {
+		actualIndex = 0;
+		boxDestinos.getChildren().clear();
+		stackDestino.getChildren().clear();
+		destinos = paquete.getDestinos();
+		if (destinos.isEmpty()) {
+			Label lblNoDestinos = new Label("Este paquete no tiene destinos"); // TODO
+			lblNoDestinos.setMaxWidth(Double.MAX_VALUE);
+			lblNoDestinos.setWrapText(true);
+			stackDestino.getChildren().add(lblNoDestinos);
+		}
+		vistaDestino1.limpiarDatos();
+		vistaDestino2.limpiarDatos();
+		vistaDestino1.cargarIdioma();
+		vistaDestino2.cargarIdioma();
+		vistaDestino2.getParent().setOpacity(1);
+		vistaDestino1.getParent().setOpacity(0);
+		vistaDestino1.getParent().setTranslateX(0);
+		vistaDestino2.getParent().setTranslateX(0);
+		vistaDestino2.cargarDato(destinos.get(0));
+		stackDestino.getChildren().add(vistaDestino1.getParent());
+		stackDestino.getChildren().add(vistaDestino2.getParent());
+		arrCirculos = new Circle[destinos.size()];
+		for (int i = 0; i < arrCirculos.length; i++) {
+			arrCirculos[i] = new Circle(5);
+			arrCirculos[i].setStroke(colorCirculos);
+			arrCirculos[i].setStrokeWidth(1);
+			arrCirculos[i].setFill(Color.WHITE);
+			final int index = i;
+			arrCirculos[i].setOnMouseClicked(e -> moverImagen(index));
+			if (i == actualIndex) {
+				arrCirculos[i].setFill(colorCirculos);
+			}
+			boxDestinos.getChildren().add(arrCirculos[i]);
+		}
 
 	}
 
