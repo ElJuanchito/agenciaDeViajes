@@ -47,7 +47,7 @@ public class MainMenuController implements Controllable {
 
 	@FXML
 	void destinosEvent(ActionEvent event) {
-
+		destinosAction();
 	}
 
 	@FXML
@@ -109,6 +109,14 @@ public class MainMenuController implements Controllable {
 	public void clearData() {
 		// TODO Auto-generated method stub
 
+	}
+
+	private void destinosAction() {
+		try {
+			VistaManager.getInstance().cambiarVistaCliente(TipoVista.DESTINOS, null);
+		} catch (FXMLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	private void nextAction() {
