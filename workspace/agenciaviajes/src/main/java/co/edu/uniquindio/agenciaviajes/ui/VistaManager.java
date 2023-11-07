@@ -27,6 +27,7 @@ public class VistaManager {
 	@Getter
 	private SimpleObjectProperty<InfoVista> vistaActualCliente;
 	private SimpleIntegerProperty indiceCliente;
+	private TipoVista vistaGrandeActual;
 
 	private <T> InfoVista obtenerInfoVista(TipoVista tipoVista, T valor) {
 		return new InfoVista(tipoVista, valor);
@@ -53,16 +54,8 @@ public class VistaManager {
 	}
 
 	public <T> void cambiarVista(TipoVista tipo, T dato) throws FXMLException {
-		cambiarVista(tipo, dato, true);
-	}
-
-	private <T> void cambiarVista(TipoVista tipo, T dato, boolean eliminarSiguientes) throws FXMLException {
 		Vista<T> vista = cargarVista(tipo);
-		if (eliminarSiguientes && tipo != TipoVista.MENU_PRINCIPAL) {
-			limpiarVistasSiguientesCliente();
-			historialVistasCliente.add(obtenerInfoVista(tipo, dato));
-			indiceCliente.setValue(historialVistasCliente.size() - 1);
-		}
+		vistaGrandeActual = tipo;
 		Vista<T> vistaFinal = vista;
 		Platform.runLater(() -> {
 			vistaFinal.cargarDato(dato);
@@ -83,8 +76,8 @@ public class VistaManager {
 	private <T> void cambiarVistaCliente(TipoVista tipo, T dato, boolean contarHistorial, boolean limpiarCampos)
 			throws FXMLException {
 		InfoVista infoVista = obtenerInfoVista(tipo, dato);
-		if (contarHistorial && !limpiarCampos && vistaActualCliente.getValue() != null
-				&& vistaActualCliente.getValue().equals(infoVista))
+		if (contarHistorial && !limpiarCampos && (vistaActualCliente.getValue() == infoVista
+				|| (vistaActualCliente.getValue() != null && vistaActualCliente.getValue().equals(infoVista))))
 			return;
 		vistaActualCliente.setValue(infoVista);
 		Vista<T> vista = cargarVista(tipo);
@@ -138,5 +131,4 @@ public class VistaManager {
 		InfoVista tripleDato = historialVistasCliente.get(indiceCliente.getValue());
 		cambiarVistaCliente(tripleDato.tipoVista, tripleDato.dato, false, false);
 	}
-
 }

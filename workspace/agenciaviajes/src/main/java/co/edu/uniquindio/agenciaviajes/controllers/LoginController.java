@@ -21,8 +21,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Pair;
 
-public class LoginController implements DataControllable<String> {
+public class LoginController implements DataControllable<Pair<Runnable, String>> {
 
 	@FXML
 	private ResourceBundle resources;
@@ -64,6 +65,8 @@ public class LoginController implements DataControllable<String> {
 
 	private MediaPlayer mediaPlayer;
 
+	private Runnable volverRunnable;
+
 	@FXML
 	void iniciarEvent(ActionEvent event) {
 		iniciarAction();
@@ -80,14 +83,13 @@ public class LoginController implements DataControllable<String> {
 	}
 
 	@FXML
+	void volverEvent(ActionEvent event) {
+		volverAction();
+	}
+
+	@FXML
 	void registrarEvent(ActionEvent event) {
-		MainPaneController.getInstance().ejecutarProceso(() -> {
-			try {
-				VistaManager.getInstance().cambiarVista(TipoVista.REGISTRO, txtEmail.getText());
-			} catch (FXMLException e) {
-				e.printStackTrace();
-			}
-		});
+		registrarAction();
 	}
 
 	@Override
@@ -111,15 +113,6 @@ public class LoginController implements DataControllable<String> {
 		txtPassword.clear();
 	}
 
-	@Override
-	public void inicializarDatos(String dato) {
-		if (dato == null)
-			clearData();
-		else {
-			txtEmail.setText(dato);
-		}
-	}
-
 	private void DJPerdomo() {
 
 		files = new File("src/main/resources/co/edu/uniquindio/agenciaViajes/media/songs").listFiles();
@@ -135,6 +128,34 @@ public class LoginController implements DataControllable<String> {
 
 		mediaPlayer.play();
 
+	}
+
+	@Override
+	public void inicializarDatos(Pair<Runnable, String> dato) {
+		if (dato == null) {
+			clearData();
+			return;
+		}
+		String s = dato.getValue();
+		txtEmail.setText(s == null ? "" : s);
+		volverRunnable = dato.getKey();
+	}
+
+	private void registrarAction() {
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				VistaManager.getInstance().cambiarVista(TipoVista.REGISTRO,
+						new Pair<Runnable, String>(volverRunnable, txtEmail.getText()));
+			} catch (FXMLException e) {
+				e.printStackTrace();
+			}
+		});
+	}
+
+	private void volverAction() {
+		if (volverRunnable == null)
+			return;
+		volverRunnable.run();
 	}
 
 }

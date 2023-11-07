@@ -14,7 +14,9 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.SVGPath;
+import javafx.util.Pair;
 
 public class MainMenuController implements Controllable {
 
@@ -71,7 +73,32 @@ public class MainMenuController implements Controllable {
 	}
 
 	@FXML
+	void perfilClickEvent(MouseEvent event) {
+		perfilClickAction();
+	}
+
+	private void perfilClickAction() {
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, new Pair<Runnable, String>(() -> {
+					try {
+						VistaManager.getInstance().cambiarVista(TipoVista.MENU_PRINCIPAL, null);
+					} catch (FXMLException e) {
+						throw new RuntimeException(e);
+					}
+				}, ""));
+			} catch (FXMLException e) {
+				throw new RuntimeException(e);
+			}
+		});
+	}
+
+	@FXML
 	void paquetesEvent(ActionEvent event) {
+		paquetesAction();
+	}
+
+	private void paquetesAction() {
 		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
 				VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETE_DETAILS,

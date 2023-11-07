@@ -9,10 +9,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
 
 <HBox fx:id="root" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.RegistrationController">
    <children>
-      <StackPane fx:id="stackImg" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="397.0" styleClass="fondoPEjecutivo" stylesheets="@../styles/fondos.css" />
+      <StackPane fx:id="stackImg" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="397.0" styleClass="fondoPEjecutivo" stylesheets="@../styles/fondos.css">
+         <children>
+            <Button mnemonicParsing="false" onAction="#volverEvent" prefHeight="50.0" prefWidth="50.0" styleClass="arrowButton" stylesheets="@../styles/boton.css" StackPane.alignment="TOP_LEFT">
+               <graphic>
+                  <SVGPath content="M4 10L3.29289 10.7071L2.58579 10L3.29289 9.29289L4 10ZM21 18C21 18.5523 20.5523 19 20 19C19.4477 19 19 18.5523 19 18L21 18ZM8.29289 15.7071L3.29289 10.7071L4.70711 9.29289L9.70711 14.2929L8.29289 15.7071ZM3.29289 9.29289L8.29289 4.29289L9.70711 5.70711L4.70711 10.7071L3.29289 9.29289ZM4 9L14 9L14 11L4 11L4 9ZM21 16L21 18L19 18L19 16L21 16ZM14 9C17.866 9 21 12.134 21 16L19 16C19 13.2386 16.7614 11 14 11L14 9Z" scaleX="1.5" scaleY="1.5" />
+               </graphic>
+               <StackPane.margin>
+                  <Insets left="10.0" top="10.0" />
+               </StackPane.margin>
+            </Button>
+         </children></StackPane>
       <VBox alignment="CENTER" minWidth="0.0" spacing="10.0" HBox.hgrow="ALWAYS">
          <children>
             <Label fx:id="lblTitle" minWidth="0.0" styleClass="titulo" stylesheets="@../styles/texto.css" text="¡Registrate!" />

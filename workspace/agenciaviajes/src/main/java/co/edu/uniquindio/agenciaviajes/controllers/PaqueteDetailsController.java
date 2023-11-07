@@ -5,12 +5,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import animatefx.animation.AnimationFX;
-import animatefx.animation.FadeIn;
-import animatefx.animation.FadeOut;
-import animatefx.animation.SlideInLeft;
-import animatefx.animation.SlideInRight;
-import animatefx.animation.SlideOutLeft;
-import animatefx.animation.SlideOutRight;
+import animatefx.animation.FadeInLeft;
+import animatefx.animation.FadeInRight;
+import animatefx.animation.FadeOutLeft;
+import animatefx.animation.FadeOutRight;
 import animatefx.util.ParallelAnimationFX;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
@@ -189,13 +187,11 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 		isFirstShowing = !isFirstShowing;
 		Vista<Destino> vista = isFirstShowing ? vistaDestino1 : vistaDestino2;
 		Vista<Destino> vistaOcultar = isFirstShowing ? vistaDestino2 : vistaDestino1;
-		AnimationFX anim1 = derecha ? new SlideInRight(vista.getParent()) : new SlideInLeft(vista.getParent());
-		FadeIn anim1Fade1 = new FadeIn(vista.getParent());
-		AnimationFX anim2 = derecha ? new SlideOutLeft(vistaOcultar.getParent())
-				: new SlideOutRight(vistaOcultar.getParent());
-		FadeOut anim1Fade2 = new FadeOut(vistaOcultar.getParent());
+		AnimationFX animIn = derecha ? new FadeInRight(vista.getParent()) : new FadeInLeft(vista.getParent());
+		AnimationFX animOut = derecha ? new FadeOutLeft(vistaOcultar.getParent())
+				: new FadeOutRight(vistaOcultar.getParent());
 		vista.cargarDato(destinos.get(actualIndex));
-		new ParallelAnimationFX(anim1, anim1Fade1, anim2, anim1Fade2).play();
+		new ParallelAnimationFX(animIn, animOut).play();
 	}
 
 	private void nextDestinosAction() {

@@ -7,12 +7,12 @@ import java.util.ResourceBundle;
 
 import animatefx.animation.FadeIn;
 import animatefx.animation.FadeOut;
+import animatefx.util.ParallelAnimationFX;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import co.edu.uniquindio.agenciaviajes.utils.UtilsFX;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
-import javafx.animation.ParallelTransition;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -125,7 +125,7 @@ public class DestinoController implements DataControllable<Destino> {
 				fadeInUp = new FadeIn(imgDestino2);
 				fadeOutDown = new FadeOut(imgDestino);
 			}
-			new ParallelTransition(fadeInUp.getTimeline(), fadeOutDown.getTimeline()).playFromStart();
+			new ParallelAnimationFX(fadeInUp, fadeOutDown).play();
 		}
 	}
 

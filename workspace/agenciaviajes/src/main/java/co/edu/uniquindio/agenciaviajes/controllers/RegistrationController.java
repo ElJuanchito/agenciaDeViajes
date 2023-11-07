@@ -16,8 +16,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.util.Pair;
 
-public class RegistrationController implements DataControllable<String> {
+public class RegistrationController implements DataControllable<Pair<Runnable, String>> {
 
 	@FXML
 	private ResourceBundle resources;
@@ -26,43 +27,19 @@ public class RegistrationController implements DataControllable<String> {
 	private URL location;
 
 	@FXML
-	private Button btnBack;
+	private Button btnBack, btnLogin, btnRegistro;
 
 	@FXML
-	private Button btnLogin;
-
-	@FXML
-	private Button btnRegistro;
-
-	@FXML
-	private Label lblInfo;
-
-	@FXML
-	private Label lblTitle;
-
-	@FXML
-	private Label lblYaRegistrado;
+	private Label lblInfo, lblTitle, lblYaRegistrado;
 
 	@FXML
 	private ImageView pikachuImg;
 
 	@FXML
-	private TextField txtDireccion;
-
-	@FXML
-	private TextField txtEmail;
-
-	@FXML
-	private TextField txtIdentificacion;
-
-	@FXML
-	private TextField txtNombre;
+	private TextField txtDireccion, txtEmail, txtIdentificacion, txtNombre, txtTelefono;
 
 	@FXML
 	private PasswordField txtPassword;
-
-	@FXML
-	private TextField txtTelefono;
 
 	@FXML
 	private HBox root;
@@ -70,9 +47,11 @@ public class RegistrationController implements DataControllable<String> {
 	@FXML
 	private StackPane stackImg;
 
-	@FXML
-	void backEvent(ActionEvent event) {
+	private Runnable volverRunnable;
 
+	@FXML
+	void volverEvent(ActionEvent event) {
+		volverAction();
 	}
 
 	@FXML
@@ -80,19 +59,9 @@ public class RegistrationController implements DataControllable<String> {
 		loginAction();
 	}
 
-	private void loginAction() {
-		MainPaneController.getInstance().ejecutarProceso(() -> {
-			try {
-				VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, txtIdentificacion.getText());
-			} catch (FXMLException e) {
-				e.printStackTrace();
-			}
-		});
-	}
-
 	@FXML
 	void registroEvent(ActionEvent event) {
-
+		registroAction();
 	}
 
 	@Override
@@ -103,7 +72,6 @@ public class RegistrationController implements DataControllable<String> {
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -117,8 +85,36 @@ public class RegistrationController implements DataControllable<String> {
 	}
 
 	@Override
-	public void inicializarDatos(String dato) {
-		txtIdentificacion.setText(dato);
+	public void inicializarDatos(Pair<Runnable, String> dato) {
+		if (dato == null) {
+			clearData();
+			return;
+		}
+		volverRunnable = dato.getKey();
+		String s = dato.getValue();
+		txtIdentificacion.setText(s == null ? "" : s);
+
+	}
+
+	private void loginAction() {
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				VistaManager.getInstance().cambiarVista(TipoVista.LOGIN,
+						new Pair<Runnable, String>(volverRunnable, txtIdentificacion.getText()));
+			} catch (FXMLException e) {
+				e.printStackTrace();
+			}
+		});
+	}
+
+	private void volverAction() {
+		if (volverRunnable == null)
+			return;
+		volverRunnable.run();
+	}
+
+	private void registroAction() {
+		MainPaneController.getInstance().showAlert("Registro :)");
 	}
 
 }
