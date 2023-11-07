@@ -5,9 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-class InfoVista {
-	@EqualsAndHashCode.Include
-	OrgVista orgVista;
+public class InfoVista {
 	@EqualsAndHashCode.Include
 	TipoVista tipoVista;
 	@EqualsAndHashCode.Include

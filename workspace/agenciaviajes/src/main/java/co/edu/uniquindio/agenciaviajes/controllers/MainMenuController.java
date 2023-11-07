@@ -29,25 +29,13 @@ public class MainMenuController implements Controllable {
 	}
 
 	@FXML
-	private Button btnBack;
-
-	@FXML
-	private Button btnExtra;
-
-	@FXML
-	private Button btnNext;
+	private Button btnBack, btnRecargar, btnExtra, btnNext;
 
 	@FXML
 	private SVGPath btnPerfil;
 
 	@FXML
-	private Label lblBtnDestinos;
-
-	@FXML
-	private Label lblBtnGuias;
-
-	@FXML
-	private Label lblbtnPaquetes;
+	private Label lblBtnDestinos, lblBtnGuias, lblbtnPaquetes;
 
 	@FXML
 	private ScrollPane scrollCenter;
@@ -60,6 +48,11 @@ public class MainMenuController implements Controllable {
 	@FXML
 	void destinosEvent(ActionEvent event) {
 
+	}
+
+	@FXML
+	void reloadEvent(ActionEvent event) {
+		reloadAction();
 	}
 
 	@FXML
@@ -98,9 +91,11 @@ public class MainMenuController implements Controllable {
 		VistaManager.getInstance().getObsAnteriorCliente().addListener((observable, oldValue, newValue) -> {
 			btnBack.setDisable(!newValue);
 		});
-
 		VistaManager.getInstance().getObsSiguienteCliente().addListener((observable, oldValue, newValue) -> {
 			btnNext.setDisable(!newValue);
+		});
+		VistaManager.getInstance().getVistaActualCliente().addListener((observable, oldValue, newValue) -> {
+			btnRecargar.setDisable(newValue == null);
 		});
 	}
 
@@ -117,19 +112,33 @@ public class MainMenuController implements Controllable {
 	}
 
 	private void nextAction() {
-		try {
-			VistaManager.getInstance().siguienteCliente();
-		} catch (FXMLException | MovimientoIndefinidoException e) {
-			System.err.println(e);
-		}
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				VistaManager.getInstance().siguienteCliente();
+			} catch (FXMLException | MovimientoIndefinidoException e) {
+				throw new RuntimeException(e);
+			}
+		});
+	}
+
+	private void reloadAction() {
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				VistaManager.getInstance().reloadCliente();
+			} catch (FXMLException e) {
+				throw new RuntimeException(e);
+			}
+		});
 	}
 
 	private void backAction() {
-		try {
-			VistaManager.getInstance().volverCliente();
-		} catch (FXMLException | MovimientoIndefinidoException e) {
-			System.err.println(e);
-		}
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				VistaManager.getInstance().volverCliente();
+			} catch (FXMLException | MovimientoIndefinidoException e) {
+				throw new RuntimeException(e);
+			}
+		});
 	}
 
 }

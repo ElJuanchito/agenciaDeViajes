@@ -12,20 +12,24 @@ import co.edu.uniquindio.agenciaviajes.exceptions.MovimientoIndefinidoException;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import lombok.Getter;
 
 public class VistaManager {
 	private static VistaManager instance;
 
 	private List<InfoVista> historialVistasCliente;
-
 	@Getter
 	private SimpleBooleanProperty obsSiguienteCliente;
 	@Getter
 	private SimpleBooleanProperty obsAnteriorCliente;
+	private Map<TipoVista, Vista<? extends Object>> mapaVistas;
+	@Getter
+	private SimpleObjectProperty<InfoVista> vistaActualCliente;
+	private SimpleIntegerProperty indiceCliente;
 
-	private <T> InfoVista obtenerPar(OrgVista orgVista, TipoVista tipoVista, T valor) {
-		return new InfoVista(orgVista, tipoVista, valor);
+	private <T> InfoVista obtenerInfoVista(TipoVista tipoVista, T valor) {
+		return new InfoVista(tipoVista, valor);
 	}
 
 	public static VistaManager getInstance() {
@@ -40,16 +44,13 @@ public class VistaManager {
 		indiceCliente = new SimpleIntegerProperty();
 		obsSiguienteCliente = new SimpleBooleanProperty(false);
 		obsAnteriorCliente = new SimpleBooleanProperty(false);
+		vistaActualCliente = new SimpleObjectProperty<InfoVista>();
 
 		indiceCliente.addListener((observable, oldValue, newValue) -> {
 			obsAnteriorCliente.setValue(newValue.intValue() > 0);
 			obsSiguienteCliente.setValue(newValue.intValue() < historialVistasCliente.size() - 1);
 		});
 	}
-
-	private Map<TipoVista, Vista<? extends Object>> mapaVistas;
-	private InfoVista vistaActualCliente;
-	private SimpleIntegerProperty indiceCliente;
 
 	public <T> void cambiarVista(TipoVista tipo, T dato) throws FXMLException {
 		cambiarVista(tipo, dato, true);
@@ -59,7 +60,7 @@ public class VistaManager {
 		Vista<T> vista = cargarVista(tipo);
 		if (eliminarSiguientes && tipo != TipoVista.MENU_PRINCIPAL) {
 			limpiarVistasSiguientesCliente();
-			historialVistasCliente.add(obtenerPar(OrgVista.TODO, tipo, dato));
+			historialVistasCliente.add(obtenerInfoVista(tipo, dato));
 			indiceCliente.setValue(historialVistasCliente.size() - 1);
 		}
 		Vista<T> vistaFinal = vista;
@@ -79,27 +80,29 @@ public class VistaManager {
 		return vista;
 	}
 
-	private <T> void cambiarVistaCliente(TipoVista tipo, T dato, boolean eliminarSiguientes) throws FXMLException {
-		InfoVista infoVista = obtenerPar(OrgVista.CLIENTE, tipo, dato);
-		System.out.println("vistaActualCliente: " + vistaActualCliente);
-		System.out.println("infoVista: " + infoVista);
-		if (vistaActualCliente != null && vistaActualCliente.equals(infoVista))
+	private <T> void cambiarVistaCliente(TipoVista tipo, T dato, boolean contarHistorial, boolean limpiarCampos)
+			throws FXMLException {
+		InfoVista infoVista = obtenerInfoVista(tipo, dato);
+		if (contarHistorial && !limpiarCampos && vistaActualCliente.getValue() != null
+				&& vistaActualCliente.getValue().equals(infoVista))
 			return;
-		vistaActualCliente = infoVista;
+		vistaActualCliente.setValue(infoVista);
 		Vista<T> vista = cargarVista(tipo);
-		if (eliminarSiguientes) {
+		if (contarHistorial) {
 			limpiarVistasSiguientesCliente();
-			historialVistasCliente.add(obtenerPar(OrgVista.CLIENTE, tipo, dato));
+			historialVistasCliente.add(obtenerInfoVista(tipo, dato));
 			indiceCliente.setValue(historialVistasCliente.size() - 1);
 		}
 		vista.cargarDato(dato);
+		if (limpiarCampos)
+			vista.limpiarDatos();
 		Platform.runLater(() -> {
 			MainMenuController.getInstance().setContent(vista.getParent());
 		});
 	}
 
 	public <T> void cambiarVistaCliente(TipoVista tipo, T dato) throws FXMLException {
-		cambiarVistaCliente(tipo, dato, true);
+		cambiarVistaCliente(tipo, dato, true, true);
 	}
 
 	private void limpiarVistasSiguientesCliente() {
@@ -114,7 +117,12 @@ public class VistaManager {
 			indiceCliente.setValue(0);
 			throw new MovimientoIndefinidoException("No hay vista anterior a esta");
 		}
-		cargarInfoHistorial();
+		cargarInfoHistorialCliente();
+	}
+
+	public void reloadCliente() throws FXMLException {
+		InfoVista tripleDato = historialVistasCliente.get(indiceCliente.getValue());
+		cambiarVistaCliente(tripleDato.tipoVista, tripleDato.dato, false, true);
 	}
 
 	public void siguienteCliente() throws FXMLException, MovimientoIndefinidoException {
@@ -123,16 +131,12 @@ public class VistaManager {
 			indiceCliente.setValue(historialVistasCliente.size() - 1);
 			throw new MovimientoIndefinidoException("No hay vista siguiente a esta");
 		}
-		cargarInfoHistorial();
+		cargarInfoHistorialCliente();
 	}
 
-	private void cargarInfoHistorial() throws FXMLException {
+	private void cargarInfoHistorialCliente() throws FXMLException {
 		InfoVista tripleDato = historialVistasCliente.get(indiceCliente.getValue());
-		switch (tripleDato.orgVista) {
-		case TODO -> cambiarVista(tripleDato.tipoVista, tripleDato.dato, false);
-		case CLIENTE -> cambiarVistaCliente(tripleDato.tipoVista, tripleDato.dato, false);
-		default -> throw new RuntimeException();
-		}
+		cambiarVistaCliente(tripleDato.tipoVista, tripleDato.dato, false, false);
 	}
 
 }
