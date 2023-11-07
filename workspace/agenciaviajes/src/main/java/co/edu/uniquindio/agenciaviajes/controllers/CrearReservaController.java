@@ -117,7 +117,7 @@ public class CrearReservaController implements DataControllable<Paquete> {
 	@Override
 	public void clearData() {
 		dtpFecha.getEditor().setText("");
-		spnCant.getEditor().setText("");
+		spnCant.getEditor().setText("0");
 		limpiarSeleccionAction();
 	}
 
