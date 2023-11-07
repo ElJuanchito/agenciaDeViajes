@@ -2,6 +2,8 @@ package co.edu.uniquindio.agenciaviajes.utils;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.DestinoYaExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.ImagenNoObtenidaException;
@@ -89,6 +91,34 @@ public class DatosQuemadosAux {
 			throw new RuntimeException(e);
 		}
 		return paquete;
+	}
+
+	public List<Paquete> obtenerListaPaquetes() {
+		List<Paquete> listaPaquetes = new ArrayList<>();
+
+		Paquete paquete1 = getPaquete();
+		Paquete paquete2 = Paquete.builder().fechaFin(LocalDateTime.now().plusMonths(12))
+				.fechaIncio(LocalDateTime.now()).cupoMaximo(150).duracionDias(320).nombre("Paquete Santa Marta")
+				.precio(BigDecimal.valueOf(8500000)).serviciosAdicionales("Tour de buceo")
+				.descripcion(
+						"Disfruta del encanto histórico y natural de Santa Marta, rodeado de hermosas playas, sierras majestuosas y una rica cultura local. Sumérgete en las aguas cristalinas del Caribe y descubre la belleza submarina en un inolvidable tour de buceo.")
+				.descripcionCorta("Playas impresionantes, sierras majestuosas y cultura local vibrante.").build();
+
+		Paquete paquete3 = Paquete.builder().fechaFin(LocalDateTime.now().plusMonths(9)).fechaIncio(LocalDateTime.now())
+				.cupoMaximo(120).duracionDias(280).nombre("Paquete San Andrés").precio(BigDecimal.valueOf(12000000))
+				.serviciosAdicionales("Clases de surf")
+				.descripcion(
+						"Descubre el paraíso tropical de San Andrés, con sus impresionantes playas de arena blanca y aguas cristalinas de color turquesa. Disfruta de emocionantes clases de surf y sumérgete en la rica cultura local mientras te relajas en este destino de ensueño.")
+				.descripcionCorta("Playas de ensueño, aguas turquesas y emocionantes clases de surf.").build();
+
+		paquete2.setDestinos(paquete1.getDestinos());
+		paquete3.setDestinos(paquete1.getDestinos());
+
+		listaPaquetes.add(paquete1);
+		listaPaquetes.add(paquete2);
+		listaPaquetes.add(paquete3);
+
+		return listaPaquetes;
 	}
 
 }
