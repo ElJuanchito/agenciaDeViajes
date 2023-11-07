@@ -3,6 +3,7 @@ package co.edu.uniquindio.agenciaviajes.controllers;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
+import co.edu.uniquindio.agenciaviajes.exceptions.MovimientoIndefinidoException;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
 import co.edu.uniquindio.agenciaviajes.ui.TipoVista;
 import co.edu.uniquindio.agenciaviajes.ui.VistaManager;
@@ -53,7 +54,7 @@ public class MainMenuController implements Controllable {
 
 	@FXML
 	void backEvent(ActionEvent event) {
-
+		backAction();
 	}
 
 	@FXML
@@ -73,6 +74,11 @@ public class MainMenuController implements Controllable {
 
 	@FXML
 	void nextEvent(ActionEvent event) {
+		nextAction();
+	}
+
+	@FXML
+	void paquetesEvent(ActionEvent event) {
 		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
 				VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETE_DETAILS,
@@ -83,19 +89,19 @@ public class MainMenuController implements Controllable {
 		});
 	}
 
-	@FXML
-	void paquetesEvent(ActionEvent event) {
-
-	}
-
 	public void setContent(Parent parent) {
 		scrollCenter.setContent(parent);
 	}
 
 	@Override
 	public void preInicializar() {
-		// TODO Auto-generated method stub
+		VistaManager.getInstance().getObsAnteriorCliente().addListener((observable, oldValue, newValue) -> {
+			btnBack.setDisable(!newValue);
+		});
 
+		VistaManager.getInstance().getObsSiguienteCliente().addListener((observable, oldValue, newValue) -> {
+			btnNext.setDisable(!newValue);
+		});
 	}
 
 	@Override
@@ -108,6 +114,22 @@ public class MainMenuController implements Controllable {
 	public void clearData() {
 		// TODO Auto-generated method stub
 
+	}
+
+	private void nextAction() {
+		try {
+			VistaManager.getInstance().siguienteCliente();
+		} catch (FXMLException | MovimientoIndefinidoException e) {
+			System.err.println(e);
+		}
+	}
+
+	private void backAction() {
+		try {
+			VistaManager.getInstance().volverCliente();
+		} catch (FXMLException | MovimientoIndefinidoException e) {
+			System.err.println(e);
+		}
 	}
 
 }

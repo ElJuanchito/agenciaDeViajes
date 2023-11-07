@@ -18,6 +18,7 @@ import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import co.edu.uniquindio.agenciaviajes.ui.TipoVista;
 import co.edu.uniquindio.agenciaviajes.ui.Vista;
 import co.edu.uniquindio.agenciaviajes.ui.VistaManager;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -141,46 +142,46 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 		this.paquete = paquete;
 		if (paquete == null)
 			return;
-
-		lblInfoPaquete.setText(paquete.getNombre());
-		lblInfoCupos.setText(String.format("¡Quedan %d cupos!", paquete.getCupoMaximo()));
-		lblInfoPrecio.setText(paquete.getPrecio().toString());
-		lblInfoDescripcion.setText(paquete.getDescripcion());
-		lblInfoServiciosExtra.setText(paquete.getServiciosAdicionales());
-
-		boxDestinos.getChildren().clear();
-		stackDestino.getChildren().clear();
-		destinos = paquete.getDestinos();
-		if (destinos.isEmpty()) {
-			Label lblNoDestinos = new Label("Este paquete no tiene destinos");
-			lblNoDestinos.setMaxWidth(Double.MAX_VALUE);
-			lblNoDestinos.setWrapText(true);
-			stackDestino.getChildren().add(lblNoDestinos);
-		}
-		try {
-			vistaDestino1 = Vista.buildView("destino");
-			vistaDestino2 = Vista.buildView("destino");
-			vistaDestino1.cargarIdioma();
-			vistaDestino2.cargarIdioma();
-			vistaDestino2.cargarDato(destinos.get(0));
-			stackDestino.getChildren().add(vistaDestino1.getParent());
-			stackDestino.getChildren().add(vistaDestino2.getParent());
-			arrCirculos = new Circle[destinos.size()];
-			for (int i = 0; i < arrCirculos.length; i++) {
-				arrCirculos[i] = new Circle(5);
-				arrCirculos[i].setStroke(colorCirculos);
-				arrCirculos[i].setStrokeWidth(1);
-				arrCirculos[i].setFill(Color.WHITE);
-				final int index = i;
-				arrCirculos[i].setOnMouseClicked(e -> moverImagen(index));
-				if (i == actualIndex) {
-					arrCirculos[i].setFill(colorCirculos);
-				}
-				boxDestinos.getChildren().add(arrCirculos[i]);
+		Platform.runLater(() -> {
+			lblInfoPaquete.setText(paquete.getNombre());
+			lblInfoCupos.setText(String.format("¡Quedan %d cupos!", paquete.getCupoMaximo()));
+			lblInfoPrecio.setText(paquete.getPrecio().toString());
+			lblInfoDescripcion.setText(paquete.getDescripcion());
+			lblInfoServiciosExtra.setText(paquete.getServiciosAdicionales());
+			boxDestinos.getChildren().clear();
+			stackDestino.getChildren().clear();
+			destinos = paquete.getDestinos();
+			if (destinos.isEmpty()) {
+				Label lblNoDestinos = new Label("Este paquete no tiene destinos");
+				lblNoDestinos.setMaxWidth(Double.MAX_VALUE);
+				lblNoDestinos.setWrapText(true);
+				stackDestino.getChildren().add(lblNoDestinos);
 			}
-		} catch (FXMLException e) {
-			throw new RuntimeException(e);
-		}
+			try {
+				vistaDestino1 = Vista.buildView("destino");
+				vistaDestino2 = Vista.buildView("destino");
+				vistaDestino1.cargarIdioma();
+				vistaDestino2.cargarIdioma();
+				vistaDestino2.cargarDato(destinos.get(0));
+				stackDestino.getChildren().add(vistaDestino1.getParent());
+				stackDestino.getChildren().add(vistaDestino2.getParent());
+				arrCirculos = new Circle[destinos.size()];
+				for (int i = 0; i < arrCirculos.length; i++) {
+					arrCirculos[i] = new Circle(5);
+					arrCirculos[i].setStroke(colorCirculos);
+					arrCirculos[i].setStrokeWidth(1);
+					arrCirculos[i].setFill(Color.WHITE);
+					final int index = i;
+					arrCirculos[i].setOnMouseClicked(e -> moverImagen(index));
+					if (i == actualIndex) {
+						arrCirculos[i].setFill(colorCirculos);
+					}
+					boxDestinos.getChildren().add(arrCirculos[i]);
+				}
+			} catch (FXMLException e) {
+				throw new RuntimeException(e);
+			}
+		});
 
 	}
 
