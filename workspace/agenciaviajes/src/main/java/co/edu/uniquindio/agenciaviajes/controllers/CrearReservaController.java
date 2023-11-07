@@ -49,7 +49,7 @@ public class CrearReservaController implements DataControllable<Paquete> {
 
 	@FXML
 	void reservarEvent(ActionEvent event) {
-reservarAction();
+		reservarAction();
 	}
 
 	@FXML
@@ -116,8 +116,9 @@ reservarAction();
 
 	@Override
 	public void clearData() {
-		// TODO Auto-generated method stub
-
+		dtpFecha.getEditor().setText("");
+		spnCant.getEditor().setText("");
+		limpiarSeleccionAction();
 	}
 
 	@Override
