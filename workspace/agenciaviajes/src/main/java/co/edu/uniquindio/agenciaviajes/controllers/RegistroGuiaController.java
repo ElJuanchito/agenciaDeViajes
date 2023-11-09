@@ -9,6 +9,7 @@ import co.edu.uniquindio.agenciaviajes.model.GuiaTuristico;
 import co.edu.uniquindio.agenciaviajes.model.Idioma;
 import co.edu.uniquindio.agenciaviajes.model.Imagen;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
+import co.edu.uniquindio.agenciaviajes.utils.DatosQuemadosAux;
 import co.edu.uniquindio.agenciaviajes.utils.UtilsFX;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
@@ -38,58 +39,27 @@ public class RegistroGuiaController implements Controllable {
 	private URL location;
 
 	@FXML
-	private Button btnImagen;
+	private Button btnImagen, btnRegistrar;
 
 	@FXML
-	private Button btnRegistrar;
-
-	@FXML
-	private TableColumn<Idioma, String> colIdiomas;
-
-	@FXML
-	private TableColumn<Idioma, String> colSelect;
+	private TableColumn<Idioma, String> colIdiomas, colSelect;
 
 	@FXML
 	private ImageView imagePreview;
 
 	@FXML
-	private Label lblHoras;
+	private Label lblHoras, lblIdentificacion, lblImagen, lblImagenSeleccionada, lblNombre, lblTitle;
 
 	@FXML
-	private Label lblIdentificacion;
+	private TableView<Idioma> tblIdiomas, tblSelect;
 
 	@FXML
-	private Label lblImagen;
-
-	@FXML
-	private Label lblImagenSeleccionada;
-
-	@FXML
-	private Label lblNombre;
-
-	@FXML
-	private Label lblTitle;
-
-	@FXML
-	private TableView<Idioma> tblIdiomas;
-
-	@FXML
-	private TableView<Idioma> tblSelect;
-
-	@FXML
-	private TextField txtHoras;
-
-	@FXML
-	private TextField txtIdentificacion;
-
-	@FXML
-	private TextField txtNombre;
+	private TextField txtHoras, txtIdentificacion, txtNombre;
 
 	@FXML
 	private HBox imagenPane;
 
-	private ObservableList<Idioma> listIdioma;
-	private ObservableList<Idioma> listSelect;
+	private ObservableList<Idioma> listIdioma, listSelect;
 
 	private Image imagenGuia;
 
@@ -107,23 +77,20 @@ public class RegistroGuiaController implements Controllable {
 	void seleccionarIdiomaEvent(MouseEvent event) {
 		seleccionarIdiomaAction();
 	}
-	
+
 	private void registrarAction() {
 		Imagen imagencita = null;
 		try {
 			imagencita = Imagen.createImage(imagenGuia);
 		} catch (ImagenNoObtenidaException e) {
-			new Alert(AlertType.ERROR, e.getMessage() + ". Seleccione otra imagen").show();
+			MainPaneController.getInstance().showAlert(e.getMessage() + ". Seleccione otra imagen");
+			return;
 		}
-		
-		GuiaTuristico guia = GuiaTuristico.builder()
-				.nombreCompleto(txtNombre.getText().trim())
-				.identificacion(txtIdentificacion.getText().trim())
-				.expHoras(Integer.valueOf(txtHoras.getText().trim()))
-				.imagen(imagencita)
-				.idiomas(listSelect.stream().toArray(Idioma[]::new))
-				.build();
-		System.out.println(guia);
+
+		GuiaTuristico guia = GuiaTuristico.builder().nombreCompleto(txtNombre.getText().trim())
+				.identificacion(txtIdentificacion.getText().trim()).expHoras(Integer.valueOf(txtHoras.getText().trim()))
+				.imagen(imagencita).idiomas(listSelect.stream().toArray(Idioma[]::new)).build();
+		DatosQuemadosAux.getInstance().agregarGuia(guia);
 	}
 
 	private void selectionarImagenAction() {

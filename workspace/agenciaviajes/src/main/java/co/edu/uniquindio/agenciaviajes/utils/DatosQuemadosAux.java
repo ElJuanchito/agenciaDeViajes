@@ -11,6 +11,7 @@ import co.edu.uniquindio.agenciaviajes.model.Cliente;
 import co.edu.uniquindio.agenciaviajes.model.Clima;
 import co.edu.uniquindio.agenciaviajes.model.Comentario;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
+import co.edu.uniquindio.agenciaviajes.model.GuiaTuristico;
 import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ import lombok.NoArgsConstructor;
 public class DatosQuemadosAux {
 	private static DatosQuemadosAux instance;
 	private Paquete paquete;
+	private List<GuiaTuristico> listaguias;
 
 	public static DatosQuemadosAux getInstance() {
 		if (instance == null)
@@ -119,6 +121,13 @@ public class DatosQuemadosAux {
 		listaPaquetes.add(paquete3);
 
 		return listaPaquetes;
+	}
+
+	public void agregarGuia(GuiaTuristico guia) {
+		if (listaguias == null)
+			listaguias = new ArrayList<GuiaTuristico>();
+		listaguias.add(guia);
+		System.out.println(guia);
 	}
 
 }

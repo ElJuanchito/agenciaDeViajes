@@ -30,6 +30,10 @@ public class MainMenuController implements Controllable {
 		instance = this;
 	}
 
+	public void setContent(Parent parent) {
+		scrollCenter.setContent(parent);
+	}
+
 	@FXML
 	private Button btnBack, btnRecargar, btnExtra, btnNext;
 
@@ -64,7 +68,7 @@ public class MainMenuController implements Controllable {
 
 	@FXML
 	void guiasEvent(ActionEvent event) {
-
+		guiasAction();
 	}
 
 	@FXML
@@ -77,40 +81,9 @@ public class MainMenuController implements Controllable {
 		perfilClickAction();
 	}
 
-	private void perfilClickAction() {
-		MainPaneController.getInstance().ejecutarProceso(() -> {
-			try {
-				VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, new Pair<Runnable, String>(() -> {
-					try {
-						VistaManager.getInstance().cambiarVista(TipoVista.MENU_PRINCIPAL, null);
-					} catch (FXMLException e) {
-						throw new RuntimeException(e);
-					}
-				}, ""));
-			} catch (FXMLException e) {
-				throw new RuntimeException(e);
-			}
-		});
-	}
-
 	@FXML
 	void paquetesEvent(ActionEvent event) {
 		paquetesAction();
-	}
-
-	private void paquetesAction() {
-		MainPaneController.getInstance().ejecutarProceso(() -> {
-			try {
-				VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETE_DETAILS,
-						DatosQuemadosAux.getInstance().getPaquete());
-			} catch (FXMLException e) {
-				throw new RuntimeException(e);
-			}
-		});
-	}
-
-	public void setContent(Parent parent) {
-		scrollCenter.setContent(parent);
 	}
 
 	@Override
@@ -129,13 +102,46 @@ public class MainMenuController implements Controllable {
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void clearData() {
 		// TODO Auto-generated method stub
+	}
 
+	private void perfilClickAction() {
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, new Pair<Runnable, String>(() -> {
+					try {
+						VistaManager.getInstance().cambiarVista(TipoVista.MENU_PRINCIPAL, null);
+					} catch (FXMLException e) {
+						throw new RuntimeException(e);
+					}
+				}, ""));
+			} catch (FXMLException e) {
+				throw new RuntimeException(e);
+			}
+		});
+	}
+
+	private void guiasAction() {
+		try {
+			VistaManager.getInstance().cambiarVistaCliente(TipoVista.REGISTRO_GUIA, null);
+		} catch (FXMLException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	private void paquetesAction() {
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETE_DETAILS,
+						DatosQuemadosAux.getInstance().getPaquete());
+			} catch (FXMLException e) {
+				throw new RuntimeException(e);
+			}
+		});
 	}
 
 	private void destinosAction() {
