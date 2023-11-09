@@ -69,7 +69,7 @@
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-media</artifactId>
-			<version>20.0.1</version>
+			<version>${javafx-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.openjfx</groupId>
