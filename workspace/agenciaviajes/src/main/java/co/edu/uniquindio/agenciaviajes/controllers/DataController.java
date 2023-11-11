@@ -1,5 +1,6 @@
 package co.edu.uniquindio.agenciaviajes.controllers;
 
+import co.edu.uniquindio.agenciaviajes.model.Cliente;
 import co.edu.uniquindio.agenciaviajes.model.Loginable;
 import javafx.beans.property.SimpleObjectProperty;
 
@@ -20,5 +21,9 @@ public class DataController {
 
 	public void selectUsuario(Loginable loginable) {
 		loginActual.setValue(loginable);
+	}
+
+	public boolean usuarioEsCliente() {
+		return loginActual.getValue() instanceof Cliente;
 	}
 }

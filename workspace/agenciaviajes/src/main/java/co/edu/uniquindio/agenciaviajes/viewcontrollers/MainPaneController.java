@@ -7,6 +7,7 @@ import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -78,8 +79,10 @@ public class MainPaneController implements Controllable {
 	}
 
 	public void showAlert(String msg) {
-		lblMessage.setText(msg);
-		showPane(messageLayer);
+		Platform.runLater(() -> {
+			lblMessage.setText(msg);
+			showPane(messageLayer);
+		});
 	}
 
 	public void ejecutarProceso(Runnable runnable) {

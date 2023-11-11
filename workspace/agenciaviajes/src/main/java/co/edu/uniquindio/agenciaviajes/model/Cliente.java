@@ -233,8 +233,8 @@ public class Cliente extends Usuario implements Loginable {
 	}
 
 	@Override
-	public boolean hacerLogin(String contrasena) {
-		return this.contrasena.equals(contrasena);
+	public String getUsuario() {
+		return getIdentificacion();
 	}
 
 }

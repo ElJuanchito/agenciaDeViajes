@@ -7,9 +7,14 @@ import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.agenciaviajes.controllers.DataController;
+import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
+import co.edu.uniquindio.agenciaviajes.controllers.TipoPeticion;
 import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
 import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
+import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
+import co.edu.uniquindio.agenciaviajes.model.Loginable;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -73,13 +78,38 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 	}
 
 	private void iniciarAction() {
-		MainPaneController.getInstance().ejecutarProceso(() -> {
-			try {
-				VistaManager.getInstance().cambiarVista(TipoVista.PAQUETE_DETAILS, null);
-			} catch (FXMLException e) {
-				e.printStackTrace();
+		MainPaneController.getInstance().ejecutarProceso(this::iniciarSesion);
+	}
+
+	private void iniciarSesion() {
+		realizarPeticionLogin(new PeticionController<Loginable, Loginable>(TipoPeticion.HACER_LOGIN, loadInfo()));
+	}
+
+	private void realizarPeticionLogin(PeticionController<Loginable, Loginable> peticionController) {
+		try {
+			Loginable loginable = peticionController.realizarPeticion();
+			DataController.getInstance().selectUsuario(loginable);
+			VistaManager.getInstance()
+					.cambiarVista(DataController.getInstance().usuarioEsCliente() ? TipoVista.MENU_PRINCIPAL
+							: TipoVista.MENU_PRINCIPAL_ADMIN, null);
+		} catch (PeticionException | FXMLException e) {
+			MainPaneController.getInstance().showAlert(e.getMessage());
+		}
+	}
+
+	private Loginable loadInfo() {
+		return new Loginable() {
+
+			@Override
+			public String getUsuario() {
+				return txtEmail.getText();
 			}
-		});
+
+			@Override
+			public String getContrasena() {
+				return txtPassword.getText();
+			}
+		};
 	}
 
 	@FXML

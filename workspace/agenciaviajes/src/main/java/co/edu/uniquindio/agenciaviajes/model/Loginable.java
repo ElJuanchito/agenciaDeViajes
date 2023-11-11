@@ -2,5 +2,7 @@ package co.edu.uniquindio.agenciaviajes.model;
 
 public interface Loginable {
 
-	public boolean hacerLogin(String contrasena);
+	public String getContrasena();
+
+	public String getUsuario();
 }
