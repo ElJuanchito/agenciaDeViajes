@@ -8,11 +8,18 @@ import java.util.Map;
 import co.edu.uniquindio.agenciaviajes.application.App;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.exceptions.MovimientoIndefinidoException;
+import co.edu.uniquindio.agenciaviajes.model.Reserva;
 import co.edu.uniquindio.agenciaviajes.viewcontrollers.MainMenuController;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.print.PageLayout;
+import javafx.print.PageOrientation;
+import javafx.print.Paper;
+import javafx.print.Printer;
+import javafx.print.Printer.MarginType;
+import javafx.print.PrinterJob;
 import lombok.Getter;
 
 public class VistaManager {
@@ -130,5 +137,21 @@ public class VistaManager {
 	private void cargarInfoHistorialCliente() throws FXMLException {
 		InfoVista tripleDato = historialVistasCliente.get(indiceCliente.getValue());
 		cambiarVistaCliente(tripleDato.tipoVista, tripleDato.dato, false, false);
+	}
+
+	public void crearPDFReserva(Reserva reserva) throws FXMLException {
+		Vista<Reserva> vista = Vista.buildView("pdfFactura");
+		vista.cargarDato(reserva);
+		vista.cargarIdioma();
+		PrinterJob job = PrinterJob.createPrinterJob();
+		Printer printer = Printer.getDefaultPrinter();
+		PageLayout lay = printer.createPageLayout(Paper.A3, PageOrientation.PORTRAIT, MarginType.DEFAULT);
+		job.setPrinter(printer);
+		if (job != null) {
+			boolean success = job.printPage(lay, vista.getParent());
+			if (success) {
+				job.endJob();
+			}
+		}
 	}
 }

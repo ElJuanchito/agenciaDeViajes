@@ -4,10 +4,19 @@ import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.agenciaviajes.controllers.DataController;
+import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
+import co.edu.uniquindio.agenciaviajes.controllers.TipoPeticion;
+import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
+import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
+import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
+import co.edu.uniquindio.agenciaviajes.model.Cliente;
 import co.edu.uniquindio.agenciaviajes.model.GuiaTuristico;
 import co.edu.uniquindio.agenciaviajes.model.Idioma;
 import co.edu.uniquindio.agenciaviajes.model.Paquete;
+import co.edu.uniquindio.agenciaviajes.model.Reserva;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
+import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -46,6 +55,8 @@ public class CrearReservaController implements DataControllable<Paquete> {
 	private TableView<Idioma> tblIdiomas;
 
 	private DateTimeFormatter dateTimePattern;
+
+	private Paquete paquete;
 
 	@FXML
 	void reservarEvent(ActionEvent event) {
@@ -88,17 +99,12 @@ public class CrearReservaController implements DataControllable<Paquete> {
 			public void decrement(int steps) {
 				int currentValue = this.getValue();
 				int newValue = currentValue - steps;
-				if (newValue >= 0) {
-					this.setValue(newValue);
-				} else {
-					this.setValue(0);
-				}
+				this.setValue(newValue >= 0 ? newValue : 0);
 			}
 
 			@Override
 			public void increment(int steps) {
-				int currentValue = this.getValue();
-				this.setValue(currentValue + steps);
+				this.setValue(this.getValue() + steps);
 			}
 		};
 	}
@@ -123,6 +129,7 @@ public class CrearReservaController implements DataControllable<Paquete> {
 
 	@Override
 	public void inicializarDatos(Paquete paquete) {
+		this.paquete = paquete;
 		lblNamePackage.setText(paquete.getNombre());
 		lblInfoFechaInicial.setText(paquete.getFechaIncio().format(dateTimePattern));
 		lblInfoFechaFinal.setText(paquete.getFechaFin().format(dateTimePattern));
@@ -130,7 +137,29 @@ public class CrearReservaController implements DataControllable<Paquete> {
 	}
 
 	private void reservarAction() {
-		MainPaneController.getInstance().showAlert("Not yet");
+
+		Reserva reserva = Reserva.builder().cliente((Cliente) DataController.getInstance().getLoginActual())
+				.cantPersonas(spnCant.getValue()).paquete(paquete)
+				.guiaTuristico(tblGuias.getSelectionModel().getSelectedItem()).build();
+		try {
+			Reserva reservaNueva = new PeticionController<Reserva, Reserva>(TipoPeticion.AGREGAR, reserva)
+					.realizarPeticion();
+			MainPaneController.getInstance()
+					.showAlertAccept("Se ha creado una reserva, ¿quieres recibir un comprobante?", () -> {
+						Platform.runLater(() -> crearPdfReserva(reservaNueva));
+					});
+		} catch (PeticionException e) {
+			MainPaneController.getInstance().showAlert(e.getMessage());
+		}
+
+	}
+
+	private void crearPdfReserva(final Reserva reservaNueva) {
+		try {
+			VistaManager.getInstance().crearPDFReserva(reservaNueva);
+		} catch (FXMLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 }

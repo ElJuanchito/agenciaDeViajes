@@ -19,6 +19,10 @@ public class DataController {
 		loginActual = new SimpleObjectProperty<>();
 	}
 
+	public Loginable getLoginActual() {
+		return loginActual.getValue();
+	}
+
 	public void selectUsuario(Loginable loginable) {
 		loginActual.setValue(loginable);
 	}

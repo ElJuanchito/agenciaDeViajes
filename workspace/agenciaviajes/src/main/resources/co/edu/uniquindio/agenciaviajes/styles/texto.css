@@ -1,23 +1,40 @@
-.ordinaryText{
+.ordinaryText {
 	-fx-font-family: 'Heebo', sans-serif;
 	-fx-text-fill: #270570;
 	-fx-font-size: 1.3em;
 	-fx-font-weight: bold;
-	
+
 }
 
-.descriptionText{
+.descriptionText {
 	-fx-font-size: 1.2em;
 	-fx-text-fill: darkblue;
 }
 
-.subTitle{
+.descriptionTextWhite {
+	-fx-font-size: 1.2em;
+	-fx-text-fill: white;
+}
+
+.descriptionBold {
+	-fx-font-size: 1.4em;
+	-fx-text-fill: #270570;
+	-fx-font-weight: bold;
+}
+
+.subTitle {
 	-fx-font-size: 1.75em;
 	-fx-text-fill: #270570;
 	-fx-font-weight: bold;
 }
 
-.titulo{
+.subTitle-white {
+	-fx-font-size: 1.4em;
+	-fx-text-fill: white;
+	-fx-font-weight: bold;
+}
+
+.titulo {
 	-fx-font-size: 2em;
 	-fx-font-weight: bold;
 	-fx-text-fill: #270570;

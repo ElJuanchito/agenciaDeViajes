@@ -11,7 +11,6 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.SVGPath;
@@ -22,29 +21,19 @@ public class MainPaneController implements Controllable {
 	private static MainPaneController instance;
 
 	@FXML
-	private Button closeBtn;
+	private Label lblMessage, lblMessage2;
 
 	@FXML
-	private Label lblMessage;
+	private BorderPane loadingLayer, mainPane, messageLayer, messageLayerAccept;
 
 	@FXML
-	private BorderPane loadingLayer;
-
-	@FXML
-	private BorderPane mainPane;
-
-	@FXML
-	private BorderPane messageLayer;
-
-	@FXML
-	private SVGPath svg1;
-
-	@FXML
-	private SVGPath svg2;
+	private SVGPath svg1, svg2;
 
 	private Interpolator interpolator;
 
 	private ParallelTransition animacionBtn;
+
+	private Runnable runnableAccept;
 
 	@Override
 	public void preInicializar() {
@@ -54,11 +43,33 @@ public class MainPaneController implements Controllable {
 	}
 
 	@FXML
-	void closeAlertAction(ActionEvent event) {
-		closeAlertActionA();
+	void closeAlertEvent(ActionEvent event) {
+		closeAlertAction();
 	}
 
-	private void closeAlertActionA() {
+	@FXML
+	void closeAlertAcceptEvent(ActionEvent event) {
+		closeAlertAcceptAction();
+	}
+
+	@FXML
+	void acceptAlertEvent(ActionEvent event) {
+		acceptAlertAction();
+	}
+
+	private void acceptAlertAction() {
+		ejecutarProceso(() -> {
+			hidePane(messageLayerAccept);
+			if (runnableAccept != null)
+				runnableAccept.run();
+		});
+	}
+
+	private void closeAlertAcceptAction() {
+		ejecutarProceso(() -> hidePane(messageLayerAccept));
+	}
+
+	private void closeAlertAction() {
 		ejecutarProceso(() -> hidePane(messageLayer));
 	}
 
@@ -138,7 +149,6 @@ public class MainPaneController implements Controllable {
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -149,6 +159,14 @@ public class MainPaneController implements Controllable {
 
 	public void setRoot(Parent value) {
 		mainPane.setCenter(value);
+	}
+
+	public void showAlertAccept(String msg, Runnable runnableAccept) {
+		this.runnableAccept = runnableAccept;
+		Platform.runLater(() -> {
+			lblMessage2.setText(msg);
+			showPane(messageLayerAccept);
+		});
 	}
 
 }

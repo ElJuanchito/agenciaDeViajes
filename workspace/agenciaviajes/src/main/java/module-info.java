@@ -11,6 +11,7 @@ open module co.edu.uniquindio.agenciaViajes {
 	requires javafx.swing;
 	requires javafx.media;
 	requires AnimateFX;
+	requires org.apache.pdfbox;
 
 	exports co.edu.uniquindio.agenciaviajes.model;
 	exports co.edu.uniquindio.agenciaviajes.application;
