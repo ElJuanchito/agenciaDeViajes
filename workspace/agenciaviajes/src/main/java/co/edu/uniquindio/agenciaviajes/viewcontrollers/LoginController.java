@@ -90,7 +90,7 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 			Loginable loginable = peticionController.realizarPeticion();
 			DataController.getInstance().selectUsuario(loginable);
 			VistaManager.getInstance()
-					.cambiarVista(DataController.getInstance().usuarioEsCliente() ? TipoVista.MENU_PRINCIPAL
+					.cambiarVista(DataController.getInstance().usuarioEsCliente() ? TipoVista.MENU_PRINCIPAL_CLIENTE
 							: TipoVista.MENU_PRINCIPAL_ADMIN, null);
 		} catch (PeticionException | FXMLException e) {
 			MainPaneController.getInstance().showAlert(e.getMessage());

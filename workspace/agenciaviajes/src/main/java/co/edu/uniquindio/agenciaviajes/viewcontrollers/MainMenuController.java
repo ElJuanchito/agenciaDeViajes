@@ -114,7 +114,7 @@ public class MainMenuController implements Controllable {
 			try {
 				VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, new Pair<Runnable, String>(() -> {
 					try {
-						VistaManager.getInstance().cambiarVista(TipoVista.MENU_PRINCIPAL, null);
+						VistaManager.getInstance().cambiarVista(TipoVista.MENU_PRINCIPAL_CLIENTE, null);
 					} catch (FXMLException e) {
 						throw new RuntimeException(e);
 					}
