@@ -1,4 +1,4 @@
-package co.edu.uniquindio.agenciaviajes.ui;
+package co.edu.uniquindio.agenciaviajes.controllers;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

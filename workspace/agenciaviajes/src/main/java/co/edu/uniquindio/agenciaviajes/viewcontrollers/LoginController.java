@@ -1,4 +1,4 @@
-package co.edu.uniquindio.agenciaviajes.controllers;
+package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.io.File;
 import java.net.URL;
@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
+import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
-import co.edu.uniquindio.agenciaviajes.ui.TipoVista;
-import co.edu.uniquindio.agenciaviajes.ui.VistaManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

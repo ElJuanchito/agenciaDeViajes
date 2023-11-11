@@ -1,6 +1,6 @@
 package co.edu.uniquindio.agenciaviajes.exceptions;
 
-import co.edu.uniquindio.agenciaviajes.ui.Vista;
+import co.edu.uniquindio.agenciaviajes.controllers.Vista;
 
 public class FXMLException extends Exception {
 

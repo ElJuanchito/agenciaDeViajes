@@ -1,9 +1,8 @@
-package co.edu.uniquindio.agenciaviajes.ui;
+package co.edu.uniquindio.agenciaviajes.controllers;
 
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
-import co.edu.uniquindio.agenciaviajes.i18n.LanguageManager;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

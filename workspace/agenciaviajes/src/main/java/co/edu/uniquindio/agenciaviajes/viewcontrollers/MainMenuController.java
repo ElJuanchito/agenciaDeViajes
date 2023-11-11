@@ -1,12 +1,12 @@
-package co.edu.uniquindio.agenciaviajes.controllers;
+package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
+import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.exceptions.MovimientoIndefinidoException;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
-import co.edu.uniquindio.agenciaviajes.ui.TipoVista;
-import co.edu.uniquindio.agenciaviajes.ui.VistaManager;
 import co.edu.uniquindio.agenciaviajes.utils.DatosQuemadosAux;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

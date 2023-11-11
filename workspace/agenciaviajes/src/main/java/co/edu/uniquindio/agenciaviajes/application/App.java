@@ -2,10 +2,10 @@ package co.edu.uniquindio.agenciaviajes.application;
 
 import java.io.IOException;
 
-import co.edu.uniquindio.agenciaviajes.controllers.MainPaneController;
-import co.edu.uniquindio.agenciaviajes.ui.TipoVista;
-import co.edu.uniquindio.agenciaviajes.ui.Vista;
-import co.edu.uniquindio.agenciaviajes.ui.VistaManager;
+import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
+import co.edu.uniquindio.agenciaviajes.controllers.Vista;
+import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
+import co.edu.uniquindio.agenciaviajes.viewcontrollers.MainPaneController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

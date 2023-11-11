@@ -4,9 +4,6 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
-import co.edu.uniquindio.agenciaviajes.i18n.LanguageManager;
-import co.edu.uniquindio.agenciaviajes.services.AnimationService;
-import co.edu.uniquindio.agenciaviajes.services.UtilsJPA;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -65,14 +62,17 @@ public class PropiedadesTestController implements Initializable {
 
 	@FXML
 	public void iniciarSesionAction(ActionEvent event) {
-		AnimationService.getInstance().ejecutarAccionBtn(btnInciarSesion, () -> {
+		iniciarSesionAction();
+	}
+
+	private void iniciarSesionAction() {
+		AnimationController.getInstance().ejecutarAccionBtn(btnInciarSesion, () -> {
 			try {
-				UtilsJPA.getEntityManager().contains(null);
-				// se demora un poco al inicio, sirve para ver la animación bien
-			} catch (Exception e) {
+				Thread.sleep(1500);
+			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		});
-
 	}
+
 }

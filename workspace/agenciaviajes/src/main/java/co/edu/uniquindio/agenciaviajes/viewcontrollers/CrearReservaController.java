@@ -1,4 +1,4 @@
-package co.edu.uniquindio.agenciaviajes.controllers;
+package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;

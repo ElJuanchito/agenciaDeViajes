@@ -1,4 +1,4 @@
-package co.edu.uniquindio.agenciaviajes.ui;
+package co.edu.uniquindio.agenciaviajes.controllers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import co.edu.uniquindio.agenciaviajes.application.App;
-import co.edu.uniquindio.agenciaviajes.controllers.MainMenuController;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.exceptions.MovimientoIndefinidoException;
+import co.edu.uniquindio.agenciaviajes.viewcontrollers.MainMenuController;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;

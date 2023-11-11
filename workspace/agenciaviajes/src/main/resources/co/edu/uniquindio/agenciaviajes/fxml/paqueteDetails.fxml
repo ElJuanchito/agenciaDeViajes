@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<VBox fx:id="mainPane" alignment="TOP_CENTER" prefWidth="515.0" spacing="10.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.PaqueteDetailsController">
+<VBox fx:id="mainPane" alignment="TOP_CENTER" prefWidth="515.0" spacing="10.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.viewcontrollers.PaqueteDetailsController">
    <children>
       <Label fx:id="lblPaquete" styleClass="titulo" text="Paquete " textFill="#270570" />
       <Label fx:id="lblInfoPaquete" styleClass="titulo" text="Cartagena Aventurero" textFill="#270570" />

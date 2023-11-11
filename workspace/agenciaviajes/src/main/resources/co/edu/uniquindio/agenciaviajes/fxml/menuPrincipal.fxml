@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-<BorderPane minWidth="0.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" stylesheets="@../styles/boton.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.MainMenuController">
+<BorderPane minWidth="0.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" stylesheets="@../styles/boton.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.viewcontrollers.MainMenuController">
    <top>
       <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" style="-fx-background-color: #270570; -fx-background-radius: 50;">
          <children>

@@ -4,7 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import co.edu.uniquindio.agenciaviajes.ui.Vista;
+import co.edu.uniquindio.agenciaviajes.controllers.Vista;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;

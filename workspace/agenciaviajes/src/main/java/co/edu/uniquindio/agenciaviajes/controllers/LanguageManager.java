@@ -1,8 +1,9 @@
-package co.edu.uniquindio.agenciaviajes.i18n;
+package co.edu.uniquindio.agenciaviajes.controllers;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.agenciaviajes.services.Traducible;
 import javafx.beans.property.SimpleObjectProperty;
 
 public class LanguageManager {

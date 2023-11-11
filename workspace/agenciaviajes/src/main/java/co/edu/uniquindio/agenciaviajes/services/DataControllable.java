@@ -3,8 +3,7 @@ package co.edu.uniquindio.agenciaviajes.services;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import co.edu.uniquindio.agenciaviajes.i18n.LanguageManager;
-import co.edu.uniquindio.agenciaviajes.i18n.Traducible;
+import co.edu.uniquindio.agenciaviajes.controllers.LanguageManager;
 import javafx.fxml.Initializable;
 
 public interface DataControllable<T> extends Initializable, Traducible, Clearable {

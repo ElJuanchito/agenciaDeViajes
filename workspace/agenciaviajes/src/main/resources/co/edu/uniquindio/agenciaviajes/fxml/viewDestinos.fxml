@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox fx:id="mainPane" alignment="CENTER" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.ViewDestinosController">
+<VBox fx:id="mainPane" alignment="CENTER" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.viewcontrollers.ViewDestinosController">
    <children>
       <Label fx:id="lblTitle" text="Destinos" />
       <GridPane fx:id="contentPane" alignment="CENTER" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" vgap="30.0" VBox.vgrow="ALWAYS">

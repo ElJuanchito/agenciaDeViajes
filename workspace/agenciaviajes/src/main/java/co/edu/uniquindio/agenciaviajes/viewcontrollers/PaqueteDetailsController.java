@@ -1,4 +1,4 @@
-package co.edu.uniquindio.agenciaviajes.controllers;
+package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -10,13 +10,13 @@ import animatefx.animation.FadeInRight;
 import animatefx.animation.FadeOutLeft;
 import animatefx.animation.FadeOutRight;
 import animatefx.util.ParallelAnimationFX;
+import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
+import co.edu.uniquindio.agenciaviajes.controllers.Vista;
+import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
-import co.edu.uniquindio.agenciaviajes.ui.TipoVista;
-import co.edu.uniquindio.agenciaviajes.ui.Vista;
-import co.edu.uniquindio.agenciaviajes.ui.VistaManager;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

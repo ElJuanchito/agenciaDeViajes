@@ -16,7 +16,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.RegistroGuiaController">
    <top>
       <HBox alignment="CENTER" minHeight="100.0" minWidth="200.0" spacing="10.0" BorderPane.alignment="CENTER">
@@ -51,7 +50,7 @@
                   <TextField fx:id="txtHoras" promptText="Ingrese la experiencia en horas" styleClass="cajaTexto" stylesheets="@../styles/cajaTexto.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                </children>
             </GridPane>
-            <HBox fx:id="imagenPane" alignment="CENTER" spacing="20.0" visible="false">
+            <HBox fx:id="imagenPane" alignment="CENTER" prefWidth="516.0" spacing="20.0" visible="false">
                <children>
                   <Label fx:id="lblImagenSeleccionada" styleClass="ordinaryText" text="Imagen seleccionada:" />
                   <ImageView fx:id="imagePreview" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />

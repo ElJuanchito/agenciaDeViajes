@@ -1,4 +1,4 @@
-package co.edu.uniquindio.agenciaviajes.i18n;
+package co.edu.uniquindio.agenciaviajes.services;
 
 import java.util.ResourceBundle;
 

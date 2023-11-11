@@ -1,19 +1,17 @@
-package co.edu.uniquindio.agenciaviajes.services;
+package co.edu.uniquindio.agenciaviajes.controllers;
 
-import co.edu.uniquindio.agenciaviajes.i18n.LanguageManager;
-import co.edu.uniquindio.agenciaviajes.ui.Vista;
 import javafx.application.Platform;
 import javafx.scene.control.Button;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class AnimationService {
-	private static AnimationService instance;
+public class AnimationController {
+	private static AnimationController instance;
 
-	public static AnimationService getInstance() {
+	public static AnimationController getInstance() {
 		if (instance == null)
-			instance = new AnimationService();
+			instance = new AnimationController();
 		return instance;
 	}
 
