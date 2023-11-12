@@ -43,39 +43,69 @@ public class estadisticasController {
 	private Label lblDestinosBuscados;
 
 	@FXML
-	private LineChart<?, ?> graphicPaquetes;
+	private LineChart<String, Number> graphicPaquetes;
 
 	@FXML
 	private Label lblPaquetesReservados;
 
 	@FXML
 	void initialize() {
-		// Configurar los ejes X e Y
-		CategoryAxis xAxis = new CategoryAxis();
-		NumberAxis yAxis = new NumberAxis();
-		xAxis.setLabel("Categorías");
-		yAxis.setLabel("Valores");
+		inicializarGraphicDestinosBuscados();
+    	inicializarGraphicDestinosReservados();
+    	inicializarGraficaPaquetes();
+    	inicializarGraphicGuias();
+    }
+    
+    public void inicializarGraphicDestinosBuscados() {
+        // Crear datos para el gráfico (esto es solo un ejemplo, debes adaptarlo a tus necesidades)
+        PieChart.Data dato1 = new PieChart.Data("Etiqueta1", 30);
+        PieChart.Data dato2 = new PieChart.Data("Etiqueta2", 40);
+        PieChart.Data dato3 = new PieChart.Data("Etiqueta3", 20);
 
-		// Crear el BarChart
-		BarChart<String, Number> barChart = new BarChart<>(xAxis, yAxis);
-		barChart.setTitle("Gráfico de Barras");
+        // Limpiar datos existentes en el gráfico
+        graphicDestinosBuscados.getData().clear();
 
-		// Crear una serie de datos
-		XYChart.Series<String, Number> series = new XYChart.Series<>();
-		series.setName("Datos de ejemplo");
-		series.setData(FXCollections.observableArrayList(new XYChart.Data<String, Number>("Categoría 1", 10),
-				new XYChart.Data<String, Number>("Categoría 2", 10)));
-//		// Agregar datos a la serie
-//		series.getData().add(new XYChart.Data<>("Categoría 1", 10));
-//		series.getData().add(new XYChart.Data<>("Categoría 2", 20));
-//		series.getData().add(new XYChart.Data<>("Categoría 3", 15));
-//		series.getData().add(new XYChart.Data<>("Categoría 4", 30));
+        // Agregar nuevos datos al gráfico
+        graphicDestinosBuscados.getData().addAll(dato1, dato2, dato3);
+    }
+    
+    public void inicializarGraphicDestinosReservados() {
+    	 // Crea una serie de datos
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.getData().add(new XYChart.Data<>("San Andres", 10));
+        series.getData().add(new XYChart.Data<>("Cartagena", 20));
+        series.getData().add(new XYChart.Data<>("Santa Marta", 15));
 
-		// Agregar la serie al BarChart
-		barChart.getData().add(series);
+        // Agrega la serie al BarChart
+        graphicDestinosReservados.getData().add(series);
 
-		// Agregar el BarChart al controlador
-		graphicDestinosReservados = barChart;
+    }
+    
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	public void inicializarGraficaPaquetes() {
+        // Crear una serie de datos
+        XYChart.Series series = new XYChart.Series();
+        series.getData().add(new XYChart.Data("Dato 1", 10));
+        series.getData().add(new XYChart.Data("Dato 2", 20));
+        series.getData().add(new XYChart.Data("Dato 3", 15));
 
-	}
+        // Limpiar cualquier dato existente en la gráfica
+        graphicPaquetes.getData().clear();
+
+        // Agregar la serie a la gráfica
+        graphicPaquetes.getData().add(series);
+    }
+    
+    public void inicializarGraphicGuias() {
+    	// Crear datos para el gráfico (esto es solo un ejemplo, debes adaptarlo a tus necesidades)
+        PieChart.Data dato1 = new PieChart.Data("Etiqueta1", 30);
+        PieChart.Data dato2 = new PieChart.Data("Etiqueta2", 40);
+        PieChart.Data dato3 = new PieChart.Data("Etiqueta3", 20);
+
+        // Limpiar datos existentes en el gráfico
+        graphicGuias.getData().clear();
+
+        // Agregar nuevos datos al gráfico
+        graphicGuias.getData().addAll(dato1, dato2, dato3);
+    }
 }
