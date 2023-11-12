@@ -281,8 +281,12 @@ public class Paquete {
 	}
 	
 	public double getPromedioDestinos() {
-		double prom= (getAcumPromedios(0, 0))/destinos.size();
+		double prom=5;
+		if(destinos.size()!=0) {
+			prom= (getAcumPromedios(0, 0))/destinos.size();
+		}
 		return MathUtils.round(prom,1);
+		
 	}
 
 }
