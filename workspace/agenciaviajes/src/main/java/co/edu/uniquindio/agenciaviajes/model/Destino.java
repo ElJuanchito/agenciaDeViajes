@@ -286,7 +286,9 @@ public class Destino implements Comentable {
 	}
 
 	public void addComentario(Comentario comentario) {
-		mapComentarios.put(comentario.getCliente(), comentario);
+		if (clientePuedeComentar(comentario.getCliente())) {
+			mapComentarios.put(comentario.getCliente(), comentario);
+		}
 	}
 
 	public int equivaleciaPref(Preferencia preferencia) {
