@@ -13,60 +13,41 @@ import javafx.scene.layout.StackPane;
 
 public class ModificarClienteController {
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private URL location;
 
-    @FXML
-    private HBox root;
+	@FXML
+	private HBox root;
 
-    @FXML
-    private StackPane stackImg;
+	@FXML
+	private StackPane stackImg;
 
-    @FXML
-    private Button btnBack;
+	@FXML
+	private Button btnBack, btnActualizar;
 
-    @FXML
-    private Label lblTitle;
+	@FXML
+	private Label lblTitle, lblInfo;
 
-    @FXML
-    private Label lblInfo;
+	@FXML
+	private TextField txtIdentificacion, txtNombre, txtEmail, txtTelefono, txtDireccion;
+	@FXML
+	private PasswordField txtPassword;
 
-    @FXML
-    private TextField txtIdentificacion;
+	@FXML
+	void actualizarEvent(ActionEvent event) {
 
-    @FXML
-    private PasswordField txtPassword;
+	}
 
-    @FXML
-    private TextField txtNombre;
+	@FXML
+	void backEvent(ActionEvent event) {
 
-    @FXML
-    private TextField txtEmail;
+	}
 
-    @FXML
-    private TextField txtTelefono;
+	@FXML
+	void initialize() {
 
-    @FXML
-    private TextField txtDireccion;
-
-    @FXML
-    private Button btnActualizar;
-
-    @FXML
-    void actualizarEvent(ActionEvent event) {
-
-    }
-
-    @FXML
-    void backEvent(ActionEvent event) {
-
-    }
-
-    @FXML
-    void initialize() {
-
-    }
+	}
 }

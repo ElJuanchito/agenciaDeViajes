@@ -12,7 +12,8 @@ public class PDFFacturaController implements DataControllable<Reserva> {
 	@FXML
 	private Label lblCodFactura, lblDiagnosticoAtencion, lblDireccionCliente, lblEstadoAtencion, lblFacturaFecha,
 			lblFacturaHora, lblMascotaAtencion, lblNombreCliente, lblPrecioAtencion, lblSexoAtencion,
-			lblTelefonoCliente, lblTipoAtencion, lblTranatemientoAtencion, lblVeterinarioAtencion;
+			lblTelefonoCliente, lblTipoAtencion, lblTranatemientoAtencion, lblVeterinarioAtencion, lblEstado,
+			lblVeterinario, lblMascota, lblTipo, lblSexo, lblDiagnostico, lblTratamiento, lblPrecio;
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
