@@ -25,7 +25,7 @@
       <Separator layoutX="529.0" layoutY="122.0" orientation="VERTICAL" prefHeight="113.0" prefWidth="0.0" />
       <VBox alignment="CENTER" layoutX="542.0" layoutY="122.0" prefHeight="120.0" prefWidth="175.0" style="-fx-border-width: 1; -fx-border-radius: 5; -fx-background-color: #060E40; -fx-background-radius: 5;" styleClass="contenedoraxul">
          <children>
-            <Label layoutX="556.0" layoutY="25.0" styleClass="subTitle-white" text="Factura: " textFill="WHITE">
+            <Label fx:id="lblFactura" layoutX="556.0" layoutY="25.0" styleClass="subTitle-white" text="Factura: " textFill="WHITE">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin></Label>
@@ -46,7 +46,7 @@
       <Separator layoutX="31.0" layoutY="88.0" prefHeight="27.0" prefWidth="671.0" />
       <VBox layoutX="14.0" layoutY="122.0" prefHeight="120.0" prefWidth="498.0" style="-fx-border-width: 1; -fx-border-radius: 5; -fx-border-color: #14133b;">
          <children>
-            <Label alignment="BOTTOM_CENTER" prefHeight="32.0" prefWidth="236.0" styleClass="subTitle" text="Factura Para:">
+            <Label fx:id="lblFacturaPara" alignment="BOTTOM_CENTER" prefHeight="32.0" prefWidth="236.0" styleClass="subTitle" text="Factura Para:">
                <font>
                   <Font size="17.0" />
                </font>
@@ -58,13 +58,13 @@
             </Label>
             <HBox>
                <children>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="228.0" styleClass="descriptionText" text="Telefono:" />
+                  <Label fx:id="lblTelefono" alignment="CENTER" prefHeight="17.0" prefWidth="228.0" styleClass="descriptionText" text="Telefono:" />
                   <Label fx:id="lblTelefonoCliente" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="228.0" styleClass="descriptionText" text="313234742" />
                </children>
             </HBox>
             <HBox>
                <children>
-                  <Label alignment="CENTER" prefHeight="17.0" prefWidth="231.0" styleClass="descriptionText" text="Direccion:" />
+                  <Label fx:id="lblDireccion" alignment="CENTER" prefHeight="17.0" prefWidth="231.0" styleClass="descriptionText" text="Direccion:" />
                   <Label fx:id="lblDireccionCliente" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="231.0" styleClass="descriptionText" text="Calle 13 # 12 - 30" />
                </children>
             </HBox>
@@ -80,42 +80,42 @@
          <children>
             <VBox prefHeight="620.0" prefWidth="320.0" spacing="10.0" style="-fx-border-width: 1; -fx-border-radius: 5; -fx-border-color: #14133b;">
                <children>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" styleClass="descriptionText" text="Estado">
+                  <Label fx:id="lblEstado" alignment="CENTER" prefHeight="40.0" prefWidth="329.0" styleClass="descriptionText" text="Estado">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" styleClass="descriptionText" text="Veterinario">
+                  <Label fx:id="lblVeterinario" alignment="CENTER" prefHeight="40.0" prefWidth="329.0" styleClass="descriptionText" text="Veterinario">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" styleClass="descriptionText" text="Mascota">
+                  <Label fx:id="lblMascota" alignment="CENTER" prefHeight="40.0" prefWidth="329.0" styleClass="descriptionText" text="Mascota">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" styleClass="descriptionText" text="Tipo">
+                  <Label fx:id="lblTipo" alignment="CENTER" prefHeight="40.0" prefWidth="329.0" styleClass="descriptionText" text="Tipo">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" styleClass="descriptionText" text="Sexo">
+                  <Label fx:id="lblSexo" alignment="CENTER" prefHeight="40.0" prefWidth="329.0" styleClass="descriptionText" text="Sexo">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="145.0" prefWidth="329.0" styleClass="descriptionText" text="Diagnostico">
+                  <Label fx:id="lblDiagnostico" alignment="CENTER" prefHeight="145.0" prefWidth="329.0" styleClass="descriptionText" text="Diagnostico">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="145.0" prefWidth="329.0" styleClass="descriptionText" text="Tratamiento">
+                  <Label fx:id="lblTratamiento" alignment="CENTER" prefHeight="145.0" prefWidth="329.0" styleClass="descriptionText" text="Tratamiento">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="325.0" styleClass="descriptionText" text="Precio">
+                  <Label fx:id="lblPrecio" alignment="CENTER" prefHeight="40.0" prefWidth="325.0" styleClass="descriptionText" text="Precio">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -185,12 +185,12 @@
             <Image url="@../imagenes/logo.png" />
          </image>
       </ImageView>
-      <Label layoutX="120.0" layoutY="1009.0" styleClass="subTitle" text="Gracias por tu compra, disfruta tu viaje">
+      <Label fx:id="lblThx" layoutX="120.0" layoutY="1009.0" styleClass="subTitle" text="Gracias por tu compra, disfruta tu viaje">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
-      <Label layoutX="109.0" layoutY="64.0" styleClass="descriptionBold" text="Los mejores destinos para tus pokeaventuras">
+      <Label fx:id="lblLema" layoutX="109.0" layoutY="64.0" styleClass="descriptionBold" text="Los mejores destinos para tus pokeaventuras">
          <font>
             <Font size="21.0" />
          </font>
