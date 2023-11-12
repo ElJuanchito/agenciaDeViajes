@@ -64,5 +64,9 @@ public class Reserva {
 	public boolean clienteEstuvoAlli(Cliente cliente) {
 		return this.cliente.equals(cliente) && estado == Estado.REALIZADA;
 	}
+	
+	public boolean clienteEstuvoGuia(Cliente cliente, GuiaTuristico guia) {
+		return this.cliente.equals(cliente) && estado==Estado.REALIZADA && this.guia.equals(guia);
+	}
 
 }

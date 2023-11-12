@@ -1,7 +1,9 @@
 package co.edu.uniquindio.agenciaviajes.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -32,6 +34,11 @@ public class GuiaTuristico extends Usuario implements Comentable {
 
 	@OneToOne
 	private Imagen imagen;
+	
+	private List<Reserva> reservas;
+	
+	
+	private Map<Cliente, Comentario> mapComentarios;
 
 // TODO lista de reservas en las que este el guia, un cliente puede comentar en el guia en caso de que haya hecho la reserva (en reserva ya esta el metodo) 
 	/**
@@ -46,6 +53,8 @@ public class GuiaTuristico extends Usuario implements Comentable {
 		this.expHoras = expHoras;
 		this.idiomas = new ArrayList<Idioma>(List.of(idiomas));
 		this.imagen = imagen;
+		this.reservas= new ArrayList<Reserva>();
+		this.mapComentarios= new HashMap<Cliente, Comentario>();
 	}
 
 	/**
@@ -112,7 +121,15 @@ public class GuiaTuristico extends Usuario implements Comentable {
 
 	@Override
 	public boolean clientePuedeComentar(Cliente cliente) {
-		return false;
+		return clienteFueGuia(cliente,this,0);
 	}
+
+	private boolean clienteFueGuia(Cliente cliente, GuiaTuristico guiaTuristico, int i) {
+		if(i>=reservas.size()) 
+			return false;
+		if(reservas.get(i).clienteEstuvoGuia(cliente, guiaTuristico))
+			return true;
+		return clienteFueGuia(cliente, guiaTuristico, i+1);
+}
 
 }
