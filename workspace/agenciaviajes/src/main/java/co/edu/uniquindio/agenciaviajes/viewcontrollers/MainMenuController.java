@@ -50,18 +50,11 @@ public class MainMenuController implements Controllable {
 
 	@FXML
 	private ScrollPane scrollCenter;
-	
-	
-	
+
 	private boolean isMenuExtended = false;
-	private boolean isLanguageMenuExtended = false;
 	private Timeline timelineMenu;
-	private Timeline timelineLanguage;
 	private Consumer<Boolean> consumerMenu;
-	private Consumer<Boolean> consumerLanguage;
-	
-	
-	
+
 	@FXML
 	void backEvent(ActionEvent event) {
 		backAction();
@@ -124,7 +117,6 @@ public class MainMenuController implements Controllable {
 
 	@Override
 	public void clearData() {
-		// TODO Auto-generated method stub
 	}
 
 	private void perfilClickAction() {
@@ -198,7 +190,7 @@ public class MainMenuController implements Controllable {
 			}
 		});
 	}
-	
+
 	public void crearAnimacionExtension(DoubleProperty widthProperty, DoubleProperty opacityProperty,
 			DoubleProperty rotacionSVG, Consumer<Boolean> consumerMenu) {
 		timelineMenu = new Timeline();
@@ -208,7 +200,7 @@ public class MainMenuController implements Controllable {
 				new KeyValue(widthProperty, 212d), new KeyValue(rotacionSVG, 90d)));
 		this.consumerMenu = consumerMenu;
 	}
-	
+
 	public void ejecutarAnimacionMenu() {
 		consumerMenu.accept(isMenuExtended);
 		if (isMenuExtended) {
