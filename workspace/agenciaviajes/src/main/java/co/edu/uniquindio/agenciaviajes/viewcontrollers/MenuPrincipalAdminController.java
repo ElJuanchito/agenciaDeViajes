@@ -15,95 +15,77 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.SVGPath;
 
 public class MenuPrincipalAdminController {
-	
-    @FXML
-    private BorderPane centerPane;
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private BorderPane centerPane;
 
-    @FXML
-    private URL location;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private Label lblBtnDestinos;
+	@FXML
+	private URL location;
 
-    @FXML
-    private Label lblbtnPaquetes;
+	@FXML
+	private Label lblBtnDestinos, lblBtnClientes, lblbtnPaquetes, lblBtnGuias;
 
-    @FXML
-    private Label lblBtnGuias;
+	@FXML
+	private SVGPath btnPerfil;
 
-    @FXML
-    private Label lblBtnDestinos1;
+	@FXML
+	private ScrollPane scrollCenter;
 
-    @FXML
-    private Label lblBtnDestinos2;
+	@FXML
+	private Button btnBack, btnNext, btnExtra;
 
-    @FXML
-    private SVGPath btnPerfil;
+	@FXML
+	void clientesEvent(ActionEvent event) {
 
-    @FXML
-    private ScrollPane scrollCenter;
+	}
 
-    @FXML
-    private Button btnBack;
+	@FXML
+	void backEvent(ActionEvent event) {
 
-    @FXML
-    private Button btnNext;
+	}
 
-    @FXML
-    private Button btnExtra;
+	@FXML
+	void destinosEvent(ActionEvent event) {
+		cambiarVentana("gestionarDestinos");
 
-    @FXML
-    void ClientesEvent(ActionEvent event) {
+	}
 
-    }
+	@FXML
+	void extraEvent(ActionEvent event) {
 
-    @FXML
-    void backEvent(ActionEvent event){
+	}
 
-    }
+	@FXML
+	void guiasEvent(ActionEvent event) {
+		cambiarVentana("gestionarGuias");
 
-    @FXML
-    void destinosEvent(ActionEvent event) {
-    	cambiarVentana("gestionarDestinos");
+	}
 
-    }
+	@FXML
+	void masEvent(ActionEvent event) {
 
-    @FXML
-    void extraEvent(ActionEvent event) {
+	}
 
-    }
+	@FXML
+	void nextEvent(ActionEvent event) {
 
-    @FXML
-    void guiasEvent(ActionEvent event) {
-    	cambiarVentana("gestionarGuias");
+	}
 
-    }
+	@FXML
+	void paquetesEvent(ActionEvent event) {
+		cambiarVentana("gestionarPaquetes");
 
-    @FXML
-    void masEvent(ActionEvent event) {
+	}
 
-    }
+	@FXML
+	void initialize() {
 
-    @FXML
-    void nextEvent(ActionEvent event) {
+	}
 
-    }
-
-    @FXML
-    void paquetesEvent(ActionEvent event) {
-    	cambiarVentana("gestionarPaquetes");
-
-    }
-
-    @FXML
-    void initialize() {
-
-    }
-    
-    private void cambiarVentana(String fxmlname) {
+	private void cambiarVentana(String fxmlname) {
 		try {
 			Node nodo = App.loadFXML(fxmlname);
 			setCenter(nodo);

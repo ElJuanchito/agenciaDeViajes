@@ -52,7 +52,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
                <children>
-                  <Label fx:id="lblNoRegistrado" alignment="CENTER_RIGHT" maxWidth="600.0" text="No esta registrado?" textOverrun="CLIP">
+                  <Label fx:id="lblNoRegistrado" alignment="CENTER_RIGHT" maxWidth="600.0" text="¿No esta registrado?" textOverrun="CLIP">
                      <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
