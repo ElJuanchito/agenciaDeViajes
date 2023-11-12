@@ -34,7 +34,6 @@ public class VistaManager {
 	@Getter
 	private SimpleObjectProperty<InfoVista> vistaActualCliente;
 	private SimpleIntegerProperty indiceCliente;
-	private TipoVista vistaGrandeActual;
 
 	private <T> InfoVista obtenerInfoVista(TipoVista tipoVista, T valor) {
 		return new InfoVista(tipoVista, valor);
@@ -62,7 +61,6 @@ public class VistaManager {
 
 	public <T> void cambiarVista(TipoVista tipo, T dato) throws FXMLException {
 		Vista<T> vista = cargarVista(tipo);
-		vistaGrandeActual = tipo;
 		Vista<T> vistaFinal = vista;
 		Platform.runLater(() -> {
 			vistaFinal.cargarDato(dato);

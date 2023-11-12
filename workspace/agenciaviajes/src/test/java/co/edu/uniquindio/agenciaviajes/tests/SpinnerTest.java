@@ -2,12 +2,9 @@ package co.edu.uniquindio.agenciaviajes.tests;
 
 import org.junit.Test;
 
-import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
 import co.edu.uniquindio.agenciaviajes.controllers.Vista;
-import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class SpinnerTest extends Application {
