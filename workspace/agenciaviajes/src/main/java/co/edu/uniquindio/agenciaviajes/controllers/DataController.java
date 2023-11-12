@@ -28,6 +28,6 @@ public class DataController {
 	}
 
 	public boolean usuarioEsCliente() {
-		return loginActual.getValue() instanceof Cliente;
+		return loginActual.getValue() != null && loginActual.getValue() instanceof Cliente;
 	}
 }
