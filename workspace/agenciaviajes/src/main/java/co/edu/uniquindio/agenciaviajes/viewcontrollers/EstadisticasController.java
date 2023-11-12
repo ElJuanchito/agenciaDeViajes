@@ -1,8 +1,13 @@
 package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
+import co.edu.uniquindio.agenciaviajes.controllers.TipoPeticion;
+import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
+import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
@@ -67,14 +72,20 @@ public class EstadisticasController implements Controllable {
 	public void inicializarGraphicDestinosReservados() {
 		// Crea una serie de datos
 		XYChart.Series<String, Number> series = new XYChart.Series<>();
-		series.getData().add(new XYChart.Data<>("San Andres", 10));
-		series.getData().add(new XYChart.Data<>("Cartagena", 20));
-		series.getData().add(new XYChart.Data<>("Santa Marta", 15));
-
-		// Agrega la serie al BarChart
-		graphicDestinosReservados.getData().add(series);
-
-	}
+		PeticionController <Void, List<Destino>> peticion = new PeticionController<Void, List<Destino>>(TipoPeticion.LISTAR_DESTINO, null);
+		
+		try {
+			List<Destino> realizarPeticion = peticion.realizarPeticion();
+			for (Destino destino : realizarPeticion) {
+			    String etiqueta= destino.getNombre();
+			        series.getData().add(new XYChart.Data<>(etiqueta, destino.getPromedio()));
+			        graphicDestinosReservados.getData().add(series);
+			    }
+		} catch (PeticionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        }
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void inicializarGraficaPaquetes() {
@@ -130,4 +141,8 @@ public class EstadisticasController implements Controllable {
 	public void clearData() {
 		cargarGraficos();
 	}
+	
+	public void imprimirInformacionDestinos(List<Destino> destinos) {
+        
+    }
 }
