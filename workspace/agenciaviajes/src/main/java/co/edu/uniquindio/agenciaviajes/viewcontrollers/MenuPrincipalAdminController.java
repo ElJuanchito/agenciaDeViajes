@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaviajes.application.App;
+import co.edu.uniquindio.agenciaviajes.services.Controllable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -14,7 +15,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.SVGPath;
 
-public class MenuPrincipalAdminController {
+public class MenuPrincipalAdminController implements Controllable {
 
 	@FXML
 	private BorderPane centerPane;
@@ -80,11 +81,6 @@ public class MenuPrincipalAdminController {
 
 	}
 
-	@FXML
-	void initialize() {
-
-	}
-
 	private void cambiarVentana(String fxmlname) {
 		try {
 			Node nodo = App.loadFXML(fxmlname);
@@ -96,6 +92,24 @@ public class MenuPrincipalAdminController {
 
 	public void setCenter(Node node) {
 		centerPane.setCenter(node);
+	}
+
+	@Override
+	public void preInicializar() {
+	}
+
+	@Override
+	public void updateLanguage(ResourceBundle bundle) {
+		lblBtnDestinos.setText(bundle.getString("MenuPrincipalAdminController.lblBtnDestinos"));
+		lblbtnPaquetes.setText(bundle.getString("MenuPrincipalAdminController.lblbtnPaquetes"));
+		lblBtnGuias.setText(bundle.getString("MenuPrincipalAdminController.lblBtnGuias"));
+		lblBtnClientes.setText(bundle.getString("MenuPrincipalAdminController.lblBtnClientes"));
+	}
+
+	@Override
+	public void clearData() {
+		// TODO Auto-generated method stub
+
 	}
 
 }

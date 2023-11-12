@@ -55,7 +55,7 @@ public class CrearReservaController implements DataControllable<Paquete> {
 
 	@Override
 	public void preInicializar() {
-	
+
 		CrearReservaLogicController instance = CrearReservaLogicController.getInstance();
 
 		clmId.setCellValueFactory(instance.crearColID());
@@ -82,7 +82,21 @@ public class CrearReservaController implements DataControllable<Paquete> {
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
+		lblTitle.setText(bundle.getString("CrearReservaController.lblTitle"));
+		lblinfoPackage.setText(bundle.getString("CrearReservaController.lblinfoPackage"));
+		lblFecha.setText(bundle.getString("CrearReservaController.lblFecha"));
+		lblRangoDisponible.setText(bundle.getString("CrearReservaController.lblRangoDisponible"));
+		lblFechaInicial.setText(bundle.getString("CrearReservaController.lblFechaInicial"));
+		lblFechaFinal.setText(bundle.getString("CrearReservaController.lblFechaFinal"));
+		lblCant.setText(bundle.getString("CrearReservaController.lblCant"));
+		lblCupoMaximo.setText(bundle.getString("CrearReservaController.lblCupoMaximo"));
+		lblGuia.setText(bundle.getString("CrearReservaController.lblGuia"));
+		clmIdioma.setText(bundle.getString("CrearReservaController.clmIdioma"));
+		clmId.setText(bundle.getString("CrearReservaController.clmId"));
+		clmName.setText(bundle.getString("CrearReservaController.clmName"));
+		clmExp.setText(bundle.getString("CrearReservaController.clmExp"));
+		btnLimpiarSeleccion.setText(bundle.getString("CrearReservaController.btnLimpiarSeleccion"));
+		btnReservar.setText(bundle.getString("CrearReservaController.btnReservar"));
 	}
 
 	@Override

@@ -10,7 +10,6 @@ import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import co.edu.uniquindio.agenciaviajes.utils.UtilsFX;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
-import javafx.animation.ParallelTransition;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,31 +30,13 @@ public class DestinoDetailsController implements DataControllable<Destino> {
 	private URL location;
 
 	@FXML
-	private Button btnNext;
-
-	@FXML
-	private Button btnPrevious;
+	private Button btnNext, btnPrevious;
 
 	@FXML
 	private ImageView imgDestino;
 
 	@FXML
-	private Label lblCiudad;
-
-	@FXML
-	private Label lblClima;
-
-	@FXML
-	private Label lblDescription;
-
-	@FXML
-	private Label lblTitle;
-
-	@FXML
-	private Label txtCiudad;
-
-	@FXML
-	private Label txtClima;
+	private Label lblCiudad, lblClima, lblDescription, lblTitle, txtCiudad, txtClima;
 
 	@FXML
 	private TextArea txtDescription;
@@ -68,8 +49,6 @@ public class DestinoDetailsController implements DataControllable<Destino> {
 	private List<Image> listaImagenes = new ArrayList<Image>();
 
 	private Timeline timelinePt1;
-
-	private ParallelTransition timelineHover;
 
 	@FXML
 	void nextEvent(ActionEvent event) {
@@ -100,10 +79,6 @@ public class DestinoDetailsController implements DataControllable<Destino> {
 			double xBigPos = (310 - 280 * relacionAspecto) / 2;
 
 			imgDestino.setX(timelinePt1.getRate() == -1 ? xSmallPos : xBigPos);
-
-			KeyFrame keyFrame = new KeyFrame(Duration.millis(0), new KeyValue(imgDestino.xProperty(), xSmallPos));
-			KeyFrame keyFrame2 = new KeyFrame(Duration.millis(100), new KeyValue(imgDestino.xProperty(), xBigPos));
-			timelineHover = new ParallelTransition(new Timeline(keyFrame, keyFrame2), timelinePt1);
 		}
 	}
 
@@ -125,8 +100,10 @@ public class DestinoDetailsController implements DataControllable<Destino> {
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
-
+		lblCiudad.setText(bundle.getString("DestinoDetailsController.lblCiudad"));
+		lblClima.setText(bundle.getString("DestinoDetailsController.lblClima"));
+		lblDescription.setText(bundle.getString("DestinoDetailsController.lblDescription"));
+		lblTitle.setText(bundle.getString("DestinoDetailsController.lblTitle"));
 	}
 
 	@Override

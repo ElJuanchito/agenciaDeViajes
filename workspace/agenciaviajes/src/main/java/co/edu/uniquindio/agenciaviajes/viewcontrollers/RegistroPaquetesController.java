@@ -145,7 +145,7 @@ public class RegistroPaquetesController implements Controllable {
 
 			tblSeleccionados.refresh();
 			tblDestinos.refresh();
-			
+
 		}
 
 	}
@@ -153,15 +153,15 @@ public class RegistroPaquetesController implements Controllable {
 	@Override
 	public void preInicializar() {
 		// ***************************************************************
-		// listDestinos = FXCollections.observableArrayList();           *
-		// listSeleccionados = FXCollections.observableArrayList();      *
-		//                                                               *
-		// TODO Todavia se ha definido si utilizadoremos una clase       *
-		// adminsitradora clasica (AgenciaViajes) o si utiliza           *
-		// una clase tipo manejadora de entidades                        *
-		//                                                               *
+		// listDestinos = FXCollections.observableArrayList(); *
+		// listSeleccionados = FXCollections.observableArrayList(); *
+		// *
+		// TODO Todavia se ha definido si utilizadoremos una clase *
+		// adminsitradora clasica (AgenciaViajes) o si utiliza *
+		// una clase tipo manejadora de entidades *
+		// *
 		// ***************************************************************
-		
+
 		UtilsFX.setAsNameTextField(txtNombre);
 		UtilsFX.setAsIntegerTextfield(txtDuracion);
 		UtilsFX.setAsNumberTextfield(txtDuracion);
@@ -170,8 +170,29 @@ public class RegistroPaquetesController implements Controllable {
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
-
+		lblTitulo.setText(bundle.getString("RegistroPaquetesController.lblTitulo"));
+		lblNombre.setText(bundle.getString("RegistroPaquetesController.lblNombre"));
+		txtNombre.setPromptText(bundle.getString("RegistroPaquetesController.txtNombre"));
+		lblDuracion.setText(bundle.getString("RegistroPaquetesController.lblDuracion"));
+		txtDuracion.setPromptText(bundle.getString("RegistroPaquetesController.txtDuracion"));
+		lblServicios.setText(bundle.getString("RegistroPaquetesController.lblServicios"));
+		txtServicios.setPromptText(bundle.getString("RegistroPaquetesController.txtServicios"));
+		lblPrecio.setText(bundle.getString("RegistroPaquetesController.lblPrecio"));
+		txtPrecio.setPromptText(bundle.getString("RegistroPaquetesController.txtPrecio"));
+		lblCupo.setText(bundle.getString("RegistroPaquetesController.lblCupo"));
+		txtCupo.setPromptText(bundle.getString("RegistroPaquetesController.txtCupo"));
+		lblFechaInicio.setText(bundle.getString("RegistroPaquetesController.lblFechaInicio"));
+		dpInicio.setPromptText(bundle.getString("RegistroPaquetesController.dpInicio"));
+		lblFechaFin.setText(bundle.getString("RegistroPaquetesController.lblFechaFin"));
+		dpFin.setPromptText(bundle.getString("RegistroPaquetesController.dpFin"));
+		lblSeleccionar.setText(bundle.getString("RegistroPaquetesController.lblSeleccionar"));
+		colId.setText(bundle.getString("RegistroPaquetesController.colId"));
+		colNombre.setText(bundle.getString("RegistroPaquetesController.colNombre"));
+		colCiudad.setText(bundle.getString("RegistroPaquetesController.colCiudad"));
+		colDescripcion.setText(bundle.getString("RegistroPaquetesController.colDescripcion"));
+		colClima.setText(bundle.getString("RegistroPaquetesController.colClima"));
+		colIdSelect.setText(bundle.getString("RegistroPaquetesController.colIdSelect"));
+		colNombreSelect.setText(bundle.getString("RegistroPaquetesController.colNombreSelect"));
 	}
 
 	@Override
