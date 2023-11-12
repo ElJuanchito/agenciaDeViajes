@@ -1,5 +1,7 @@
 package co.edu.uniquindio.agenciaviajes.model;
 
+import java.io.Serializable;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +12,11 @@ import lombok.NonNull;
 @NoArgsConstructor
 @Data
 @Builder
-public class Comentario {
+public class Comentario implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@NonNull
 	private Cliente cliente;
 	@NonNull

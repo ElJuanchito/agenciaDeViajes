@@ -19,6 +19,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -43,7 +44,7 @@ import lombok.ToString;
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
-public class Destino implements Serializable{
+public class Destino implements Comentable, Serializable {
 	/**
 	 * 
 	 */
@@ -78,10 +79,14 @@ public class Destino implements Serializable{
 	@ToString.Include
 	private TipoDestino tipoDestino;
 
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+	@MapKeyJoinColumn(name = "cliente_id")
 	private Map<Cliente, Comentario> mapComentarios;
 
 	@ManyToMany(mappedBy = "destinos")
 	private List<Paquete> paquetes;
+
+	private List<Reserva> reservas;
 
 	/**
 	 * @param nombre
@@ -100,6 +105,7 @@ public class Destino implements Serializable{
 		this.clima = clima;
 		this.imagenes = new ArrayList<Imagen>();
 		this.paquetes = new ArrayList<Paquete>();
+		this.reservas = new ArrayList<Reserva>();
 		this.mapComentarios = new HashMap<Cliente, Comentario>();
 	}
 
@@ -299,5 +305,22 @@ public class Destino implements Serializable{
 		if (tipoDestino == preferencia.getTipoDestino())
 			cont++;
 		return cont;
+	}
+
+	public void addReserva(Reserva reserva) {
+		reservas.add(reserva);
+	}
+
+	public boolean clienteFueDestino(Cliente cliente, int i) {
+		if (i >= reservas.size())
+			return false;
+		if (reservas.get(i).clienteEstuvoAlli(cliente))
+			return true;
+		return clienteFueDestino(cliente, i + 1);
+	}
+
+	@Override
+	public boolean clientePuedeComentar(Cliente cliente) {
+		return clienteFueDestino(cliente, 0);
 	}
 }

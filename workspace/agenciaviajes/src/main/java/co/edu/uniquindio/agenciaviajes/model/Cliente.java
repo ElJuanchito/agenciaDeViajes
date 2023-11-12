@@ -6,12 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 import co.edu.uniquindio.agenciaviajes.exceptions.ReservaNoExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.ReservaYaExistenteException;
 import lombok.Builder;
@@ -21,14 +15,16 @@ import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
-@Table(name = "clientes")
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 public class Cliente extends Usuario implements Loginable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@NonNull
 	private String email;
 	@NonNull
@@ -39,12 +35,10 @@ public class Cliente extends Usuario implements Loginable {
 	@NonNull
 	private String contrasena;
 
-	@OneToMany
 	private List<Reserva> reservas;
 
 	private List<Preferencia> preferencias;
 
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, optional = true)
 	private Imagen imagen;
 
 	/**

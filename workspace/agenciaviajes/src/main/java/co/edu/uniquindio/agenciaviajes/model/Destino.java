@@ -4,22 +4,11 @@
  */
 package co.edu.uniquindio.agenciaviajes.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.ImagenNoExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.ImagenNoObtenidaException;
@@ -35,16 +24,17 @@ import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
-@Table(name = "destinos")
 @NoArgsConstructor
 @Setter
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
-public class Destino implements Comentable {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Destino implements Comentable , Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@EqualsAndHashCode.Include
 	@ToString.Include
 	private Long id;
@@ -61,20 +51,16 @@ public class Destino implements Comentable {
 	@ToString.Include
 	private String descripcion;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
 	private List<Imagen> imagenes;
 
-	@Enumerated(EnumType.STRING)
 	@ToString.Include
 	private Clima clima;
 
-	@Enumerated(EnumType.STRING)
 	@ToString.Include
 	private TipoDestino tipoDestino;
 
 	private Map<Cliente, Comentario> mapComentarios;
 
-	@ManyToMany(mappedBy = "destinos")
 	private List<Paquete> paquetes;
 
 	private List<Reserva> reservas;

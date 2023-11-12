@@ -1,19 +1,11 @@
 package co.edu.uniquindio.agenciaviajes.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.DestinoNoExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.DestinoYaExistenteException;
@@ -27,15 +19,15 @@ import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
-@Table(name = "paquetes")
 @NoArgsConstructor
 @Setter
 @Getter
 @ToString
-public class Paquete {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Paquete implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@EqualsAndHashCode.Include
 	private Long id;
 	@NonNull
@@ -55,8 +47,6 @@ public class Paquete {
 
 	@NonNull
 	private String descripcionCorta, descripcion;
-	@ManyToMany
-	@JoinTable(name = "paquete_destino", joinColumns = @JoinColumn(name = "paquete_id"), inverseJoinColumns = @JoinColumn(name = "destino_id"))
 	private List<Destino> destinos;
 
 	/**

@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import co.edu.uniquindio.agenciaserver.exceptions.DestinoNoExistenteException;
 import co.edu.uniquindio.agenciaserver.exceptions.DestinoYaExistenteException;
 import co.edu.uniquindio.agenciaserver.exceptions.PaqueteNoExistenteException;
+import co.edu.uniquindio.agenciaserver.utils.MathUtils;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -263,6 +264,34 @@ public class Paquete implements Serializable{
 	public void eliminarDestino(Long id) throws DestinoNoExistenteException {
 		throwDestinoNoExistente(id);
 		elminarDestinoAux(id, 0);
+	}
+	
+	private List<Imagen> getDestinosImages(List<Imagen> imagenes,int i){
+		if(i==destinos.size()) 
+			return imagenes ;
+		imagenes.add(destinos.get(i).getImagenes().get(0));
+		return getDestinosImages(imagenes, i+1);
+		
+	}
+	public List<Imagen> listarImagenesDestino(){
+		List<Imagen> imagenes= new ArrayList<Imagen>();
+		return getDestinosImages(imagenes, 0);
+		
+	}
+	
+	private double getAcumPromedios(double promedio,int i) {
+		if(i==destinos.size())
+			return promedio;
+		return getAcumPromedios(promedio + destinos.get(i).getPromedio(), i+1);
+	}
+	
+	public double getPromedioDestinos() {
+		double prom=5;
+		if(destinos.size()!=0) {
+			prom= (getAcumPromedios(0, 0))/destinos.size();
+		}
+		return MathUtils.round(prom,1);
+		
 	}
 
 }
