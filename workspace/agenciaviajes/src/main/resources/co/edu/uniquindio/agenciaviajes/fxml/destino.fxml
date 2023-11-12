@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -12,6 +13,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+
 
 <BorderPane maxHeight="-Infinity" maxWidth="310.0" minHeight="-Infinity" onMouseClicked="#changeViewEvent" onMouseEntered="#hoverPanelEvent" onMouseExited="#unhoverPanelEvent" prefWidth="310.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.DestinoController">
    <top>
@@ -21,8 +23,16 @@
                <content>
                   <AnchorPane>
                      <children>
-                        <ImageView fx:id="imgDestino" fitHeight="220.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="imgDestino2" fitHeight="220.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgDestino" fitHeight="220.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/hola3.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="imgDestino2" fitHeight="220.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/hola3.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </content>

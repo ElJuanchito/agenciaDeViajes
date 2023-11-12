@@ -5,9 +5,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import animatefx.animation.FadeIn;
-import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
-import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
 import co.edu.uniquindio.agenciaviajes.ui.Vista;
 import co.edu.uniquindio.agenciaviajes.utils.DatosQuemadosAux;
@@ -40,18 +38,14 @@ public class ViewDestinosController implements Controllable {
 
 	private List<Destino> destinos;
 
-	private List<Paquete> paquetes;
-
 	@Override
 	public void preInicializar() {
 		new Thread(this::inicializarDestinos).start();
-
 	}
 
 	private void inicializarDestinos() {
 		destinos = null;
 		MainPaneController.getInstance().ejecutarProcesoDoble(() -> {
-			// aca toca que cambiar en lugar de datos quemados un llamado al data service
 			destinos = DatosQuemadosAux.getInstance().getPaquete().getDestinos();
 		}, () -> {
 			for (Destino destino : destinos) {

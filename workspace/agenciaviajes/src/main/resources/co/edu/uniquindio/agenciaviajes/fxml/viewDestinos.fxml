@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="mainPane" alignment="CENTER" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" stylesheets="@../styles/texto.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.ViewDestinosController">
+
+<VBox fx:id="mainPane" alignment="CENTER" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.ViewDestinosController">
    <children>
-      <Label fx:id="lblTitle" styleClass="subTitle" text="Destinos">
-         <VBox.margin>
-            <Insets bottom="20.0" />
-         </VBox.margin></Label>
+      <Label fx:id="lblTitle" text="Destinos" />
       <GridPane fx:id="contentPane" alignment="CENTER" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" vgap="30.0" VBox.vgrow="ALWAYS">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints prefHeight="400.0" vgrow="SOMETIMES" />
+          <RowConstraints vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
    </children>
