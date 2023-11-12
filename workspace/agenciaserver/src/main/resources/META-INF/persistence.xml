@@ -6,12 +6,16 @@
 
   <persistence-unit name="aplicacion">
   	
-  	<class>co.edu.uniquindio.agenciaviajes.model.Cliente</class>
-  	<class>co.edu.uniquindio.agenciaviajes.model.Destino</class>
-  	<class>co.edu.uniquindio.agenciaviajes.model.GuiaTuristico</class>
-  	<class>co.edu.uniquindio.agenciaviajes.model.Paquete</class>
-  	<class>co.edu.uniquindio.agenciaviajes.model.Reserva</class>
-  	<class>co.edu.uniquindio.agenciaviajes.model.Usuario</class>
+  	<class>co.edu.uniquindio.agenciaserver.model.Administrador</class>
+  	<class>co.edu.uniquindio.agenciaserver.model.Cliente</class>
+  	<class>co.edu.uniquindio.agenciaserver.model.Comentario</class>
+  	<class>co.edu.uniquindio.agenciaserver.model.Destino</class>
+  	<class>co.edu.uniquindio.agenciaserver.model.GuiaTuristico</class>
+  	<class>co.edu.uniquindio.agenciaserver.model.Imagen</class>
+  	<class>co.edu.uniquindio.agenciaserver.model.Paquete</class>
+  	<class>co.edu.uniquindio.agenciaserver.model.Preferencia</class>
+  	<class>co.edu.uniquindio.agenciaserver.model.Reserva</class>
+  	<class>co.edu.uniquindio.agenciaserver.model.Usuario</class>
   	
     <properties>
         <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
