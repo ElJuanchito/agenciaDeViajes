@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1082.0" prefWidth="733.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1082.0" prefWidth="733.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.PdfFacturaController">
    <children>
       <ImageView fitHeight="84.0" fitWidth="84.0" layoutX="13.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -87,7 +87,7 @@
          <children>
             <VBox prefHeight="620.0" prefWidth="320.0" spacing="10.0" style="-fx-border-width: 1; -fx-border-radius: 5; -fx-border-color: #14133b;">
                <children>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" text="Estado">
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" text="Paquete">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -96,7 +96,7 @@
                         <String fx:value="name" />
                      </styleClass>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" text="Veterinario">
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" text="Destinos">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -105,7 +105,7 @@
                         <String fx:value="name" />
                      </styleClass>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" text="Mascota">
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" text="Fecha de ida">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -114,7 +114,7 @@
                         <String fx:value="name" />
                      </styleClass>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" text="Tipo">
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" text="Fecha de regreso">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -123,7 +123,7 @@
                         <String fx:value="name" />
                      </styleClass>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" text="Sexo">
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="329.0" text="Cantidad de personas">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -132,7 +132,7 @@
                         <String fx:value="name" />
                      </styleClass>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="145.0" prefWidth="329.0" text="Diagnostico">
+                  <Label alignment="CENTER" prefHeight="145.0" prefWidth="329.0" text="Guia">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -141,16 +141,7 @@
                         <String fx:value="name" />
                      </styleClass>
                   </Label>
-                  <Label alignment="CENTER" prefHeight="145.0" prefWidth="329.0" text="Tratamiento">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <styleClass>
-                        <String fx:value="dato" />
-                        <String fx:value="name" />
-                     </styleClass>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="325.0" text="Precio">
+                  <Label alignment="CENTER" prefHeight="145.0" prefWidth="329.0" text="Servicios adicionales">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -163,42 +154,37 @@
             </VBox>
             <VBox prefHeight="620.0" prefWidth="371.0" spacing="10.0" style="-fx-border-width: 1; -fx-border-radius: 5; -fx-border-color: #14133b;">
                <children>
-                  <Label fx:id="lblEstadoAtencion" alignment="BASELINE_CENTER" prefHeight="40.0" prefWidth="416.0" text="lblEstadoAtencion">
+                  <Label fx:id="lblPaquete" alignment="BASELINE_CENTER" prefHeight="40.0" prefWidth="416.0" text="lblPaquete">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblVeterinarioAtencion" alignment="BASELINE_CENTER" prefHeight="40.0" prefWidth="416.0" text="lblVeterinarioAtencion">
+                  <Label fx:id="lblDestinos" alignment="BASELINE_CENTER" prefHeight="40.0" prefWidth="416.0" text="lblDestinos">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblMascotaAtencion" alignment="BASELINE_CENTER" prefHeight="40.0" prefWidth="416.0" text="lblMascotaAtencion">
+                  <Label fx:id="lblFechaIda" alignment="BASELINE_CENTER" prefHeight="40.0" prefWidth="416.0" text="lblFechaIda">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblTipoAtencion" alignment="BASELINE_CENTER" prefHeight="40.0" prefWidth="416.0" text="lblTipoAtencion">
+                  <Label fx:id="lblFechaRegreso" alignment="BASELINE_CENTER" prefHeight="40.0" prefWidth="416.0" text="lblFechaRegreso">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblSexoAtencion" alignment="BASELINE_CENTER" prefHeight="40.0" prefWidth="416.0" text="lblSexoAtencion">
+                  <Label fx:id="lblCantidadPersonas" alignment="BASELINE_CENTER" prefHeight="40.0" prefWidth="416.0" text="lblCantidadPersonas">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblDiagnosticoAtencion" alignment="BASELINE_CENTER" prefHeight="145.0" prefWidth="401.0" text="lblDiagnosticoAtencion" wrapText="true">
+                  <Label fx:id="lblIncluyeGuia" alignment="BASELINE_CENTER" prefHeight="145.0" prefWidth="401.0" text="lblIncluyeGuia" wrapText="true">
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblTranatemientoAtencion" alignment="BASELINE_CENTER" prefHeight="145.0" prefWidth="390.0" text="lblTratamientoAtencion">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lblPrecioAtencion" alignment="BASELINE_CENTER" prefHeight="40.0" prefWidth="397.0" text="lblPrecioAtencion">
+                  <Label fx:id="lblServiciosAdicionales" alignment="BASELINE_CENTER" prefHeight="145.0" prefWidth="390.0" text="lblServiciosAdicionales">
                      <font>
                         <Font size="16.0" />
                      </font>
