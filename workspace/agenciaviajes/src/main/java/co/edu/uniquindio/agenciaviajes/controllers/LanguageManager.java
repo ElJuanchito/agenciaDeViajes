@@ -7,7 +7,7 @@ import co.edu.uniquindio.agenciaviajes.services.Traducible;
 import javafx.beans.property.SimpleObjectProperty;
 
 public class LanguageManager {
-	private static final String ROUTE = "/co/edu/uniquindio/agenciaviajes/properties/fxmlprop";
+	private static final String ROUTE = "/co/edu/uniquindio/agenciaviajes/properties/properties";
 	private static LanguageManager instance;
 	private SimpleObjectProperty<ResourceBundle> bundleProperty;
 

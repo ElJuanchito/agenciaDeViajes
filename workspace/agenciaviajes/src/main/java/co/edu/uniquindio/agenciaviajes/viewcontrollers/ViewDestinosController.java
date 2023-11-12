@@ -65,10 +65,11 @@ public class ViewDestinosController implements Controllable {
 
 	private void realizarPeticionDestinos() {
 		try {
-			destinos = new PeticionController<Void, List<Destino>>(TipoPeticion.LISTAR_DESTINO, null).realizarPeticion();
+			destinos = new PeticionController<Void, List<Destino>>(TipoPeticion.LISTAR_DESTINO, null)
+					.realizarPeticion();
 		} catch (PeticionException e) {
 			destinos = new ArrayList<Destino>();
-			throw new RuntimeException();
+			MainPaneController.getInstance().showAlert("No se pudo realizar la peticion" + e.getMessage());
 		}
 	}
 
