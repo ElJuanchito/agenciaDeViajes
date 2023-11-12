@@ -94,7 +94,7 @@ public class ViewDestinosController implements Controllable {
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO
+		lblTitle.setText(bundle.getString("ViewDestinosController.lblTitle"));
 	}
 
 	@Override

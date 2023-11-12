@@ -80,8 +80,7 @@ public class ViewPaquetesController implements Controllable {
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
-
+		lblTitle.setText(bundle.getString("ViewPaquetesController.lblTitle"));
 	}
 
 	@Override

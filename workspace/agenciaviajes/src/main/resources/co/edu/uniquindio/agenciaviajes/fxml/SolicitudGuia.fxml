@@ -22,7 +22,7 @@
          </VBox.margin>
       </HBox>
       <TextField fx:id="txtBuscar" promptText="Buscar" styleClass="cajaTexto" stylesheets="@../styles/cajaTexto.css" />
-      <TableView fx:id="tableClientes" styleClass="table-row-cell" stylesheets="@../styles/tableStyle.css">
+      <TableView fx:id="tableGuias" styleClass="table-row-cell" stylesheets="@../styles/tableStyle.css">
         <columns>
           <TableColumn fx:id="colNombre" prefWidth="75.0" text="Nombre" />
           <TableColumn fx:id="colIdentificacion" prefWidth="75.0" text="Identificacion" />

@@ -13,11 +13,26 @@ public class PDFFacturaController implements DataControllable<Reserva> {
 	private Label lblCodFactura, lblDiagnosticoAtencion, lblDireccionCliente, lblEstadoAtencion, lblFacturaFecha,
 			lblFacturaHora, lblMascotaAtencion, lblNombreCliente, lblPrecioAtencion, lblSexoAtencion,
 			lblTelefonoCliente, lblTipoAtencion, lblTranatemientoAtencion, lblVeterinarioAtencion, lblEstado,
-			lblVeterinario, lblMascota, lblTipo, lblSexo, lblDiagnostico, lblTratamiento, lblPrecio;
+			lblVeterinario, lblMascota, lblTipo, lblSexo, lblDiagnostico, lblTratamiento, lblPrecio, lblLema,
+			lblFacturaPara, lblTelefono, lblDireccion, lblFactura, lblThx;
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
+		lblEstado.setText(bundle.getString("PDFFacturaController.lblEstado"));
+		lblVeterinario.setText(bundle.getString("PDFFacturaController.lblVeterinario"));
+		lblMascota.setText(bundle.getString("PDFFacturaController.lblMascota"));
+		lblTipo.setText(bundle.getString("PDFFacturaController.lblTipo"));
+		lblSexo.setText(bundle.getString("PDFFacturaController.lblSexo"));
+		lblDiagnostico.setText(bundle.getString("PDFFacturaController.lblDiagnostico"));
+		lblTratamiento.setText(bundle.getString("PDFFacturaController.lblTratamiento"));
+		lblPrecio.setText(bundle.getString("PDFFacturaController.lblPrecio"));
+		lblLema.setText(bundle.getString("PDFFacturaController.lblLema"));
+		lblFacturaPara.setText(bundle.getString("PDFFacturaController.lblFacturaPara"));
+		lblTelefono.setText(bundle.getString("PDFFacturaController.lblTelefono"));
+		lblDireccion.setText(bundle.getString("PDFFacturaController.lblDireccion"));
+		lblFactura.setText(bundle.getString("PDFFacturaController.lblFactura"));
+		lblThx.setText(bundle.getString("PDFFacturaController.lblThx"));
+
 	}
 
 	@Override

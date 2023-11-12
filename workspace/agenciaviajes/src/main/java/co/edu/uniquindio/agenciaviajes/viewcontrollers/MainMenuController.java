@@ -7,7 +7,6 @@ import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.exceptions.MovimientoIndefinidoException;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
-import co.edu.uniquindio.agenciaviajes.utils.DatosQuemadosAux;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -101,7 +100,9 @@ public class MainMenuController implements Controllable {
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
+		lblBtnDestinos.setText(bundle.getString("MainMenuController.lblBtnDestinos"));
+		lblbtnPaquetes.setText(bundle.getString("MainMenuController.lblbtnPaquetes"));
+		lblBtnGuias.setText(bundle.getString("MainMenuController.lblBtnGuias"));
 	}
 
 	@Override
@@ -136,7 +137,7 @@ public class MainMenuController implements Controllable {
 	private void paquetesAction() {
 		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
-				VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETES,null);
+				VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETES, null);
 			} catch (FXMLException e) {
 				throw new RuntimeException(e);
 			}

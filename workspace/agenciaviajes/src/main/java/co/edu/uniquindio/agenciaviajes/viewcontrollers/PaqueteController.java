@@ -11,7 +11,6 @@ import animatefx.util.ParallelAnimationFX;
 import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
 import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
-import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import co.edu.uniquindio.agenciaviajes.utils.UtilsFX;
@@ -36,8 +35,8 @@ import javafx.util.Duration;
 import lombok.Getter;
 import lombok.Setter;
 
-public class PaqueteController implements DataControllable<Paquete>{
-	
+public class PaqueteController implements DataControllable<Paquete> {
+
 	@FXML
 	private ResourceBundle resources;
 
@@ -90,9 +89,9 @@ public class PaqueteController implements DataControllable<Paquete>{
 	void changeViewEvent(MouseEvent event) {
 		try {
 			VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETE_DETAILS, paquete);
-			
+
 		} catch (FXMLException e) {
-			throw  new RuntimeException(e);
+			throw new RuntimeException(e);
 		}
 	}
 
@@ -104,7 +103,7 @@ public class PaqueteController implements DataControllable<Paquete>{
 	private void hoverPanelAction() {
 		animacionHover.playFromStart();
 	}
-	
+
 	private void unhoverPanelAction() {
 		animacionHover.stop();
 		animacionHover.setRate(-1);
@@ -114,11 +113,8 @@ public class PaqueteController implements DataControllable<Paquete>{
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
-		
 	}
-	
-	
+
 	private void showNextImage() {
 		currentIndex++;
 		if (currentIndex >= listaImagenes.size())
@@ -127,7 +123,6 @@ public class PaqueteController implements DataControllable<Paquete>{
 	}
 
 	private void showImage() {
-		// TODO Auto-generated method stub
 		if (currentIndex >= 0 && currentIndex < listaImagenes.size()) {
 			Image imagen = listaImagenes.get(currentIndex);
 			isFistImageShowing = !isFistImageShowing;
@@ -152,28 +147,26 @@ public class PaqueteController implements DataControllable<Paquete>{
 			}
 			new ParallelAnimationFX(fadeInUp, fadeOutDown).play();
 		}
-		
+
 	}
 
 	@Override
 	public void clearData() {
-		// TODO Auto-generated method stub
 		txtName.setText("");
 		listaImagenes.clear();
 		imgDestino.setImage(defaultImage);
 		imgDestino2.setImage(defaultImage);
-		//showImage();
+		// showImage();
 		currentIndex = 0;
 
 		this.paquete = null;
-		
+
 	}
 
 	@Override
 	public void inicializarDatos(Paquete dato) {
-		// TODO Auto-generated method stub
-		this.paquete=dato;
-		if(paquete==null) {
+		this.paquete = dato;
+		if (paquete == null) {
 			clearData();
 			return;
 		}
@@ -185,11 +178,10 @@ public class PaqueteController implements DataControllable<Paquete>{
 		currentIndex = -1;
 		timeline.stop();
 		timeline.playFromStart();
-		
+
 	}
 
 	private void actualizarPuntaje(double puntuacion) {
-		// TODO Auto-generated method stub
 		txtPuntuacion.setText(String.valueOf(puntuacion));
 
 		for (int i = 0; i < stars.length; i++) {
@@ -203,12 +195,11 @@ public class PaqueteController implements DataControllable<Paquete>{
 			else
 				star.setFill(Color.WHITE);
 		}
-		
+
 	}
 
 	@Override
 	public void preInicializar() {
-		// TODO Auto-generated method stub
 		starFill = new Color(0.1529, 0.0196, 0.4392, 1.0);
 		defaultImage = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/white.png"));
 		stars = new SVGPath[5];
@@ -229,20 +220,16 @@ public class PaqueteController implements DataControllable<Paquete>{
 				new KeyValue(scrollDescripcion.prefHeightProperty(), 80d));
 		animacionHover = new Timeline(valorInicial, valorFinal);
 		ejecutarAnimacionImagenes();
-		
+
 	}
 
 	private void ejecutarAnimacionImagenes() {
-		// TODO Auto-generated method stub
 		currentIndex = -1;
 		timeline = new Timeline(new KeyFrame(Duration.millis(10), e -> showNextImage()),
 				new KeyFrame(Duration.millis(5000)));
 		timeline.setCycleCount(-1);
 		timeline.play();
-		
+
 	}
-
-	
-
 
 }

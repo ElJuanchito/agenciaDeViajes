@@ -93,8 +93,14 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
-
+		lblPaquete.setText(bundle.getString("PaqueteDetailsController.lblPaquete"));
+		lblInfoCupos.setText(bundle.getString("PaqueteDetailsController.lblInfoCupos"));
+		btnReservar.setText(bundle.getString("PaqueteDetailsController.btnReservar"));
+		lblPrecio.setText(bundle.getString("PaqueteDetailsController.lblPrecio"));
+		lblServiciosExtra.setText(bundle.getString("PaqueteDetailsController.lblServiciosExtra"));
+		lblDestinos.setText(bundle.getString("PaqueteDetailsController.lblDestinos"));
+		lblFechaInicial.setText(bundle.getString("PaqueteDetailsController.lblFechaInicial"));
+		lblFechaFinal.setText(bundle.getString("PaqueteDetailsController.lblFechaFinal"));
 	}
 
 	@Override
