@@ -71,7 +71,15 @@ public class RegistrationController implements DataControllable<Pair<Runnable, S
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
+		txtIdentificacion.setText(bundle.getString("RegistrationController.txtIdentificacion"));
+		txtNombre.setPromptText(bundle.getString("RegistrationController.txtNombre"));
+		txtPassword.setPromptText(bundle.getString("RegistrationController.txtPassword"));
+		txtEmail.setPromptText(bundle.getString("RegistrationController.txtEmail"));
+		txtTelefono.setPromptText(bundle.getString("RegistrationController.txtTelefono"));
+		txtDireccion.setPromptText(bundle.getString("RegistrationController.txtDireccion"));
+		btnRegistro.setText(bundle.getString("RegistrationController.btnRegistro"));
+		lblYaRegistrado.setText(bundle.getString("RegistrationController.lblYaRegistrado"));
+		btnLogin.setText(bundle.getString("RegistrationController.btnLogin"));
 	}
 
 	@Override

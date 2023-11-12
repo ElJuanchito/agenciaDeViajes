@@ -36,19 +36,10 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 	@FXML
 	private URL location;
 	@FXML
-	private Button btnIniciar;
+	private Button btnIniciar, btnRegistrar;
 
 	@FXML
-	private Button btnRegistrar;
-
-	@FXML
-	private Label lblInfo;
-
-	@FXML
-	private Label lblNoRegistrado;
-
-	@FXML
-	private Label lblTitle;
+	private Label lblInfo, lblNoRegistrado, lblTitle;
 
 	@FXML
 	private HBox root;
@@ -133,8 +124,13 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
-
+		lblTitle.setText(bundle.getString("LoginController.lblTitle"));
+		lblInfo.setText(bundle.getString("LoginController.lblInfo"));
+		txtEmail.setPromptText(bundle.getString("LoginController.txtEmail"));
+		txtPassword.setPromptText(bundle.getString("LoginController.txtPassword"));
+		btnIniciar.setText(bundle.getString("LoginController.btnIniciar"));
+		lblNoRegistrado.setText(bundle.getString("LoginController.lblNoRegistrado"));
+		btnRegistrar.setText(bundle.getString("LoginController.btnRegistrar"));
 	}
 
 	@Override

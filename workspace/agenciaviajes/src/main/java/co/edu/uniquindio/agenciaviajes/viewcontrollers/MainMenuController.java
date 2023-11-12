@@ -1,13 +1,17 @@
 package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
 import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.exceptions.MovimientoIndefinidoException;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
-import co.edu.uniquindio.agenciaviajes.utils.DatosQuemadosAux;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -16,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.SVGPath;
+import javafx.util.Duration;
 import javafx.util.Pair;
 
 public class MainMenuController implements Controllable {
@@ -45,7 +50,18 @@ public class MainMenuController implements Controllable {
 
 	@FXML
 	private ScrollPane scrollCenter;
-
+	
+	
+	
+	private boolean isMenuExtended = false;
+	private boolean isLanguageMenuExtended = false;
+	private Timeline timelineMenu;
+	private Timeline timelineLanguage;
+	private Consumer<Boolean> consumerMenu;
+	private Consumer<Boolean> consumerLanguage;
+	
+	
+	
 	@FXML
 	void backEvent(ActionEvent event) {
 		backAction();
@@ -101,7 +117,9 @@ public class MainMenuController implements Controllable {
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
+		lblBtnDestinos.setText(bundle.getString("MainMenuController.lblBtnDestinos"));
+		lblbtnPaquetes.setText(bundle.getString("MainMenuController.lblbtnPaquetes"));
+		lblBtnGuias.setText(bundle.getString("MainMenuController.lblBtnGuias"));
 	}
 
 	@Override
@@ -136,8 +154,7 @@ public class MainMenuController implements Controllable {
 	private void paquetesAction() {
 		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
-				VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETE_DETAILS,
-						DatosQuemadosAux.getInstance().getPaquete());
+				VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETES, null);
 			} catch (FXMLException e) {
 				throw new RuntimeException(e);
 			}
@@ -180,6 +197,29 @@ public class MainMenuController implements Controllable {
 				throw new RuntimeException(e);
 			}
 		});
+	}
+	
+	public void crearAnimacionExtension(DoubleProperty widthProperty, DoubleProperty opacityProperty,
+			DoubleProperty rotacionSVG, Consumer<Boolean> consumerMenu) {
+		timelineMenu = new Timeline();
+		timelineMenu.getKeyFrames().add(new KeyFrame(Duration.millis(0), new KeyValue(widthProperty, 0d),
+				new KeyValue(opacityProperty, 0d), new KeyValue(rotacionSVG, 0d)));
+		timelineMenu.getKeyFrames().add(new KeyFrame(Duration.millis(100), new KeyValue(opacityProperty, 1d),
+				new KeyValue(widthProperty, 212d), new KeyValue(rotacionSVG, 90d)));
+		this.consumerMenu = consumerMenu;
+	}
+	
+	public void ejecutarAnimacionMenu() {
+		consumerMenu.accept(isMenuExtended);
+		if (isMenuExtended) {
+			timelineMenu.stop();
+			timelineMenu.setRate(-1);
+			timelineMenu.jumpTo(Duration.millis(100));
+			timelineMenu.play();
+		} else {
+			timelineMenu.playFromStart();
+		}
+		isMenuExtended = !isMenuExtended;
 	}
 
 }

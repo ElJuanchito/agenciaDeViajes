@@ -31,10 +31,7 @@ public class RegistroDestinoController implements Controllable {
 	private URL location;
 
 	@FXML
-	private Button btnAgregar;
-
-	@FXML
-	private Button btnSeleccionar;
+	private Button btnAgregar, btnSeleccionar;
 
 	@FXML
 	private ComboBox<Clima> cbClima;
@@ -43,31 +40,10 @@ public class RegistroDestinoController implements Controllable {
 	private GridPane contentPane;
 
 	@FXML
-	private Label lblCiudad;
+	private Label lblCiudad, lblClima, lblDescripcion, lblNombre, lblSeleccionarImagen, lblTitulo;
 
 	@FXML
-	private Label lblClima;
-
-	@FXML
-	private Label lblDescripcion;
-
-	@FXML
-	private Label lblNombre;
-
-	@FXML
-	private Label lblSeleccionarImagen;
-
-	@FXML
-	private Label lblTitulo;
-
-	@FXML
-	private TextField txtCiudad;
-
-	@FXML
-	private TextField txtDescripcion;
-
-	@FXML
-	private TextField txtNombre;
+	private TextField txtCiudad, txtDescripcion, txtNombre;
 
 	private int rowIndex = 0;
 	private int colIndex = 0;
@@ -121,8 +97,18 @@ public class RegistroDestinoController implements Controllable {
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
-
+		lblTitulo.setText(bundle.getString("RegistroDestinoController.lblTitulo"));
+		lblNombre.setText(bundle.getString("RegistroDestinoController.lblNombre"));
+		txtNombre.setPromptText(bundle.getString("RegistroDestinoController.txtNombre"));
+		lblCiudad.setText(bundle.getString("RegistroDestinoController.lblCiudad"));
+		txtCiudad.setPromptText(bundle.getString("RegistroDestinoController.txtCiudad"));
+		lblDescripcion.setText(bundle.getString("RegistroDestinoController.lblDescripcion"));
+		txtDescripcion.setPromptText(bundle.getString("RegistroDestinoController.txtDescripcion"));
+		lblClima.setText(bundle.getString("RegistroDestinoController.lblClima"));
+		cbClima.setPromptText(bundle.getString("RegistroDestinoController.cbClima"));
+		lblSeleccionarImagen.setText(bundle.getString("RegistroDestinoController.lblSeleccionarImagen"));
+		btnSeleccionar.setText(bundle.getString("RegistroDestinoController.btnSeleccionar"));
+		btnAgregar.setText(bundle.getString("RegistroDestinoController.btnAgregar"));
 	}
 
 	@Override

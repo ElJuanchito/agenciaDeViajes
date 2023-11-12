@@ -30,7 +30,17 @@
       </HBox>
       <Label fx:id="lblInfoDescripcion" layoutX="143.0" layoutY="45.0" maxWidth="1.7976931348623157E308" styleClass="descriptionText" text="Descripcion" textFill="#270570" wrapText="true">
          <VBox.margin>
-            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            <Insets />
+         </VBox.margin>
+      </Label>
+      <Label fx:id="lblServiciosExtra" layoutX="234.0" layoutY="419.0" styleClass="subTitle" text="Servicios Adicionales">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+      </Label>
+      <Label fx:id="lblInfoServiciosExtra" layoutX="212.0" layoutY="460.0" maxWidth="1.7976931348623157E308" styleClass="descriptionText" text="El paquete cartagena aventurero cuenta con algunos servicios adicionales como lo es desayuno y almuerzo a los turistas" textAlignment="JUSTIFY" wrapText="true">
+         <VBox.margin>
+            <Insets />
          </VBox.margin>
       </Label>
       <Label fx:id="lblDestinos" styleClass="subTitle" text="Destinos" />
@@ -69,19 +79,12 @@
             <Label fx:id="lblInfoFechaFinal" layoutX="10.0" layoutY="10.0" styleClass="descriptionText" text="00/00/2023" />
          </children>
       </HBox>
-      <Label fx:id="lblServiciosExtra" layoutX="234.0" layoutY="419.0" styleClass="subTitle" text="Servicios Adicionales">
-         <VBox.margin>
-            <Insets top="15.0" />
-         </VBox.margin>
-      </Label>
-      <Label fx:id="lblInfoServiciosExtra" layoutX="212.0" layoutY="460.0" maxWidth="1.7976931348623157E308" styleClass="descriptionText" text="El paquete cartagena aventurero cuenta con algunos servicios adicionales como lo es desayuno y almuerzo a los turistas" textAlignment="JUSTIFY" wrapText="true">
-         <VBox.margin>
-            <Insets bottom="15.0" left="15.0" right="15.0" />
-         </VBox.margin>
-      </Label>
    </children>
    <stylesheets>
       <URL value="@../styles/texto.css" />
       <URL value="@../styles/boton.css" />
    </stylesheets>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
 </VBox>

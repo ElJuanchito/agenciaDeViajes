@@ -42,7 +42,7 @@ import lombok.ToString;
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
-public class Destino {
+public class Destino implements Comentable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
@@ -77,6 +77,9 @@ public class Destino {
 	@ManyToMany(mappedBy = "destinos")
 	private List<Paquete> paquetes;
 
+	@OneToMany(mappedBy = "destinos")
+	private List<Reserva> reservas;
+
 	/**
 	 * @param nombre
 	 * @param ciudad
@@ -94,6 +97,7 @@ public class Destino {
 		this.clima = clima;
 		this.imagenes = new ArrayList<Imagen>();
 		this.paquetes = new ArrayList<Paquete>();
+		this.reservas = new ArrayList<Reserva>();
 		this.mapComentarios = new HashMap<Cliente, Comentario>();
 	}
 
@@ -293,5 +297,22 @@ public class Destino {
 		if (tipoDestino == preferencia.getTipoDestino())
 			cont++;
 		return cont;
+	}
+
+	public void addReserva(Reserva reserva) {
+		reservas.add(reserva);
+	}
+
+	public boolean clienteFueDestino(Cliente cliente, int i) {
+		if (i >= reservas.size())
+			return false;
+		if (reservas.get(i).clienteEstuvoAlli(cliente))
+			return true;
+		return clienteFueDestino(cliente, i + 1);
+	}
+
+	@Override
+	public boolean clientePuedeComentar(Cliente cliente) {
+		return clienteFueDestino(cliente, 0);
 	}
 }

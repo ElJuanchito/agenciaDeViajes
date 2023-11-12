@@ -23,7 +23,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class GuiaTuristico extends Usuario {
+public class GuiaTuristico extends Usuario implements Comentable {
 	@NonNull
 	@ElementCollection(targetClass = Idioma.class)
 	private List<Idioma> idiomas;
@@ -33,6 +33,7 @@ public class GuiaTuristico extends Usuario {
 	@OneToOne
 	private Imagen imagen;
 
+// TODO lista de reservas en las que este el guia, un cliente puede comentar en el guia en caso de que haya hecho la reserva (en reserva ya esta el metodo) 
 	/**
 	 * @param identificacion
 	 * @param nombreCompleto
@@ -107,6 +108,11 @@ public class GuiaTuristico extends Usuario {
 	public void eliminarIdioma(Idioma idioma) throws IdiomaNoExistenteException {
 		throwIdiomaNoExistente(idioma);
 		idiomas.remove(idioma);
+	}
+
+	@Override
+	public boolean clientePuedeComentar(Cliente cliente) {
+		return false;
 	}
 
 }

@@ -1,14 +1,17 @@
 package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import animatefx.animation.FadeIn;
+import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
+import co.edu.uniquindio.agenciaviajes.controllers.TipoPeticion;
 import co.edu.uniquindio.agenciaviajes.controllers.Vista;
+import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
-import co.edu.uniquindio.agenciaviajes.utils.DatosQuemadosAux;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -40,19 +43,33 @@ public class ViewDestinosController implements Controllable {
 
 	@Override
 	public void preInicializar() {
+		reiniciarDestinos();
+	}
+
+	private void reiniciarDestinos() {
 		new Thread(this::inicializarDestinos).start();
 	}
 
 	private void inicializarDestinos() {
 		destinos = null;
 		MainPaneController.getInstance().ejecutarProcesoDoble(() -> {
-			destinos = DatosQuemadosAux.getInstance().getPaquete().getDestinos();
+			// aca toca que cambiar en lugar de datos quemados un llamado al data service
+			realizarPeticionDestinos();
 		}, () -> {
 			for (Destino destino : destinos) {
 				agregarDestino(destino);
 			}
 		});
 
+	}
+
+	private void realizarPeticionDestinos() {
+		try {
+			destinos = new PeticionController<Void, List<Destino>>(TipoPeticion.LISTAR, null).realizarPeticion();
+		} catch (PeticionException e) {
+			destinos = new ArrayList<Destino>();
+			throw new RuntimeException();
+		}
 	}
 
 	public void agregarDestino(Destino destino) {
@@ -77,12 +94,12 @@ public class ViewDestinosController implements Controllable {
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO
+		lblTitle.setText(bundle.getString("ViewDestinosController.lblTitle"));
 	}
 
 	@Override
 	public void clearData() {
-		// TODO
+		reiniciarDestinos();
 	}
 
 }

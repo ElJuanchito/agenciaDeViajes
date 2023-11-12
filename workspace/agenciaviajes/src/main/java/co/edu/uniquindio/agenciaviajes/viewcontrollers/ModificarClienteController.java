@@ -2,6 +2,8 @@ package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import co.edu.uniquindio.agenciaviajes.services.Controllable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,62 +13,62 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
-public class ModificarClienteController {
+public class ModificarClienteController implements Controllable {
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private URL location;
 
-    @FXML
-    private HBox root;
+	@FXML
+	private HBox root;
 
-    @FXML
-    private StackPane stackImg;
+	@FXML
+	private StackPane stackImg;
 
-    @FXML
-    private Button btnBack;
+	@FXML
+	private Button btnBack, btnActualizar;
 
-    @FXML
-    private Label lblTitle;
+	@FXML
+	private Label lblTitle, lblInfo;
 
-    @FXML
-    private Label lblInfo;
+	@FXML
+	private TextField txtIdentificacion, txtNombre, txtEmail, txtTelefono, txtDireccion;
+	@FXML
+	private PasswordField txtPassword;
 
-    @FXML
-    private TextField txtIdentificacion;
+	@FXML
+	void actualizarEvent(ActionEvent event) {
 
-    @FXML
-    private PasswordField txtPassword;
+	}
 
-    @FXML
-    private TextField txtNombre;
+	@FXML
+	void backEvent(ActionEvent event) {
 
-    @FXML
-    private TextField txtEmail;
+	}
 
-    @FXML
-    private TextField txtTelefono;
+	@Override
+	public void preInicializar() {
+	}
 
-    @FXML
-    private TextField txtDireccion;
+	@Override
+	public void updateLanguage(ResourceBundle bundle) {
+		lblTitle.setText(bundle.getString("ModificarClienteController.lblTitle"));
+		lblInfo.setText(bundle.getString("ModificarClienteController.lblInfo"));
+		txtIdentificacion.setPromptText(bundle.getString("ModificarClienteController.txtIdentificacion"));
+		txtNombre.setPromptText(bundle.getString("ModificarClienteController.txtNombre"));
+		txtPassword.setPromptText(bundle.getString("ModificarClienteController.txtPassword"));
+		txtEmail.setPromptText(bundle.getString("ModificarClienteController.txtEmail"));
+		txtTelefono.setPromptText(bundle.getString("ModificarClienteController.txtTelefono"));
+		txtDireccion.setPromptText(bundle.getString("ModificarClienteController.txtDireccion"));
+		btnActualizar.setText(bundle.getString("ModificarClienteController.btnRegistro"));
+	}
 
-    @FXML
-    private Button btnActualizar;
+	@Override
+	public void clearData() {
+		// TODO Auto-generated method stub
 
-    @FXML
-    void actualizarEvent(ActionEvent event) {
+	}
 
-    }
-
-    @FXML
-    void backEvent(ActionEvent event) {
-
-    }
-
-    @FXML
-    void initialize() {
-
-    }
 }

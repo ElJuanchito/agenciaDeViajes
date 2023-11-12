@@ -5,7 +5,6 @@
 package co.edu.uniquindio.agenciaviajes.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +19,6 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -61,6 +59,10 @@ public class Reserva {
 		this.paquete = paquete;
 		this.guia = guiaTuristico;
 		this.estado = estado;
+	}
+
+	public boolean clienteEstuvoAlli(Cliente cliente) {
+		return this.cliente.equals(cliente) && estado == Estado.REALIZADA;
 	}
 
 }

@@ -150,8 +150,17 @@ public class RegistroGuiaController implements Controllable {
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
-
+		lblTitle.setText(bundle.getString("RegistroGuiaController.lblTitle"));
+		lblIdentificacion.setText(bundle.getString("RegistroGuiaController.lblIdentificacion"));
+		txtIdentificacion.setText(bundle.getString("RegistroGuiaController.txtIdentificacion"));
+		lblNombre.setText(bundle.getString("RegistroGuiaController.lblNombre"));
+		txtNombre.setText(bundle.getString("RegistroGuiaController.txtNombre"));
+		lblHoras.setText(bundle.getString("RegistroGuiaController.lblHoras"));
+		txtHoras.setText(bundle.getString("RegistroGuiaController.txtHoras"));
+		lblImagen.setText(bundle.getString("RegistroGuiaController.lblImagen"));
+		btnImagen.setText(bundle.getString("RegistroGuiaController.btnImagen"));
+		lblImagenSeleccionada.setText(bundle.getString("RegistroGuiaController.lblImagenSeleccionada"));
+		btnRegistrar.setText(bundle.getString("RegistroGuiaController.btnRegistrar"));
 	}
 
 	@Override

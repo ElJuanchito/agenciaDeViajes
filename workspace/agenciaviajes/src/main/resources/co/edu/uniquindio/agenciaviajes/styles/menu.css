@@ -1,0 +1,27 @@
+.izq-menu {
+	-fx-background-color: white;
+}
+.izq-menu .label {
+	-fx-font-weight: bold;
+	-fx-font-size: 15.0;
+	-fx-text-overrun: CLIP;
+	-fx-min-width: 0.0;	
+	-fx-min-height: 50.0;
+	-fx-max-width: 1000000.0;
+}
+.izq-menu .scroll-pane {
+    -fx-background: white;
+    -fx-background-insets: 0.0;
+    -fx-border-color: transparent;
+   	-fx-min-width: 0.0;	
+    -fx-border-width: 0.0;
+}
+.izq-menu .boton {
+	-fx-background-color: #00000000;
+}
+.izq-menu .boton:hover {
+	-fx-background-color: #00000020;
+}
+.izq-menu .boton:pressed {
+	-fx-background-color: #00000040;
+}

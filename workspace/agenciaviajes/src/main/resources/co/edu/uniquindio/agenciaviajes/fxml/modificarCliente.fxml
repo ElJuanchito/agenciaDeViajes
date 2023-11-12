@@ -59,7 +59,7 @@
             </ScrollPane>
             <VBox alignment="CENTER" minWidth="0.0" style="-fx-background-color: white;">
                <children>
-                  <Button fx:id="btnRegistro" minHeight="40.0" minWidth="0.0" mnemonicParsing="false" onAction="#registroEvent" prefHeight="40.0" prefWidth="474.0" styleClass="boton" stylesheets="@../styles/boton.css" text="Actualizar" />
+                  <Button fx:id="btnActualizar" minHeight="40.0" minWidth="0.0" mnemonicParsing="false" onAction="#actualizarEvent" prefHeight="40.0" prefWidth="474.0" styleClass="boton" stylesheets="@../styles/boton.css" text="Actualizar" />
                   <HBox alignment="BASELINE_RIGHT" minWidth="0.0" />
                </children>
             </VBox>
