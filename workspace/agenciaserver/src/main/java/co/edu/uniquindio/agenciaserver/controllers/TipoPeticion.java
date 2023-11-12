@@ -1,4 +1,4 @@
-package co.edu.uniquindio.agenciaviajes.controllers;
+package co.edu.uniquindio.agenciaserver.controllers;
 
 public enum TipoPeticion {
 	HACER_LOGIN,
