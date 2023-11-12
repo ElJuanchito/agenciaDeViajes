@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 public enum Estado {
-	PENDIENTE("Pendiente"), CONFIRMADA("Confirmada"), CANCELADA("Cancelada");
+	PENDIENTE("Pendiente"), CONFIRMADA("Confirmada"), CANCELADA("Cancelada"), REALIZADA("Realizada");
 
 	@Getter
 	private String estado;
