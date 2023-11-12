@@ -18,8 +18,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-public class ViewDestinosController implements Controllable {
-
+public class ViewPaquetesController implements Controllable{
+	
+	
 	@FXML
 	private ResourceBundle resources;
 
@@ -38,40 +39,47 @@ public class ViewDestinosController implements Controllable {
 	private int rowIndex = 0;
 	private int colIndex = 0;
 
-	private List<Destino> destinos;
-
+	
 	private List<Paquete> paquetes;
+
 
 	@Override
 	public void preInicializar() {
-		new Thread(this::inicializarDestinos).start();
-
+		// TODO Auto-generated method stub
+		new Thread(this::inicializarPaquetes).start();
+		
 	}
 
-	private void inicializarDestinos() {
-		destinos = null;
-		MainPaneController.getInstance().ejecutarProcesoDoble(() -> {
-			// aca toca que cambiar en lugar de datos quemados un llamado al data service
-			destinos = DatosQuemadosAux.getInstance().getPaquete().getDestinos();
-		}, () -> {
-			for (Destino destino : destinos) {
-				agregarDestino(destino);
+	
+	private void inicializarPaquetes() {
+		paquetes =null;
+		MainPaneController.getInstance().ejecutarProcesoDoble(()->{
+			paquetes= DatosQuemadosAux.getInstance().obtenerListaPaquetes();
+		}, ()->{
+			for(Paquete paquete: paquetes) {
+				agregarPaquetes(paquete);
 			}
 		});
-
+		
 	}
-
-	public void agregarDestino(Destino destino) {
+	
+	
+	private void agregarPaquetes(Paquete paquete) {
+		// TODO Auto-generated method stub
+		//Falta crear la ventana de paquete aunque no se si modificar la misma de destino
 		try {
-			Vista<Destino> view = Vista.buildView("destino");
-			view.getController().inicializarDatos(destino);
-			Platform.runLater(() -> cargarDestinoVista(view.getParent()));
-
-		} catch (Exception e) {
+			Vista<Paquete> view= Vista.buildView("paquete");
+			view.getController().inicializarDatos(paquete);
+			Platform.runLater(()-> cargarDestinoVista(view.getParent()));
+		} catch (FXMLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	
 	}
-
+	
+	
 	private void cargarDestinoVista(Parent parent) {
 		FadeIn fadeIn = new FadeIn(parent);
 		contentPane.add(parent, colIndex, rowIndex);
@@ -83,12 +91,15 @@ public class ViewDestinosController implements Controllable {
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO
+		// TODO Auto-generated method stub
+		
 	}
+
 
 	@Override
 	public void clearData() {
-		// TODO
+		// TODO Auto-generated method stub
+		
 	}
 
 }
