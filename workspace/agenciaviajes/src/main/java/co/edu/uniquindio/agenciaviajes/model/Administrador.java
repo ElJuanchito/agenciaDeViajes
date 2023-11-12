@@ -1,7 +1,5 @@
 package co.edu.uniquindio.agenciaviajes.model;
 
-import javax.persistence.OneToOne;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -12,10 +10,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Administrador extends Usuario implements Loginable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@NonNull
 	private String contrasena;
 
-	@OneToOne
 	private Imagen imagen;
 
 	public Administrador(@NonNull String identificacion, @NonNull String nombreCompleto, @NonNull String contrasena,

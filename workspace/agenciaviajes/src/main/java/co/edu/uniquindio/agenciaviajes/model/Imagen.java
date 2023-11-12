@@ -3,14 +3,9 @@ package co.edu.uniquindio.agenciaviajes.model;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.imageio.ImageIO;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.ImagenNoObtenidaException;
 import javafx.embed.swing.SwingFXUtils;
@@ -21,17 +16,17 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.ToString;
 
-@Entity
 @NoArgsConstructor
-@Table(name = "imagenes")
 @Data
-public class Imagen {
+public class Imagen implements Serializable{
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Long id;
 
-	@Lob
 	@NonNull
 	@EqualsAndHashCode.Exclude
 	@ToString.Exclude

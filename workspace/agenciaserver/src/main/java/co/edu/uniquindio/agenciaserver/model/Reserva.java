@@ -4,6 +4,7 @@
  */
 package co.edu.uniquindio.agenciaserver.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
@@ -35,7 +36,11 @@ import lombok.ToString;
 @AllArgsConstructor
 
 @ToString
-public class Reserva {
+public class Reserva implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
@@ -59,6 +64,10 @@ public class Reserva {
 		this.paquete = paquete;
 		this.guia = guiaTuristico;
 		this.estado = estado;
+	}
+
+	public boolean clienteEstuvoAlli(Cliente cliente) {
+		return this.cliente.equals(cliente) && estado == Estado.REALIZADA;
 	}
 
 }

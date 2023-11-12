@@ -5,11 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 import co.edu.uniquindio.agenciaviajes.exceptions.IdiomaNoExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.IdiomaYaExistenteException;
 import lombok.Builder;
@@ -19,20 +14,20 @@ import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity
-@Table(name = "guias")
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 public class GuiaTuristico extends Usuario implements Comentable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@NonNull
-	@ElementCollection(targetClass = Idioma.class)
 	private List<Idioma> idiomas;
 	@NonNull
 	private Integer expHoras;
 
-	@OneToOne
 	private Imagen imagen;
 	
 	private List<Reserva> reservas;

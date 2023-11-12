@@ -4,15 +4,8 @@
  */
 package co.edu.uniquindio.agenciaviajes.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,8 +19,6 @@ import lombok.ToString;
  * 
  * @author ElJuancho
  */
-@Entity
-@Table(name = "reservas")
 @NoArgsConstructor
 @Getter
 @Setter
@@ -35,19 +26,18 @@ import lombok.ToString;
 @AllArgsConstructor
 
 @ToString
-public class Reserva {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Reserva implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@EqualsAndHashCode.Include
 	private Long id;
 	private LocalDate fechaSolicitud;
-	@ManyToOne
 	private Cliente cliente;
 	private Integer cantPersonas;
-	@OneToOne
 	private Paquete paquete;
 
-	@ManyToOne
 	private GuiaTuristico guia;
 	private Estado estado;
 
