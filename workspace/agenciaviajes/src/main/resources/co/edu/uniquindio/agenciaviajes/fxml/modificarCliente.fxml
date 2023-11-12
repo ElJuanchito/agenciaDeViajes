@@ -36,7 +36,7 @@
                <content>
                   <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="0.0" spacing="10.0" style="-fx-background-color: white;">
                      <children>
-                        <TextField fx:id="txtIdentificacion" minWidth="0.0" promptText="Identificacion" styleClass="cajaTexto" stylesheets="@../styles/cajaTexto.css" />
+                        <TextField fx:id="txtIdentificacion" editable="false" minWidth="0.0" promptText="Identificacion" styleClass="cajaTexto" stylesheets="@../styles/cajaTexto.css" />
                         <TextField fx:id="txtNombre" minWidth="0.0" promptText="Nombre Completo" styleClass="cajaTexto" stylesheets="@../styles/cajaTexto.css" />
                         <PasswordField fx:id="txtPassword" minWidth="0.0" promptText="Password" styleClass="cajaTexto" stylesheets="@../styles/cajaTexto.css">
                            <VBox.margin>

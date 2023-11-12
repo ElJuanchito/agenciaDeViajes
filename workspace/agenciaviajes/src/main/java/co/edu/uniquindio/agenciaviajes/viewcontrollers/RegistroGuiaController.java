@@ -11,6 +11,7 @@ import co.edu.uniquindio.agenciaviajes.model.Imagen;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
 import co.edu.uniquindio.agenciaviajes.utils.DatosQuemadosAux;
 import co.edu.uniquindio.agenciaviajes.utils.UtilsFX;
+import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -130,9 +131,11 @@ public class RegistroGuiaController implements Controllable {
 		imagenPane.setPrefSize(0, 0);
 		imagenPane.setMinSize(0, 0);
 
-		UtilsFX.setAsIntegerTextfield(txtIdentificacion);
-		UtilsFX.setAsNameTextField(txtNombre);
-		UtilsFX.setAsIntegerTextfield(txtHoras);
+		Platform.runLater(() -> {
+			UtilsFX.setAsIntegerTextfield(txtIdentificacion);
+			UtilsFX.setAsNameTextField(txtNombre);
+			UtilsFX.setAsIntegerTextfield(txtHoras);
+		});
 
 		listIdioma = FXCollections.observableArrayList(Idioma.values());
 		listSelect = FXCollections.observableArrayList();
@@ -152,11 +155,11 @@ public class RegistroGuiaController implements Controllable {
 	public void updateLanguage(ResourceBundle bundle) {
 		lblTitle.setText(bundle.getString("RegistroGuiaController.lblTitle"));
 		lblIdentificacion.setText(bundle.getString("RegistroGuiaController.lblIdentificacion"));
-		txtIdentificacion.setText(bundle.getString("RegistroGuiaController.txtIdentificacion"));
+		txtIdentificacion.setPromptText(bundle.getString("RegistroGuiaController.txtIdentificacion"));
 		lblNombre.setText(bundle.getString("RegistroGuiaController.lblNombre"));
-		txtNombre.setText(bundle.getString("RegistroGuiaController.txtNombre"));
+		txtNombre.setPromptText(bundle.getString("RegistroGuiaController.txtNombre"));
 		lblHoras.setText(bundle.getString("RegistroGuiaController.lblHoras"));
-		txtHoras.setText(bundle.getString("RegistroGuiaController.txtHoras"));
+		txtHoras.setPromptText(bundle.getString("RegistroGuiaController.txtHoras"));
 		lblImagen.setText(bundle.getString("RegistroGuiaController.lblImagen"));
 		btnImagen.setText(bundle.getString("RegistroGuiaController.btnImagen"));
 		lblImagenSeleccionada.setText(bundle.getString("RegistroGuiaController.lblImagenSeleccionada"));

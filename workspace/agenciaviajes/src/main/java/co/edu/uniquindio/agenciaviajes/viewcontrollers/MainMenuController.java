@@ -122,25 +122,31 @@ public class MainMenuController implements Controllable {
 	private void perfilClickAction() {
 		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
-				VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, new Pair<Runnable, String>(() -> {
-					try {
-						VistaManager.getInstance().cambiarVista(TipoVista.MENU_PRINCIPAL_CLIENTE, null);
-					} catch (FXMLException e) {
-						throw new RuntimeException(e);
-					}
-				}, ""));
+				cambiarVistaLogin();
 			} catch (FXMLException e) {
 				throw new RuntimeException(e);
 			}
 		});
 	}
 
+	private void cambiarVistaLogin() throws FXMLException {
+		VistaManager.getInstance().cambiarVista(TipoVista.LOGIN, new Pair<Runnable, String>(() -> {
+			try {
+				VistaManager.getInstance().cambiarVista(TipoVista.MENU_PRINCIPAL_CLIENTE, null);
+			} catch (FXMLException e) {
+				throw new RuntimeException(e);
+			}
+		}, ""));
+	}
+
 	private void guiasAction() {
-		try {
-			VistaManager.getInstance().cambiarVistaCliente(TipoVista.REGISTRO_GUIA, null);
-		} catch (FXMLException e) {
-			throw new RuntimeException(e);
-		}
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				VistaManager.getInstance().cambiarVistaCliente(TipoVista.REGISTRO_GUIA, null);
+			} catch (FXMLException e) {
+				throw new RuntimeException(e);
+			}
+		});
 	}
 
 	private void paquetesAction() {
