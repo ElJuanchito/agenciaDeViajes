@@ -37,7 +37,7 @@ public class CrearReservaLogicController {
 		Reserva reserva = Reserva.builder().cliente((Cliente) DataController.getInstance().getLoginActual())
 				.cantPersonas(cantPersonas).paquete(paquete).guiaTuristico(guiaTuristico).build();
 		try {
-			Reserva reservaNueva = new PeticionController<Reserva, Reserva>(TipoPeticion.AGREGAR, reserva)
+			Reserva reservaNueva = new PeticionController<Reserva, Reserva>(TipoPeticion.GUARDAR_RESERVA, reserva)
 					.realizarPeticion();
 			MainPaneController.getInstance()
 					.showAlertAccept("Se ha creado una reserva, ¿quieres recibir un comprobante?", () -> {
