@@ -13,7 +13,7 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 
-public class estadisticasController {
+public class EstadisticasController {
 
 	@FXML
 	private ResourceBundle resources;
@@ -52,7 +52,7 @@ public class estadisticasController {
 	void initialize() {
 		inicializarGraphicDestinosBuscados();
     	inicializarGraphicDestinosReservados();
-    	inicializarGraficaPaquetes();
+    	inicializarGraphicPaquetes();
     	inicializarGraphicGuias();
     }
     
@@ -82,7 +82,7 @@ public class estadisticasController {
     }
     
     @SuppressWarnings({ "rawtypes", "unchecked" })
-	public void inicializarGraficaPaquetes() {
+	public void inicializarGraphicPaquetes() {
         // Crear una serie de datos
         XYChart.Series series = new XYChart.Series();
         series.getData().add(new XYChart.Data("Dato 1", 10));
