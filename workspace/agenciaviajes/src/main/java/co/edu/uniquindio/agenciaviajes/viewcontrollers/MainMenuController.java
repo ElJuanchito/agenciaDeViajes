@@ -3,10 +3,12 @@ package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 import java.util.ResourceBundle;
 import java.util.function.Consumer;
 
+import co.edu.uniquindio.agenciaviajes.controllers.DataController;
 import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
 import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.exceptions.MovimientoIndefinidoException;
+import co.edu.uniquindio.agenciaviajes.model.Cliente;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -19,6 +21,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
 import javafx.util.Pair;
@@ -44,6 +49,9 @@ public class MainMenuController implements Controllable {
 
 	@FXML
 	private SVGPath btnPerfil;
+
+	@FXML
+	private Circle circleImage;
 
 	@FXML
 	private Label lblBtnDestinos, lblBtnGuias, lblbtnPaquetes;
@@ -97,6 +105,18 @@ public class MainMenuController implements Controllable {
 
 	@Override
 	public void preInicializar() {
+		DataController.getInstance().getLoginActual().addListener((observable, oldValue, newValue) -> {
+			if (DataController.getInstance().usuarioEsCliente()) {
+				Cliente cliente = (Cliente) newValue;
+				if (cliente.getImagen() != null) {
+					circleImage.setFill(new ImagePattern(cliente.getImagen().getImage()));
+				} else {
+					circleImage.setFill(Color.TRANSPARENT);
+				}
+			} else {
+				circleImage.setFill(Color.TRANSPARENT);
+			}
+		});
 		VistaManager.getInstance().getObsAnteriorCliente().addListener((observable, oldValue, newValue) -> {
 			btnBack.setDisable(!newValue);
 		});

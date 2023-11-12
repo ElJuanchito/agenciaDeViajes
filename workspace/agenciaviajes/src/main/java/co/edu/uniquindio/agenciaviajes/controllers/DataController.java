@@ -3,9 +3,11 @@ package co.edu.uniquindio.agenciaviajes.controllers;
 import co.edu.uniquindio.agenciaviajes.model.Cliente;
 import co.edu.uniquindio.agenciaviajes.model.Loginable;
 import javafx.beans.property.SimpleObjectProperty;
+import lombok.Getter;
 
 public class DataController {
 
+	@Getter
 	private SimpleObjectProperty<Loginable> loginActual;
 	private static DataController instance;
 
@@ -19,7 +21,7 @@ public class DataController {
 		loginActual = new SimpleObjectProperty<>();
 	}
 
-	public Loginable getLoginActual() {
+	public Loginable getLoginActualValue() {
 		return loginActual.getValue();
 	}
 

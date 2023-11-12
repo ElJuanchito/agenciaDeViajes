@@ -34,7 +34,7 @@ public class CrearReservaLogicController {
 
 	public void crearReserva(Integer cantPersonas, Paquete paquete, GuiaTuristico guiaTuristico) {
 
-		Reserva reserva = Reserva.builder().cliente((Cliente) DataController.getInstance().getLoginActual())
+		Reserva reserva = Reserva.builder().cliente((Cliente) DataController.getInstance().getLoginActualValue())
 				.cantPersonas(cantPersonas).paquete(paquete).guiaTuristico(guiaTuristico).build();
 		try {
 			Reserva reservaNueva = new PeticionController<Reserva, Reserva>(TipoPeticion.GUARDAR_RESERVA, reserva)

@@ -84,7 +84,7 @@ public class ModificarClienteController implements DataControllable<Pair<Runnabl
 	public void inicializarDatos(Pair<Runnable, String> dato) {
 		runnableVolver = dato.getKey();
 		if (DataController.getInstance().usuarioEsCliente()) {
-			Cliente cliente = (Cliente) DataController.getInstance().getLoginActual();
+			Cliente cliente = (Cliente) DataController.getInstance().getLoginActualValue();
 			txtIdentificacion.setText(cliente.getIdentificacion());
 			txtNombre.setText(cliente.getNombreCompleto());
 			txtPassword.setText("");
