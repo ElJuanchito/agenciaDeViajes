@@ -15,6 +15,7 @@ public class PeticionController<Obj, Resultado> {
 	public PeticionController(TipoPeticion tipo, Obj objeto) {
 		this.tipo = tipo;
 		this.objeto = objeto;
+		
 	}
 
 	public Resultado realizarPeticion() throws PeticionException {
