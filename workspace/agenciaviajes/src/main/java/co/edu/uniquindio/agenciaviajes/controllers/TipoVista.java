@@ -9,7 +9,7 @@ import lombok.Getter;
 public enum TipoVista {
 	LOGIN("login"), DESTINOS("viewDestinos"), REGISTRO("registration"), PAQUETE_DETAILS("paqueteDetails"),
 	MENU_PRINCIPAL_CLIENTE("menuPrincipal"), CREAR_RESERVA("crearReserva"), REGISTRO_GUIA("registroGuia"),
-	MENU_PRINCIPAL_ADMIN("menuPrincipalAdmins"), NONE("none");
+	MENU_PRINCIPAL_ADMIN("menuPrincipalAdmins"), NONE("none"), PAQUETES("viewPaquetes");
 
 	private String ruta;
 }

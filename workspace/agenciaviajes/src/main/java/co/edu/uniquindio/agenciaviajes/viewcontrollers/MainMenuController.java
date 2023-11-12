@@ -136,8 +136,7 @@ public class MainMenuController implements Controllable {
 	private void paquetesAction() {
 		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
-				VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETE_DETAILS,
-						DatosQuemadosAux.getInstance().getPaquete());
+				VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETES,null);
 			} catch (FXMLException e) {
 				throw new RuntimeException(e);
 			}
