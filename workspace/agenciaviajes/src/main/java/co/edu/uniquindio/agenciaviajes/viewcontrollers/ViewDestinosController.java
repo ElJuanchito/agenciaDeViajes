@@ -65,7 +65,7 @@ public class ViewDestinosController implements Controllable {
 
 	private void realizarPeticionDestinos() {
 		try {
-			destinos = new PeticionController<Void, List<Destino>>(TipoPeticion.LISTAR, null).realizarPeticion();
+			destinos = new PeticionController<Void, List<Destino>>(TipoPeticion.LISTAR_DESTINO, null).realizarPeticion();
 		} catch (PeticionException e) {
 			destinos = new ArrayList<Destino>();
 			throw new RuntimeException();

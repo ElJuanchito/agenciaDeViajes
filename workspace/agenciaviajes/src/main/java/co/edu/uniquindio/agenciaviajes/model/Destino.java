@@ -77,7 +77,6 @@ public class Destino implements Comentable {
 	@ManyToMany(mappedBy = "destinos")
 	private List<Paquete> paquetes;
 
-	@OneToMany(mappedBy = "destinos")
 	private List<Reserva> reservas;
 
 	/**
