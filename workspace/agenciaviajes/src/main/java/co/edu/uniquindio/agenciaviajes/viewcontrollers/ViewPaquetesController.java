@@ -1,16 +1,17 @@
-package co.edu.uniquindio.agenciaviajes.controllers;
+package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import animatefx.animation.FadeIn;
+import co.edu.uniquindio.agenciaviajes.controllers.Vista;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
-import co.edu.uniquindio.agenciaviajes.ui.Vista;
 import co.edu.uniquindio.agenciaviajes.utils.DatosQuemadosAux;
+import co.edu.uniquindio.agenciaviajes.viewcontrollers.MainPaneController;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
