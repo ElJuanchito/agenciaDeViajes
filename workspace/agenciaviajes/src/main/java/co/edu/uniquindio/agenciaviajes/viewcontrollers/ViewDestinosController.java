@@ -46,6 +46,7 @@ public class ViewDestinosController implements Controllable {
 	private void inicializarDestinos() {
 		destinos = null;
 		MainPaneController.getInstance().ejecutarProcesoDoble(() -> {
+			// aca toca que cambiar en lugar de datos quemados un llamado al data service
 			destinos = DatosQuemadosAux.getInstance().getPaquete().getDestinos();
 		}, () -> {
 			for (Destino destino : destinos) {
