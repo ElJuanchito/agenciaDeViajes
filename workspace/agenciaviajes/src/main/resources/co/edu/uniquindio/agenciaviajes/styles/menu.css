@@ -6,7 +6,7 @@
 	-fx-font-size: 15.0;
 	-fx-text-overrun: CLIP;
 	-fx-min-width: 0.0;	
-	-fx-min-height: 50.0;
+	-fx-min-height: 30.0;
 	-fx-max-width: 1000000.0;
 }
 .izq-menu .scroll-pane {
@@ -15,6 +15,9 @@
     -fx-border-color: transparent;
    	-fx-min-width: 0.0;	
     -fx-border-width: 0.0;
+}
+.izq-menu .scroll-pane:hover {
+	-fx-background: #f0f0f0;
 }
 .izq-menu .boton {
 	-fx-background-color: #00000000;
