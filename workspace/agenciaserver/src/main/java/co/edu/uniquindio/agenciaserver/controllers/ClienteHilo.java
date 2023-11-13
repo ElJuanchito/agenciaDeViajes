@@ -30,6 +30,7 @@ import co.edu.uniquindio.agenciaserver.model.Paquete;
 import co.edu.uniquindio.agenciaserver.model.Reserva;
 import co.edu.uniquindio.agenciaserver.services.DataManager;
 import co.edu.uniquindio.agenciaserver.services.HibernateDataManager;
+import co.edu.uniquindio.agenciaserver.utils.EmailSender;
 
 public class ClienteHilo implements Runnable {
 
@@ -42,7 +43,7 @@ public class ClienteHilo implements Runnable {
 	@Override
 	public void run() {
 		try (sCliente) {
-			
+
 			ObjectInputStream obIn = new ObjectInputStream(sCliente.getInputStream());
 			ObjectOutputStream obOut = new ObjectOutputStream(sCliente.getOutputStream());
 			Peticion peticion = (Peticion) obIn.readObject();
@@ -320,6 +321,10 @@ public class ClienteHilo implements Runnable {
 					Reserva reserva = (Reserva) peticion.getPeticion();
 					dataManager.guardarReserva(reserva);
 					obOut.writeObject(reserva);
+					Cliente cliente = reserva.getCliente();
+					EmailSender.getInstance().sendMail(cliente, "Reserva PokeViajes",
+							"el comprobante de la reserva para el paquete " + reserva.getPaquete().getNombre(),
+							"la fecha de solicitud, la cantidad de personas, el paquete, el guia y el estado de la reserva");
 				} catch (ReservaYaExistenteException e) {
 					obOut.writeObject(e);
 				}
