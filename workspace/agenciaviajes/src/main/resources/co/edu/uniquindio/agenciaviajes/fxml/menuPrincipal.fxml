@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.Cursor?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.SVGPath?>
 
-<StackPane stylesheets="@../styles/menu.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.viewcontrollers.MainMenuController">
+<StackPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.viewcontrollers.MainMenuController">
    <children>
       <BorderPane minWidth="0.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" stylesheets="@../styles/boton.css">
          <top>
@@ -64,6 +65,24 @@
                         </VBox>
                      </graphic>
                   </Button>
+                  <Button fx:id="btnSearch" contentDisplay="CENTER" mnemonicParsing="false" onAction="#searchEvent" styleClass="upper-button">
+                     <graphic>
+                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="60.0">
+                           <children>
+                              <SVGPath content="M9.5 17c1.71 0 3.287-.573 4.55-1.537l4.743 4.744a1 1 0 0 0 1.414-1.414l-4.744-4.744A7.5 7.5 0 1 0 9.5 17zM15 9.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" fill="#ffffff00" stroke="WHITE" strokeType="INSIDE" strokeWidth="10.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </SVGPath>
+                              <Label text="Buscar" textFill="WHITE">
+                                 <padding>
+                                    <Insets top="2.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </graphic>
+                  </Button>
                   <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                      <children>
                         <StackPane>
@@ -76,6 +95,9 @@
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
                   </HBox>
                </children>
             </HBox>
@@ -141,12 +163,12 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </BorderPane>
-      <BorderPane disable="true" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+      <BorderPane fx:id="capaMenu" disable="true" opacity="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #00000040;">
          <StackPane.margin>
             <Insets top="70.0" />
          </StackPane.margin>
          <right>
-            <VBox prefHeight="330.0" prefWidth="0.0" styleClass="izq-menu" BorderPane.alignment="CENTER">
+            <VBox fx:id="menuCliente1" prefHeight="330.0" prefWidth="0.0" styleClass="izq-menu" BorderPane.alignment="CENTER">
                <children>
                   <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER">
                      <content>
@@ -161,8 +183,11 @@
                      <content>
                         <Label fx:id="lblRegister" text="Register">
                            <graphic>
-                              <SVGPath content="M57.5,41a.5.5,0,0,0-.5.5V43H47V31h2v.5a.5.5,0,0,0,.5.5h5a.5.5,0,0,0,.5-.5V31h2v.5a.5.5,0,0,0,1,0v-1a.5.5,0,0,0-.5-.5H55v-.5A1.5,1.5,0,0,0,53.5,28h-3A1.5,1.5,0,0,0,49,29.5V30H46.5a.5.5,0,0,0-.5.5v13a.5.5,0,0,0,.5.5h11a.5.5,0,0,0,.5-.5v-2A.5.5,0,0,0,57.5,41ZM50,29.5a.5.5,0,0,1,.5-.5h3a.5.5,0,0,1,.5.5V31H50Zm11.854,4.646-2-2a.5.5,0,0,0-.708,0l-6,6A.5.5,0,0,0,53,38.5v2a.5.5,0,0,0,.5.5h2a.5.5,0,0,0,.354-.146l6-6A.5.5,0,0,0,61.854,34.146ZM54,40V38.707l5.5-5.5L60.793,34.5l-5.5,5.5Zm-2,.5a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1,0-1h2A.5.5,0,0,1,52,40.5Zm0-3a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1,0-1h2A.5.5,0,0,1,52,37.5ZM54.5,35h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z" />
+                              <SVGPath content="M57.5,41a.5.5,0,0,0-.5.5V43H47V31h2v.5a.5.5,0,0,0,.5.5h5a.5.5,0,0,0,.5-.5V31h2v.5a.5.5,0,0,0,1,0v-1a.5.5,0,0,0-.5-.5H55v-.5A1.5,1.5,0,0,0,53.5,28h-3A1.5,1.5,0,0,0,49,29.5V30H46.5a.5.5,0,0,0-.5.5v13a.5.5,0,0,0,.5.5h11a.5.5,0,0,0,.5-.5v-2A.5.5,0,0,0,57.5,41ZM50,29.5a.5.5,0,0,1,.5-.5h3a.5.5,0,0,1,.5.5V31H50Zm11.854,4.646-2-2a.5.5,0,0,0-.708,0l-6,6A.5.5,0,0,0,53,38.5v2a.5.5,0,0,0,.5.5h2a.5.5,0,0,0,.354-.146l6-6A.5.5,0,0,0,61.854,34.146ZM54,40V38.707l5.5-5.5L60.793,34.5l-5.5,5.5Zm-2,.5a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1,0-1h2A.5.5,0,0,1,52,40.5Zm0-3a.5.5,0,0,1-.5.5h-2a.5.5,0,0,1,0-1h2A.5.5,0,0,1,52,37.5ZM54.5,35h-5a.5.5,0,0,1,0-1h5a.5.5,0,0,1,0,1Z" translateX="3.0" />
                            </graphic>
+                           <padding>
+                              <Insets left="4.0" />
+                           </padding>
                         </Label>
                      </content>
                   </ScrollPane>
@@ -171,4 +196,8 @@
          </right>
       </BorderPane>
    </children>
+   <stylesheets>
+      <URL value="@../styles/menu.css" />
+      <URL value="@../styles/textFieldBusqueda.css" />
+   </stylesheets>
 </StackPane>
