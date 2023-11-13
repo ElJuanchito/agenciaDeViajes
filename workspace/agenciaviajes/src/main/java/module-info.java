@@ -9,6 +9,7 @@ open module co.edu.uniquindio.agenciaViajes {
 	requires javafx.media;
 	requires AnimateFX;
 	requires org.apache.pdfbox;
+	requires org.apache.fontbox;
 
 	exports co.edu.uniquindio.agenciaviajes.model;
 	exports co.edu.uniquindio.agenciaviajes.application;
