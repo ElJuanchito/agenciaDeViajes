@@ -1,5 +1,6 @@
 package co.edu.uniquindio.agenciaviajes.controllers;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -41,18 +42,23 @@ public class CrearReservaLogicController {
 					.realizarPeticion();
 			MainPaneController.getInstance()
 					.showAlertAccept("Se ha creado una reserva, ¿quieres recibir un comprobante?", () -> {
-						Platform.runLater(() -> crearPdfReserva(reservaNueva));
+						Platform.runLater(() -> enviarPdfReserva(reservaNueva));
 					});
 		} catch (PeticionException e) {
 			MainPaneController.getInstance().showAlert(e.getMessage());
 		}
 	}
 
-	private void crearPdfReserva(final Reserva reservaNueva) {
+	private void enviarPdfReserva(final Reserva reservaNueva) {
 		try {
-			VistaManager.getInstance().crearPDFReserva(reservaNueva);
+			Boolean seEnvioCorreo = new PeticionController<byte[], Boolean>(TipoPeticion.ENVIAR_PDF,
+					CreacionPDFController.getInstance().crearPDFReserva(reservaNueva)).realizarPeticion();
 		} catch (FXMLException e) {
-			throw new RuntimeException(e);
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (PeticionException e) {
+			e.printStackTrace();
 		}
 	}
 
