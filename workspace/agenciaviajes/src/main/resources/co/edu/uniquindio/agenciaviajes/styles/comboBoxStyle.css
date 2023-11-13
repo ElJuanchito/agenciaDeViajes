@@ -1,0 +1,20 @@
+* {
+   -fx-color-base: #270570;
+}
+
+.combo-box{
+	-fx-border-color: -fx-color-base;
+	-fx-border-radius: 0 0 0.5em 0.5em;
+	-fx-background-radius: 0.5em;
+	-fx-font-weight: bold;
+	-fx-background-color: white;
+	-fx-border-width: 0.15em;
+}
+
+.combo-box .arrow {
+    -fx-background-color: -fx-color-base;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}

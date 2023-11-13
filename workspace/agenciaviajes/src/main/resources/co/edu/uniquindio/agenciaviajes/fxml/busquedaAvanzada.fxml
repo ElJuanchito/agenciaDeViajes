@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.viewcontrollers.BusquedaAvanzadaController">
+   <stylesheets>
+      <URL value="@../styles/cajaTexto.css" />
+      <URL value="@../styles/checkBoxStyle.css" />
+      <URL value="@../styles/comboBoxStyle.css" />
+   </stylesheets>
+   <left>
+      <ScrollPane BorderPane.alignment="CENTER">
+         <content>
+            <VBox spacing="10.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" spacing="2.5">
+                     <children>
+                        <CheckBox fx:id="btnNombreDestino" mnemonicParsing="false" onAction="#nombreDestinoEvent" text="Nombre-destino" />
+                        <TextField fx:id="txtNombreDestino" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="0.0" promptText="Cartegena" styleClass="cajaLlenado" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" spacing="2.5">
+                     <children>
+                        <CheckBox fx:id="btnCiudadDestino" mnemonicParsing="false" onAction="#ciudadDestinoEvent" text="Ciudad-destino" />
+                        <TextField fx:id="txtCiudadDestino" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="0.0" promptText="El Catatumbo" styleClass="cajaLlenado" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" spacing="2.5">
+                     <children>
+                        <CheckBox fx:id="btnNombrePaquete" mnemonicParsing="false" onAction="#nombrePaqueteEvent" text="Nombre-paquete" />
+                        <TextField fx:id="txtNombrePaquete" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="0.0" promptText="Metrallo Experience" styleClass="cajaLlenado" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" spacing="2.5">
+                     <children>
+                        <CheckBox fx:id="btnPrecioPaquete" mnemonicParsing="false" onAction="#precioPaqueteEvent" text="Precio-paquete" />
+                        <HBox fx:id="contenedorPrecios" alignment="CENTER">
+                           <children>
+                              <Label fx:id="lblDesde" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="0.0" text="Desde:" />
+                              <TextField fx:id="txtPrecioDesde" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="0.0" promptText="1500000" styleClass="cajaLlenado" />
+                              <Label fx:id="lblHasta" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="0.0" text="Hasta:" />
+                              <TextField fx:id="txtPrecioHasta" layoutX="10.0" layoutY="10.0" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="0.0" promptText="1500000" styleClass="cajaLlenado" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" spacing="2.5">
+                     <children>
+                        <CheckBox fx:id="btnClima" mnemonicParsing="false" onAction="#climaEvent" text="Clima" />
+                        <ComboBox fx:id="cbClima" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="0.0" promptText="Seleccionar" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" spacing="2.5">
+                     <children>
+                        <CheckBox fx:id="btnFechaInicio" mnemonicParsing="false" onAction="#fechaInicioEvent" text="Fecha inicio" />
+                        <DatePicker fx:id="dpFechaInicio" editable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="0.0" stylesheets="@../styles/boxStyle.css" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER_LEFT" spacing="2.5">
+                     <children>
+                        <CheckBox fx:id="btnFechaFInal" mnemonicParsing="false" onAction="#fechaFinalEvent" text="Fecha final" />
+                        <DatePicker fx:id="dpFechaFinal" editable="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="0.0" stylesheets="@../styles/boxStyle.css" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </left>
+</BorderPane>
