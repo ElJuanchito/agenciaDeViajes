@@ -40,6 +40,8 @@ public class Reserva implements Serializable{
 
 	private GuiaTuristico guia;
 	private Estado estado;
+	
+
 
 	@Builder
 	public Reserva(Cliente cliente, Integer cantPersonas, Paquete paquete, GuiaTuristico guiaTuristico, Estado estado) {
@@ -49,6 +51,10 @@ public class Reserva implements Serializable{
 		this.paquete = paquete;
 		this.guia = guiaTuristico;
 		this.estado = estado;
+	}
+	
+	public double getPrecioFinal() {
+		return cantPersonas*paquete.getPrecio().doubleValue();
 	}
 
 	public boolean clienteEstuvoAlli(Cliente cliente) {

@@ -1,5 +1,7 @@
 package co.edu.uniquindio.agenciaviajes.model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -229,6 +231,34 @@ public class Cliente extends Usuario implements Loginable {
 	@Override
 	public String getUsuario() {
 		return getIdentificacion();
+	}
+	
+	public List<Reserva> getReservasPasadas(List<Reserva> seleccionadas,int i){
+		if(i>= reservas.size())
+			return seleccionadas;
+		Reserva reserva= reservas.get(i);
+		if(esPasada(reserva))
+			seleccionadas.add(reservas.get(i));
+		
+		return getReservasPasadas(seleccionadas, i+1);
+	}
+	
+	public List<Reserva> getReservasFuturas(List<Reserva>seleccionadas,int i){
+		if(i>=reservas.size())
+			return seleccionadas;
+		Reserva reserva= reservas.get(i);
+		if(esFutura(reserva)) 
+			seleccionadas.add(reservas.get(i));
+		return getReservasFuturas(seleccionadas, i+1);
+	}
+	
+	private boolean esFutura(Reserva reserva) {
+		return reserva.getPaquete().getFechaIncio().isAfter(LocalDateTime.now());
+	}
+
+	private boolean esPasada(Reserva reserva) {
+		return reserva.getPaquete().getFechaIncio().isBefore(LocalDateTime.now())&&
+				reserva.getPaquete().getFechaFin().isBefore(LocalDateTime.now());
 	}
 
 }

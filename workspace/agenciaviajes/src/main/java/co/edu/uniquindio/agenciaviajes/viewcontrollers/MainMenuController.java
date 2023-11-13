@@ -19,6 +19,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -60,15 +62,14 @@ public class MainMenuController implements Controllable {
 	@FXML
 	private ScrollPane scrollCenter;
 
-    @FXML
-    private BorderPane capaMenu;
-    
-    @FXML
-    private VBox menuCliente1;
+	@FXML
+	private BorderPane capaMenu;
+
+	@FXML
+	private VBox menuCliente1;
 
 	private boolean isMenuExtended = false;
 	private Timeline timelineMenu;
-	
 
 	@FXML
 	void backEvent(ActionEvent event) {
@@ -124,7 +125,7 @@ public class MainMenuController implements Controllable {
 				circleImage.setFill(Color.TRANSPARENT);
 			}
 		});
-		
+
 		crearAnimacionExtension(menuCliente1.prefWidthProperty(), capaMenu.opacityProperty());
 		VistaManager.getInstance().getObsAnteriorCliente().addListener((observable, oldValue, newValue) -> {
 			btnBack.setDisable(!newValue);
@@ -149,13 +150,11 @@ public class MainMenuController implements Controllable {
 	}
 
 	private void perfilClickAction() {
-		/*MainPaneController.getInstance().ejecutarProceso(() -> {
-			try {
-				cambiarVistaLogin();
-			} catch (FXMLException e) {
-				throw new RuntimeException(e);
-			}
-		});*/
+		/*
+		 * MainPaneController.getInstance().ejecutarProceso(() -> { try {
+		 * cambiarVistaLogin(); } catch (FXMLException e) { throw new
+		 * RuntimeException(e); } });
+		 */
 		ejecutarAnimacionMenu();
 	}
 
@@ -229,8 +228,8 @@ public class MainMenuController implements Controllable {
 
 	public void crearAnimacionExtension(DoubleProperty widthProperty, DoubleProperty opacityProperty) {
 		timelineMenu = new Timeline();
-		timelineMenu.getKeyFrames().add(new KeyFrame(Duration.millis(0), new KeyValue(widthProperty, 0d),
-				new KeyValue(opacityProperty, 0d)));
+		timelineMenu.getKeyFrames().add(
+				new KeyFrame(Duration.millis(0), new KeyValue(widthProperty, 0d), new KeyValue(opacityProperty, 0d)));
 		timelineMenu.getKeyFrames().add(new KeyFrame(Duration.millis(100), new KeyValue(opacityProperty, 1d),
 				new KeyValue(widthProperty, 212d)));
 	}
