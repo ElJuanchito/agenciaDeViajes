@@ -1,0 +1,9 @@
+.textfield-personalizado {
+    -fx-background-color: #cab3fc; /* Color de fondo del TextField */
+    -fx-text-fill: black; /* Color del texto dentro del TextField */
+    -fx-border-radius: 5; /* Radio de las esquinas del TextField */
+    -fx-background-radius:50;
+    -fx-prompt-text-fill: gray; 
+}
+
+

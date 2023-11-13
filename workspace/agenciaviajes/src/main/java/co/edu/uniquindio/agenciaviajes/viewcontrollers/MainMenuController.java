@@ -1,7 +1,6 @@
 package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.util.ResourceBundle;
-import java.util.function.Consumer;
 
 import co.edu.uniquindio.agenciaviajes.controllers.DataController;
 import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
@@ -21,6 +20,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -59,9 +60,15 @@ public class MainMenuController implements Controllable {
 	@FXML
 	private ScrollPane scrollCenter;
 
+    @FXML
+    private BorderPane capaMenu;
+    
+    @FXML
+    private VBox menuCliente1;
+
 	private boolean isMenuExtended = false;
 	private Timeline timelineMenu;
-	private Consumer<Boolean> consumerMenu;
+	
 
 	@FXML
 	void backEvent(ActionEvent event) {
@@ -117,6 +124,8 @@ public class MainMenuController implements Controllable {
 				circleImage.setFill(Color.TRANSPARENT);
 			}
 		});
+		
+		crearAnimacionExtension(menuCliente1.prefWidthProperty(), capaMenu.opacityProperty());
 		VistaManager.getInstance().getObsAnteriorCliente().addListener((observable, oldValue, newValue) -> {
 			btnBack.setDisable(!newValue);
 		});
@@ -140,13 +149,14 @@ public class MainMenuController implements Controllable {
 	}
 
 	private void perfilClickAction() {
-		MainPaneController.getInstance().ejecutarProceso(() -> {
+		/*MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
 				cambiarVistaLogin();
 			} catch (FXMLException e) {
 				throw new RuntimeException(e);
 			}
-		});
+		});*/
+		ejecutarAnimacionMenu();
 	}
 
 	private void cambiarVistaLogin() throws FXMLException {
@@ -217,18 +227,16 @@ public class MainMenuController implements Controllable {
 		});
 	}
 
-	public void crearAnimacionExtension(DoubleProperty widthProperty, DoubleProperty opacityProperty,
-			DoubleProperty rotacionSVG, Consumer<Boolean> consumerMenu) {
+	public void crearAnimacionExtension(DoubleProperty widthProperty, DoubleProperty opacityProperty) {
 		timelineMenu = new Timeline();
 		timelineMenu.getKeyFrames().add(new KeyFrame(Duration.millis(0), new KeyValue(widthProperty, 0d),
-				new KeyValue(opacityProperty, 0d), new KeyValue(rotacionSVG, 0d)));
+				new KeyValue(opacityProperty, 0d)));
 		timelineMenu.getKeyFrames().add(new KeyFrame(Duration.millis(100), new KeyValue(opacityProperty, 1d),
-				new KeyValue(widthProperty, 212d), new KeyValue(rotacionSVG, 90d)));
-		this.consumerMenu = consumerMenu;
+				new KeyValue(widthProperty, 212d)));
 	}
 
 	public void ejecutarAnimacionMenu() {
-		consumerMenu.accept(isMenuExtended);
+		capaMenu.setDisable(isMenuExtended);
 		if (isMenuExtended) {
 			timelineMenu.stop();
 			timelineMenu.setRate(-1);
