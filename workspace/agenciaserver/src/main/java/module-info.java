@@ -7,6 +7,7 @@ open module co.edu.uniquindio.agenciaserver {
 	requires java.desktop;
 	requires javafx.swing;
 	requires transitive javafx.graphics;
+	requires jakarta.mail;
 
 	exports co.edu.uniquindio.agenciaserver.model;
 	exports co.edu.uniquindio.agenciaserver.application;

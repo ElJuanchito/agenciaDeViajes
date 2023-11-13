@@ -137,19 +137,4 @@ public class VistaManager {
 		cambiarVistaCliente(tripleDato.tipoVista, tripleDato.dato, false, false);
 	}
 
-	public void crearPDFReserva(Reserva reserva) throws FXMLException {
-		Vista<Reserva> vista = Vista.buildView("pdfFactura");
-		vista.cargarDato(reserva);
-		vista.cargarIdioma();
-		PrinterJob job = PrinterJob.createPrinterJob();
-		Printer printer = Printer.getDefaultPrinter();
-		PageLayout lay = printer.createPageLayout(Paper.A3, PageOrientation.PORTRAIT, MarginType.DEFAULT);
-		job.setPrinter(printer);
-		if (job != null) {
-			boolean success = job.printPage(lay, vista.getParent());
-			if (success) {
-				job.endJob();
-			}
-		}
-	}
 }
