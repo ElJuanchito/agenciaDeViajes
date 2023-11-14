@@ -257,8 +257,7 @@ public class Cliente extends Usuario implements Loginable {
 	}
 
 	private boolean esPasada(Reserva reserva) {
-		return reserva.getPaquete().getFechaIncio().isBefore(LocalDateTime.now())&&
-				reserva.getPaquete().getFechaFin().isBefore(LocalDateTime.now());
+		return reserva.getPaquete().getFechaFin().isBefore(LocalDateTime.now());
 	}
 
 }
