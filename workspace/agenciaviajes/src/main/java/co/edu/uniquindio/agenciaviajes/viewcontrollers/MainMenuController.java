@@ -104,6 +104,16 @@ public class MainMenuController implements Controllable {
 	}
 
 	@FXML
+	void searchBtnEnterEvent(MouseEvent event) {
+		enterKeyActionSearch();
+	}
+
+	@FXML
+	void closeSearchBtnEvent(MouseEvent event) {
+		escapeKeyActionSearch();
+	}
+
+	@FXML
 	void backEvent(ActionEvent event) {
 		backAction();
 	}

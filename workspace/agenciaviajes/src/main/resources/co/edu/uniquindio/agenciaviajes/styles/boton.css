@@ -32,6 +32,7 @@
 	-fx-background-color: rgb(148, 108, 230);
 	-fx-opacity: 1.0;
 }
+
 .main-arrow {
 	-fx-background-radius: 50% 50% 0 0;
 }
@@ -104,5 +105,18 @@
 }
 
 .upper-button:hover {
+	-fx-background-color: rgba(0, 0, 0, 0.2);
+}
+
+.search-button {
+	-fx-background-color: transparent;
+	-fx-background-radius: 50;
+}
+
+.search-button:hover {
+	-fx-background-color: rgba(0, 0, 0, 0.1);
+}
+
+.search-button:pressed {
 	-fx-background-color: rgba(0, 0, 0, 0.2);
 }
