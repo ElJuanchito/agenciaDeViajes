@@ -1,9 +1,11 @@
 package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaviajes.model.Clima;
+import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import co.edu.uniquindio.agenciaviajes.utils.UtilsFX;
 import javafx.collections.FXCollections;
@@ -16,8 +18,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.util.Pair;
 
-public class BusquedaAvanzadaController implements DataControllable<String> {
+public class BusquedaAvanzadaController implements DataControllable<Pair<List<Paquete>, String>> {
 
 	@FXML
 	private ResourceBundle resources;
@@ -26,25 +29,8 @@ public class BusquedaAvanzadaController implements DataControllable<String> {
 	private URL location;
 
 	@FXML
-	private CheckBox btnCiudadDestino;
-
-	@FXML
-	private CheckBox btnClima;
-
-	@FXML
-	private CheckBox btnFechaFInal;
-
-	@FXML
-	private CheckBox btnFechaInicio;
-
-	@FXML
-	private CheckBox btnNombreDestino;
-
-	@FXML
-	private CheckBox btnNombrePaquete;
-
-	@FXML
-	private CheckBox btnPrecioPaquete;
+	private CheckBox btnCiudadDestino, btnClima, btnFechaFInal, btnFechaInicio, btnNombreDestino, btnNombrePaquete,
+			btnPrecioPaquete;
 
 	@FXML
 	private ComboBox<Clima> cbClima;
@@ -53,31 +39,17 @@ public class BusquedaAvanzadaController implements DataControllable<String> {
 	private HBox contenedorPrecios;
 
 	@FXML
-	private DatePicker dpFechaFinal;
+	private DatePicker dpFechaFinal, dpFechaInicio;
 
 	@FXML
-	private DatePicker dpFechaInicio;
+	private Label lblDesde, lblHasta;
 
 	@FXML
-	private Label lblDesde;
+	private TextField txtCiudadDestino, txtNombreDestino, txtPrecioDesde, txtPrecioHasta, txtNombrePaquete;
 
-	@FXML
-	private Label lblHasta;
+	private List<Paquete> paquetes;
 
-	@FXML
-	private TextField txtCiudadDestino;
-
-	@FXML
-	private TextField txtNombreDestino;
-
-	@FXML
-	private TextField txtPrecioDesde;
-
-	@FXML
-	private TextField txtPrecioHasta;
-	
-	@FXML
-	private TextField txtNombrePaquete;
+	private String busqueda;
 
 	@FXML
 	void ciudadDestinoEvent(ActionEvent event) {
@@ -189,7 +161,7 @@ public class BusquedaAvanzadaController implements DataControllable<String> {
 		}
 	}
 
-	@Override	
+	@Override
 	public void updateLanguage(ResourceBundle bundle) {
 		// TODO Auto-generated method stub
 
@@ -202,9 +174,9 @@ public class BusquedaAvanzadaController implements DataControllable<String> {
 	}
 
 	@Override
-	public void inicializarDatos(String dato) {
-		// TODO Auto-generated method stub
-
+	public void inicializarDatos(Pair<List<Paquete>, String> info) {
+		this.paquetes = info.getKey();
+		this.busqueda = info.getValue();
 	}
 
 	@Override
@@ -214,7 +186,7 @@ public class BusquedaAvanzadaController implements DataControllable<String> {
 		UtilsFX.setAsNameTextField(txtNombrePaquete);
 		UtilsFX.setAsNumberTextfield(txtPrecioDesde);
 		UtilsFX.setAsNumberTextfield(txtPrecioHasta);
-		
+
 		cbClima.setItems(FXCollections.observableArrayList(Clima.values()));
 	}
 
