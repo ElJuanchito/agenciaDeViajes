@@ -1,5 +1,6 @@
 package co.edu.uniquindio.agenciaviajes.model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -19,7 +20,8 @@ public class Administrador extends Usuario implements Loginable {
 	private String contrasena;
 
 	private Imagen imagen;
-
+	
+	@Builder
 	public Administrador(@NonNull String identificacion, @NonNull String nombreCompleto, @NonNull String contrasena,
 			Imagen imagen) {
 		super(identificacion, nombreCompleto);

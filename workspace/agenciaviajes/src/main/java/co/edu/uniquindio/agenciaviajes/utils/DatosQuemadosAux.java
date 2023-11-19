@@ -12,7 +12,10 @@ import co.edu.uniquindio.agenciaviajes.model.Clima;
 import co.edu.uniquindio.agenciaviajes.model.Comentario;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.model.GuiaTuristico;
+import co.edu.uniquindio.agenciaviajes.model.Idioma;
+import co.edu.uniquindio.agenciaviajes.model.Imagen;
 import co.edu.uniquindio.agenciaviajes.model.Paquete;
+import javafx.scene.image.Image;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -129,5 +132,27 @@ public class DatosQuemadosAux {
 		listaguias.add(guia);
 		System.out.println(guia);
 	}
-
+	
+	public List <GuiaTuristico> obtenerListaGuias(){
+		List<GuiaTuristico> listaGuias= new ArrayList<>();
+		
+		List<Idioma> listaIdiomas= new ArrayList<Idioma>();
+		listaIdiomas.add(Idioma.ESPANOL);
+		listaIdiomas.add(Idioma.INGLES);
+		listaIdiomas.add(Idioma.ITALIANO);
+		
+		//No se porque dice que idiomas debe ser un arreglo y no una lista cuando esta puesto como una lista creo que es por
+		//Idioma...
+		GuiaTuristico guia1 = null;
+		try {
+			guia1 = GuiaTuristico.builder().identificacion("1098675678").nombreCompleto("Duque Inminente")
+					.expHoras(89).idiomas(listaIdiomas.stream().toArray(Idioma[]::new)).imagen(Imagen.createImage(new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/pikachuPiloto.png")))).build();
+		} catch (ImagenNoObtenidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		listaGuias.add(guia1);
+		return listaGuias;
+	}
 }

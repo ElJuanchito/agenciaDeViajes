@@ -232,7 +232,8 @@ public class MainMenuController implements Controllable {
 	private void guiasAction() {
 		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
-				VistaManager.getInstance().cambiarVistaCliente(TipoVista.REGISTRO_GUIA, null);
+				//Cambie para que se vea la tabla de guias
+				VistaManager.getInstance().cambiarVistaCliente(TipoVista.GUIAS, null);
 			} catch (FXMLException e) {
 				throw new RuntimeException(e);
 			}

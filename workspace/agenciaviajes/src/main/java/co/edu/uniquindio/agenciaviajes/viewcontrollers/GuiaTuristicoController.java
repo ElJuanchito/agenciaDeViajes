@@ -1,22 +1,16 @@
 package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
-import animatefx.animation.FadeIn;
-import animatefx.animation.FadeOut;
-import animatefx.util.ParallelAnimationFX;
-import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
-import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
-import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
-import co.edu.uniquindio.agenciaviajes.model.Paquete;
+import animatefx.animation.FadeInUp;
+import co.edu.uniquindio.agenciaviajes.model.GuiaTuristico;
+import co.edu.uniquindio.agenciaviajes.model.Imagen;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
-import co.edu.uniquindio.agenciaviajes.utils.UtilsFX;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -25,9 +19,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.CycleMethod;
-import javafx.scene.paint.LinearGradient;
-import javafx.scene.paint.Stop;
 import javafx.scene.shape.FillRule;
 import javafx.scene.shape.SVGPath;
 import javafx.scene.shape.StrokeLineCap;
@@ -35,7 +26,7 @@ import javafx.util.Duration;
 import lombok.Getter;
 import lombok.Setter;
 
-public class PaqueteController implements DataControllable<Paquete> {
+public class GuiaTuristicoController implements DataControllable<GuiaTuristico> {
 
 	@FXML
 	private ResourceBundle resources;
@@ -46,7 +37,7 @@ public class PaqueteController implements DataControllable<Paquete> {
 	private URL location;
 
 	@FXML
-	private ImageView imgDestino, imgDestino2;
+	private ImageView imgGuia;
 
 	@FXML
 	private Label txtDescription, txtName, txtPuntuacion;
@@ -55,12 +46,12 @@ public class PaqueteController implements DataControllable<Paquete> {
 	private HBox boxStars;
 
 	@Getter
-	private Paquete paquete;
+	private GuiaTuristico guia;
 
 	@FXML
 	private ScrollPane scrollDescripcion;
 
-	private List<Image> listaImagenes = new ArrayList<Image>();
+	private Imagen imagen;
 
 	private int currentIndex = 0;
 
@@ -87,12 +78,6 @@ public class PaqueteController implements DataControllable<Paquete> {
 
 	@FXML
 	void changeViewEvent(MouseEvent event) {
-		try {
-			VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETE_DETAILS, paquete);
-
-		} catch (FXMLException e) {
-			throw new RuntimeException(e);
-		}
 	}
 
 	@FXML
@@ -111,95 +96,67 @@ public class PaqueteController implements DataControllable<Paquete> {
 		animacionHover.play();
 	}
 
+	private void showImage() {
+		
+		
+		Platform.runLater(() -> {
+			Image imagenRef = imagen.getImage();
+            imgGuia.setImage(imagenRef) ;
+
+            // Configura el tamaño de la imagen según sea necesario
+
+            double relacionAspecto = imagenRef.getWidth() / imagenRef.getHeight();
+            double xSmallPos = (310 - 220 * relacionAspecto) / 2;
+            imgGuia.setX(xSmallPos);
+
+            // Crea y ejecuta la animación FadeInUp
+            FadeInUp fadeInUp = new FadeInUp(imgGuia);
+            fadeInUp.play();
+        });
+		
+	}
+
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-	}
-
-	private void showNextImage() {
-		currentIndex++;
-		if (currentIndex >= listaImagenes.size())
-			currentIndex = 0;
-		showImage();
-	}
-
-	private void showImage() {
-		if (currentIndex >= 0 && currentIndex < listaImagenes.size()) {
-			Image imagen = listaImagenes.get(currentIndex);
-			isFistImageShowing = !isFistImageShowing;
-			ImageView imagenD = isFistImageShowing ? imgDestino : imgDestino2;
-
-			imagenD.setImage(imagen);
-			double relacionAspecto = imagen.getWidth() / imagen.getHeight();
-			double xSmallPos = (310 - 220 * relacionAspecto) / 2;
-
-			FadeIn fadeInUp;
-			FadeOut fadeOutDown;
-
-			if (isFistImageShowing) {
-				imgDestino.setX(xSmallPos);
-
-				fadeInUp = new FadeIn(imgDestino);
-				fadeOutDown = new FadeOut(imgDestino2);
-			} else {
-				imgDestino2.setX(xSmallPos);
-				fadeInUp = new FadeIn(imgDestino2);
-				fadeOutDown = new FadeOut(imgDestino);
-			}
-			new ParallelAnimationFX(fadeInUp, fadeOutDown).play();
-		}
-
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void clearData() {
 		txtName.setText("");
-		listaImagenes.clear();
-		imgDestino.setImage(defaultImage);
-		imgDestino2.setImage(defaultImage);
+		imgGuia.setImage(defaultImage);
 		showImage();
 		currentIndex = 0;
-
-		this.paquete = null;
-
+		this.guia= null;
+		
 	}
 
 	@Override
-	public void inicializarDatos(Paquete dato) {
-		this.paquete = dato;
-		if (paquete == null) {
+	public void inicializarDatos(GuiaTuristico dato) {
+	
+		this.guia = dato;
+		if (guia == null) {
 			clearData();
 			return;
 		}
-		txtName.setText(paquete.getNombre());
-		listaImagenes = UtilsFX.cargarImagenes(paquete.listarImagenesDestino());
-		actualizarPuntaje(dato.getPromedioDestinos());
+		txtName.setText(guia.getNombreCompleto());
+		imagen= guia.getImagen();
+		//TODO actualizarPuntaje(guia.getPromedio());
+		showImage();
 		vivo = true;
 		isFistImageShowing = false;
 		currentIndex = -1;
-		timeline.stop();
-		timeline.playFromStart();
-
+		txtDescription.setText(guia.getDescripcion());
+		
+		
 	}
-
-	private void actualizarPuntaje(double puntuacion) {
-		txtPuntuacion.setText(String.valueOf(puntuacion));
-
-		for (int i = 0; i < stars.length; i++) {
-			SVGPath star = stars[i];
-			double value = puntuacion - i;
-			if (value >= 1)
-				star.setFill(starFill);
-			else if (value > 0)
-				star.setFill(new LinearGradient(value, 1.0, value + 0.001, 1.0, true, CycleMethod.NO_CYCLE,
-						new Stop(0.0, starFill), new Stop(1.0, Color.TRANSPARENT)));
-			else
-				star.setFill(Color.WHITE);
-		}
-
-	}
+	
+	
 
 	@Override
 	public void preInicializar() {
+		// TODO Auto-generated method stub
 		starFill = new Color(0.1529, 0.0196, 0.4392, 1.0);
 		defaultImage = new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/white.png"));
 		stars = new SVGPath[5];
@@ -219,17 +176,8 @@ public class PaqueteController implements DataControllable<Paquete> {
 		KeyFrame valorFinal = new KeyFrame(Duration.millis(100),
 				new KeyValue(scrollDescripcion.prefHeightProperty(), 80d));
 		animacionHover = new Timeline(valorInicial, valorFinal);
-		ejecutarAnimacionImagenes();
-
+		
 	}
-
-	private void ejecutarAnimacionImagenes() {
-		currentIndex = -1;
-		timeline = new Timeline(new KeyFrame(Duration.millis(10), e -> showNextImage()),
-				new KeyFrame(Duration.millis(5000)));
-		timeline.setCycleCount(-1);
-		timeline.play();
-
-	}
-
+	
+	
 }
