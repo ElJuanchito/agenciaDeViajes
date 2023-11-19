@@ -2,6 +2,7 @@ package co.edu.uniquindio.agenciaviajes.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class Paquete implements Serializable{
+public class Paquete implements Serializable {
 	/**
 	 * 
 	 */
@@ -250,33 +251,83 @@ public class Paquete implements Serializable{
 		throwDestinoNoExistente(id);
 		elminarDestinoAux(id, 0);
 	}
-	
-	private List<Imagen> getDestinosImages(List<Imagen> imagenes,int i){
-		if(i==destinos.size()) 
-			return imagenes ;
+
+	private List<Imagen> getDestinosImages(List<Imagen> imagenes, int i) {
+		if (i == destinos.size())
+			return imagenes;
 		imagenes.add(destinos.get(i).getImagenes().get(0));
-		return getDestinosImages(imagenes, i+1);
-		
+		return getDestinosImages(imagenes, i + 1);
+
 	}
-	public List<Imagen> listarImagenesDestino(){
-		List<Imagen> imagenes= new ArrayList<Imagen>();
+
+	public List<Imagen> listarImagenesDestino() {
+		List<Imagen> imagenes = new ArrayList<Imagen>();
 		return getDestinosImages(imagenes, 0);
-		
+
 	}
-	
-	private double getAcumPromedios(double promedio,int i) {
-		if(i==destinos.size())
+
+	private double getAcumPromedios(double promedio, int i) {
+		if (i == destinos.size())
 			return promedio;
-		return getAcumPromedios(promedio + destinos.get(i).getPromedio(), i+1);
+		return getAcumPromedios(promedio + destinos.get(i).getPromedio(), i + 1);
 	}
-	
+
 	public double getPromedioDestinos() {
-		double prom=5;
-		if(destinos.size()!=0) {
-			prom= (getAcumPromedios(0, 0))/destinos.size();
+		double prom = 5;
+		if (destinos.size() != 0) {
+			prom = (getAcumPromedios(0, 0)) / destinos.size();
 		}
-		return MathUtils.round(prom,1);
-		
+		return MathUtils.round(prom, 1);
+
+	}
+
+	public boolean estaEntreFechas(LocalDate fechaBusquedaStart, LocalDate fechaBusquedaEnd) {
+		return !fechaIncio.toLocalDate().isBefore(fechaBusquedaStart)
+				&& !fechaIncio.toLocalDate().isAfter(fechaBusquedaEnd);
+	}
+
+	public boolean contieneClima(Clima clima) {
+		return contieneClima(clima, 0);
+	}
+
+	private boolean contieneClima(Clima clima, int i) {
+		if (i == destinos.size())
+			return false;
+		if (destinos.get(i).getClima() == clima)
+			return true;
+		return contieneClima(clima, i + 1);
+	}
+
+	public boolean contieneCiudad(String nombreCiudad) {
+		return contieneCiudad(nombreCiudad.toLowerCase(), 0);
+	}
+
+	private boolean contieneCiudad(String nombreCiudad, int i) {
+		if (i == destinos.size())
+			return false;
+		if (destinos.get(i).getCiudad().toLowerCase().contains(nombreCiudad))
+			return true;
+		return contieneCiudad(nombreCiudad, i + 1);
+	}
+
+	public boolean contieneNombreDestino(String nombre) {
+		return contieneNombreDestino(nombre, 0);
+	}
+
+	private boolean contieneNombreDestino(String nombreCiudad, int i) {
+		if (i == destinos.size())
+			return false;
+		if (destinos.get(i).getNombre().toLowerCase().contains(nombreCiudad))
+			return true;
+		return contieneCiudad(nombreCiudad, i + 1);
+	}
+
+	public boolean tieneNombre(String nombre) {
+		return this.nombre.equals(nombre);
+	}
+
+	public boolean tienePrecioEntre(Double desde, Double hasta) {
+		return precio.doubleValue() >= desde && precio.doubleValue() <= hasta;
 	}
 
 }

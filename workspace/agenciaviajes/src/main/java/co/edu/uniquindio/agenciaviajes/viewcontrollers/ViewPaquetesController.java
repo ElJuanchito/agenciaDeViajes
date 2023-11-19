@@ -8,8 +8,7 @@ import animatefx.animation.FadeIn;
 import co.edu.uniquindio.agenciaviajes.controllers.Vista;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.model.Paquete;
-import co.edu.uniquindio.agenciaviajes.services.Controllable;
-import co.edu.uniquindio.agenciaviajes.utils.DatosQuemadosAux;
+import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -17,7 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-public class ViewPaquetesController implements Controllable {
+public class ViewPaquetesController implements DataControllable<List<Paquete>> {
 
 	@FXML
 	private ResourceBundle resources;
@@ -41,24 +40,9 @@ public class ViewPaquetesController implements Controllable {
 
 	@Override
 	public void preInicializar() {
-		new Thread(this::inicializarPaquetes).start();
-	}
-
-	private void inicializarPaquetes() {
-		paquetes = null;
-		MainPaneController.getInstance().ejecutarProcesoDoble(() -> {
-			paquetes = DatosQuemadosAux.getInstance().obtenerListaPaquetes();
-		}, () -> {
-			for (Paquete paquete : paquetes) {
-				agregarPaquetes(paquete);
-			}
-		});
-
 	}
 
 	private void agregarPaquetes(Paquete paquete) {
-		// Falta crear la ventana de paquete aunque no se si modificar la misma de
-		// destino
 		try {
 			Vista<Paquete> view = Vista.buildView("paquete");
 			view.getController().inicializarDatos(paquete);
@@ -85,7 +69,22 @@ public class ViewPaquetesController implements Controllable {
 
 	@Override
 	public void clearData() {
-		// TODO Auto-generated method stub
-
 	}
+
+	@Override
+	public void inicializarDatos(List<Paquete> dato) {
+		this.paquetes = dato;
+		new Thread(() -> {
+			Platform.runLater(() -> {
+				colIndex = 0;
+				rowIndex = 0;
+				contentPane.getChildren().clear();
+				for (Paquete paquete : paquetes) {
+					agregarPaquetes(paquete);
+				}
+			});
+
+		}).start();
+	}
+
 }

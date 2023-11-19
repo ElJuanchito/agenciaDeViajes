@@ -1,23 +1,36 @@
 package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
+import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
+import co.edu.uniquindio.agenciaviajes.controllers.TipoPeticion;
+import co.edu.uniquindio.agenciaviajes.controllers.Vista;
+import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
+import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
 import co.edu.uniquindio.agenciaviajes.model.Clima;
+import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import co.edu.uniquindio.agenciaviajes.utils.UtilsFX;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.util.Pair;
 
-public class BusquedaAvanzadaController implements DataControllable<String> {
+public class BusquedaAvanzadaController implements DataControllable<Pair<List<Paquete>, String>> {
 
 	@FXML
 	private ResourceBundle resources;
@@ -26,25 +39,8 @@ public class BusquedaAvanzadaController implements DataControllable<String> {
 	private URL location;
 
 	@FXML
-	private CheckBox btnCiudadDestino;
-
-	@FXML
-	private CheckBox btnClima;
-
-	@FXML
-	private CheckBox btnFechaFInal;
-
-	@FXML
-	private CheckBox btnFechaInicio;
-
-	@FXML
-	private CheckBox btnNombreDestino;
-
-	@FXML
-	private CheckBox btnNombrePaquete;
-
-	@FXML
-	private CheckBox btnPrecioPaquete;
+	private CheckBox btnCiudadDestino, btnClima, btnFechaFInal, btnFechaInicio, btnNombreDestino, btnNombrePaquete,
+			btnPrecioPaquete;
 
 	@FXML
 	private ComboBox<Clima> cbClima;
@@ -53,31 +49,24 @@ public class BusquedaAvanzadaController implements DataControllable<String> {
 	private HBox contenedorPrecios;
 
 	@FXML
-	private DatePicker dpFechaFinal;
+	private DatePicker dpFechaFinal, dpFechaInicio;
 
 	@FXML
-	private DatePicker dpFechaInicio;
+	private Label lblDesde, lblHasta;
 
 	@FXML
-	private Label lblDesde;
+	private TextField txtCiudadDestino, txtNombreDestino, txtPrecioDesde, txtPrecioHasta, txtNombrePaquete;
 
 	@FXML
-	private Label lblHasta;
+	private BorderPane panelBusqueda;
 
 	@FXML
-	private TextField txtCiudadDestino;
+	private Button btnFiltrar;
 
 	@FXML
-	private TextField txtNombreDestino;
-
-	@FXML
-	private TextField txtPrecioDesde;
-
-	@FXML
-	private TextField txtPrecioHasta;
-	
-	@FXML
-	private TextField txtNombrePaquete;
+	void filtrarAction(ActionEvent event) {
+		filtrarDatosAction();
+	}
 
 	@FXML
 	void ciudadDestinoEvent(ActionEvent event) {
@@ -115,6 +104,7 @@ public class BusquedaAvanzadaController implements DataControllable<String> {
 	}
 
 	private void ciudadDestinoAction() {
+
 		if (btnCiudadDestino.isSelected()) {
 			txtCiudadDestino.setPrefWidth(Region.USE_COMPUTED_SIZE);
 			txtCiudadDestino.setPrefHeight(Region.USE_COMPUTED_SIZE);
@@ -189,7 +179,7 @@ public class BusquedaAvanzadaController implements DataControllable<String> {
 		}
 	}
 
-	@Override	
+	@Override
 	public void updateLanguage(ResourceBundle bundle) {
 		// TODO Auto-generated method stub
 
@@ -197,14 +187,52 @@ public class BusquedaAvanzadaController implements DataControllable<String> {
 
 	@Override
 	public void clearData() {
-		// TODO Auto-generated method stub
-
+		filtrarDatosAction();
 	}
 
-	@Override
-	public void inicializarDatos(String dato) {
-		// TODO Auto-generated method stub
+	private void filtrarDatosAction() {
+		final String valorCiudadDestino = txtCiudadDestino.getText();
+		final Clima valorClimaDestino = cbClima.getValue();
+		final LocalDate valorFechaStart = dpFechaInicio.getValue();
+		final LocalDate valorFechaFinal = dpFechaFinal.getValue();
+		final String valorNombreDestino = txtNombreDestino.getText();
+		final String valorNombrePaquete = txtNombrePaquete.getText();
+		Double precioDesdePaquete = null;
+		Double precioHastaPaquete = null;
+		try {
+			precioDesdePaquete = Double.parseDouble(txtPrecioDesde.getText());
+			precioHastaPaquete = Double.parseDouble(txtPrecioHasta.getText());
+		} catch (NumberFormatException e) {
+		}
+		final Double valorPrecioDesdePaquete = precioDesdePaquete;
+		final Double valorPrecioHastaPaquete = precioHastaPaquete;
 
+		Predicate<Paquete> predicate = paquete -> {
+			boolean flagCiudadDes = valorCiudadDestino.isEmpty() ? true : paquete.contieneCiudad(valorCiudadDestino);
+			boolean flagClima = valorClimaDestino == null ? true : paquete.contieneClima(valorClimaDestino);
+			boolean flagFechas = valorFechaStart == null || valorFechaFinal == null ? true
+					: paquete.estaEntreFechas(valorFechaStart, valorFechaFinal);
+			boolean flagNombreDes = valorNombreDestino == null ? true
+					: paquete.contieneNombreDestino(valorNombreDestino);
+			boolean flagNombrePaquete = valorNombrePaquete == null ? true : paquete.tieneNombre(valorNombrePaquete);
+			boolean flagPrecio = valorPrecioDesdePaquete == null || valorPrecioHastaPaquete == null ? true
+					: paquete.tienePrecioEntre(valorPrecioDesdePaquete, valorPrecioHastaPaquete);
+			return flagCiudadDes && flagClima && flagFechas && flagNombreDes && flagNombrePaquete && flagPrecio;
+		};
+		PeticionController<Predicate<Paquete>, List<Paquete>> peticionController = new PeticionController<Predicate<Paquete>, List<Paquete>>(
+				TipoPeticion.FILTRAR_PAQUETES, predicate);
+		try {
+			List<Paquete> paquetes = peticionController.realizarPeticion();
+			if (paquetes.isEmpty()) {
+				panelBusqueda.setCenter(new Label("No hay paquetes")); // TODO property
+				return;
+			}
+			Vista<List<Paquete>> vistaPaquetes = Vista.buildView("viewPaquetes");
+			vistaPaquetes.cargarDato(paquetes);
+			panelBusqueda.setCenter(vistaPaquetes.getParent());
+		} catch (PeticionException | FXMLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
@@ -214,8 +242,24 @@ public class BusquedaAvanzadaController implements DataControllable<String> {
 		UtilsFX.setAsNameTextField(txtNombrePaquete);
 		UtilsFX.setAsNumberTextfield(txtPrecioDesde);
 		UtilsFX.setAsNumberTextfield(txtPrecioHasta);
-		
+
 		cbClima.setItems(FXCollections.observableArrayList(Clima.values()));
 	}
 
+	@Override
+	public void inicializarDatos(Pair<List<Paquete>, String> dato) {
+		Platform.runLater(() -> {
+			btnNombrePaquete.setSelected(true);
+			nombrePaqueteAction();
+			txtNombrePaquete.setText(dato.getValue());
+		});
+		Vista<List<Paquete>> vistaPaquetes;
+		try {
+			vistaPaquetes = Vista.buildView("viewPaquetes");
+			vistaPaquetes.cargarDato(dato.getKey());
+			panelBusqueda.setCenter(vistaPaquetes.getParent());
+		} catch (FXMLException e) {
+			throw new RuntimeException(e);
+		}
+	}
 }

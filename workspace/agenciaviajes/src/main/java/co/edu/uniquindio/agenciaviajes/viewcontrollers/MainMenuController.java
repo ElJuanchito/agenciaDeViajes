@@ -2,6 +2,7 @@ package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 
 import co.edu.uniquindio.agenciaviajes.controllers.DataController;
 import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
@@ -12,9 +13,11 @@ import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.exceptions.MovimientoIndefinidoException;
 import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
 import co.edu.uniquindio.agenciaviajes.model.Cliente;
+import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.model.Loginable;
 import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
+import co.edu.uniquindio.agenciaviajes.utils.DatosQuemadosAux;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -262,16 +265,10 @@ public class MainMenuController implements Controllable {
 
 	private void enterKeyActionSearch() {
 		try {
-			List<Paquete> paquetes = new PeticionController<Void, List<Paquete>>(TipoPeticion.LISTAR_PAQUETE, null)
-					.realizarPeticion();
-			if (paquetes.isEmpty())
-				MainPaneController.getInstance().showAlert("Lista vacia"); // TODO property
-			else {
-				busquedaAnterior = txtBuscar.getText();
-				VistaManager.getInstance().cambiarVistaCliente(TipoVista.BUSQUEDA_AVANZADA,
-						new Pair<List<Paquete>, String>(paquetes, busquedaAnterior));
-				searchBtnAction();
-			}
+			List<Paquete> paquetes = new PeticionController<Predicate<Paquete>, List<Paquete>>(
+					TipoPeticion.FILTRAR_PAQUETES, paquete -> paquete.tieneNombre(busquedaAnterior)).realizarPeticion();
+			VistaManager.getInstance().cambiarVistaCliente(TipoVista.BUSQUEDA_AVANZADA, paquetes);
+			searchBtnAction();
 		} catch (PeticionException | FXMLException e) {
 			MainPaneController.getInstance().showAlert("Error:" + e.getMessage()); // TODO property
 		}
@@ -327,7 +324,8 @@ public class MainMenuController implements Controllable {
 	private void guiasAction() {
 		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
-				VistaManager.getInstance().cambiarVistaCliente(TipoVista.GUIAS, null);
+				VistaManager.getInstance().cambiarVistaCliente(TipoVista.GUIAS,
+						DatosQuemadosAux.getInstance().obtenerListaGuias());
 			} catch (FXMLException e) {
 				throw new RuntimeException(e);
 			}
@@ -337,19 +335,28 @@ public class MainMenuController implements Controllable {
 	private void paquetesAction() {
 		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
-				VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETES, null);
-			} catch (FXMLException e) {
-				throw new RuntimeException(e);
+				PeticionController<Void, List<Paquete>> peticionController = new PeticionController<Void, List<Paquete>>(
+						TipoPeticion.LISTAR_PAQUETE, null);
+				VistaManager.getInstance().cambiarVistaCliente(TipoVista.PAQUETES,
+						peticionController.realizarPeticion());
+			} catch (FXMLException | PeticionException e) {
+				MainPaneController.getInstance().showAlert(e.getMessage());
 			}
 		});
 	}
 
 	private void destinosAction() {
-		try {
-			VistaManager.getInstance().cambiarVistaCliente(TipoVista.DESTINOS, null);
-		} catch (FXMLException e) {
-			throw new RuntimeException(e);
-		}
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				PeticionController<Void, List<Destino>> peticionController = new PeticionController<Void, List<Destino>>(
+						TipoPeticion.LISTAR_DESTINO, null);
+
+				VistaManager.getInstance().cambiarVistaCliente(TipoVista.DESTINOS,
+						peticionController.realizarPeticion());
+			} catch (FXMLException | PeticionException e) {
+				MainPaneController.getInstance().showAlert(e.getMessage());
+			}
+		});
 	}
 
 	private void nextAction() {

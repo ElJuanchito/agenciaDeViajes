@@ -51,13 +51,12 @@ public class CrearReservaLogicController {
 
 	private void enviarPdfReserva(final Reserva reservaNueva) {
 		try {
-			Boolean seEnvioCorreo = new PeticionController<byte[], Boolean>(TipoPeticion.ENVIAR_PDF,
-					CreacionPDFController.getInstance().crearPDFReserva(reservaNueva)).realizarPeticion();
-		} catch (FXMLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (PeticionException e) {
+			PeticionController<byte[], Boolean> peticionController = new PeticionController<byte[], Boolean>(
+					TipoPeticion.ENVIAR_PDF, CreacionPDFController.getInstance().crearPDFReserva(reservaNueva));
+
+			peticionController.realizarPeticion();
+			MainPaneController.getInstance().showAlert("Se ha enviado un correo"); // TODO property
+		} catch (FXMLException | IOException | PeticionException e) {
 			e.printStackTrace();
 		}
 	}

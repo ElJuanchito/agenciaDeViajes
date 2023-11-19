@@ -8,8 +8,7 @@ import animatefx.animation.FadeIn;
 import co.edu.uniquindio.agenciaviajes.controllers.Vista;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.model.GuiaTuristico;
-import co.edu.uniquindio.agenciaviajes.services.Controllable;
-import co.edu.uniquindio.agenciaviajes.utils.DatosQuemadosAux;
+import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -17,7 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-public class ViewGuiasController implements Controllable {
+public class ViewGuiasController implements DataControllable<List<GuiaTuristico>> {
 
 	@FXML
 	private ResourceBundle resources;
@@ -37,29 +36,11 @@ public class ViewGuiasController implements Controllable {
 	private int rowIndex = 0;
 	private int colIndex = 0;
 
-	private List<GuiaTuristico> guias;
-
 	@Override
 	public void preInicializar() {
-		new Thread(this::inicializarGuias).start();
-	}
-
-	private void inicializarGuias() {
-		guias = null;
-		MainPaneController.getInstance().ejecutarProcesoDoble(() -> {
-
-			guias = DatosQuemadosAux.getInstance().obtenerListaGuias();
-		}, () -> {
-			for (GuiaTuristico paquete : guias) {
-				agregarGuias(paquete);
-			}
-		});
-
 	}
 
 	private void agregarGuias(GuiaTuristico guia) {
-		// Falta crear la ventana de paquete aunque no se si modificar la misma de
-		// destino
 		try {
 			Vista<GuiaTuristico> view = Vista.buildView("guiaTuristico");
 			view.getController().inicializarDatos(guia);
@@ -81,17 +62,25 @@ public class ViewGuiasController implements Controllable {
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
+		// TODO titulo
 
 	}
 
 	@Override
 	public void clearData() {
-		// TODO Auto-generated method stub
-
 	}
 
-	// Aun no voy a hacer lo de realizar peticiones, primero voy a tratar de probar
-	// que la ventana funcione
-
+	@Override
+	public void inicializarDatos(List<GuiaTuristico> dato) {
+		new Thread(() -> {
+			Platform.runLater(() -> {
+				contentPane.getChildren().clear();
+				colIndex = 0;
+				rowIndex = 0;
+				for (GuiaTuristico paquete : dato) {
+					agregarGuias(paquete);
+				}
+			});
+		}).start();
+	}
 }

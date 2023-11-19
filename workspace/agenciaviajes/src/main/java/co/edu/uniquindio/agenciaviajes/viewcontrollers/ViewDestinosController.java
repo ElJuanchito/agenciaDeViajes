@@ -1,17 +1,13 @@
 package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import animatefx.animation.FadeIn;
-import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
-import co.edu.uniquindio.agenciaviajes.controllers.TipoPeticion;
 import co.edu.uniquindio.agenciaviajes.controllers.Vista;
-import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
-import co.edu.uniquindio.agenciaviajes.services.Controllable;
+import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -19,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-public class ViewDestinosController implements Controllable {
+public class ViewDestinosController implements DataControllable<List<Destino>> {
 
 	@FXML
 	private ResourceBundle resources;
@@ -43,34 +39,6 @@ public class ViewDestinosController implements Controllable {
 
 	@Override
 	public void preInicializar() {
-		reiniciarDestinos();
-	}
-
-	private void reiniciarDestinos() {
-		new Thread(this::inicializarDestinos).start();
-	}
-
-	private void inicializarDestinos() {
-		destinos = null;
-		MainPaneController.getInstance().ejecutarProcesoDoble(() -> {
-			// aca toca que cambiar en lugar de datos quemados un llamado al data service
-			realizarPeticionDestinos();
-		}, () -> {
-			for (Destino destino : destinos) {
-				agregarDestino(destino);
-			}
-		});
-
-	}
-
-	private void realizarPeticionDestinos() {
-		try {
-			destinos = new PeticionController<Void, List<Destino>>(TipoPeticion.LISTAR_DESTINO, null)
-					.realizarPeticion();
-		} catch (PeticionException e) {
-			destinos = new ArrayList<Destino>();
-			MainPaneController.getInstance().showAlert("No se pudo realizar la peticion" + e.getMessage());
-		}
 	}
 
 	public void agregarDestino(Destino destino) {
@@ -100,7 +68,20 @@ public class ViewDestinosController implements Controllable {
 
 	@Override
 	public void clearData() {
-		reiniciarDestinos();
+	}
+
+	@Override
+	public void inicializarDatos(List<Destino> dato) {
+		new Thread(() -> {
+			Platform.runLater(() -> {
+				contentPane.getChildren().clear();
+				rowIndex = 0;
+				colIndex = 0;
+				for (Destino destino : destinos) {
+					agregarDestino(destino);
+				}
+			});
+		}).start();
 	}
 
 }
