@@ -25,11 +25,10 @@ public class DatosQuemadosAux {
 	private static DatosQuemadosAux instance;
 	private Paquete paquete;
 	private List<GuiaTuristico> listaguias;
-	
-	
+
 	private Administrador administrador;
-	
-	
+	private List<GuiaTuristico> listaGuias;
+	private Cliente cliente;
 
 	public static DatosQuemadosAux getInstance() {
 		if (instance == null)
@@ -138,29 +137,64 @@ public class DatosQuemadosAux {
 		listaguias.add(guia);
 		System.out.println(guia);
 	}
-	
-	public List <GuiaTuristico> obtenerListaGuias(){
-		List<GuiaTuristico> listaGuias= new ArrayList<>();
-		
-		List<Idioma> listaIdiomas= new ArrayList<Idioma>();
+
+	public List<GuiaTuristico> obtenerListaGuias() {
+		if (listaGuias != null)
+			return listaGuias;
+		listaGuias = new ArrayList<>();
+
+		List<Idioma> listaIdiomas = new ArrayList<Idioma>();
 		listaIdiomas.add(Idioma.ESPANOL);
 		listaIdiomas.add(Idioma.INGLES);
 		listaIdiomas.add(Idioma.ITALIANO);
-		
-		//No se porque dice que idiomas debe ser un arreglo y no una lista cuando esta puesto como una lista creo que es por
-		//Idioma...
+
+		// No se porque dice que idiomas debe ser un arreglo y no una lista cuando esta
+		// puesto como una lista creo que es por
+		// Idioma...
 		GuiaTuristico guia1 = null;
 		try {
-			guia1 = GuiaTuristico.builder().identificacion("1098675678").nombreCompleto("Duque Inminente")
-					.expHoras(89).idiomas(listaIdiomas.stream().toArray(Idioma[]::new)).imagen(Imagen.createImage(new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/pikachuPiloto.png")))).build();
+			guia1 = GuiaTuristico.builder().identificacion("1098675678").nombreCompleto("Duque Inminente").expHoras(89)
+					.idiomas(listaIdiomas.stream().toArray(Idioma[]::new))
+					.imagen(Imagen.createImage(new Image(getClass()
+							.getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/pikachuPiloto.png"))))
+					.build();
 		} catch (ImagenNoObtenidaException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		listaGuias.add(guia1);
 		return listaGuias;
 	}
-	
-	
+
+	public Cliente getCliente() {
+		try {
+			if (cliente != null)
+				return cliente;
+			cliente = Cliente.builder().contrasena("hola").direccion("direccion").email("email").identificacion("id")
+					.nombreCompleto("Alejo Perdomo").telefono("312345")
+					.imagen(Imagen.createImage(new Image(instance.getClass()
+							.getResource("/co/edu/uniquindio/agenciaviajes/imagenes/hola.jpg").toExternalForm())))
+					.build();
+			return cliente;
+		} catch (ImagenNoObtenidaException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	public Administrador getAdministrador() {
+		try {
+			if (administrador != null)
+				return administrador;
+			administrador = Administrador.builder().contrasena("hola").identificacion("id")
+					.nombreCompleto("Alejo Perdomo Admin")
+					.imagen(Imagen.createImage(new Image(instance.getClass()
+							.getResource("/co/edu/uniquindio/agenciaviajes/imagenes/hola.jpg").toExternalForm())))
+					.build();
+			return administrador;
+		} catch (ImagenNoObtenidaException e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 }

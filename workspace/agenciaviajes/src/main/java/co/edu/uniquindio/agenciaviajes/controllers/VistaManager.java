@@ -8,18 +8,11 @@ import java.util.Map;
 import co.edu.uniquindio.agenciaviajes.application.App;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.exceptions.MovimientoIndefinidoException;
-import co.edu.uniquindio.agenciaviajes.model.Reserva;
 import co.edu.uniquindio.agenciaviajes.viewcontrollers.MainMenuController;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.print.PageLayout;
-import javafx.print.PageOrientation;
-import javafx.print.Paper;
-import javafx.print.Printer;
-import javafx.print.Printer.MarginType;
-import javafx.print.PrinterJob;
 import lombok.Getter;
 
 public class VistaManager {

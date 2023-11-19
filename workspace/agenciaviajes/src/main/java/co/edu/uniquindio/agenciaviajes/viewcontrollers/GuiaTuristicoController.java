@@ -5,7 +5,6 @@ import java.util.ResourceBundle;
 
 import animatefx.animation.FadeInUp;
 import co.edu.uniquindio.agenciaviajes.model.GuiaTuristico;
-import co.edu.uniquindio.agenciaviajes.model.Imagen;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -24,7 +23,6 @@ import javafx.scene.shape.SVGPath;
 import javafx.scene.shape.StrokeLineCap;
 import javafx.util.Duration;
 import lombok.Getter;
-import lombok.Setter;
 
 public class GuiaTuristicoController implements DataControllable<GuiaTuristico> {
 
@@ -51,23 +49,14 @@ public class GuiaTuristicoController implements DataControllable<GuiaTuristico> 
 	@FXML
 	private ScrollPane scrollDescripcion;
 
-	private Imagen imagen;
-
-	private int currentIndex = 0;
-
-	private boolean isFistImageShowing = false;
+	private Image imagen;
 
 	@FXML
 	private SVGPath stars[];
 
 	private Color starFill;
 
-	@Setter
-	private boolean vivo;
-
 	private Timeline animacionHover;
-
-	private Timeline timeline;
 
 	private Image defaultImage;
 
@@ -97,29 +86,27 @@ public class GuiaTuristicoController implements DataControllable<GuiaTuristico> 
 	}
 
 	private void showImage() {
-		
-		
+
 		Platform.runLater(() -> {
-			Image imagenRef = imagen.getImage();
-            imgGuia.setImage(imagenRef) ;
+			imgGuia.setImage(imagen);
 
-            // Configura el tamaño de la imagen según sea necesario
+			// Configura el tamaño de la imagen según sea necesario
 
-            double relacionAspecto = imagenRef.getWidth() / imagenRef.getHeight();
-            double xSmallPos = (310 - 220 * relacionAspecto) / 2;
-            imgGuia.setX(xSmallPos);
+			double relacionAspecto = imagen.getWidth() / imagen.getHeight();
+			double xSmallPos = (310 - 220 * relacionAspecto) / 2;
+			imgGuia.setX(xSmallPos);
 
-            // Crea y ejecuta la animación FadeInUp
-            FadeInUp fadeInUp = new FadeInUp(imgGuia);
-            fadeInUp.play();
-        });
-		
+			// Crea y ejecuta la animación FadeInUp
+			FadeInUp fadeInUp = new FadeInUp(imgGuia);
+			fadeInUp.play();
+		});
+
 	}
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -127,32 +114,25 @@ public class GuiaTuristicoController implements DataControllable<GuiaTuristico> 
 		txtName.setText("");
 		imgGuia.setImage(defaultImage);
 		showImage();
-		currentIndex = 0;
-		this.guia= null;
-		
+		this.guia = null;
+
 	}
 
 	@Override
 	public void inicializarDatos(GuiaTuristico dato) {
-	
+
 		this.guia = dato;
 		if (guia == null) {
 			clearData();
 			return;
 		}
 		txtName.setText(guia.getNombreCompleto());
-		imagen= guia.getImagen();
-		//TODO actualizarPuntaje(guia.getPromedio());
+		imagen = guia.getImagen().getImage();
+		// TODO actualizarPuntaje(guia.getPromedio());
 		showImage();
-		vivo = true;
-		isFistImageShowing = false;
-		currentIndex = -1;
 		txtDescription.setText(guia.getDescripcion());
-		
-		
+
 	}
-	
-	
 
 	@Override
 	public void preInicializar() {
@@ -176,8 +156,7 @@ public class GuiaTuristicoController implements DataControllable<GuiaTuristico> 
 		KeyFrame valorFinal = new KeyFrame(Duration.millis(100),
 				new KeyValue(scrollDescripcion.prefHeightProperty(), 80d));
 		animacionHover = new Timeline(valorInicial, valorFinal);
-		
+
 	}
-	
-	
+
 }

@@ -7,9 +7,7 @@ import java.util.ResourceBundle;
 import animatefx.animation.FadeIn;
 import co.edu.uniquindio.agenciaviajes.controllers.Vista;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
-import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.model.GuiaTuristico;
-import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
 import co.edu.uniquindio.agenciaviajes.utils.DatosQuemadosAux;
 import javafx.application.Platform;
@@ -20,7 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class ViewGuiasController implements Controllable {
-	
+
 	@FXML
 	private ResourceBundle resources;
 
@@ -45,11 +43,11 @@ public class ViewGuiasController implements Controllable {
 	public void preInicializar() {
 		new Thread(this::inicializarGuias).start();
 	}
-	
+
 	private void inicializarGuias() {
 		guias = null;
 		MainPaneController.getInstance().ejecutarProcesoDoble(() -> {
-			
+
 			guias = DatosQuemadosAux.getInstance().obtenerListaGuias();
 		}, () -> {
 			for (GuiaTuristico paquete : guias) {
@@ -58,7 +56,7 @@ public class ViewGuiasController implements Controllable {
 		});
 
 	}
-	
+
 	private void agregarGuias(GuiaTuristico guia) {
 		// Falta crear la ventana de paquete aunque no se si modificar la misma de
 		// destino
@@ -71,6 +69,7 @@ public class ViewGuiasController implements Controllable {
 		}
 
 	}
+
 	private void cargarGuiasVista(Parent parent) {
 		FadeIn fadeIn = new FadeIn(parent);
 		contentPane.add(parent, colIndex, rowIndex);
@@ -83,17 +82,16 @@ public class ViewGuiasController implements Controllable {
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void clearData() {
 		// TODO Auto-generated method stub
-		
-	}
-	
-	
-	//Aun no voy a hacer lo de realizar peticiones, primero voy a tratar de probar que la ventana funcione
 
+	}
+
+	// Aun no voy a hacer lo de realizar peticiones, primero voy a tratar de probar
+	// que la ventana funcione
 
 }
