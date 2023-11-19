@@ -1,6 +1,5 @@
 package co.edu.uniquindio.agenciaviajes.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,21 +42,15 @@ public class Cliente extends Usuario implements Loginable {
 
 	private Imagen imagen;
 
-	/**
-	 * @param identificacion
-	 * @param nombreCompleto
-	 * @param email
-	 * @param telefono
-	 * @param direccion
-	 */
 	@Builder
-	private Cliente(@NonNull String identificacion, @NonNull String nombreCompleto, @NonNull String email,
-			@NonNull String contrasena, @NonNull String telefono, @NonNull String direccion) {
+	private Cliente(String identificacion, String nombreCompleto, String email, String contrasena, String telefono,
+			String direccion, Imagen imagen) {
 		super(identificacion, nombreCompleto);
 		this.email = email;
 		this.telefono = telefono;
 		this.direccion = direccion;
 		this.contrasena = contrasena;
+		this.imagen = imagen;
 		reservas = new ArrayList<Reserva>();
 	}
 
@@ -232,26 +225,26 @@ public class Cliente extends Usuario implements Loginable {
 	public String getUsuario() {
 		return getIdentificacion();
 	}
-	
-	public List<Reserva> getReservasPasadas(List<Reserva> seleccionadas,int i){
-		if(i>= reservas.size())
+
+	public List<Reserva> getReservasPasadas(List<Reserva> seleccionadas, int i) {
+		if (i >= reservas.size())
 			return seleccionadas;
-		Reserva reserva= reservas.get(i);
-		if(esPasada(reserva))
+		Reserva reserva = reservas.get(i);
+		if (esPasada(reserva))
 			seleccionadas.add(reservas.get(i));
-		
-		return getReservasPasadas(seleccionadas, i+1);
+
+		return getReservasPasadas(seleccionadas, i + 1);
 	}
-	
-	public List<Reserva> getReservasFuturas(List<Reserva>seleccionadas,int i){
-		if(i>=reservas.size())
+
+	public List<Reserva> getReservasFuturas(List<Reserva> seleccionadas, int i) {
+		if (i >= reservas.size())
 			return seleccionadas;
-		Reserva reserva= reservas.get(i);
-		if(esFutura(reserva)) 
+		Reserva reserva = reservas.get(i);
+		if (esFutura(reserva))
 			seleccionadas.add(reservas.get(i));
-		return getReservasFuturas(seleccionadas, i+1);
+		return getReservasFuturas(seleccionadas, i + 1);
 	}
-	
+
 	private boolean esFutura(Reserva reserva) {
 		return reserva.getPaquete().getFechaIncio().isAfter(LocalDateTime.now());
 	}

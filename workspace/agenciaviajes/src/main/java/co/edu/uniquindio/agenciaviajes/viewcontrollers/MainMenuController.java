@@ -1,14 +1,19 @@
 package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
+import java.util.List;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaviajes.controllers.DataController;
+import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
+import co.edu.uniquindio.agenciaviajes.controllers.TipoPeticion;
 import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
 import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.exceptions.MovimientoIndefinidoException;
+import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
 import co.edu.uniquindio.agenciaviajes.model.Cliente;
 import co.edu.uniquindio.agenciaviajes.model.Loginable;
+import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -20,10 +25,14 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
@@ -46,7 +55,7 @@ public class MainMenuController implements Controllable {
 	}
 
 	@FXML
-	private Button btnBack, btnRecargar, btnExtra, btnNext;
+	private Button btnBack, btnRecargar, btnExtra, btnNext, btnSearch;
 
 	@FXML
 	private SVGPath btnPerfil;
@@ -55,7 +64,7 @@ public class MainMenuController implements Controllable {
 	private Circle circleImage;
 
 	@FXML
-	private Label lblBtnDestinos, lblBtnGuias, lblbtnPaquetes;
+	private Label lblBtnDestinos, lblBtnGuias, lblbtnPaquetes, lblCerrarSesion, lblLogin, lblRegister, lblVerPerfil;
 
 	@FXML
 	private ImageView imageViewPerfil;
@@ -63,15 +72,46 @@ public class MainMenuController implements Controllable {
 	private ScrollPane scrollCenter;
 
 	@FXML
-	private BorderPane capaMenu, capaMenu2;
+	private BorderPane capaMenu, capaMenu2, searchingLayer;
 
 	@FXML
 	private VBox menuCliente1, menuCliente2;
 
-	private boolean isMenuExtended, isMenu2Extended;
-	private Timeline timelineMenu, timelineMenu2;
+	@FXML
+	private TextField txtBuscar;
+
+	private String busquedaAnterior;
+	private boolean isMenuExtended, isMenu2Extended, isBusquedaShown;
+	private Timeline timelineMenu, timelineMenu2, timelineBusqueda;
 
 	private Circle clip;
+
+	private Color azulOscuro, azulClaro;
+
+	@FXML
+	void searchBtnEvent(ActionEvent event) {
+		searchBtnAction();
+	}
+
+	@FXML
+	void txtSearchKeyReleasedEvent(KeyEvent event) {
+		if (event.getCode() == KeyCode.ENTER) {
+			enterKeyActionSearch();
+		}
+		if (event.getCode() == KeyCode.ESCAPE) {
+			escapeKeyActionSearch();
+		}
+	}
+
+	@FXML
+	void searchBtnEnterEvent(MouseEvent event) {
+		enterKeyActionSearch();
+	}
+
+	@FXML
+	void closeSearchBtnEvent(MouseEvent event) {
+		escapeKeyActionSearch();
+	}
 
 	@FXML
 	void backEvent(ActionEvent event) {
@@ -152,12 +192,13 @@ public class MainMenuController implements Controllable {
 
 	@Override
 	public void preInicializar() {
-		clip = new Circle(21);
-		clip.setCenterX(43);
-		clip.setCenterY(24.5);
-		imageViewPerfil.setFitHeight(86);
-		imageViewPerfil.setFitWidth(86);
+		clip = new Circle(10.5);
+		clip.setCenterX(21.5);
+		clip.setCenterY(12);
 		imageViewPerfil.setClip(clip);
+		azulOscuro = new Color(0.1529, 0.0196, 0.4392, 1.0);
+		azulClaro = new Color(0.1529, 0.0196, 0.4392, 0.5);
+		btnSearch.setTextFill(azulClaro);
 		actualizarImgLogin(DataController.getInstance().getLoginActualValue());
 		DataController.getInstance().getLoginActual().addListener((observable, oldValue, newValue) -> {
 			actualizarImgLogin(newValue);
@@ -165,6 +206,15 @@ public class MainMenuController implements Controllable {
 
 		timelineMenu = crearAnimacionExtension(menuCliente1.prefWidthProperty(), capaMenu.opacityProperty());
 		timelineMenu2 = crearAnimacionExtension(menuCliente2.prefWidthProperty(), capaMenu2.opacityProperty());
+		timelineBusqueda = new Timeline();
+		timelineBusqueda.getKeyFrames()
+				.add(new KeyFrame(Duration.millis(0), new KeyValue(searchingLayer.opacityProperty(), 0d)));
+		timelineBusqueda.getKeyFrames()
+				.add(new KeyFrame(Duration.millis(150), new KeyValue(searchingLayer.opacityProperty(), 1d)));
+		crearListeners();
+	}
+
+	private void crearListeners() {
 		VistaManager.getInstance().getObsAnteriorCliente().addListener((observable, oldValue, newValue) -> {
 			btnBack.setDisable(!newValue);
 		});
@@ -174,6 +224,62 @@ public class MainMenuController implements Controllable {
 		VistaManager.getInstance().getVistaActualCliente().addListener((observable, oldValue, newValue) -> {
 			btnRecargar.setDisable(newValue == null);
 		});
+		txtBuscar.textProperty().addListener(((observable, oldValue, newValue) -> {
+			if (newValue == null || newValue.isBlank()) {
+				btnSearch.setText("Buscar"); // TODO property
+				btnSearch.setTextFill(azulClaro);
+			} else {
+				btnSearch.setText(newValue);
+				btnSearch.setTextFill(azulOscuro);
+			}
+		}));
+	}
+
+	@Override
+	public void updateLanguage(ResourceBundle bundle) {
+		lblBtnDestinos.setText(bundle.getString("MainMenuController.lblBtnDestinos"));
+		lblbtnPaquetes.setText(bundle.getString("MainMenuController.lblbtnPaquetes"));
+		lblBtnGuias.setText(bundle.getString("MainMenuController.lblBtnGuias"));
+	}
+
+	@Override
+	public void clearData() {
+	}
+
+	private void searchBtnAction() {
+		searchingLayer.setDisable(isBusquedaShown);
+		if (isBusquedaShown) {
+			timelineBusqueda.stop();
+			timelineBusqueda.setRate(-1);
+			timelineBusqueda.jumpTo(Duration.millis(150));
+			timelineBusqueda.play();
+		} else {
+			timelineBusqueda.setOnFinished((e -> txtBuscar.requestFocus()));
+			timelineBusqueda.playFromStart();
+		}
+		isBusquedaShown = !isBusquedaShown;
+	}
+
+	private void enterKeyActionSearch() {
+		try {
+			List<Paquete> paquetes = new PeticionController<Void, List<Paquete>>(TipoPeticion.LISTAR_PAQUETE, null)
+					.realizarPeticion();
+			if (paquetes.isEmpty())
+				MainPaneController.getInstance().showAlert("Lista vacia"); // TODO property
+			else {
+				busquedaAnterior = txtBuscar.getText();
+				VistaManager.getInstance().cambiarVistaCliente(TipoVista.BUSQUEDA_AVANZADA,
+						new Pair<List<Paquete>, String>(paquetes, busquedaAnterior));
+				searchBtnAction();
+			}
+		} catch (PeticionException | FXMLException e) {
+			MainPaneController.getInstance().showAlert("Error:" + e.getMessage()); // TODO property
+		}
+	}
+
+	private void escapeKeyActionSearch() {
+		txtBuscar.setText(busquedaAnterior == null ? "" : busquedaAnterior);
+		searchBtnAction();
 	}
 
 	private void actualizarImgLogin(Loginable newValue) {
@@ -188,17 +294,6 @@ public class MainMenuController implements Controllable {
 		} else {
 			imageViewPerfil.setOpacity(0);
 		}
-	}
-
-	@Override
-	public void updateLanguage(ResourceBundle bundle) {
-		lblBtnDestinos.setText(bundle.getString("MainMenuController.lblBtnDestinos"));
-		lblbtnPaquetes.setText(bundle.getString("MainMenuController.lblbtnPaquetes"));
-		lblBtnGuias.setText(bundle.getString("MainMenuController.lblBtnGuias"));
-	}
-
-	@Override
-	public void clearData() {
 	}
 
 	private void loginAction() {
@@ -232,7 +327,6 @@ public class MainMenuController implements Controllable {
 	private void guiasAction() {
 		MainPaneController.getInstance().ejecutarProceso(() -> {
 			try {
-				//Cambie para que se vea la tabla de guias
 				VistaManager.getInstance().cambiarVistaCliente(TipoVista.GUIAS, null);
 			} catch (FXMLException e) {
 				throw new RuntimeException(e);

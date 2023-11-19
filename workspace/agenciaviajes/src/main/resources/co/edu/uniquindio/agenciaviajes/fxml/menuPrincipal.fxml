@@ -3,11 +3,13 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -32,7 +34,7 @@
                         <Insets left="5.0" />
                      </HBox.margin>
                   </Group>
-                  <Button mnemonicParsing="false" onAction="#destinosEvent" prefHeight="50.0" prefWidth="80.0" styleClass="upper-button">
+                  <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#destinosEvent" prefHeight="50.0" prefWidth="80.0" styleClass="upper-button">
                      <graphic>
                         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="60.0">
                            <children>
@@ -42,7 +44,7 @@
                         </VBox>
                      </graphic>
                   </Button>
-                  <Button layoutX="77.0" layoutY="12.0" mnemonicParsing="false" onAction="#paquetesEvent" prefHeight="50.0" prefWidth="80.0" styleClass="upper-button">
+                  <Button layoutX="77.0" layoutY="12.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#paquetesEvent" prefHeight="50.0" prefWidth="80.0" styleClass="upper-button">
                      <graphic>
                         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="60.0">
                            <children>
@@ -52,7 +54,7 @@
                         </VBox>
                      </graphic>
                   </Button>
-                  <Button layoutX="164.0" layoutY="11.0" mnemonicParsing="false" onAction="#guiasEvent" prefHeight="50.0" prefWidth="80.0" styleClass="upper-button">
+                  <Button layoutX="164.0" layoutY="11.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#guiasEvent" prefHeight="50.0" prefWidth="80.0" styleClass="upper-button">
                      <graphic>
                         <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="60.0">
                            <children>
@@ -66,41 +68,46 @@
                         </VBox>
                      </graphic>
                   </Button>
-                  <Button fx:id="btnSearch" contentDisplay="CENTER" mnemonicParsing="false" onAction="#searchEvent" styleClass="upper-button">
-                     <graphic>
-                        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="60.0">
-                           <children>
-                              <SVGPath content="M9.5 17c1.71 0 3.287-.573 4.55-1.537l4.743 4.744a1 1 0 0 0 1.414-1.414l-4.744-4.744A7.5 7.5 0 1 0 9.5 17zM15 9.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" fill="#ffffff00" stroke="WHITE" strokeType="INSIDE" strokeWidth="10.0">
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </SVGPath>
-                              <Label text="Buscar" textFill="WHITE">
-                                 <padding>
-                                    <Insets top="2.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </graphic>
-                  </Button>
-                  <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                  <StackPane alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
                      <children>
-                        <StackPane>
-                           <children>
-                              <SVGPath fx:id="btnPerfil" content="M24,45A21,21,0,1,1,45,24,21,21,0,0,1,24,45Zm11.633-6c-.157-.231-.355-.518-.514-.742-.277-.394-.554-.788-.8-1.178C34.305,37.062,32.935,35.224,28,35a2.922,2.922,0,0,1-2.968-3.066L25,31c0-.135-.016.148,0,0V30l1-1a14.435,14.435,0,0,0,2.4-1.464l.135-.093A4.643,4.643,0,0,0,30,26l.036-.381A55.987,55.987,0,0,0,31,19c0-4.71-2.29-7-7-7-4.775,0-7,2.224-7,7a54.693,54.693,0,0,0,.963,6.616l.035.352a3.981,3.981,0,0,0,1.449,1.462l.1.062A19.174,19.174,0,0,0,22,29l1,1v1c.014.138,0-.146,0,0l-.033.934A2.9,2.9,0,0,1,20.084,35h0c-4.956.2-6.393,2.077-6.4,2.077-.252.4-.528.789-.807,1.184-.157.224-.355.51-.513.741a18.917,18.917,0,0,0,23.267,0ZM24,5A18.986,18.986,0,0,0,10.85,37.694c.382-.565.79-1.129,1.15-1.694,0,0,1.67-2.743,8-3,.645,0,.967-.422.967-1.066h0c0-.521,0-.934,0-.934,0-.13-.021-.247-.027-.373A17.5,17.5,0,0,1,18.4,29.133S16,27.657,16,26a60.16,60.16,0,0,1-1-7c0-4.644,1.986-9,9-9,6.92,0,9,4.356,9,9a61.784,61.784,0,0,1-1,7c0,1.611-2.4,3.133-2.4,3.133a13.873,13.873,0,0,1-2.543,1.546c0,.109-.023.209-.023.321,0,0,0,.413,0,.934h0c0,.644.32,1.066.965,1.066,6.424.288,8,3,8,3,.36.565.767,1.129,1.149,1.694A18.985,18.985,0,0,0,24,5Z" fill="WHITE" />
-                              <ImageView fx:id="imageViewPerfil" pickOnBounds="true" preserveRatio="true" />
-                              <Circle fx:id="circleImage" fill="#1f93ff00" layoutX="31.0" layoutY="39.0" onMouseClicked="#perfilClickEvent" radius="21.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-                           </children>
-                        </StackPane>
+                        <Button fx:id="btnSearch" alignment="BASELINE_LEFT" contentDisplay="RIGHT" ellipsisString="" maxHeight="40.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchBtnEvent" style="-fx-background-color: #cab3fc; -fx-background-radius: 50;" text="Buscar" textFill="#250570" textOverrun="CLIP">
+                           <padding>
+                              <Insets left="15.0" right="35.0" />
+                           </padding>
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </Button>
+                        <SVGPath content="M9.5 17c1.71 0 3.287-.573 4.55-1.537l4.743 4.744a1 1 0 0 0 1.414-1.414l-4.744-4.744A7.5 7.5 0 1 0 9.5 17zM15 9.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" fill="#ffffff00" stroke="#250570" strokeType="INSIDE" strokeWidth="10.0">
+                           <StackPane.margin>
+                              <Insets right="16.0" />
+                           </StackPane.margin>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </SVGPath>
+                     </children>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </StackPane>
+                  <StackPane>
+                     <children>
+                        <SVGPath fx:id="btnPerfil" content="M24,45A21,21,0,1,1,45,24,21,21,0,0,1,24,45Zm11.633-6c-.157-.231-.355-.518-.514-.742-.277-.394-.554-.788-.8-1.178C34.305,37.062,32.935,35.224,28,35a2.922,2.922,0,0,1-2.968-3.066L25,31c0-.135-.016.148,0,0V30l1-1a14.435,14.435,0,0,0,2.4-1.464l.135-.093A4.643,4.643,0,0,0,30,26l.036-.381A55.987,55.987,0,0,0,31,19c0-4.71-2.29-7-7-7-4.775,0-7,2.224-7,7a54.693,54.693,0,0,0,.963,6.616l.035.352a3.981,3.981,0,0,0,1.449,1.462l.1.062A19.174,19.174,0,0,0,22,29l1,1v1c.014.138,0-.146,0,0l-.033.934A2.9,2.9,0,0,1,20.084,35h0c-4.956.2-6.393,2.077-6.4,2.077-.252.4-.528.789-.807,1.184-.157.224-.355.51-.513.741a18.917,18.917,0,0,0,23.267,0ZM24,5A18.986,18.986,0,0,0,10.85,37.694c.382-.565.79-1.129,1.15-1.694,0,0,1.67-2.743,8-3,.645,0,.967-.422.967-1.066h0c0-.521,0-.934,0-.934,0-.13-.021-.247-.027-.373A17.5,17.5,0,0,1,18.4,29.133S16,27.657,16,26a60.16,60.16,0,0,1-1-7c0-4.644,1.986-9,9-9,6.92,0,9,4.356,9,9a61.784,61.784,0,0,1-1,7c0,1.611-2.4,3.133-2.4,3.133a13.873,13.873,0,0,1-2.543,1.546c0,.109-.023.209-.023.321,0,0,0,.413,0,.934h0c0,.644.32,1.066.965,1.066,6.424.288,8,3,8,3,.36.565.767,1.129,1.149,1.694A18.985,18.985,0,0,0,24,5Z" fill="WHITE" />
+                        <ImageView fx:id="imageViewPerfil" fitHeight="43.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true" scaleX="2.0" scaleY="2.0">
+                           <viewport>
+                              <Rectangle2D />
+                           </viewport>
+                        </ImageView>
+                        <Circle fx:id="circleImage" fill="#1f93ff00" layoutX="31.0" layoutY="39.0" onMouseClicked="#perfilClickEvent" radius="21.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
                      </children>
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </HBox>
+                  </StackPane>
                </children>
             </HBox>
          </top>
@@ -260,6 +267,43 @@
                </padding>
             </VBox>
          </right>
+      </BorderPane>
+      <BorderPane fx:id="searchingLayer" disable="true" layoutX="10.0" layoutY="10.0" opacity="0.0" style="-fx-background-color: #000000A0;" stylesheets="@../styles/boton.css">
+         <top>
+            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="57.6" spacing="5.0" style="-fx-background-radius: 50;">
+               <children>
+                  <StackPane alignment="CENTER_RIGHT" minWidth="0.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <TextField fx:id="txtBuscar" maxHeight="40.0" minWidth="0.0" onKeyReleased="#txtSearchKeyReleasedEvent" prefWidth="0.0" style="-fx-background-radius: 50; -fx-background-color: #cab3fc;">
+                           <padding>
+                              <Insets left="14.5" right="42.0" />
+                           </padding>
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                        <StackPane maxHeight="30.0" maxWidth="30.0" onMouseClicked="#searchBtnEnterEvent" styleClass="search-button">
+                           <children>
+                              <SVGPath content="M9.5 17c1.71 0 3.287-.573 4.55-1.537l4.743 4.744a1 1 0 0 0 1.414-1.414l-4.744-4.744A7.5 7.5 0 1 0 9.5 17zM15 9.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" fill="#ffffff00" stroke="#250570" strokeType="INSIDE" strokeWidth="10.0" />
+                           </children>
+                           <StackPane.margin>
+                              <Insets right="10.5" />
+                           </StackPane.margin>
+                        </StackPane>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="316.0" right="62.0" />
+                     </HBox.margin>
+                  </StackPane>
+               </children>
+            </HBox>
+         </top>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <center>
+            <SVGPath content="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM8.96963 8.96965C9.26252 8.67676 9.73739 8.67676 10.0303 8.96965L12 10.9393L13.9696 8.96967C14.2625 8.67678 14.7374 8.67678 15.0303 8.96967C15.3232 9.26256 15.3232 9.73744 15.0303 10.0303L13.0606 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0303 15.0303C9.73742 15.3232 9.26254 15.3232 8.96965 15.0303C8.67676 14.7374 8.67676 14.2625 8.96965 13.9697L10.9393 12L8.96963 10.0303C8.67673 9.73742 8.67673 9.26254 8.96963 8.96965Z" fill="#cab3fc" fillRule="EVEN_ODD" onMouseClicked="#closeSearchBtnEvent" scaleX="5.0" scaleY="5.0" BorderPane.alignment="CENTER" />
+         </center>
       </BorderPane>
    </children>
    <stylesheets>
