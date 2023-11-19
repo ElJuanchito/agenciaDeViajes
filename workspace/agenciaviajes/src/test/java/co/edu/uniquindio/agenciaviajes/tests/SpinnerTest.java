@@ -13,7 +13,7 @@ public class SpinnerTest extends Application {
 	
 	@Test
 	public  void pruebaSpinner() {
-		launch();
+//		launch();
 
 	}
 

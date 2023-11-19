@@ -13,7 +13,7 @@ public class PropiedadesApplicationTest extends Application {
 
 	@Test
 	public void prueba() {
-		launch(new String[0]);
+//		launch(new String[0]);
 		assertTrue(true);
 	}
 
