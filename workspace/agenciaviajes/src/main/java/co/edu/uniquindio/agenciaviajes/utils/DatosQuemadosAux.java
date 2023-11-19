@@ -7,6 +7,7 @@ import java.util.List;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.DestinoYaExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.ImagenNoObtenidaException;
+import co.edu.uniquindio.agenciaviajes.model.Administrador;
 import co.edu.uniquindio.agenciaviajes.model.Cliente;
 import co.edu.uniquindio.agenciaviajes.model.Clima;
 import co.edu.uniquindio.agenciaviajes.model.Comentario;
@@ -24,6 +25,11 @@ public class DatosQuemadosAux {
 	private static DatosQuemadosAux instance;
 	private Paquete paquete;
 	private List<GuiaTuristico> listaguias;
+	
+	
+	private Administrador administrador;
+	
+	
 
 	public static DatosQuemadosAux getInstance() {
 		if (instance == null)
@@ -155,4 +161,6 @@ public class DatosQuemadosAux {
 		listaGuias.add(guia1);
 		return listaGuias;
 	}
+	
+	
 }
