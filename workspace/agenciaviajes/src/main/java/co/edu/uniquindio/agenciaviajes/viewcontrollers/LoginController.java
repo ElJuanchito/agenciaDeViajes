@@ -2,10 +2,7 @@ package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import co.edu.uniquindio.agenciaviajes.controllers.DataController;
 import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
@@ -141,9 +138,9 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 
 	private void DJPerdomo() {
 
-		files = new File("src/main/resources/co/edu/uniquindio/agenciaViajes/media/songs").listFiles();
-
-		songs = Arrays.asList(files);
+		files = new File(Objects.requireNonNull(getClass().getResource("/")).getFile()).listFiles((dir, nombre) -> nombre.toLowerCase().endsWith(".mp3"));
+        assert files != null;
+        songs = Arrays.asList(files);
 
 		Random random = new Random();
 		int randomIndex = random.nextInt(songs.size());
