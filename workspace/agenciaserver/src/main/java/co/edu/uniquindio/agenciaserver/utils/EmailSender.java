@@ -1,8 +1,12 @@
 package co.edu.uniquindio.agenciaserver.utils;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Properties;
 
 import co.edu.uniquindio.agenciaviajes.model.Cliente;
+import co.edu.uniquindio.agenciaviajes.model.CorreoFile;
 import jakarta.activation.DataHandler;
 import jakarta.activation.FileDataSource;
 import jakarta.mail.Authenticator;
@@ -21,62 +25,67 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class EmailSender {
-    private static EmailSender instance;
+	private static EmailSender instance;
 
-    public static EmailSender getInstance() {
-        if (instance == null) instance = new EmailSender();
-        return instance;
-    }
+	public static EmailSender getInstance() {
+		if (instance == null)
+			instance = new EmailSender();
+		return instance;
+	}
 
-    public void sendMail(Cliente cliente, String asunto, String reporte, String info) {
-    	
-    	StringBuilder contenido = generarMensajeCuerpo(cliente.getNombreCompleto(), reporte, info);
-    	
-        Properties properties = new Properties();
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
-        properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
+	public void sendMail(Cliente cliente, String asunto, String reporte, String info, File file) throws IOException {
 
-        Authenticator authenticator = new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("pokeviajes39@gmail.com", "wioh ctbr wzcg dqcf");
-            }
-        };
+		StringBuilder contenido = generarMensajeCuerpo(cliente.getNombreCompleto(), reporte, info);
 
-        Session session = Session.getInstance(properties, authenticator);
+		Properties properties = new Properties();
+		properties.put("mail.smtp.host", "smtp.gmail.com");
+		properties.put("mail.smtp.port", "587");
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.smtp.starttls.enable", "true");
 
-        try {
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("pokeviajes39@gmail.com"));
-            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(cliente.getEmail()));
-            message.setSubject(asunto + " | PokeViajes");
+		Authenticator authenticator = new Authenticator() {
+			@Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication("pokeviajes39@gmail.com", "wioh ctbr wzcg dqcf");
+			}
+		};
 
-            MimeBodyPart cuerpoMensaje = new MimeBodyPart();
-            cuerpoMensaje.setContent(contenido, "text/html");
+		Session session = Session.getInstance(properties, authenticator);
 
-            Multipart multipart = new MimeMultipart();
-            multipart.addBodyPart(cuerpoMensaje);
+		try {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("pokeviajes39@gmail.com"));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(cliente.getEmail()));
+			message.setSubject(asunto + " | PokeViajes");
 
-            MimeBodyPart parteImagen = new MimeBodyPart();
-            parteImagen.setDataHandler(new DataHandler(new FileDataSource("/src/main/resources/co/edu/uniquindio/agenciaserver/media/logo.png")));
-            parteImagen.setHeader("Content-ID", "<imagen>");
-            multipart.addBodyPart(parteImagen);
+			MimeBodyPart cuerpoMensaje = new MimeBodyPart();
+			cuerpoMensaje.setContent(contenido, "text/html");
+			cuerpoMensaje.attachFile(file);
+			Multipart multipart = new MimeMultipart();
+			multipart.addBodyPart(cuerpoMensaje);
 
-            message.setContent(multipart);
+			MimeBodyPart parteImagen = new MimeBodyPart();
+			parteImagen.setDataHandler(new DataHandler(
+					new FileDataSource("/src/main/resources/co/edu/uniquindio/agenciaserver/media/logo.png")));
+			parteImagen.setHeader("Content-ID", "<imagen>");
+			multipart.addBodyPart(parteImagen);
 
-            Transport.send(message);
-            System.out.println("Correo enviado con Éxito");
+			message.setContent(multipart);
 
-        } catch (MessagingException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    private StringBuilder generarMensajeCuerpo(String nombre, String reporte, String info) {
-    	StringBuilder sbMsg1Solicitud = new StringBuilder();
-		sbMsg1Solicitud.append("<div style='text-align: center;'><img src='cid:imagen' alt='Logo de PokeViajes' width='300' height='200'></div>");
+			Transport.send(message);
+			file.delete();
+			System.out.println("Correo enviado con Éxito");
+
+		} catch (MessagingException e) {
+			file.delete();
+			e.printStackTrace();
+		}
+	}
+
+	private StringBuilder generarMensajeCuerpo(String nombre, String reporte, String info) {
+		StringBuilder sbMsg1Solicitud = new StringBuilder();
+		sbMsg1Solicitud.append(
+				"<div style='text-align: center;'><img src='cid:imagen' alt='Logo de PokeViajes' width='300' height='200'></div>");
 		sbMsg1Solicitud.append("<b>");
 		sbMsg1Solicitud.append(
 				"<p style=\"margin: 30px 0 20px 0;padding:20px 0 0 0;font-family:'Open Sans',sans-serif;font-size:15px;\">");
@@ -95,5 +104,21 @@ public class EmailSender {
 		sbMsg1Solicitud.append("Agradecemos su continuo apoyo y confianza en nuestros productos/servicios.");
 		sbMsg1Solicitud.append("</p>");
 		return sbMsg1Solicitud;
+	}
+
+	public Boolean enviarCorreoReserva(CorreoFile correoFile) {
+		try {
+
+			FileOutputStream fos = new FileOutputStream(correoFile.getNombreArchivo() + ".pdf");
+			fos.write(correoFile.getFile());
+			fos.close();
+			sendMail(correoFile.getCliente(), "¡Has creado tu reserva!", correoFile.getNombreArchivo(),
+					"la fecha de solicitud, la cantidad de personas, el paquete, el guia y el estado de la reserva",
+					new File(correoFile.getNombreArchivo() + ".pdf"));
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
