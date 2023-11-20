@@ -56,6 +56,8 @@ public class VistaManager {
 		Vista<T> vista = cargarVista(tipo);
 		Vista<T> vistaFinal = vista;
 		Platform.runLater(() -> {
+			vistaFinal.limpiarDatos();
+			vistaFinal.cargarIdioma();
 			vistaFinal.cargarDato(dato);
 			App.setRoot(vistaFinal.getParent());
 		});
