@@ -3,9 +3,14 @@ package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.agenciaviajes.controllers.DataController;
+import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
+import co.edu.uniquindio.agenciaviajes.controllers.TipoPeticion;
 import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
 import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
+import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
+import co.edu.uniquindio.agenciaviajes.model.Cliente;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -122,7 +127,21 @@ public class RegistrationController implements DataControllable<Pair<Runnable, S
 	}
 
 	private void registroAction() {
-		MainPaneController.getInstance().showAlert("Registro :)");
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			Cliente clienteRegister;
+			try {
+				clienteRegister = new PeticionController<Cliente, Cliente>(TipoPeticion.GUARDAR_CLIENTE,
+						Cliente.builder().email(txtEmail.getText()).contrasena(txtPassword.getText())
+								.identificacion(txtIdentificacion.getText()).imagen(null)
+								.direccion(txtDireccion.getText()).nombreCompleto(txtNombre.getText())
+								.telefono(txtTelefono.getText()).build())
+						.realizarPeticion();
+				DataController.getInstance().selectUsuario(clienteRegister);
+				volverRunnable.run();
+			} catch (PeticionException e) {
+				MainPaneController.getInstance().showAlert(e.getMessage());
+			}
+		});
 	}
 
 }
