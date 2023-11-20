@@ -10,6 +10,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -25,7 +26,7 @@
          <top>
             <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0" style="-fx-background-color: #270570; -fx-background-radius: 50;">
                <children>
-                  <Group scaleX="0.9" scaleY="0.9">
+                  <Group onMouseClicked="#menuIdiomasEvent" scaleX="0.9" scaleY="0.9">
                      <children>
                         <SVGPath content="M14,7.5c0,3.5899-2.9101,6.5-6.5,6.5S1,11.0899,1,7.5S3.9101,1,7.5,1S14,3.9101,14,7.5z" fill="WHITE" scaleX="4.0" scaleY="4.0" />
                         <SVGPath content="M16,17H8a1,1,0,0,1,0-2h8a1,1,0,0,1,0,2Zm0-4H8a1,1,0,0,1,0-2h8a1,1,0,0,1,0,2Zm0-4H8A1,1,0,0,1,8,7h8a1,1,0,0,1,0,2Z" fill="#270570" scaleX="2.5" scaleY="2.0" translateX="-4.0" translateY="-4.0" />
@@ -304,6 +305,54 @@
          <center>
             <SVGPath content="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM8.96963 8.96965C9.26252 8.67676 9.73739 8.67676 10.0303 8.96965L12 10.9393L13.9696 8.96967C14.2625 8.67678 14.7374 8.67678 15.0303 8.96967C15.3232 9.26256 15.3232 9.73744 15.0303 10.0303L13.0606 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0303 15.0303C9.73742 15.3232 9.26254 15.3232 8.96965 15.0303C8.67676 14.7374 8.67676 14.2625 8.96965 13.9697L10.9393 12L8.96963 10.0303C8.67673 9.73742 8.67673 9.26254 8.96963 8.96965Z" fill="#cab3fc" fillRule="EVEN_ODD" onMouseClicked="#closeSearchBtnEvent" scaleX="5.0" scaleY="5.0" BorderPane.alignment="CENTER" />
          </center>
+      </BorderPane>
+      <BorderPane fx:id="capaMenu3" disable="true" onMouseClicked="#capaMenuIdiomas" prefHeight="200.0" prefWidth="200.0">
+         <left>
+            <VBox fx:id="menuIdiomas" prefHeight="330.0" prefWidth="0.0" style="-fx-background-radius: 10 0 0 10;" styleClass="izq-menu" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" onMouseClicked="#changeLanguageSpanish" vbarPolicy="NEVER">
+                     <content>
+                        <HBox alignment="CENTER_LEFT" spacing="4.0">
+                           <children>
+                              <ImageView fitHeight="133.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/img-es.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblEspañol" alignment="CENTER" text="Español" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="10.0" layoutY="20.0" onMouseClicked="#changeLanguageEnglish" vbarPolicy="NEVER">
+                     <content>
+                        <HBox alignment="CENTER_LEFT" spacing="4.0">
+                           <children>
+                              <ImageView fitHeight="133.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/img-en.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblIngles" alignment="CENTER" text="Ingles" />
+                           </children>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </HBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+               <BorderPane.margin>
+                  <Insets top="70.0" />
+               </BorderPane.margin>
+            </VBox>
+         </left>
       </BorderPane>
    </children>
    <stylesheets>

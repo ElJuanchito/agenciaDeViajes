@@ -61,6 +61,8 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 
 	private Paquete paquete;
 
+	private String refe;
+
 	@FXML
 	void backDestinosEvent(ActionEvent event) {
 		backDestinosAction();
@@ -94,7 +96,12 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
 		lblPaquete.setText(bundle.getString("PaqueteDetailsController.lblPaquete"));
-		lblInfoCupos.setText(bundle.getString("PaqueteDetailsController.lblInfoCupos"));
+		
+		refe = bundle.getString("PaqueteDetailsController.lblInfoCupos");
+		if(paquete!=null)
+			lblInfoCupos.setText(String.format(refe, paquete.getCupoMaximo()));
+		
+		
 		btnReservar.setText(bundle.getString("PaqueteDetailsController.btnReservar"));
 		lblPrecio.setText(bundle.getString("PaqueteDetailsController.lblPrecio"));
 		lblServiciosExtra.setText(bundle.getString("PaqueteDetailsController.lblServiciosExtra"));
@@ -116,7 +123,7 @@ public class PaqueteDetailsController implements DataControllable<Paquete> {
 			return;
 		Platform.runLater(() -> {
 			lblInfoPaquete.setText(paquete.getNombre());
-			lblInfoCupos.setText(String.format("¡Quedan %d cupos!", paquete.getCupoMaximo()));
+			lblInfoCupos.setText(String.format(refe, paquete.getCupoMaximo()));
 			lblInfoPrecio.setText(paquete.getPrecio().toString());
 			lblInfoDescripcion.setText(paquete.getDescripcion());
 			lblInfoServiciosExtra.setText(paquete.getServiciosAdicionales());

@@ -67,7 +67,7 @@ public class MainMenuController implements Controllable {
 	private Circle circleImage;
 
 	@FXML
-	private Label lblBtnDestinos, lblBtnGuias, lblbtnPaquetes, lblCerrarSesion, lblLogin, lblRegister, lblVerPerfil;
+	private Label lblBtnDestinos, lblBtnGuias, lblbtnPaquetes, lblCerrarSesion, lblLogin, lblRegister, lblVerPerfil,lblEspañol,lblIngles;
 
 	@FXML
 	private ImageView imageViewPerfil;
@@ -75,17 +75,18 @@ public class MainMenuController implements Controllable {
 	private ScrollPane scrollCenter;
 
 	@FXML
-	private BorderPane capaMenu, capaMenu2, searchingLayer;
+	private BorderPane capaMenu, capaMenu2, searchingLayer,capaMenu3;
+	
 
 	@FXML
-	private VBox menuCliente1, menuCliente2;
+	private VBox menuCliente1, menuCliente2,menuIdiomas;
 
 	@FXML
 	private TextField txtBuscar;
 
 	private String busquedaAnterior;
-	private boolean isMenuExtended, isMenu2Extended, isBusquedaShown;
-	private Timeline timelineMenu, timelineMenu2, timelineBusqueda;
+	private boolean isMenuExtended, isMenu2Extended, isBusquedaShown, isMenu3Extended;
+	private Timeline timelineMenu, timelineMenu2, timelineBusqueda,timelineMenu3;
 
 	private Circle clip;
 
@@ -192,6 +193,30 @@ public class MainMenuController implements Controllable {
 	void paquetesEvent(ActionEvent event) {
 		paquetesAction();
 	}
+	
+	
+
+    @FXML
+    void changeLanguageEnglish(MouseEvent event) {
+
+    }
+    
+    @FXML
+    void changeLanguageSpanish(MouseEvent event) {
+
+    }
+    
+    
+    @FXML
+    void menuIdiomasEvent(MouseEvent event) {
+    	ejecutarAnimacionMenuIdiomas();
+    }
+    
+
+    @FXML
+    void capaMenuIdiomas(MouseEvent event) {
+    	ejecutarAnimacionMenuIdiomas();
+    }
 
 	@Override
 	public void preInicializar() {
@@ -209,6 +234,8 @@ public class MainMenuController implements Controllable {
 
 		timelineMenu = crearAnimacionExtension(menuCliente1.prefWidthProperty(), capaMenu.opacityProperty());
 		timelineMenu2 = crearAnimacionExtension(menuCliente2.prefWidthProperty(), capaMenu2.opacityProperty());
+		timelineMenu3= crearAnimacionExtension(menuIdiomas.prefWidthProperty(), capaMenu3.opacityProperty());
+		
 		timelineBusqueda = new Timeline();
 		timelineBusqueda.getKeyFrames()
 				.add(new KeyFrame(Duration.millis(0), new KeyValue(searchingLayer.opacityProperty(), 0d)));
@@ -404,6 +431,19 @@ public class MainMenuController implements Controllable {
 		else
 			ejecutarAnimacionMenuNoLogin();
 
+	}
+	
+	private void ejecutarAnimacionMenuIdiomas() {
+		capaMenu3.setDisable(isMenu3Extended);
+		if(isMenu3Extended) {
+			timelineMenu3.stop();
+			timelineMenu3.setRate(-1);
+			timelineMenu3.jumpTo(Duration.millis(100));
+			timelineMenu3.play();
+		}else {
+			timelineMenu3.playFromStart();
+		}
+		isMenu3Extended=!isMenu3Extended;
 	}
 
 	private void ejecutarAnimacionMenuCliente() {

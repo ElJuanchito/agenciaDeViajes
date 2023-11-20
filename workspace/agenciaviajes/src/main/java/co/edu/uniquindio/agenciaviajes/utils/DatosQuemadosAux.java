@@ -153,13 +153,9 @@ public class DatosQuemadosAux {
 		// Idioma...
 		GuiaTuristico guia1 = null;
 		try {
-			guia1 = GuiaTuristico.builder().identificacion("1098675678").nombreCompleto("Duque Inminente").expHoras(89)
-					.idiomas(listaIdiomas.stream().toArray(Idioma[]::new))
-					.imagen(Imagen.createImage(new Image(getClass()
-							.getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/pikachuPiloto.png"))))
-					.build();
+			guia1 = GuiaTuristico.builder().identificacion("1098675678").nombreCompleto("Duque Inminente")
+					.expHoras(89).idiomas(listaIdiomas.stream().toArray(Idioma[]::new)).imagen(Imagen.createImage(new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/hola2.png")))).build();
 		} catch (ImagenNoObtenidaException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -197,4 +193,21 @@ public class DatosQuemadosAux {
 		}
 	}
 
+	
+	public Administrador obtenerListaAdministradores(){
+
+		Administrador administrador= null;
+		try {
+			 administrador= Administrador.builder().identificacion("1234567890").nombreCompleto("Perdomo")
+					.contrasena("perdomo1234").imagen(Imagen.createImage(new Image(getClass().getResourceAsStream("/co/edu/uniquindio/agenciaviajes/imagenes/perdome.png")))).build();
+		} catch (ImagenNoObtenidaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return administrador;
+		
+	}
+	
+	
 }

@@ -60,6 +60,8 @@ public class GuiaTuristicoController implements DataControllable<GuiaTuristico> 
 
 	private Image defaultImage;
 
+	private String refe;
+
 	@FXML
 	void hoverPanelEvent(MouseEvent event) {
 		hoverPanelAction();
@@ -105,8 +107,9 @@ public class GuiaTuristicoController implements DataControllable<GuiaTuristico> 
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO Auto-generated method stub
-
+		refe = bundle.getString("GuiaTuristicoController.txtDescription");
+		if(guia!=null)
+			txtDescription.setText(String.format(refe,guia.getDescripcion(),guia.getExpHoras()));
 	}
 
 	@Override
@@ -130,8 +133,9 @@ public class GuiaTuristicoController implements DataControllable<GuiaTuristico> 
 		imagen = guia.getImagen().getImage();
 		// TODO actualizarPuntaje(guia.getPromedio());
 		showImage();
-		txtDescription.setText(guia.getDescripcion());
-
+		txtDescription.setText(String.format(refe,guia.getDescripcion(),guia.getExpHoras()));
+		
+		
 	}
 
 	@Override
