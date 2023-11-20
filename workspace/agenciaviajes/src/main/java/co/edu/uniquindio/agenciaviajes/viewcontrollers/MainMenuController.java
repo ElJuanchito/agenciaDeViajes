@@ -2,7 +2,6 @@ package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 import co.edu.uniquindio.agenciaviajes.controllers.DataController;
 import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
@@ -12,6 +11,7 @@ import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.exceptions.MovimientoIndefinidoException;
 import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
+import co.edu.uniquindio.agenciaviajes.model.BusquedaPaquetes;
 import co.edu.uniquindio.agenciaviajes.model.Cliente;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.model.Loginable;
@@ -299,9 +299,9 @@ public class MainMenuController implements Controllable {
 
 	private void enterKeyActionSearch() {
 		try {
-			String info = busquedaAnterior + "";
-			List<Paquete> paquetes = new PeticionController<Predicate<Paquete>, List<Paquete>>(
-					TipoPeticion.FILTRAR_PAQUETES, paquete -> paquete.tieneNombre(info)).realizarPeticion();
+			List<Paquete> paquetes = new PeticionController<BusquedaPaquetes, List<Paquete>>(
+					TipoPeticion.FILTRAR_PAQUETES, BusquedaPaquetes.builder().nombrePaquete(busquedaAnterior).build())
+					.realizarPeticion();
 			VistaManager.getInstance().cambiarVistaCliente(TipoVista.BUSQUEDA_AVANZADA, paquetes);
 			searchBtnAction();
 		} catch (PeticionException | FXMLException e) {
