@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import co.edu.uniquindio.agenciaserver.controllers.ClienteHilo;
+import co.edu.uniquindio.agenciaviajes.controllers.ClienteHilo;
 
 public class ServerMain {
 

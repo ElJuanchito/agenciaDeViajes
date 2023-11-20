@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import co.edu.uniquindio.agenciaserver.exceptions.ImagenNoExistenteException;
-import co.edu.uniquindio.agenciaserver.exceptions.ImagenYaExistenteException;
-import co.edu.uniquindio.agenciaserver.model.Imagen;
 import co.edu.uniquindio.agenciaserver.utils.UtilsJPA;
+import co.edu.uniquindio.agenciaviajes.exceptions.ImagenNoExistenteException;
+import co.edu.uniquindio.agenciaviajes.exceptions.ImagenYaExistenteException;
+import co.edu.uniquindio.agenciaviajes.model.Imagen;
 
 public class ImagenDao {
 	private EntityManager em;

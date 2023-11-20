@@ -9,6 +9,6 @@ open module co.edu.uniquindio.agenciaserver {
 	requires transitive javafx.graphics;
 	requires jakarta.mail;
 
-	exports co.edu.uniquindio.agenciaserver.model;
+	exports co.edu.uniquindio.agenciaviajes.model;
 	exports co.edu.uniquindio.agenciaserver.application;
 }

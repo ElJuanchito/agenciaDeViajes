@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import co.edu.uniquindio.agenciaserver.exceptions.PaqueteNoExistenteException;
-import co.edu.uniquindio.agenciaserver.exceptions.PaqueteYaExistenteException;
-import co.edu.uniquindio.agenciaserver.model.Paquete;
 import co.edu.uniquindio.agenciaserver.utils.UtilsJPA;
+import co.edu.uniquindio.agenciaviajes.exceptions.PaqueteNoExistenteException;
+import co.edu.uniquindio.agenciaviajes.exceptions.PaqueteYaExistenteException;
+import co.edu.uniquindio.agenciaviajes.model.Paquete;
 
 public class PaqueteDao {
 	private EntityManager em;

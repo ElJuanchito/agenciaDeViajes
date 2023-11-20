@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import co.edu.uniquindio.agenciaserver.exceptions.ClienteNoExistenteException;
-import co.edu.uniquindio.agenciaserver.exceptions.ClienteYaExistenteException;
-import co.edu.uniquindio.agenciaserver.model.Cliente;
 import co.edu.uniquindio.agenciaserver.utils.UtilsJPA;
+import co.edu.uniquindio.agenciaviajes.exceptions.ClienteNoExistenteException;
+import co.edu.uniquindio.agenciaviajes.exceptions.ClienteYaExistenteException;
+import co.edu.uniquindio.agenciaviajes.model.Cliente;
 
 public class ClienteDao {
 	private EntityManager em;

@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import co.edu.uniquindio.agenciaserver.exceptions.GuiaNoExistenteException;
-import co.edu.uniquindio.agenciaserver.exceptions.GuiaYaExistenteException;
-import co.edu.uniquindio.agenciaserver.model.GuiaTuristico;
 import co.edu.uniquindio.agenciaserver.utils.UtilsJPA;
+import co.edu.uniquindio.agenciaviajes.exceptions.GuiaNoExistenteException;
+import co.edu.uniquindio.agenciaviajes.exceptions.GuiaYaExistenteException;
+import co.edu.uniquindio.agenciaviajes.model.GuiaTuristico;
 
 public class GuiaDao {
 	private EntityManager em;

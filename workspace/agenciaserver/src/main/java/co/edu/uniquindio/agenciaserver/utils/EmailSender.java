@@ -2,7 +2,7 @@ package co.edu.uniquindio.agenciaserver.utils;
 
 import java.util.Properties;
 
-import co.edu.uniquindio.agenciaserver.model.Cliente;
+import co.edu.uniquindio.agenciaviajes.model.Cliente;
 import jakarta.activation.DataHandler;
 import jakarta.activation.FileDataSource;
 import jakarta.mail.Authenticator;

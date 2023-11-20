@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import co.edu.uniquindio.agenciaserver.exceptions.ReservaNoExistenteException;
-import co.edu.uniquindio.agenciaserver.exceptions.ReservaYaExistenteException;
-import co.edu.uniquindio.agenciaserver.model.Reserva;
 import co.edu.uniquindio.agenciaserver.utils.UtilsJPA;
+import co.edu.uniquindio.agenciaviajes.exceptions.ReservaNoExistenteException;
+import co.edu.uniquindio.agenciaviajes.exceptions.ReservaYaExistenteException;
+import co.edu.uniquindio.agenciaviajes.model.Reserva;
 
 public class ReservaDao {
 	private EntityManager em;

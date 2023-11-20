@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import co.edu.uniquindio.agenciaserver.exceptions.DestinoNoExistenteException;
-import co.edu.uniquindio.agenciaserver.exceptions.DestinoYaExistenteException;
-import co.edu.uniquindio.agenciaserver.model.Destino;
 import co.edu.uniquindio.agenciaserver.utils.UtilsJPA;
+import co.edu.uniquindio.agenciaviajes.exceptions.DestinoNoExistenteException;
+import co.edu.uniquindio.agenciaviajes.exceptions.DestinoYaExistenteException;
+import co.edu.uniquindio.agenciaviajes.model.Destino;
 
 public class DestinoDao {
 	private static DestinoDao instancia;

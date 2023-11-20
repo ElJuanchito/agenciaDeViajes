@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import co.edu.uniquindio.agenciaserver.exceptions.AdministradorNoExistenteException;
-import co.edu.uniquindio.agenciaserver.exceptions.AdministradorYaExistenteException;
-import co.edu.uniquindio.agenciaserver.model.Administrador;
 import co.edu.uniquindio.agenciaserver.utils.UtilsJPA;
+import co.edu.uniquindio.agenciaviajes.exceptions.AdministradorNoExistenteException;
+import co.edu.uniquindio.agenciaviajes.exceptions.AdministradorYaExistenteException;
+import co.edu.uniquindio.agenciaviajes.model.Administrador;
 
 public class AdministradorDao {
 private EntityManager em;
