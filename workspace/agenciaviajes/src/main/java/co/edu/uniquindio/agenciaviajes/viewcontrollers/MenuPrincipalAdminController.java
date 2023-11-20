@@ -1,14 +1,15 @@
 package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import co.edu.uniquindio.agenciaviajes.application.App;
+import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
+import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
+import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -16,6 +17,15 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.SVGPath;
 
 public class MenuPrincipalAdminController implements Controllable {
+	private static MenuPrincipalAdminController instance;
+
+	public static MenuPrincipalAdminController getInstance() {
+		return instance;
+	}
+
+	public MenuPrincipalAdminController() {
+		instance = this;
+	}
 
 	@FXML
 	private BorderPane centerPane;
@@ -50,7 +60,7 @@ public class MenuPrincipalAdminController implements Controllable {
 
 	@FXML
 	void destinosEvent(ActionEvent event) {
-		cambiarVentana("gestionarDestinos");
+		destinosAction();
 
 	}
 
@@ -61,7 +71,7 @@ public class MenuPrincipalAdminController implements Controllable {
 
 	@FXML
 	void guiasEvent(ActionEvent event) {
-		cambiarVentana("gestionarGuias");
+		guiasAction();
 
 	}
 
@@ -77,21 +87,17 @@ public class MenuPrincipalAdminController implements Controllable {
 
 	@FXML
 	void paquetesEvent(ActionEvent event) {
-		cambiarVentana("gestionarPaquetes");
-
+		paquetesAction();
 	}
 
-	private void cambiarVentana(String fxmlname) {
-		try {
-			Node nodo = App.loadFXML(fxmlname);
-			setCenter(nodo);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void setCenter(Node node) {
-		centerPane.setCenter(node);
+	private void cambiarVentana(TipoVista tipoVista) {
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				VistaManager.getInstance().cambiarVistaAdmin(tipoVista, null);
+			} catch (FXMLException e) {
+				MainPaneController.getInstance().showAlert(e.getMessage());
+			}
+		});
 	}
 
 	@Override
@@ -109,7 +115,21 @@ public class MenuPrincipalAdminController implements Controllable {
 	@Override
 	public void clearData() {
 		// TODO Auto-generated method stub
-
 	}
 
+	public void setContent(Parent parent) {
+		scrollCenter.setContent(parent);
+	}
+
+	private void paquetesAction() {
+		cambiarVentana(TipoVista.GESTIONAR_PAQUETES);
+	}
+
+	private void destinosAction() {
+		cambiarVentana(TipoVista.GESTIONAR_DESTINOS);
+	}
+
+	private void guiasAction() {
+		cambiarVentana(TipoVista.GESTIONAR_GUIAS);
+	}
 }

@@ -299,8 +299,9 @@ public class MainMenuController implements Controllable {
 
 	private void enterKeyActionSearch() {
 		try {
+			String info = busquedaAnterior + "";
 			List<Paquete> paquetes = new PeticionController<Predicate<Paquete>, List<Paquete>>(
-					TipoPeticion.FILTRAR_PAQUETES, paquete -> paquete.tieneNombre(busquedaAnterior)).realizarPeticion();
+					TipoPeticion.FILTRAR_PAQUETES, paquete -> paquete.tieneNombre(info)).realizarPeticion();
 			VistaManager.getInstance().cambiarVistaCliente(TipoVista.BUSQUEDA_AVANZADA, paquetes);
 			searchBtnAction();
 		} catch (PeticionException | FXMLException e) {

@@ -9,6 +9,7 @@ import co.edu.uniquindio.agenciaviajes.application.App;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.exceptions.MovimientoIndefinidoException;
 import co.edu.uniquindio.agenciaviajes.viewcontrollers.MainMenuController;
+import co.edu.uniquindio.agenciaviajes.viewcontrollers.MenuPrincipalAdminController;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -98,6 +99,20 @@ public class VistaManager {
 		cambiarVistaCliente(tipo, dato, true, true);
 	}
 
+	public <T> void cambiarVistaAdmin(TipoVista tipo, T dato) throws FXMLException {
+		InfoVista infoVista = obtenerInfoVista(tipo, dato);
+		vistaActualCliente.setValue(infoVista);
+		Vista<T> vista = cargarVista(tipo);
+		limpiarVistasSiguientesCliente();
+		historialVistasCliente.add(obtenerInfoVista(tipo, dato));
+		indiceCliente.setValue(historialVistasCliente.size() - 1);
+		vista.limpiarDatos();
+		vista.cargarDato(dato);
+		Platform.runLater(() -> {
+			MenuPrincipalAdminController.getInstance().setContent(vista.getParent());
+		});
+	}
+
 	private void limpiarVistasSiguientesCliente() {
 		Integer value = indiceCliente.getValue();
 		while (value < historialVistasCliente.size() - 1)
@@ -131,5 +146,4 @@ public class VistaManager {
 		InfoVista tripleDato = historialVistasCliente.get(indiceCliente.getValue());
 		cambiarVistaCliente(tripleDato.tipoVista, tripleDato.dato, false, false);
 	}
-
 }
