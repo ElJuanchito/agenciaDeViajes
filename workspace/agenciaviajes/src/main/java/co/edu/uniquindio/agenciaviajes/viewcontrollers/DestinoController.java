@@ -214,6 +214,6 @@ public class DestinoController implements DataControllable<Destino> {
 		timeline = new Timeline(new KeyFrame(Duration.millis(10), e -> showNextImage()),
 				new KeyFrame(Duration.millis(5000)));
 		timeline.setCycleCount(-1);
-		timeline.play();
+		timeline.playFromStart();
 	}
 }

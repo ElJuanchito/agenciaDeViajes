@@ -2,8 +2,13 @@ package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.agenciaviajes.controllers.DataController;
+import co.edu.uniquindio.agenciaviajes.model.Cliente;
+import co.edu.uniquindio.agenciaviajes.model.Loginable;
 import co.edu.uniquindio.agenciaviajes.model.Reserva;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,121 +19,66 @@ import javafx.scene.image.ImageView;
 
 public class VerPerfilController implements Controllable {
 
-    @FXML
-    private Button btnCancelarReserva;
+	@FXML
+	private Button btnCancelarReserva;
 
-    @FXML
-    private TableColumn<Reserva, String> clmFuturasEstado;
+	@FXML
+	private TableColumn<Reserva, String> clmFuturasEstado, clmFuturasFechaSoli, clmFuturasGuia, clmFuturasId,
+			clmFuturasPaquete, clmFuturasPersonas, clmFuturasPrecio, clmPasadasEstado, clmPasadasFechaSoli,
+			clmPasadasGuia, clmPasadasId, clmPasadasPaquete, clmPasadasPersonas, clmPasadasPrecio;
 
-    @FXML
-    private TableColumn<Reserva, String> clmFuturasFechaSoli;
+	@FXML
+	private ImageView imgCliente;
 
-    @FXML
-    private TableColumn<Reserva, String> clmFuturasGuia;
+	@FXML
+	private Label lblDireccion, lblEmail, lblId, lblInfoDireccion, lblInfoEmail, lblInfoFuturas, lblInfoId,
+			lblInfoNombre, lblInfoPasadas, lblInfoTelefono, lblNombre, lblTelefono, lblTitle;
 
-    @FXML
-    private TableColumn<Reserva, String> clmFuturasId;
+	@FXML
+	private TableView<Reserva> tblReservasFuturas, tblReservasPasadas;
 
-    @FXML
-    private TableColumn<Reserva, String> clmFuturasPaquete;
+	private Cliente cliente;
 
-    @FXML
-    private TableColumn<Reserva, String> clmFuturasPersonas;
-
-    @FXML
-    private TableColumn<Reserva, String> clmFuturasPrecio;
-
-    @FXML
-    private TableColumn<Reserva, String> clmPasadasEstado;
-
-    @FXML
-    private TableColumn<Reserva, String> clmPasadasFechaSoli;
-
-    @FXML
-    private TableColumn<Reserva, String> clmPasadasGuia;
-
-    @FXML
-    private TableColumn<Reserva, String> clmPasadasId;
-
-    @FXML
-    private TableColumn<Reserva, String> clmPasadasPaquete;
-
-    @FXML
-    private TableColumn<Reserva, String> clmPasadasPersonas;
-
-    @FXML
-    private TableColumn<Reserva, String> clmPasadasPrecio;
-
-    @FXML
-    private ImageView imgCliente;
-
-    @FXML
-    private Label lblDireccion;
-
-    @FXML
-    private Label lblEmail;
-
-    @FXML
-    private Label lblId;
-
-    @FXML
-    private Label lblInfoDireccion;
-
-    @FXML
-    private Label lblInfoEmail;
-
-    @FXML
-    private Label lblInfoFuturas;
-
-    @FXML
-    private Label lblInfoId;
-
-    @FXML
-    private Label lblInfoNombre;
-
-    @FXML
-    private Label lblInfoPasadas;
-
-    @FXML
-    private Label lblInfoTelefono;
-
-    @FXML
-    private Label lblNombre;
-
-    @FXML
-    private Label lblTelefono;
-
-    @FXML
-    private Label lblTitle;
-
-    @FXML
-    private TableView<Reserva> tblReservasFuturas;
-
-    @FXML
-    private TableView<Reserva> tblReservasPasadas;
-
-    @FXML
-    void cancelarReservaEvent(ActionEvent event) {
-
-    }
+	@FXML
+	void cancelarReservaEvent(ActionEvent event) {
+		// TODO cancelar reserva
+	}
 
 	@Override
 	public void preInicializar() {
-		// TODO Auto-generated method stub
-		
+		actualizarInfoCliente(DataController.getInstance().getLoginActualValue());
+	}
+
+	private void actualizarInfoCliente(Loginable loginable) {
+		if (loginable == null || !(loginable instanceof Cliente))
+			return;
+		cliente = (Cliente) loginable;
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			Platform.runLater(() -> {
+				lblId.setText(cliente.getIdentificacion());
+				imgCliente.setImage(cliente.getImagen().getImage());
+				lblNombre.setText(cliente.getNombreCompleto());
+				lblEmail.setText(cliente.getEmail());
+				lblTelefono.setText(cliente.getTelefono());
+				lblDireccion.setText(cliente.getDireccion());
+				tblReservasPasadas.setItems(FXCollections.observableArrayList(cliente.getReservasPasadas()));
+				tblReservasFuturas.setItems(FXCollections.observableArrayList(cliente.getReservasFuturas()));
+				tblReservasPasadas.refresh();
+				tblReservasFuturas.refresh();
+			});
+		});
 	}
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void clearData() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
-
