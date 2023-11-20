@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -27,6 +28,7 @@ public class Administrador extends Usuario implements Loginable {
 	@OneToOne
 	private Imagen imagen;
 
+	@Builder
 	public Administrador(@NonNull String identificacion, @NonNull String nombreCompleto, @NonNull String contrasena,
 			Imagen imagen) {
 		super(identificacion, nombreCompleto);

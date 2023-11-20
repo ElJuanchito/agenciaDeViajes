@@ -1,5 +1,6 @@
 package co.edu.uniquindio.agenciaviajes.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -51,21 +52,15 @@ public class Cliente extends Usuario implements Loginable {
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, optional = true)
 	private Imagen imagen;
 
-	/**
-	 * @param identificacion
-	 * @param nombreCompleto
-	 * @param email
-	 * @param telefono
-	 * @param direccion
-	 */
 	@Builder
 	private Cliente(@NonNull String identificacion, @NonNull String nombreCompleto, @NonNull String email,
-			@NonNull String contrasena, @NonNull String telefono, @NonNull String direccion) {
+			@NonNull String contrasena, @NonNull String telefono, @NonNull String direccion, Imagen imagen) {
 		super(identificacion, nombreCompleto);
 		this.email = email;
 		this.telefono = telefono;
 		this.direccion = direccion;
 		this.contrasena = contrasena;
+		this.imagen = imagen;
 		reservas = new ArrayList<Reserva>();
 	}
 
@@ -239,6 +234,32 @@ public class Cliente extends Usuario implements Loginable {
 	@Override
 	public String getUsuario() {
 		return getIdentificacion();
+	}
+
+	public List<Reserva> getReservasPasadas(List<Reserva> seleccionadas, int i) {
+		if (i >= reservas.size())
+			return seleccionadas;
+		Reserva reserva = reservas.get(i);
+		if (esPasada(reserva))
+			seleccionadas.add(reservas.get(i));
+		return getReservasPasadas(seleccionadas, i + 1);
+	}
+
+	public List<Reserva> getReservasFuturas(List<Reserva> seleccionadas, int i) {
+		if (i >= reservas.size())
+			return seleccionadas;
+		Reserva reserva = reservas.get(i);
+		if (esFutura(reserva))
+			seleccionadas.add(reservas.get(i));
+		return getReservasFuturas(seleccionadas, i + 1);
+	}
+
+	private boolean esFutura(Reserva reserva) {
+		return reserva.getPaquete().getFechaIncio().isAfter(LocalDateTime.now());
+	}
+
+	private boolean esPasada(Reserva reserva) {
+		return reserva.getPaquete().getFechaFin().isBefore(LocalDateTime.now());
 	}
 
 }
