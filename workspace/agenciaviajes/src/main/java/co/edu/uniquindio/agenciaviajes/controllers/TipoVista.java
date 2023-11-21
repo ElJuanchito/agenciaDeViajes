@@ -12,7 +12,7 @@ public enum TipoVista {
 	MENU_PRINCIPAL_ADMIN("menuPrincipalAdmins"), NONE("none"), PAQUETES("viewPaquetes"),
 	BUSQUEDA_AVANZADA("busquedaAvanzada"), GUIAS("viewGuias"), VER_PERFIL("VerPerfil"),
 	GESTIONAR_DESTINOS("gestionarDestinos"), GESTIONAR_GUIAS("gestionarGuias"), GESTIONAR_PAQUETES("gestionarPaquetes"),
-	ESTADISTICAS("estadisticas"), MODIFICAR_PERFIL("editProfile");
+	ESTADISTICAS("estadisticas"), MODIFICAR_PERFIL("editProfile"), AGREGAR_DESTINO("registroGuia");
 
 	private String ruta;
 }

@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
+import co.edu.uniquindio.agenciaviajes.controllers.TipoPeticion;
+import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
 import co.edu.uniquindio.agenciaviajes.model.Clima;
+import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
 import co.edu.uniquindio.agenciaviajes.utils.UtilsFX;
 import javafx.event.ActionEvent;
@@ -59,7 +63,15 @@ public class RegistroDestinoController implements Controllable {
 	}
 
 	private void agregarDestinoAction() {
-
+		try {
+			new PeticionController<Destino, Destino>(TipoPeticion.GUARDAR_DESTINO,
+					Destino.builder().ciudad(txtCiudad.getText()).clima(cbClima.getValue())
+							.descripcion(txtDescripcion.getText()).nombre(txtNombre.getText()).build())
+					.realizarPeticion();
+			MainPaneController.getInstance().showAlert("El destino ha sido agregado con exito");
+		} catch (PeticionException e) {
+			MainPaneController.getInstance().showAlert(e.getMessage());
+		}
 	}
 
 	private void seleccionarImagenAction() {

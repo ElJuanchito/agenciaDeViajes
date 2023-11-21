@@ -1,10 +1,19 @@
 package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
+import co.edu.uniquindio.agenciaviajes.controllers.TipoPeticion;
+import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
+import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
+import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
+import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -38,7 +47,17 @@ public class GestionarDestinosController implements Controllable {
 
 	@FXML
 	void agregarEvent(ActionEvent event) {
+		agregarAction();
+	}
 
+	private void agregarAction() {
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				VistaManager.getInstance().cambiarVistaAdmin(TipoVista.AGREGAR_DESTINO, null);
+			} catch (FXMLException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	@FXML
@@ -48,7 +67,25 @@ public class GestionarDestinosController implements Controllable {
 
 	@Override
 	public void preInicializar() {
+		colId.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().getId() + ""));
+		colCiudad.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().getCiudad()));
+		colClima.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().getClima().getText()));
+		colDescripcion.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().getDescripcion()));
+		colNombre.setCellValueFactory(e -> new ReadOnlyStringWrapper(e.getValue().getNombre()));
+		actualizarTabla();
+	}
 
+	private void actualizarTabla() {
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				tableClientes.setItems(FXCollections.observableArrayList(
+						new PeticionController<Void, List<Destino>>(TipoPeticion.LISTAR_DESTINO, null)
+								.realizarPeticion()));
+				tableClientes.refresh();
+			} catch (PeticionException e1) {
+				e1.printStackTrace();
+			}
+		});
 	}
 
 	@Override
@@ -66,7 +103,6 @@ public class GestionarDestinosController implements Controllable {
 
 	@Override
 	public void clearData() {
-		// TODO Auto-generated method stub
-
+		actualizarTabla();
 	}
 }
