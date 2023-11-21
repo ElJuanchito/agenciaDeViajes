@@ -47,6 +47,7 @@ public class Cliente extends Usuario implements Loginable {
 	@OneToMany
 	private List<Reserva> reservas;
 
+	@OneToMany
 	private List<Preferencia> preferencias;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, optional = true)

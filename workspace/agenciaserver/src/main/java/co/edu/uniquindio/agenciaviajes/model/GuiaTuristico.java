@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -39,7 +40,10 @@ public class GuiaTuristico extends Usuario implements Comentable {
 	@OneToOne
 	private Imagen imagen;
 
+	@OneToMany
 	private List<Reserva> reservas;
+	
+	@OneToMany
 	private Map<Cliente, Comentario> mapComentarios;
 
 	@Builder

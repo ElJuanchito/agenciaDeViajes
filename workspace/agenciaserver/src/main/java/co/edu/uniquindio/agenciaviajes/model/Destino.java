@@ -86,6 +86,8 @@ public class Destino implements Comentable, Serializable {
 	@ManyToMany(mappedBy = "destinos")
 	private List<Paquete> paquetes;
 
+	//TODO Revisar
+	@OneToMany
 	private List<Reserva> reservas;
 
 	/**
