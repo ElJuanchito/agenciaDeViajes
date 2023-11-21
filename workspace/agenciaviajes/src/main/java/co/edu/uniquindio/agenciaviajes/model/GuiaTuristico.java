@@ -127,8 +127,7 @@ public class GuiaTuristico extends Usuario implements Comentable {
 		return clienteFueGuia(cliente, guiaTuristico, i+1);
 	}
 	
-	private 
-	String getCadenaIdiomas() {
+	public String getCadenaIdiomas() {
 		String cad="";
 		return getCadenaIdiomasRecu(cad, 0);
 		
@@ -140,16 +139,8 @@ public class GuiaTuristico extends Usuario implements Comentable {
 		cad+= idiomas.get(i).getIdioma()+" ";
 		return getCadenaIdiomasRecu(cad,i+1);
 	}
-	
-	public String getDescripcion() {
-		String cadIdi= getCadenaIdiomas();
-		String cadDescription="Idiomas Hablados: ";
 		
-		cadDescription+= cadIdi+"\n";
-		cadDescription+="Experiencia: ";
-		cadDescription+= expHoras+" Horas";
-		return cadDescription;
-	}
+	
 	
 	
 

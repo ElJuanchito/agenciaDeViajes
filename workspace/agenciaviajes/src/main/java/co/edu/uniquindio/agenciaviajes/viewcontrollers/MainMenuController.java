@@ -1,9 +1,11 @@
 package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaviajes.controllers.DataController;
+import co.edu.uniquindio.agenciaviajes.controllers.LanguageManager;
 import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
 import co.edu.uniquindio.agenciaviajes.controllers.TipoPeticion;
 import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
@@ -207,12 +209,12 @@ public class MainMenuController implements Controllable {
 
 	@FXML
 	void changeLanguageEnglish(MouseEvent event) {
-
+		LanguageManager.getInstance().setLanguage(Locale.US);
 	}
 
 	@FXML
 	void changeLanguageSpanish(MouseEvent event) {
-
+		LanguageManager.getInstance().setLanguage("es");
 	}
 
 	@FXML
@@ -277,6 +279,12 @@ public class MainMenuController implements Controllable {
 		lblBtnDestinos.setText(bundle.getString("MainMenuController.lblBtnDestinos"));
 		lblbtnPaquetes.setText(bundle.getString("MainMenuController.lblbtnPaquetes"));
 		lblBtnGuias.setText(bundle.getString("MainMenuController.lblBtnGuias"));
+		lblRegister.setText(bundle.getString("MainMenuController.lblRegister"));
+		lblLogin.setText(bundle.getString("MainMenuController.lblLogin"));
+		btnSearch.setText(bundle.getString("MainMenuController.btnSearch"));
+
+
+
 	}
 
 	@Override

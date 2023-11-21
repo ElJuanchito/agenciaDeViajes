@@ -62,7 +62,8 @@ public class ViewGuiasController implements DataControllable<List<GuiaTuristico>
 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
-		// TODO titulo
+		lblTitle.setText(bundle.getString("ViewGuiasController.lblTitle"));
+
 
 	}
 

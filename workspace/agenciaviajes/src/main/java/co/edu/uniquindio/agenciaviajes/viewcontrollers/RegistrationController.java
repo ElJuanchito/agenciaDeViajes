@@ -85,6 +85,11 @@ public class RegistrationController implements DataControllable<Pair<Runnable, S
 		btnRegistro.setText(bundle.getString("RegistrationController.btnRegistro"));
 		lblYaRegistrado.setText(bundle.getString("RegistrationController.lblYaRegistrado"));
 		btnLogin.setText(bundle.getString("RegistrationController.btnLogin"));
+		lblTitle.setText(bundle.getString("RegistrationController.lblTitle"));
+		lblInfo.setText(bundle.getString("RegistrationController.lblInfo"));
+		txtDireccion.setPromptText(bundle.getString("RegistrationController.txtDireccion"));
+
+
 	}
 
 	@Override

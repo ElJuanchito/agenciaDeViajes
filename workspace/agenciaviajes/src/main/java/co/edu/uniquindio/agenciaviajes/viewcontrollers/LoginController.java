@@ -104,7 +104,7 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 //		height: 720.0
 //		relacionAspecto: 3:4 || 0.75
 		stackImg.prefWidthProperty().bind(root.heightProperty().multiply(0.75d));
-		DJPerdomo();
+		
 	}
 
 	@Override
@@ -128,7 +128,6 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 
 		files = new File(Objects.requireNonNull(getClass().getResource("/")).getFile())
 				.listFiles((dir, nombre) -> nombre.toLowerCase().endsWith(".mp3"));
-		assert files != null;
 		songs = Arrays.asList(files);
 
 		Random random = new Random();
