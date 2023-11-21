@@ -204,7 +204,6 @@ public class BusquedaAvanzadaController implements DataControllable<Pair<List<Pa
 			precioHastaPaquete = Double.parseDouble(txtPrecioHasta.getText());
 		} catch (NumberFormatException e) {
 		}
-		;
 		BusquedaPaquetes busquedaPaquetes = BusquedaPaquetes.builder().ciudadDestino(valorCiudadDestino)
 				.climaDestino(valorClimaDestino).fechaStart(valorFechaStart).fechaFinal(valorFechaFinal)
 				.nombreDestino(valorNombreDestino).nombrePaquete(valorNombrePaquete)

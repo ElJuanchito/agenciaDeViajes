@@ -49,6 +49,7 @@ public class Paquete implements Serializable {
 	@NonNull
 	private String descripcionCorta, descripcion;
 	private List<Destino> destinos;
+	private List<Reserva> reservas;
 
 	/**
 	 * @param nombre
@@ -74,6 +75,7 @@ public class Paquete implements Serializable {
 		this.descripcion = descripcion;
 		this.descripcionCorta = descripcionCorta;
 		this.destinos = new ArrayList<Destino>();
+		this.reservas = new ArrayList<Reserva>();
 	}
 
 	@Override
@@ -328,6 +330,10 @@ public class Paquete implements Serializable {
 
 	public boolean tienePrecioEntre(Double desde, Double hasta) {
 		return precio.doubleValue() >= desde && precio.doubleValue() <= hasta;
+	}
+	
+	public void addReserva(Reserva reserva) {
+		reservas.add(reserva);
 	}
 
 }
