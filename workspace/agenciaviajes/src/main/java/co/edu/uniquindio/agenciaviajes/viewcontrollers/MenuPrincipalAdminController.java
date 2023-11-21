@@ -49,11 +49,6 @@ public class MenuPrincipalAdminController implements Controllable {
 	private Button btnBack, btnNext, btnExtra;
 
 	@FXML
-	void clientesEvent(ActionEvent event) {
-
-	}
-
-	@FXML
 	void backEvent(ActionEvent event) {
 
 	}

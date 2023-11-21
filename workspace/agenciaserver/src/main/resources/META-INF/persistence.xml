@@ -5,7 +5,7 @@
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
 
   <persistence-unit name="aplicacion">
-  	
+  	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
   	<class>co.edu.uniquindio.agenciaviajes.model.Administrador</class>
   	<class>co.edu.uniquindio.agenciaviajes.model.Cliente</class>
   	<class>co.edu.uniquindio.agenciaviajes.model.Comentario</class>
@@ -16,18 +16,25 @@
   	<class>co.edu.uniquindio.agenciaviajes.model.Preferencia</class>
   	<class>co.edu.uniquindio.agenciaviajes.model.Reserva</class>
   	<class>co.edu.uniquindio.agenciaviajes.model.Usuario</class>
+  	<class>co.edu.uniquindio.agenciaviajes.model.</class>
   	
     <properties>
-        <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-        <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:testdb"/>
-        <property name="javax.persistence.jdbc.user" value="sa" />
-        <property name="javax.persistence.jdbc.password" value="" />
-        
-        <property name="hibernate.hbm2ddl.auto" value="update" />
-		<property name="hibernate.show_sql" value="true" />
-		<property name="hibernate.format_sql" value="true" />
-		<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
-    </properties>
+
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.cj.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://sql.freedb.tech:3306/freedb_agenciaviajes" />
+			<property name="javax.persistence.jdbc.user"
+				value="freedb_pepe2" />
+			<property name="javax.persistence.jdbc.password"
+				value="aa8N!CmbEFv4XG6" />
+
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.format_sql" value="true" />
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.MySQL8Dialect" />
+		</properties>
   </persistence-unit>
 
 </persistence>
