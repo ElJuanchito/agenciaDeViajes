@@ -45,12 +45,14 @@ public class ClienteHilo implements Runnable {
 	@Override
 	public void run() {
 		try (sCliente) {
-
+			
 			ObjectInputStream obIn = new ObjectInputStream(sCliente.getInputStream());
 			ObjectOutputStream obOut = new ObjectOutputStream(sCliente.getOutputStream());
 			Peticion peticion = (Peticion) obIn.readObject();
 
 			DataManager dataManager = HibernateDataManager.getInstance();
+			
+			System.out.println(dataManager.listarCliente());
 
 			switch (peticion.getTipo()) {
 			case HACER_LOGIN -> {

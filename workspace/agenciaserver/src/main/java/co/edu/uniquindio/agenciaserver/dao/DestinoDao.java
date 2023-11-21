@@ -28,7 +28,10 @@ public class DestinoDao {
 		if (verificar(destino.getId()))
 			throw new DestinoYaExistenteException(
 					String.format("El destino con id %s ya existe en la base de datos", destino.getId()));
+		em.getTransaction().begin();
 		em.persist(destino);
+		em.getTransaction().commit();
+		
 	}
 
 	public List<Destino> listar() {

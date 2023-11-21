@@ -27,7 +27,10 @@ public class ClienteDao {
 		if (verificar(cliente.getIdentificacion()))
 			throw new ClienteYaExistenteException(
 					String.format("El cliente con id %s ya existe en la base de datos", cliente.getIdentificacion()));
+		em.getTransaction().begin();
 		em.persist(cliente);
+		em.getTransaction().commit();
+		System.out.println(listar());
 	}
 
 	public List<Cliente> listar() {
@@ -42,7 +45,10 @@ public class ClienteDao {
 	}
 
 	public Cliente buscar(String id) throws ClienteNoExistenteException {
+		
+		em.getTransaction().begin();
 		Cliente cliente = em.find(Cliente.class, id);
+		em.getTransaction().commit();
 		if(cliente == null) throw new ClienteNoExistenteException("El cliente no existe, por lo tanto no se puede encontrar");
 		return cliente;
 	}

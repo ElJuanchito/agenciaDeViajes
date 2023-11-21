@@ -27,7 +27,9 @@ public class GuiaDao {
 		if (verificar(guia.getIdentificacion()))
 			throw new GuiaYaExistenteException(
 					String.format("El guia con id %s ya existe en la base de datos", guia.getIdentificacion()));
+		em.getTransaction().begin();
 		em.persist(guia);
+		em.getTransaction().commit();
 	}
 
 	public List<GuiaTuristico> listar() {
