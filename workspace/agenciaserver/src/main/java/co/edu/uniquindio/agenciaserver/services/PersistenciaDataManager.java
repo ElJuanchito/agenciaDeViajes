@@ -27,6 +27,12 @@ import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.model.Reserva;
 
 public class PersistenciaDataManager implements DataManager{
+	
+	private static final String RUTAADMINISTRADOR="src/main/resources/co/edu/uniquindio/agenciaserver/data/administrador.dat";
+	private static final String RUTACLIENTES="src/main/resources/co/edu/uniquindio/agenciaserver/data/clientes.dat";
+	private static final String RUTAGUIAS="src/main/resources/co/edu/uniquindio/agenciaserver/data/guias.dat";
+	private static final String RUTAPAQUETES="src/main/resources/co/edu/uniquindio/agenciaserver/data/paquetes.dat";
+	private static final String RUTARESERVAS="src/main/resources/co/edu/uniquindio/agenciaserver/data/reservas.dat";
 
 	@Override
 	public void guardarCliente(Cliente cliente) throws ClienteYaExistenteException {
