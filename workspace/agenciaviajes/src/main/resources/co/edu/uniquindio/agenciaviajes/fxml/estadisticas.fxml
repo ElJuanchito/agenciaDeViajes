@@ -14,7 +14,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 
-
 <VBox alignment="CENTER" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.controllers.EstadisticasController">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
@@ -36,7 +35,7 @@
          <children>
             <VBox alignment="CENTER" styleClass="placePaneGraphics" stylesheets="@../styles/paneStyle.css">
                <children>
-                  <BarChart fx:id="graphicDestinosReservados">
+                  <BarChart fx:id="graphicDestinosPuntuados">
                      <xAxis>
                         <CategoryAxis side="BOTTOM" />
                      </xAxis>
@@ -44,7 +43,7 @@
                         <NumberAxis side="LEFT" />
                      </yAxis>
                   </BarChart>
-                  <Label fx:id="lblDestinosReservados" styleClass="ordinaryText" stylesheets="@../styles/texto.css" text="DESTINOS MAS RESERVADOS" />
+                  <Label fx:id="lblDestinosReservados" styleClass="ordinaryText" stylesheets="@../styles/texto.css" text="DESTINOS PUNTUADOS" />
                </children>
                <padding>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -61,8 +60,8 @@
             </VBox>
             <VBox alignment="CENTER" styleClass="placePaneGraphics" stylesheets="@../styles/paneStyle.css" GridPane.columnIndex="1">
                <children>
-                  <PieChart fx:id="graphicDestinosBuscados" />
-                  <Label fx:id="lblDestinosBuscados" styleClass="ordinaryText" stylesheets="@../styles/texto.css" text="DESTINOS MAS BUSCADOS" />
+                  <PieChart fx:id="graphicDestinosReservados" />
+                  <Label fx:id="lblDestinosBuscados" styleClass="ordinaryText" stylesheets="@../styles/texto.css" text="DESTINOS MAS RESERVADOS" />
                </children>
             </VBox>
             <VBox alignment="CENTER" styleClass="placePaneGraphics" stylesheets="@../styles/paneStyle.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
