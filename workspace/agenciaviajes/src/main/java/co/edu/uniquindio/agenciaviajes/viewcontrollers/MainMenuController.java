@@ -155,6 +155,23 @@ public class MainMenuController implements Controllable {
 
 	@FXML
 	void modificarPerfilEvent(MouseEvent event) {
+		modificarPerfilAction();
+	}
+
+	private void modificarPerfilAction() {
+		MainPaneController.getInstance().ejecutarProceso(() -> {
+			try {
+				VistaManager.getInstance().cambiarVista(TipoVista.MODIFICAR_PERFIL, new Pair<Runnable, Cliente>(() -> {
+					try {
+						VistaManager.getInstance().cambiarVista(TipoVista.MENU_PRINCIPAL_CLIENTE, null);
+					} catch (FXMLException e) {
+						throw new RuntimeException(e);
+					}
+				}, (Cliente) DataController.getInstance().getLoginActualValue()));
+			} catch (FXMLException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 
 	@FXML
@@ -282,8 +299,6 @@ public class MainMenuController implements Controllable {
 		lblRegister.setText(bundle.getString("MainMenuController.lblRegister"));
 		lblLogin.setText(bundle.getString("MainMenuController.lblLogin"));
 		btnSearch.setText(bundle.getString("MainMenuController.btnSearch"));
-
-
 
 	}
 
