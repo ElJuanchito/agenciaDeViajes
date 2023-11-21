@@ -77,5 +77,9 @@ public class Reserva implements Serializable {
 	public boolean clienteEstuvoGuia(Cliente cliente, GuiaTuristico guia) {
 		return this.cliente.equals(cliente) && estado == Estado.REALIZADA && this.guia.equals(guia);
 	}
+	
+	public Long getid() {
+		return getid();
+	}
 
 }

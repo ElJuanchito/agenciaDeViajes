@@ -1,5 +1,6 @@
 package co.edu.uniquindio.agenciaserver.services;
 
+import java.io.IOException;
 import java.util.List;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.AdministradorNoExistenteException;
@@ -25,6 +26,7 @@ import co.edu.uniquindio.agenciaviajes.model.Imagen;
 import co.edu.uniquindio.agenciaviajes.model.Loginable;
 import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.model.Reserva;
+import co.edu.uniquindio.utils.LoggerHandler;
 
 public class PersistenciaDataManager implements DataManager{
 	
@@ -153,7 +155,9 @@ public class PersistenciaDataManager implements DataManager{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
+//------------------------------------------------------------------------------------------------------------------------------------------------
+	
 	@Override
 	public void actualizarImagen(Imagen guia) throws ImagenNoExistenteException {
 		// TODO Auto-generated method stub
@@ -214,75 +218,162 @@ public class PersistenciaDataManager implements DataManager{
 		return false;
 	}
 
+	
+	
+	
+	@SuppressWarnings("unused")
+	private void throwReservaYaExistente(Long id) throws ReservaYaExistenteException {
+		if (verificarReserva(id)) {
+			throw new ReservaYaExistenteException(
+					"La reserva " + id + ", ya existe en la lista.");
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	private void throwReservaNoExistente(Long id) throws ReservaNoExistenteException {
+		if (!verificarReserva(id)) {
+			throw new ReservaNoExistenteException(
+					"La reserva: " + id + ", no existe en la lista.");
+		}
+	}
+	
 	@Override
 	public void guardarReserva(Reserva reserva) throws ReservaYaExistenteException {
-		// TODO Auto-generated method stub
-		
+		throwReservaYaExistente(reserva.getid());
+		listarReserva().add(reserva);
 	}
 
 	@Override
 	public List<Reserva> listarReserva() {
-		// TODO Auto-generated method stub
+		try {
+			ArchivoUtils.deserializarObjeto(RUTARESERVAS);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public void actualizarReserva(Reserva reserva) throws ReservaNoExistenteException {
-		// TODO Auto-generated method stub
+		throwReservaNoExistente(reserva.getid());
+		List<Reserva> listarReserva = listarReserva();
+		for (int i = 0; i < listarReserva.size(); i++) {
+			Reserva reservas = listarReserva.get(i);
+			if(reservas.getid().equals(reserva.getid())) {
+				listarReserva.set(i, reserva);
+			}
+		}
 		
 	}
 
 	@Override
 	public void eliminarReserva(Long id) throws ReservaNoExistenteException {
-		// TODO Auto-generated method stub
-		
+		throwReservaNoExistente(id);
+		for (Reserva reservas : listarReserva()) {
+			if(reservas.getid().equals(id)) {
+				listarReserva().remove(reservas);
+				return;
+			}
+		}
 	}
 
 	@Override
 	public Reserva buscarReserva(Long id) throws ReservaNoExistenteException {
-		// TODO Auto-generated method stub
+		throwReservaNoExistente(id);
+		for (Reserva reservas : listarReserva()) {
+			if(reservas.getid().equals(id))
+				return reservas;
+			}
 		return null;
 	}
 
 	@Override
 	public boolean verificarReserva(Long id) {
-		// TODO Auto-generated method stub
+		for (Reserva reserva :listarReserva()) {
+			if(reserva.getid().equals(id))
+				return true;
+		}
 		return false;
+	}
+	
+	
+	@SuppressWarnings("unused")
+	private void throwAdministradorYaExistente(String id) throws AdministradorYaExistenteException {
+		if (verificarAdministrador(id)) {
+			throw new AdministradorYaExistenteException(
+					"El administrador " + id + ", ya existe en la lista.");
+		}
+	}
+	
+	@SuppressWarnings("unused")
+	private void throwAdministradorNoExistente(String id) throws AdministradorNoExistenteException {
+		if (!verificarAdministrador(id)) {
+			throw new AdministradorNoExistenteException(
+					"El adminstrador: " + id + ", no existe en la lista.");
+		}
 	}
 
 	@Override
 	public void guardarAdministrador(Administrador admin) throws AdministradorYaExistenteException {
-		// TODO Auto-generated method stub
-		
+		throwAdministradorYaExistente(admin.getUsuario());
+		listarAdmin().add(admin);
 	}
 
 	@Override
 	public List<Administrador> listarAdmin() {
-		// TODO Auto-generated method stub
+		try {
+			ArchivoUtils.deserializarObjeto(RUTAADMINISTRADOR);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
 	public void actualizarAdministrador(Administrador admin) throws AdministradorNoExistenteException {
-		// TODO Auto-generated method stub
-		
+			throwAdministradorNoExistente(admin.getUsuario());
+			for(Administrador administradores: listarAdmin()) {
+				if(administradores.getUsuario().equals(admin.getUsuario())) {
+					listarAdmin().set(listarAdmin().indexOf(administradores), admin);
+				}
+			}
 	}
 
 	@Override
 	public void eliminarAdministrador(String id) throws AdministradorNoExistenteException {
-		// TODO Auto-generated method stub
-		
+		throwAdministradorNoExistente(id);
+		for (Administrador administradores : listarAdmin()) {
+			if(administradores.getUsuario().equals(id)) {
+				listarAdmin().remove(administradores);
+				return;
+			}
+		}
 	}
 
 	@Override
 	public Administrador buscarAdministrador(String id) throws AdministradorNoExistenteException {
-		// TODO Auto-generated method stub
+		throwAdministradorNoExistente(id);
+		for (Administrador administradores : listarAdmin()) {
+			if(administradores.getUsuario().equals(id))
+				return administradores;
+			}
 		return null;
 	}
 
 	@Override
 	public boolean verificarAdministrador(String id) {
-		// TODO Auto-generated method stub
+		for (Administrador administrador :listarAdmin()) {
+			if(administrador.getUsuario().equals(id))
+				return true;
+		}
 		return false;
 	}
 
