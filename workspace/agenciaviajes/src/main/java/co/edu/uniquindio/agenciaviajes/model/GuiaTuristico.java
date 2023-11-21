@@ -7,6 +7,7 @@ import java.util.Map;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.IdiomaNoExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.IdiomaYaExistenteException;
+import co.edu.uniquindio.agenciaviajes.utils.MathUtils;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -151,6 +152,13 @@ public class GuiaTuristico extends Usuario implements Comentable {
 		return cadDescription;
 	}
 	
+	public double getPromedio() {
+		int cant = mapComentarios.size();
+		if (cant == 0)
+			return 5;
+		return MathUtils.round(
+				(mapComentarios.entrySet().stream().mapToDouble(t -> t.getValue().getPuntuacion()).sum() + 0d) / cant,
+				1);
+	}
 	
-
 }

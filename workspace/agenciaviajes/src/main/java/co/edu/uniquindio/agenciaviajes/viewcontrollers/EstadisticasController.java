@@ -8,6 +8,8 @@ import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
 import co.edu.uniquindio.agenciaviajes.controllers.TipoPeticion;
 import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
+import co.edu.uniquindio.agenciaviajes.model.GuiaTuristico;
+import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.services.Controllable;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
@@ -28,7 +30,7 @@ public class EstadisticasController implements Controllable {
 	private Label lblTitle;
 
 	@FXML
-	private BarChart<String, Number> graphicDestinosReservados;
+	private BarChart<String, Number> graphicDestinosPuntuados;
 
 	@FXML
 	private Label lblDestinosReservados;
@@ -40,7 +42,7 @@ public class EstadisticasController implements Controllable {
 	private Label lblGuiasPuntuados;
 
 	@FXML
-	private PieChart graphicDestinosBuscados;
+	private PieChart graphicDestinosReservados;
 
 	@FXML
 	private Label lblDestinosBuscados;
@@ -55,21 +57,23 @@ public class EstadisticasController implements Controllable {
 	void initialize() {
 	}
 
-	public void inicializarGraphicDestinosBuscados() {
-		// Crear datos para el gráfico (esto es solo un ejemplo, debes adaptarlo a tus
-		// necesidades)
-		PieChart.Data dato1 = new PieChart.Data("Etiqueta1", 30);
-		PieChart.Data dato2 = new PieChart.Data("Etiqueta2", 40);
-		PieChart.Data dato3 = new PieChart.Data("Etiqueta3", 20);
-
-		// Limpiar datos existentes en el gráfico
-		graphicDestinosBuscados.getData().clear();
-
-		// Agregar nuevos datos al gráfico
-		graphicDestinosBuscados.getData().addAll(dato1, dato2, dato3);
+	public void inicializarGraphicDestinosReservados() {
+		PeticionController <Void, List<Destino>> peticion = new PeticionController<Void, List<Destino>>(TipoPeticion.LISTAR_DESTINO, null);
+		
+		try {
+			List<Destino> realizarPeticion = peticion.realizarPeticion();
+			for (Destino guia : realizarPeticion) {
+			    String etiqueta= guia.getNombre();
+			    PieChart.Data dato = new PieChart.Data(etiqueta, guia.getReservas().size());
+			    graphicDestinosReservados.getData().add(dato);
+			    }
+		} catch (PeticionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
-	public void inicializarGraphicDestinosReservados() {
+	public void inicializarGraphicDestinosPuntuados() {
 		// Crea una serie de datos
 		XYChart.Series<String, Number> series = new XYChart.Series<>();
 		PeticionController <Void, List<Destino>> peticion = new PeticionController<Void, List<Destino>>(TipoPeticion.LISTAR_DESTINO, null);
@@ -79,41 +83,47 @@ public class EstadisticasController implements Controllable {
 			for (Destino destino : realizarPeticion) {
 			    String etiqueta= destino.getNombre();
 			        series.getData().add(new XYChart.Data<>(etiqueta, destino.getPromedio()));
-			        graphicDestinosReservados.getData().add(series);
+			    }
+			graphicDestinosPuntuados.getData().add(series);
+		} catch (PeticionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
+	public void inicializarGraficaPaquetes() {
+		// Crea una serie de datos
+		XYChart.Series<String, Number> series = new XYChart.Series<>();
+		PeticionController <Void, List<Paquete>> peticion = new PeticionController<Void, List<Paquete>>(TipoPeticion.LISTAR_PAQUETE, null);
+		
+		try {
+			List<Paquete> realizarPeticion = peticion.realizarPeticion();
+			for (Paquete paquete : realizarPeticion) {
+			    String etiqueta= paquete.getNombre();
+			        series.getData().add(new XYChart.Data<>(etiqueta, paquete.getReservas().size()));
+			    }
+			graphicPaquetes.getData().add(series);
+		} catch (PeticionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	public void inicializarGraphicGuias() {
+
+		PeticionController <Void, List<GuiaTuristico>> peticion = new PeticionController<Void, List<GuiaTuristico>>(TipoPeticion.LISTAR_GUIA, null);
+		
+		try {
+			List<GuiaTuristico> realizarPeticion = peticion.realizarPeticion();
+			for (GuiaTuristico guia : realizarPeticion) {
+			    String etiqueta= guia.getNombreCompleto();
+			    PieChart.Data dato = new PieChart.Data(etiqueta, guia.getPromedio());
+			    graphicGuias.getData().add(dato);
 			    }
 		} catch (PeticionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        }
-
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public void inicializarGraficaPaquetes() {
-		// Crear una serie de datos
-		XYChart.Series series = new XYChart.Series();
-		series.getData().add(new XYChart.Data("Dato 1", 10));
-		series.getData().add(new XYChart.Data("Dato 2", 20));
-		series.getData().add(new XYChart.Data("Dato 3", 15));
-
-		// Limpiar cualquier dato existente en la gráfica
-		graphicPaquetes.getData().clear();
-
-		// Agregar la serie a la gráfica
-		graphicPaquetes.getData().add(series);
-	}
-
-	public void inicializarGraphicGuias() {
-		// Crear datos para el gráfico (esto es solo un ejemplo, debes adaptarlo a tus
-		// necesidades)
-		PieChart.Data dato1 = new PieChart.Data("Etiqueta1", 30);
-		PieChart.Data dato2 = new PieChart.Data("Etiqueta2", 40);
-		PieChart.Data dato3 = new PieChart.Data("Etiqueta3", 20);
-
-		// Limpiar datos existentes en el gráfico
-		graphicGuias.getData().clear();
-
-		// Agregar nuevos datos al gráfico
-		graphicGuias.getData().addAll(dato1, dato2, dato3);
 	}
 
 	@Override
@@ -122,7 +132,7 @@ public class EstadisticasController implements Controllable {
 	}
 
 	private void cargarGraficos() {
-		inicializarGraphicDestinosBuscados();
+		inicializarGraphicDestinosPuntuados();
 		inicializarGraphicDestinosReservados();
 		inicializarGraficaPaquetes();
 		inicializarGraphicGuias();
