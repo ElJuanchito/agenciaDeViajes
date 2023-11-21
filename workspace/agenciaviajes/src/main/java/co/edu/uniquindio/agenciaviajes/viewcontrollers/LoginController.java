@@ -1,8 +1,7 @@
 package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
-import java.io.File;
 import java.net.URL;
-import java.util.*;
+import java.util.ResourceBundle;
 
 import co.edu.uniquindio.agenciaviajes.controllers.DataController;
 import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
@@ -22,8 +21,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.util.Pair;
 
 public class LoginController implements DataControllable<Pair<Runnable, String>> {
@@ -50,14 +47,6 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 
 	@FXML
 	private PasswordField txtPassword;
-
-	private File[] files;
-
-	private List<File> songs;
-
-	private Media media;
-
-	private MediaPlayer mediaPlayer;
 
 	private Runnable volverRunnable;
 
@@ -104,7 +93,7 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 //		height: 720.0
 //		relacionAspecto: 3:4 || 0.75
 		stackImg.prefWidthProperty().bind(root.heightProperty().multiply(0.75d));
-		
+
 	}
 
 	@Override
@@ -122,23 +111,6 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 	public void clearData() {
 		txtEmail.clear();
 		txtPassword.clear();
-	}
-
-	private void DJPerdomo() {
-
-		files = new File(Objects.requireNonNull(getClass().getResource("/")).getFile())
-				.listFiles((dir, nombre) -> nombre.toLowerCase().endsWith(".mp3"));
-		songs = Arrays.asList(files);
-
-		Random random = new Random();
-		int randomIndex = random.nextInt(songs.size());
-
-		media = new Media(songs.get(randomIndex).toURI().toString());
-
-		mediaPlayer = new MediaPlayer(media);
-
-		mediaPlayer.play();
-
 	}
 
 	@Override

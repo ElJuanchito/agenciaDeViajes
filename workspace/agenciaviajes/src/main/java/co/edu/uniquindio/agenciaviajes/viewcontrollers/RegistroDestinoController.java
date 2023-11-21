@@ -11,8 +11,6 @@ import co.edu.uniquindio.agenciaviajes.services.Controllable;
 import co.edu.uniquindio.agenciaviajes.utils.UtilsFX;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -78,7 +76,7 @@ public class RegistroDestinoController implements Controllable {
 			imagenes.add(imagencita);
 			addNewImage(imgView);
 		} else {
-			new Alert(AlertType.INFORMATION, "No se ha seleccionado ninguna imagen").show();
+			MainPaneController.getInstance().showAlert("No se ha seleccionado ninguna imagen");
 		}
 	}
 
