@@ -108,8 +108,8 @@ public class GuiaTuristicoController implements DataControllable<GuiaTuristico> 
 	@Override
 	public void updateLanguage(ResourceBundle bundle) {
 		refe = bundle.getString("GuiaTuristicoController.txtDescription");
-		if(guia!=null)
-			txtDescription.setText(String.format(refe,guia.getCadenaIdiomas(),guia.getExpHoras()));
+		if (guia != null)
+			txtDescription.setText(String.format(refe, guia.getCadenaIdiomas(), guia.getExpHoras()));
 	}
 
 	@Override
@@ -133,9 +133,8 @@ public class GuiaTuristicoController implements DataControllable<GuiaTuristico> 
 		imagen = guia.getImagen().getImage();
 		// TODO actualizarPuntaje(guia.getPromedio());
 		showImage();
-		txtDescription.setText(String.format(refe,guia.getCadenaIdiomas(),guia.getExpHoras()));
-		
-		
+		txtDescription.setText(String.format(refe, guia.getCadenaIdiomas(), guia.getExpHoras()));
+
 	}
 
 	@Override

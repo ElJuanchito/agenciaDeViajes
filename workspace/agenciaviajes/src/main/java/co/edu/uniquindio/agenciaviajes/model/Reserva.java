@@ -26,7 +26,7 @@ import lombok.ToString;
 @AllArgsConstructor
 
 @ToString
-public class Reserva implements Serializable{
+public class Reserva implements Serializable {
 	/**
 	 * 
 	 */
@@ -40,8 +40,6 @@ public class Reserva implements Serializable{
 
 	private GuiaTuristico guia;
 	private Estado estado;
-	
-
 
 	@Builder
 	public Reserva(Cliente cliente, Integer cantPersonas, Paquete paquete, GuiaTuristico guiaTuristico, Estado estado) {
@@ -52,17 +50,17 @@ public class Reserva implements Serializable{
 		this.guia = guiaTuristico;
 		this.estado = estado;
 	}
-	
-	public double getPrecioFinal() {
-		return cantPersonas*paquete.getPrecio().doubleValue();
-	}
 
 	public boolean clienteEstuvoAlli(Cliente cliente) {
 		return this.cliente.equals(cliente) && estado == Estado.REALIZADA;
 	}
-	
+
+	public double getPrecioFinal() {
+		return cantPersonas * paquete.getPrecio().doubleValue();
+	}
+
 	public boolean clienteEstuvoGuia(Cliente cliente, GuiaTuristico guia) {
-		return this.cliente.equals(cliente) && estado==Estado.REALIZADA && this.guia.equals(guia);
+		return this.cliente.equals(cliente) && estado == Estado.REALIZADA && this.guia.equals(guia);
 	}
 
 }

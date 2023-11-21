@@ -1,9 +1,7 @@
 package co.edu.uniquindio.agenciaviajes.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.IdiomaNoExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.IdiomaYaExistenteException;
@@ -30,18 +28,11 @@ public class GuiaTuristico extends Usuario implements Comentable {
 	private Integer expHoras;
 
 	private Imagen imagen;
-	
-	private List<Reserva> reservas;
-	
-	
-	private Map<Cliente, Comentario> mapComentarios;
 
-// TODO lista de reservas en las que este el guia, un cliente puede comentar en el guia en caso de que haya hecho la reserva (en reserva ya esta el metodo) 
-	/**
-	 * @param identificacion
-	 * @param nombreCompleto
-	 * @param expHoras
-	 */
+	private List<Reserva> reservas;
+
+	private List<Comentario> listComentarios;
+
 	@Builder
 	private GuiaTuristico(String identificacion, String nombreCompleto, Integer expHoras, Imagen imagen,
 			Idioma... idiomas) {
@@ -49,8 +40,8 @@ public class GuiaTuristico extends Usuario implements Comentable {
 		this.expHoras = expHoras;
 		this.idiomas = new ArrayList<Idioma>(List.of(idiomas));
 		this.imagen = imagen;
-		this.reservas= new ArrayList<Reserva>();
-		this.mapComentarios= new HashMap<Cliente, Comentario>();
+		this.reservas = new ArrayList<Reserva>();
+		this.listComentarios = new ArrayList<Comentario>();
 	}
 
 	/**
@@ -117,39 +108,41 @@ public class GuiaTuristico extends Usuario implements Comentable {
 
 	@Override
 	public boolean clientePuedeComentar(Cliente cliente) {
-		return clienteFueGuia(cliente,this,0);
+		return clienteFueGuia(cliente, this, 0);
 	}
 
 	private boolean clienteFueGuia(Cliente cliente, GuiaTuristico guiaTuristico, int i) {
-		if(i>=reservas.size()) 
+		if (i >= reservas.size())
 			return false;
-		if(reservas.get(i).clienteEstuvoGuia(cliente, guiaTuristico))
+		if (reservas.get(i).clienteEstuvoGuia(cliente, guiaTuristico))
 			return true;
-		return clienteFueGuia(cliente, guiaTuristico, i+1);
+		return clienteFueGuia(cliente, guiaTuristico, i + 1);
 	}
-	
-	public String getCadenaIdiomas() {
-		String cad="";
-		return getCadenaIdiomasRecu(cad, 0);
-		
-	}
-	
-	private String getCadenaIdiomasRecu(String cad, int i) {
-		if(i>= idiomas.size())
-			return cad;
-		cad+= idiomas.get(i).getIdioma()+" ";
-		return getCadenaIdiomasRecu(cad,i+1);
-	}
-		
-	
-	
+
 	public double getPromedio() {
-		int cant = mapComentarios.size();
+		int cant = listComentarios.size();
 		if (cant == 0)
 			return 5;
-		return MathUtils.round(
-				(mapComentarios.entrySet().stream().mapToDouble(t -> t.getValue().getPuntuacion()).sum() + 0d) / cant,
-				1);
+		return MathUtils.round((listComentarios.stream().mapToDouble(t -> t.getPuntuacion()).sum() + 0) / cant, 0);
 	}
-	
+
+	public String getCadenaIdiomas() {
+		return getCadenaIdiomasRecu("", 0);
+	}
+
+	private String getCadenaIdiomasRecu(String cad, int i) {
+		if (i >= idiomas.size())
+			return cad;
+		cad += idiomas.get(i).getIdioma() + " ";
+		return getCadenaIdiomasRecu(cad, i + 1);
+	}
+
+	public String getDescripcion() {
+		String cadIdi = getCadenaIdiomas();
+		String cadDescription = "Idiomas Hablados: ";
+		cadDescription += cadIdi + "\n";
+		cadDescription += "Experiencia: ";
+		cadDescription += expHoras + " Horas";
+		return cadDescription;
+	}
 }

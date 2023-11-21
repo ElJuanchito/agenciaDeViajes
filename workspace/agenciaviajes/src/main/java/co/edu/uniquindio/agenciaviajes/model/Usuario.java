@@ -14,7 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @AllArgsConstructor
-public abstract class Usuario implements Serializable{
+public abstract class Usuario implements Serializable {
 
 	/**
 	 * 

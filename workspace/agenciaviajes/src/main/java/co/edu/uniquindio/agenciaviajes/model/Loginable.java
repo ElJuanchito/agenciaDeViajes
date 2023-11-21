@@ -1,8 +1,6 @@
 package co.edu.uniquindio.agenciaviajes.model;
 
-import java.io.Serializable;
-
-public interface Loginable extends Serializable {
+public interface Loginable {
 
 	public String getContrasena();
 

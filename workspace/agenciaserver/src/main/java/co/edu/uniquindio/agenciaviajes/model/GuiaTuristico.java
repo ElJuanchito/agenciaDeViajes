@@ -1,9 +1,7 @@
 package co.edu.uniquindio.agenciaviajes.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -11,6 +9,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import co.edu.uniquindio.agenciaserver.utils.MathUtils;
 import co.edu.uniquindio.agenciaviajes.exceptions.IdiomaNoExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.IdiomaYaExistenteException;
 import lombok.Builder;
@@ -42,9 +41,9 @@ public class GuiaTuristico extends Usuario implements Comentable {
 
 	@OneToMany
 	private List<Reserva> reservas;
-	
+
 	@OneToMany
-	private Map<Cliente, Comentario> mapComentarios;
+	private List<Comentario> listComentarios;
 
 	@Builder
 	private GuiaTuristico(String identificacion, String nombreCompleto, Integer expHoras, Imagen imagen,
@@ -54,7 +53,7 @@ public class GuiaTuristico extends Usuario implements Comentable {
 		this.idiomas = new ArrayList<Idioma>(List.of(idiomas));
 		this.imagen = imagen;
 		this.reservas = new ArrayList<Reserva>();
-		this.mapComentarios = new HashMap<Cliente, Comentario>();
+		this.listComentarios = new ArrayList<Comentario>();
 	}
 
 	/**
@@ -130,6 +129,13 @@ public class GuiaTuristico extends Usuario implements Comentable {
 		if (reservas.get(i).clienteEstuvoGuia(cliente, guiaTuristico))
 			return true;
 		return clienteFueGuia(cliente, guiaTuristico, i + 1);
+	}
+
+	public double getPromedio() {
+		int cant = listComentarios.size();
+		if (cant == 0)
+			return 5;
+		return MathUtils.round((listComentarios.stream().mapToDouble(t -> t.getPuntuacion()).sum() + 0) / cant, 0);
 	}
 
 	private String getCadenaIdiomas() {

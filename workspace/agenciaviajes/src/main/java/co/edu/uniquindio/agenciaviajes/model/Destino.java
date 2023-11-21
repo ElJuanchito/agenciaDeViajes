@@ -6,9 +6,7 @@ package co.edu.uniquindio.agenciaviajes.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.ImagenNoExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.ImagenNoObtenidaException;
@@ -29,7 +27,7 @@ import lombok.ToString;
 @Getter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString(onlyExplicitlyIncluded = true)
-public class Destino implements Comentable , Serializable{
+public class Destino implements Comentable, Serializable {
 	/**
 	 * 
 	 */
@@ -59,7 +57,7 @@ public class Destino implements Comentable , Serializable{
 	@ToString.Include
 	private TipoDestino tipoDestino;
 
-	private Map<Cliente, Comentario> mapComentarios;
+	private List<Comentario> listComentarios;
 
 	private List<Paquete> paquetes;
 
@@ -83,7 +81,7 @@ public class Destino implements Comentable , Serializable{
 		this.imagenes = new ArrayList<Imagen>();
 		this.paquetes = new ArrayList<Paquete>();
 		this.reservas = new ArrayList<Reserva>();
-		this.mapComentarios = new HashMap<Cliente, Comentario>();
+		this.listComentarios = new ArrayList<Comentario>();
 	}
 
 	/**
@@ -263,17 +261,19 @@ public class Destino implements Comentable , Serializable{
 	}
 
 	public double getPromedio() {
-		int cant = mapComentarios.size();
+		int cant = listComentarios.size();
 		if (cant == 0)
 			return 5;
-		return MathUtils.round(
-				(mapComentarios.entrySet().stream().mapToDouble(t -> t.getValue().getPuntuacion()).sum() + 0d) / cant,
-				1);
+		return MathUtils.round((listComentarios.stream().mapToDouble(t -> t.getPuntuacion()).sum() + 0) / cant, 0);
 	}
 
 	public void addComentario(Comentario comentario) {
 		if (clientePuedeComentar(comentario.getCliente())) {
-			mapComentarios.put(comentario.getCliente(), comentario);
+			int indice = listComentarios.indexOf(comentario);
+			if (indice == -1)
+				listComentarios.add(comentario);
+			else
+				listComentarios.set(0, comentario);
 		}
 	}
 

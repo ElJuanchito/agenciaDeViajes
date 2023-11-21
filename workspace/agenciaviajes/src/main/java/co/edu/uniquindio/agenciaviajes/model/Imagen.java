@@ -18,7 +18,7 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @Data
-public class Imagen implements Serializable{
+public class Imagen implements Serializable {
 
 	/**
 	 * 

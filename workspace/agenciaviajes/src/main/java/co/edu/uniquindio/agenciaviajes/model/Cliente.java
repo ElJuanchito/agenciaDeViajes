@@ -43,8 +43,8 @@ public class Cliente extends Usuario implements Loginable {
 	private Imagen imagen;
 
 	@Builder
-	private Cliente(String identificacion, String nombreCompleto, String email, String contrasena, String telefono,
-			String direccion, Imagen imagen) {
+	private Cliente(@NonNull String identificacion, @NonNull String nombreCompleto, @NonNull String email,
+			@NonNull String contrasena, @NonNull String telefono, @NonNull String direccion, Imagen imagen) {
 		super(identificacion, nombreCompleto);
 		this.email = email;
 		this.telefono = telefono;
@@ -236,7 +236,6 @@ public class Cliente extends Usuario implements Loginable {
 		Reserva reserva = reservas.get(i);
 		if (esPasada(reserva))
 			seleccionadas.add(reservas.get(i));
-
 		return getReservasPasadas(seleccionadas, i + 1);
 	}
 

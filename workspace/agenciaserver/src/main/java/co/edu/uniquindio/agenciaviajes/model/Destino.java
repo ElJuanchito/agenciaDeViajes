@@ -6,9 +6,7 @@ package co.edu.uniquindio.agenciaviajes.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -19,7 +17,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -79,15 +76,13 @@ public class Destino implements Comentable, Serializable {
 	@ToString.Include
 	private TipoDestino tipoDestino;
 
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
-	@MapKeyJoinColumn(name = "cliente_id")
-	private Map<Cliente, Comentario> mapComentarios;
+	@OneToMany
+	private List<Comentario> listComentarios;
 
 	@ManyToMany(mappedBy = "destinos")
 	private List<Paquete> paquetes;
 
-	//TODO Revisar
-	@OneToMany
+	@OneToMany(mappedBy = "destinos")
 	private List<Reserva> reservas;
 
 	/**
@@ -108,7 +103,7 @@ public class Destino implements Comentable, Serializable {
 		this.imagenes = new ArrayList<Imagen>();
 		this.paquetes = new ArrayList<Paquete>();
 		this.reservas = new ArrayList<Reserva>();
-		this.mapComentarios = new HashMap<Cliente, Comentario>();
+		this.listComentarios = new ArrayList<Comentario>();
 	}
 
 	/**
@@ -288,17 +283,19 @@ public class Destino implements Comentable, Serializable {
 	}
 
 	public double getPromedio() {
-		int cant = mapComentarios.size();
+		int cant = listComentarios.size();
 		if (cant == 0)
 			return 5;
-		return MathUtils.round(
-				(mapComentarios.entrySet().stream().mapToDouble(t -> t.getValue().getPuntuacion()).sum() + 0d) / cant,
-				1);
+		return MathUtils.round((listComentarios.stream().mapToDouble(t -> t.getPuntuacion()).sum() + 0) / cant, 0);
 	}
 
 	public void addComentario(Comentario comentario) {
 		if (clientePuedeComentar(comentario.getCliente())) {
-			mapComentarios.put(comentario.getCliente(), comentario);
+			int indice = listComentarios.indexOf(comentario);
+			if (indice == -1)
+				listComentarios.add(comentario);
+			else
+				listComentarios.set(0, comentario);
 		}
 	}
 

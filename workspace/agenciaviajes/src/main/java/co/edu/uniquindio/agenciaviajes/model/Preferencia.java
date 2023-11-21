@@ -18,7 +18,7 @@ import lombok.ToString;
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-public class Preferencia implements Serializable{
+public class Preferencia implements Serializable {
 	/**
 	 * 
 	 */

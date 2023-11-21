@@ -16,11 +16,10 @@ public class Administrador extends Usuario implements Loginable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@NonNull
 	private String contrasena;
 
 	private Imagen imagen;
-	
+
 	@Builder
 	public Administrador(@NonNull String identificacion, @NonNull String nombreCompleto, @NonNull String contrasena,
 			Imagen imagen) {
