@@ -27,7 +27,9 @@ private EntityManager em;
 		if (verificar(admin.getIdentificacion()))
 			throw new AdministradorYaExistenteException(
 					String.format("El admin con id %s ya existe en la base de datos", admin.getIdentificacion()));
+		em.getTransaction().begin();
 		em.persist(admin);
+		em.getTransaction().commit();
 	}
 
 	public List<Administrador> listar() {
@@ -42,7 +44,9 @@ private EntityManager em;
 	}
 
 	public Administrador buscar(String id) throws AdministradorNoExistenteException {
+		em.getTransaction().begin();
 		Administrador admin = em.find(Administrador.class, id);
+		em.getTransaction().commit();
 		if(admin == null) throw new AdministradorNoExistenteException("El admin no existe, por lo tanto no se puede encontrar");
 		return admin;
 	}
