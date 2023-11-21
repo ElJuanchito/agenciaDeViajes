@@ -4,13 +4,13 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 
 import co.edu.uniquindio.agenciaviajes.controllers.PeticionController;
 import co.edu.uniquindio.agenciaviajes.controllers.TipoPeticion;
 import co.edu.uniquindio.agenciaviajes.controllers.Vista;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
+import co.edu.uniquindio.agenciaviajes.model.BusquedaPaquetes;
 import co.edu.uniquindio.agenciaviajes.model.Clima;
 import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
@@ -204,23 +204,13 @@ public class BusquedaAvanzadaController implements DataControllable<Pair<List<Pa
 			precioHastaPaquete = Double.parseDouble(txtPrecioHasta.getText());
 		} catch (NumberFormatException e) {
 		}
-		final Double valorPrecioDesdePaquete = precioDesdePaquete;
-		final Double valorPrecioHastaPaquete = precioHastaPaquete;
+		BusquedaPaquetes busquedaPaquetes = BusquedaPaquetes.builder().ciudadDestino(valorCiudadDestino)
+				.climaDestino(valorClimaDestino).fechaStart(valorFechaStart).fechaFinal(valorFechaFinal)
+				.nombreDestino(valorNombreDestino).nombrePaquete(valorNombrePaquete)
+				.precioDesdePaquete(precioDesdePaquete).precioHastaPaquete(precioHastaPaquete).build();
 
-		Predicate<Paquete> predicate = paquete -> {
-			boolean flagCiudadDes = valorCiudadDestino.isEmpty() ? true : paquete.contieneCiudad(valorCiudadDestino);
-			boolean flagClima = valorClimaDestino == null ? true : paquete.contieneClima(valorClimaDestino);
-			boolean flagFechas = valorFechaStart == null || valorFechaFinal == null ? true
-					: paquete.estaEntreFechas(valorFechaStart, valorFechaFinal);
-			boolean flagNombreDes = valorNombreDestino == null ? true
-					: paquete.contieneNombreDestino(valorNombreDestino);
-			boolean flagNombrePaquete = valorNombrePaquete == null ? true : paquete.tieneNombre(valorNombrePaquete);
-			boolean flagPrecio = valorPrecioDesdePaquete == null || valorPrecioHastaPaquete == null ? true
-					: paquete.tienePrecioEntre(valorPrecioDesdePaquete, valorPrecioHastaPaquete);
-			return flagCiudadDes && flagClima && flagFechas && flagNombreDes && flagNombrePaquete && flagPrecio;
-		};
-		PeticionController<Predicate<Paquete>, List<Paquete>> peticionController = new PeticionController<Predicate<Paquete>, List<Paquete>>(
-				TipoPeticion.FILTRAR_PAQUETES, predicate);
+		PeticionController<BusquedaPaquetes, List<Paquete>> peticionController = new PeticionController<>(
+				TipoPeticion.FILTRAR_PAQUETES, busquedaPaquetes);
 		try {
 			List<Paquete> paquetes = peticionController.realizarPeticion();
 			if (paquetes.isEmpty()) {

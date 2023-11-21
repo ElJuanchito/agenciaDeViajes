@@ -7,6 +7,7 @@ import java.util.Map;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.IdiomaNoExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.IdiomaYaExistenteException;
+import co.edu.uniquindio.agenciaviajes.utils.MathUtils;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -127,8 +128,7 @@ public class GuiaTuristico extends Usuario implements Comentable {
 		return clienteFueGuia(cliente, guiaTuristico, i+1);
 	}
 	
-	private 
-	String getCadenaIdiomas() {
+	public String getCadenaIdiomas() {
 		String cad="";
 		return getCadenaIdiomasRecu(cad, 0);
 		
@@ -140,17 +140,16 @@ public class GuiaTuristico extends Usuario implements Comentable {
 		cad+= idiomas.get(i).getIdioma()+" ";
 		return getCadenaIdiomasRecu(cad,i+1);
 	}
-	
-	public String getDescripcion() {
-		String cadIdi= getCadenaIdiomas();
-		String cadDescription="Idiomas Hablados: ";
 		
-		cadDescription+= cadIdi+"\n";
-		cadDescription+="Experiencia: ";
-		cadDescription+= expHoras+" Horas";
-		return cadDescription;
+	
+	
+	public double getPromedio() {
+		int cant = mapComentarios.size();
+		if (cant == 0)
+			return 5;
+		return MathUtils.round(
+				(mapComentarios.entrySet().stream().mapToDouble(t -> t.getValue().getPuntuacion()).sum() + 0d) / cant,
+				1);
 	}
 	
-	
-
 }

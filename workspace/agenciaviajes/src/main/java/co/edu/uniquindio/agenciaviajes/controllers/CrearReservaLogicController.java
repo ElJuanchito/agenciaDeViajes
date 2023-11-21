@@ -8,7 +8,9 @@ import java.time.format.DateTimeFormatter;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
 import co.edu.uniquindio.agenciaviajes.model.Cliente;
+import co.edu.uniquindio.agenciaviajes.model.CorreoFile;
 import co.edu.uniquindio.agenciaviajes.model.GuiaTuristico;
+import co.edu.uniquindio.agenciaviajes.model.Loginable;
 import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.model.Reserva;
 import co.edu.uniquindio.agenciaviajes.viewcontrollers.MainPaneController;
@@ -51,11 +53,17 @@ public class CrearReservaLogicController {
 
 	private void enviarPdfReserva(final Reserva reservaNueva) {
 		try {
-			PeticionController<byte[], Boolean> peticionController = new PeticionController<byte[], Boolean>(
-					TipoPeticion.ENVIAR_PDF, CreacionPDFController.getInstance().crearPDFReserva(reservaNueva));
-
-			peticionController.realizarPeticion();
-			MainPaneController.getInstance().showAlert("Se ha enviado un correo"); // TODO property
+			Loginable login = DataController.getInstance().getLoginActualValue();
+			if (login != null && login instanceof Cliente) {
+				PeticionController<CorreoFile, Boolean> peticionController = new PeticionController<CorreoFile, Boolean>(
+						TipoPeticion.ENVIAR_PDF,
+						CorreoFile.builder().cliente((Cliente) login)
+								.nombreArchivo("Nueva reserva de " + reservaNueva.getCliente().getNombreCompleto()
+										+ " [" + String.format("%,d", reservaNueva.getId()).replace(',', '.') + "]")
+								.file(CreacionPDFController.getInstance().crearPDFReserva(reservaNueva)).build());
+				peticionController.realizarPeticion();
+				MainPaneController.getInstance().showAlert("Se ha enviado un correo"); // TODO property
+			}
 		} catch (FXMLException | IOException | PeticionException e) {
 			e.printStackTrace();
 		}

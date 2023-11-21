@@ -11,6 +11,7 @@ import co.edu.uniquindio.agenciaviajes.controllers.TipoVista;
 import co.edu.uniquindio.agenciaviajes.controllers.VistaManager;
 import co.edu.uniquindio.agenciaviajes.exceptions.FXMLException;
 import co.edu.uniquindio.agenciaviajes.exceptions.PeticionException;
+import co.edu.uniquindio.agenciaviajes.model.DatosLogin;
 import co.edu.uniquindio.agenciaviajes.model.Loginable;
 import co.edu.uniquindio.agenciaviajes.services.DataControllable;
 import javafx.event.ActionEvent;
@@ -66,14 +67,12 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 	}
 
 	private void iniciarAction() {
-		MainPaneController.getInstance().ejecutarProceso(this::iniciarSesion);
+		MainPaneController.getInstance().ejecutarProceso(this::realizarPeticionLogin);
 	}
 
-	private void iniciarSesion() {
-		realizarPeticionLogin(new PeticionController<Loginable, Loginable>(TipoPeticion.HACER_LOGIN, loadInfo()));
-	}
-
-	private void realizarPeticionLogin(PeticionController<Loginable, Loginable> peticionController) {
+	private void realizarPeticionLogin() {
+		PeticionController<DatosLogin, Loginable> peticionController = new PeticionController<>(
+				TipoPeticion.HACER_LOGIN, loadInfo());
 		try {
 			Loginable loginable = peticionController.realizarPeticion();
 			DataController.getInstance().selectUsuario(loginable);
@@ -85,19 +84,8 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 		}
 	}
 
-	private Loginable loadInfo() {
-		return new Loginable() {
-
-			@Override
-			public String getUsuario() {
-				return txtEmail.getText();
-			}
-
-			@Override
-			public String getContrasena() {
-				return txtPassword.getText();
-			}
-		};
+	private DatosLogin loadInfo() {
+		return DatosLogin.builder().id(txtEmail.getText()).password(txtPassword.getText()).build();
 	}
 
 	@FXML
@@ -116,7 +104,7 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 //		height: 720.0
 //		relacionAspecto: 3:4 || 0.75
 		stackImg.prefWidthProperty().bind(root.heightProperty().multiply(0.75d));
-		DJPerdomo();
+		
 	}
 
 	@Override
@@ -138,9 +126,9 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 
 	private void DJPerdomo() {
 
-		files = new File(Objects.requireNonNull(getClass().getResource("/")).getFile()).listFiles((dir, nombre) -> nombre.toLowerCase().endsWith(".mp3"));
-        assert files != null;
-        songs = Arrays.asList(files);
+		files = new File(Objects.requireNonNull(getClass().getResource("/")).getFile())
+				.listFiles((dir, nombre) -> nombre.toLowerCase().endsWith(".mp3"));
+		songs = Arrays.asList(files);
 
 		Random random = new Random();
 		int randomIndex = random.nextInt(songs.size());

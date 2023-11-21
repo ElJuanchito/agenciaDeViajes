@@ -20,7 +20,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.SVGPath?>
 
-<StackPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.viewcontrollers.MainMenuController">
+<StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.viewcontrollers.MainMenuController">
    <children>
       <BorderPane minWidth="0.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" stylesheets="@../styles/boton.css">
          <top>
@@ -29,7 +29,7 @@
                   <Group onMouseClicked="#menuIdiomasEvent" scaleX="0.9" scaleY="0.9">
                      <children>
                         <SVGPath content="M14,7.5c0,3.5899-2.9101,6.5-6.5,6.5S1,11.0899,1,7.5S3.9101,1,7.5,1S14,3.9101,14,7.5z" fill="WHITE" scaleX="4.0" scaleY="4.0" />
-                        <SVGPath content="M16,17H8a1,1,0,0,1,0-2h8a1,1,0,0,1,0,2Zm0-4H8a1,1,0,0,1,0-2h8a1,1,0,0,1,0,2Zm0-4H8A1,1,0,0,1,8,7h8a1,1,0,0,1,0,2Z" fill="#270570" scaleX="2.5" scaleY="2.0" translateX="-4.0" translateY="-4.0" />
+                        <SVGPath content="M32.57,15.72l-3.35-1a11.65,11.65,0,0,0-.95-2.33l1.64-3.07a.61.61,0,0,0-.11-.72L27.41,6.2a.61.61,0,0,0-.72-.11L23.64,7.72a11.62,11.62,0,0,0-2.36-1l-1-3.31A.61.61,0,0,0,19.69,3H16.31a.61.61,0,0,0-.58.43l-1,3.3a11.63,11.63,0,0,0-2.38,1l-3-1.62a.61.61,0,0,0-.72.11L6.2,8.59a.61.61,0,0,0-.11.72l1.62,3a11.63,11.63,0,0,0-1,2.37l-3.31,1a.61.61,0,0,0-.43.58v3.38a.61.61,0,0,0,.43.58l3.33,1a11.62,11.62,0,0,0,1,2.33L6.09,26.69a.61.61,0,0,0,.11.72L8.59,29.8a.61.61,0,0,0,.72.11l3.09-1.65a11.65,11.65,0,0,0,2.3.94l1,3.37a.61.61,0,0,0,.58.43h3.38a.61.61,0,0,0,.58-.43l1-3.38a11.63,11.63,0,0,0,2.28-.94l3.11,1.66a.61.61,0,0,0,.72-.11l2.39-2.39a.61.61,0,0,0,.11-.72l-1.66-3.1a11.63,11.63,0,0,0,.95-2.29l3.37-1a.61.61,0,0,0,.43-.58V16.31A.61.61,0,0,0,32.57,15.72ZM18,23.5A5.5,5.5,0,1,1,23.5,18,5.5,5.5,0,0,1,18,23.5Z" fill="#270570" translateX="-10.0" translateY="-10.0" />
                      </children>
                      <HBox.margin>
                         <Insets left="5.0" />
@@ -306,9 +306,9 @@
             <SVGPath content="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM8.96963 8.96965C9.26252 8.67676 9.73739 8.67676 10.0303 8.96965L12 10.9393L13.9696 8.96967C14.2625 8.67678 14.7374 8.67678 15.0303 8.96967C15.3232 9.26256 15.3232 9.73744 15.0303 10.0303L13.0606 12L15.0303 13.9696C15.3232 14.2625 15.3232 14.7374 15.0303 15.0303C14.7374 15.3232 14.2625 15.3232 13.9696 15.0303L12 13.0607L10.0303 15.0303C9.73742 15.3232 9.26254 15.3232 8.96965 15.0303C8.67676 14.7374 8.67676 14.2625 8.96965 13.9697L10.9393 12L8.96963 10.0303C8.67673 9.73742 8.67673 9.26254 8.96963 8.96965Z" fill="#cab3fc" fillRule="EVEN_ODD" onMouseClicked="#closeSearchBtnEvent" scaleX="5.0" scaleY="5.0" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
-      <BorderPane fx:id="capaMenu3" disable="true" onMouseClicked="#capaMenuIdiomas" prefHeight="200.0" prefWidth="200.0">
+      <BorderPane fx:id="capaMenu3" disable="true" onMouseClicked="#capaMenuIdiomas" opacity="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000000A0;">
          <left>
-            <VBox fx:id="menuIdiomas" prefHeight="330.0" prefWidth="0.0" style="-fx-background-radius: 10 0 0 10;" styleClass="izq-menu" BorderPane.alignment="CENTER">
+            <VBox fx:id="menuIdiomas" prefHeight="330.0" prefWidth="0.0" style="-fx-background-radius: 0 10 10 0;" styleClass="izq-menu" BorderPane.alignment="CENTER">
                <children>
                   <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" onMouseClicked="#changeLanguageSpanish" vbarPolicy="NEVER">
                      <content>

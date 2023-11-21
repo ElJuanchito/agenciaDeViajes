@@ -24,7 +24,9 @@ import co.edu.uniquindio.agenciaviajes.exceptions.ReservaNoExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.ReservaYaExistenteException;
 import co.edu.uniquindio.agenciaviajes.exceptions.UsuarioNoExistenteException;
 import co.edu.uniquindio.agenciaviajes.model.Administrador;
+import co.edu.uniquindio.agenciaviajes.model.BusquedaPaquetes;
 import co.edu.uniquindio.agenciaviajes.model.Cliente;
+import co.edu.uniquindio.agenciaviajes.model.CorreoFile;
 import co.edu.uniquindio.agenciaviajes.model.Destino;
 import co.edu.uniquindio.agenciaviajes.model.GuiaTuristico;
 import co.edu.uniquindio.agenciaviajes.model.Imagen;
@@ -321,10 +323,6 @@ public class ClienteHilo implements Runnable {
 					Reserva reserva = (Reserva) peticion.getPeticion();
 					dataManager.guardarReserva(reserva);
 					obOut.writeObject(reserva);
-					Cliente cliente = reserva.getCliente();
-					EmailSender.getInstance().sendMail(cliente, "Reserva PokeViajes",
-							"el comprobante de la reserva para el paquete " + reserva.getPaquete().getNombre(),
-							"la fecha de solicitud, la cantidad de personas, el paquete, el guia y el estado de la reserva");
 				} catch (ReservaYaExistenteException e) {
 					obOut.writeObject(e);
 				}
@@ -417,10 +415,11 @@ public class ClienteHilo implements Runnable {
 			case LISTAR_ADMIN -> {
 				obOut.writeObject(dataManager.listarAdmin());
 			}
-
-			default -> {
-				break;
+			case ENVIAR_PDF -> {
+				obOut.writeObject(EmailSender.getInstance().enviarCorreoReserva((CorreoFile) peticion.getPeticion()));
 			}
+			case FILTRAR_PAQUETES -> obOut.writeObject(dataManager.listarPaquete().stream()
+					.filter(((BusquedaPaquetes) peticion.getPeticion()).getPredicate()));
 			}
 			obIn.close();
 			obOut.close();

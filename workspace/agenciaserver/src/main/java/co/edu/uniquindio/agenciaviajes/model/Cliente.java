@@ -237,6 +237,10 @@ public class Cliente extends Usuario implements Loginable {
 		return getIdentificacion();
 	}
 
+	public List<Reserva> getReservasPasadas() {
+		return getReservasPasadas(reservas, 0);
+	}
+
 	public List<Reserva> getReservasPasadas(List<Reserva> seleccionadas, int i) {
 		if (i >= reservas.size())
 			return seleccionadas;
@@ -244,6 +248,10 @@ public class Cliente extends Usuario implements Loginable {
 		if (esPasada(reserva))
 			seleccionadas.add(reservas.get(i));
 		return getReservasPasadas(seleccionadas, i + 1);
+	}
+
+	public List<Reserva> getReservasFuturas() {
+		return getReservasFuturas(reservas, 0);
 	}
 
 	public List<Reserva> getReservasFuturas(List<Reserva> seleccionadas, int i) {

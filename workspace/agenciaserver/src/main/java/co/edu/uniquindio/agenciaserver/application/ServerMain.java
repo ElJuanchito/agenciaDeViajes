@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import co.edu.uniquindio.agenciaserver.utils.UtilsJPA;
 import co.edu.uniquindio.agenciaviajes.controllers.ClienteHilo;
 
 public class ServerMain {
@@ -15,7 +16,7 @@ public class ServerMain {
 		int hilosMaximos = 5;
 
 		ExecutorService executor = Executors.newFixedThreadPool(hilosMaximos);
-
+		UtilsJPA.getEntityManager();
 		try (ServerSocket server = new ServerSocket(port)) {
 			System.out.println("Esperando peticiones...");
 			while (true) {
