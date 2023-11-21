@@ -15,9 +15,7 @@
   	<class>co.edu.uniquindio.agenciaviajes.model.Paquete</class>
   	<class>co.edu.uniquindio.agenciaviajes.model.Preferencia</class>
   	<class>co.edu.uniquindio.agenciaviajes.model.Reserva</class>
-  	<class>co.edu.uniquindio.agenciaviajes.model.Usuario</class>
-  	<class>co.edu.uniquindio.agenciaviajes.model.</class>
-  	
+  	<class>co.edu.uniquindio.agenciaviajes.model.Usuario</class>  	
     <properties>
 
 			<property name="javax.persistence.jdbc.driver"
