@@ -12,9 +12,10 @@ import co.edu.uniquindio.agenciaviajes.model.Imagen;
 public class ImagenDao {
 	private EntityManager em;
 	private static ImagenDao instancia;
-	
+
 	public static ImagenDao getInstancia() {
-		if(instancia == null) instancia = new ImagenDao();
+		if (instancia == null)
+			instancia = new ImagenDao();
 		return instancia;
 	}
 
@@ -26,7 +27,10 @@ public class ImagenDao {
 		if (verificar(imagen.getId()))
 			throw new ImagenYaExistenteException(
 					String.format("La imagen con id %s ya existe en la base de datos", imagen.getId()));
+
+		em.getTransaction().begin();
 		em.persist(imagen);
+		em.getTransaction().commit();
 	}
 
 	public List<Imagen> listar() {

@@ -70,6 +70,7 @@ public class LoginController implements DataControllable<Pair<Runnable, String>>
 							: TipoVista.MENU_PRINCIPAL_ADMIN, null);
 		} catch (PeticionException | FXMLException e) {
 			MainPaneController.getInstance().showAlert(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 

@@ -15,25 +15,23 @@
   	<class>co.edu.uniquindio.agenciaviajes.model.Paquete</class>
   	<class>co.edu.uniquindio.agenciaviajes.model.Preferencia</class>
   	<class>co.edu.uniquindio.agenciaviajes.model.Reserva</class>
-  	<class>co.edu.uniquindio.agenciaviajes.model.Usuario</class>
-  	<class>co.edu.uniquindio.agenciaviajes.model.</class>
-  	
+  	<class>co.edu.uniquindio.agenciaviajes.model.Usuario</class>  	
     <properties>
 
 			<property name="javax.persistence.jdbc.driver"
-				value="com.mysql.cj.jdbc.Driver" />
+				value="org.h2.Driver" />
 			<property name="javax.persistence.jdbc.url"
-				value="jdbc:mysql://sql.freedb.tech:3306/freedb_agenciaviajes" />
+				value="jdbc:h2:C:\Users\juanp\Documents\prog3\agenciaDeViajes\database" />
 			<property name="javax.persistence.jdbc.user"
-				value="freedb_pepe2" />
+				value="admin" />
 			<property name="javax.persistence.jdbc.password"
-				value="aa8N!CmbEFv4XG6" />
+				value="admin" />
 
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.dialect"
-				value="org.hibernate.dialect.MySQL8Dialect" />
+				value="org.hibernate.dialect.H2Dialect" />
 		</properties>
   </persistence-unit>
 

@@ -26,7 +26,9 @@ public class PaqueteDao {
 		if (verificar(paquete.getId()))
 			throw new PaqueteYaExistenteException(
 					String.format("El paquete con id %s ya existe en la base de datos", paquete.getId()));
+		em.getTransaction().begin();
 		em.persist(paquete);
+		em.getTransaction().commit();
 	}
 
 	public List<Paquete> listar() {
@@ -41,7 +43,9 @@ public class PaqueteDao {
 	}
 
 	public Paquete buscar(Long id) throws PaqueteNoExistenteException {
+		em.getTransaction().begin();
 		Paquete paquete = em.find(Paquete.class, id);
+		em.getTransaction().commit();
 		if(paquete == null) throw new PaqueteNoExistenteException("El paquete no existe, por lo tanto no se puede encontrar");
 		return paquete;
 	}
