@@ -1,0 +1,23 @@
+.fondoPViajero {
+    -fx-background-image: url('../imagenes/pikachuViajero.png'); /* Reemplaza con la ruta de tu imagen */
+    -fx-background-size: cover; /* Ajusta la imagen para que cubra todo el elemento */
+    -fx-background-repeat: no-repeat; /* Evita la repetición de la imagen */
+}
+
+.fondoPEjecutivo {
+    -fx-background-image: url('../imagenes/pikachuEjecutivo.png'); /* Reemplaza con la ruta de tu imagen */
+    -fx-background-size: cover; /* Ajusta la imagen para que cubra todo el elemento */
+    -fx-background-repeat: no-repeat; /* Evita la repetición de la imagen */
+}
+
+.fondoPPiloto {
+    -fx-background-image: url('../imagenes/pikachuPiloto.png'); /* Reemplaza con la ruta de tu imagen */
+    -fx-background-size: cover; /* Ajusta la imagen para que cubra todo el elemento */
+    -fx-background-repeat: no-repeat; /* Evita la repetición de la imagen */
+}
+
+.fondoAdmin{
+	-fx-background-image: url('../imagenes/backgroundAdmin.png'); /* Reemplaza con la ruta de tu imagen */
+    -fx-background-size: cover; /* Ajusta la imagen para que cubra todo el elemento */
+    -fx-background-repeat: no-repeat; /* Evita la repetición de la imagen */
+}

@@ -1,0 +1,18 @@
+.date-picker{
+	-fx-background-radius: 0 0.5em 0.5em 0;
+	-fx-border-radius: 0.5em;
+}
+
+.date-picker .text-field{
+	-fx-border-color: #270570;
+	-fx-border-radius: 0.5em 0 0 0.5em;
+}
+
+.date-picker .arrow-button{
+	-fx-border-color: #270570;
+	-fx-border-radius: 0 0.5em 0.5em 0;
+}
+
+.cbBox{
+	
+}

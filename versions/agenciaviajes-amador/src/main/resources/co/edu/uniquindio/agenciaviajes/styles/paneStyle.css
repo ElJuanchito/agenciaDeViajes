@@ -1,0 +1,23 @@
+.placePane{
+	-fx-background-radius: 0.8em;
+	-fx-border-radius: 0.8em;
+	-fx-border-color: gray;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);	
+}
+
+.placePane:hover{
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0, 0, 2);	
+}
+
+
+.placePaneGraphics{
+	-fx-background-color:white;
+	-fx-background-radius: 0.8em;
+	-fx-border-radius: 0.8em;
+	-fx-border-color: white;
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);	
+}
+
+.placePaneGraphics:hover{
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0, 0, 2);	
+}

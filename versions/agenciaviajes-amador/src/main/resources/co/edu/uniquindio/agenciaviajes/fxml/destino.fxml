@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="310.0" minHeight="-Infinity" onMouseClicked="#changeViewEvent" onMouseEntered="#hoverPanelEvent" onMouseExited="#unhoverPanelEvent" prefWidth="310.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.agenciaviajes.viewcontrollers.DestinoController">
+   <top>
+      <StackPane maxWidth="310.0" minWidth="310.0" prefWidth="310.0">
+         <children>
+            <ScrollPane focusTraversable="false" hbarPolicy="NEVER" hmax="0.0" mouseTransparent="true" pickOnBounds="false" vbarPolicy="NEVER" vmax="0.0">
+               <content>
+                  <AnchorPane>
+                     <children>
+                        <ImageView fx:id="imgDestino" fitHeight="220.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imgDestino2" fitHeight="220.0" opacity="0.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </StackPane>
+   </top>
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" focusTraversable="false" hbarPolicy="NEVER" hmax="0.0" mouseTransparent="true" pickOnBounds="false" prefWidth="310.0" vbarPolicy="NEVER" vmax="0.0" BorderPane.alignment="CENTER">
+         <content>
+            <VBox prefWidth="309.0" spacing="5.0" stylesheets="@../styles/texto.css">
+               <children>
+                  <Label fx:id="txtName" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" styleClass="titulo" text="SAN ANDRES" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <HBox fx:id="boxStars" alignment="CENTER" spacing="15.0" />
+                  <Label fx:id="txtPuntuacion" alignment="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" styleClass="titulo" text="4.6" textOverrun="CLIP" wrapText="true" />
+                  <ScrollPane fx:id="scrollDescripcion" fitToWidth="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="0.0">
+                     <content>
+                        <Label fx:id="txtDescription" ellipsisString="" maxHeight="-Infinity" minHeight="-Infinity" styleClass="descriptionText" text="Lasmjasdnjdsandjsadnsajsnajdasndj ajd sadjs djsa dsjd " textOverrun="CLIP" wrapText="true" />
+                     </content>
+                  </ScrollPane>
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+   <stylesheets>
+      <URL value="@../styles/paneStyle.css" />
+      <URL value="@../styles/scrollPaneStyle.css" />
+      <URL value="@../styles/scroll.css" />
+   </stylesheets>
+   <effect>
+      <DropShadow />
+   </effect>
+</BorderPane>
