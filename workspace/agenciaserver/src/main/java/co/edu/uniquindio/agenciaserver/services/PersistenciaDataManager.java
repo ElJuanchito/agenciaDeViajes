@@ -1,6 +1,11 @@
 package co.edu.uniquindio.agenciaserver.services;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import co.edu.uniquindio.agenciaviajes.exceptions.AdministradorNoExistenteException;
@@ -26,20 +31,18 @@ import co.edu.uniquindio.agenciaviajes.model.Imagen;
 import co.edu.uniquindio.agenciaviajes.model.Loginable;
 import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.model.Reserva;
-import co.edu.uniquindio.utils.LoggerHandler;
 
 public class PersistenciaDataManager implements DataManager{
 	
-	private static final String RUTAADMINISTRADOR="src/main/resources/co/edu/uniquindio/agenciaserver/data/administrador.dat";
-	private static final String RUTACLIENTES="src/main/resources/co/edu/uniquindio/agenciaserver/data/clientes.dat";
-	private static final String RUTAGUIAS="src/main/resources/co/edu/uniquindio/agenciaserver/data/guias.dat";
-	private static final String RUTAPAQUETES="src/main/resources/co/edu/uniquindio/agenciaserver/data/paquetes.dat";
-	private static final String RUTARESERVAS="src/main/resources/co/edu/uniquindio/agenciaserver/data/reservas.dat";
+	private static final String RUTA_ADMINISTRADOR="src/main/resources/co/edu/uniquindio/agenciaserver/data/administrador.dat";
+	private static final String RUTA_CLIENTES="src/main/resources/co/edu/uniquindio/agenciaserver/data/clientes.dat";
+	private static final String RUTA_GUIAS="src/main/resources/co/edu/uniquindio/agenciaserver/data/guias.dat";
+	private static final String RUTA_PAQUETES="src/main/resources/co/edu/uniquindio/agenciaserver/data/paquetes.dat";
+	private static final String RUTA_RESERVAS="src/main/resources/co/edu/uniquindio/agenciaserver/data/reservas.dat";
 
 	@Override
 	public void guardarCliente(Cliente cliente) throws ClienteYaExistenteException {
-		// TODO Auto-generated method stub
-		
+		// TODO 
 	}
 
 	@Override
@@ -68,8 +71,13 @@ public class PersistenciaDataManager implements DataManager{
 
 	@Override
 	public boolean verificarCliente(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		@SuppressWarnings("unchecked")
+		List<Cliente> clientes = deserealizar(id, ArrayList.class);
+		for(Cliente cliente : clientes) {
+			if(cliente.getIdentificacion().equals(id)) {
+				return true;
+			}
+		} return false;
 	}
 
 	@Override
@@ -221,7 +229,6 @@ public class PersistenciaDataManager implements DataManager{
 	
 	
 	
-	@SuppressWarnings("unused")
 	private void throwReservaYaExistente(Long id) throws ReservaYaExistenteException {
 		if (verificarReserva(id)) {
 			throw new ReservaYaExistenteException(
@@ -229,7 +236,6 @@ public class PersistenciaDataManager implements DataManager{
 		}
 	}
 	
-	@SuppressWarnings("unused")
 	private void throwReservaNoExistente(Long id) throws ReservaNoExistenteException {
 		if (!verificarReserva(id)) {
 			throw new ReservaNoExistenteException(
@@ -239,14 +245,14 @@ public class PersistenciaDataManager implements DataManager{
 	
 	@Override
 	public void guardarReserva(Reserva reserva) throws ReservaYaExistenteException {
-		throwReservaYaExistente(reserva.getid());
+		throwReservaYaExistente(reserva.getId());
 		listarReserva().add(reserva);
 	}
 
 	@Override
 	public List<Reserva> listarReserva() {
 		try {
-			ArchivoUtils.deserializarObjeto(RUTARESERVAS);
+			ArchivoUtils.deserializarObjeto(RUTA_RESERVAS);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -259,11 +265,11 @@ public class PersistenciaDataManager implements DataManager{
 
 	@Override
 	public void actualizarReserva(Reserva reserva) throws ReservaNoExistenteException {
-		throwReservaNoExistente(reserva.getid());
+		throwReservaNoExistente(reserva.getId());
 		List<Reserva> listarReserva = listarReserva();
 		for (int i = 0; i < listarReserva.size(); i++) {
 			Reserva reservas = listarReserva.get(i);
-			if(reservas.getid().equals(reserva.getid())) {
+			if(reservas.getId().equals(reserva.getId())) {
 				listarReserva.set(i, reserva);
 			}
 		}
@@ -274,7 +280,7 @@ public class PersistenciaDataManager implements DataManager{
 	public void eliminarReserva(Long id) throws ReservaNoExistenteException {
 		throwReservaNoExistente(id);
 		for (Reserva reservas : listarReserva()) {
-			if(reservas.getid().equals(id)) {
+			if(reservas.getId().equals(id)) {
 				listarReserva().remove(reservas);
 				return;
 			}
@@ -285,7 +291,7 @@ public class PersistenciaDataManager implements DataManager{
 	public Reserva buscarReserva(Long id) throws ReservaNoExistenteException {
 		throwReservaNoExistente(id);
 		for (Reserva reservas : listarReserva()) {
-			if(reservas.getid().equals(id))
+			if(reservas.getId().equals(id))
 				return reservas;
 			}
 		return null;
@@ -294,14 +300,13 @@ public class PersistenciaDataManager implements DataManager{
 	@Override
 	public boolean verificarReserva(Long id) {
 		for (Reserva reserva :listarReserva()) {
-			if(reserva.getid().equals(id))
+			if(reserva.getId().equals(id))
 				return true;
 		}
 		return false;
 	}
 	
 	
-	@SuppressWarnings("unused")
 	private void throwAdministradorYaExistente(String id) throws AdministradorYaExistenteException {
 		if (verificarAdministrador(id)) {
 			throw new AdministradorYaExistenteException(
@@ -309,7 +314,6 @@ public class PersistenciaDataManager implements DataManager{
 		}
 	}
 	
-	@SuppressWarnings("unused")
 	private void throwAdministradorNoExistente(String id) throws AdministradorNoExistenteException {
 		if (!verificarAdministrador(id)) {
 			throw new AdministradorNoExistenteException(
@@ -326,7 +330,7 @@ public class PersistenciaDataManager implements DataManager{
 	@Override
 	public List<Administrador> listarAdmin() {
 		try {
-			ArchivoUtils.deserializarObjeto(RUTAADMINISTRADOR);
+			ArchivoUtils.deserializarObjeto(RUTA_ADMINISTRADOR);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -383,6 +387,24 @@ public class PersistenciaDataManager implements DataManager{
 		return false;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public <T> T deserealizar(String ruta, Class<T> clase) {
+		T resultado = null;
+		try(FileInputStream fileIn = new FileInputStream(ruta);
+				ObjectInputStream obIn = new ObjectInputStream(fileIn)) {
+		resultado = (T)obIn.readObject();
+		}catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return resultado;
+	}
 	
-
+	public void serealizar(String ruta, Object objeto) {
+		try(FileOutputStream fileOut = new FileOutputStream(ruta);
+		ObjectOutputStream obOut = new ObjectOutputStream(fileOut)) {
+			obOut.writeObject(objeto);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

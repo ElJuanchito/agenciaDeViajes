@@ -72,6 +72,7 @@ public class ViewDestinosController implements DataControllable<List<Destino>> {
 
 	@Override
 	public void inicializarDatos(List<Destino> dato) {
+		this.destinos = dato;
 		new Thread(() -> {
 			Platform.runLater(() -> {
 				contentPane.getChildren().clear();

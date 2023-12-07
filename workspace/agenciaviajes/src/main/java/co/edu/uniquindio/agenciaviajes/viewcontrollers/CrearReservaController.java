@@ -84,7 +84,6 @@ public class CrearReservaController implements DataControllable<Paquete> {
 	public void updateLanguage(ResourceBundle bundle) {
 		lblTitle.setText(bundle.getString("CrearReservaController.lblTitle"));
 		lblinfoPackage.setText(bundle.getString("CrearReservaController.lblinfoPackage"));
-		lblFecha.setText(bundle.getString("CrearReservaController.lblFecha"));
 		lblRangoDisponible.setText(bundle.getString("CrearReservaController.lblRangoDisponible"));
 		lblFechaInicial.setText(bundle.getString("CrearReservaController.lblFechaInicial"));
 		lblFechaFinal.setText(bundle.getString("CrearReservaController.lblFechaFinal"));

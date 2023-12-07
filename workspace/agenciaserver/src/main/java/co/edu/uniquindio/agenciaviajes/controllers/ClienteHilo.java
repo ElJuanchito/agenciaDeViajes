@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import co.edu.uniquindio.agenciaserver.services.DataManager;
 import co.edu.uniquindio.agenciaserver.services.HibernateDataManager;
@@ -45,13 +47,13 @@ public class ClienteHilo implements Runnable {
 	@Override
 	public void run() {
 		try (sCliente) {
-			
+
 			ObjectInputStream obIn = new ObjectInputStream(sCliente.getInputStream());
 			ObjectOutputStream obOut = new ObjectOutputStream(sCliente.getOutputStream());
 			Peticion peticion = (Peticion) obIn.readObject();
 
 			DataManager dataManager = HibernateDataManager.getInstance();
-			
+
 			System.out.println(dataManager.listarCliente());
 
 			switch (peticion.getTipo()) {
@@ -421,7 +423,8 @@ public class ClienteHilo implements Runnable {
 				obOut.writeObject(EmailSender.getInstance().enviarCorreoReserva((CorreoFile) peticion.getPeticion()));
 			}
 			case FILTRAR_PAQUETES -> obOut.writeObject(dataManager.listarPaquete().stream()
-					.filter(((BusquedaPaquetes) peticion.getPeticion()).getPredicate()));
+					.filter(((BusquedaPaquetes) peticion.getPeticion()).getPredicate())
+					.collect(Collectors.toCollection(ArrayList::new)));
 			}
 			obIn.close();
 			obOut.close();
