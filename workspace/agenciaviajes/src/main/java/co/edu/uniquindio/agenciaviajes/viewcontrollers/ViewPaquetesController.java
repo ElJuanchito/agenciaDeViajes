@@ -1,6 +1,7 @@
 package co.edu.uniquindio.agenciaviajes.viewcontrollers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -73,7 +74,7 @@ public class ViewPaquetesController implements DataControllable<List<Paquete>> {
 
 	@Override
 	public void inicializarDatos(List<Paquete> dato) {
-		this.paquetes = dato;
+		this.paquetes = dato == null ? new ArrayList<Paquete>() : dato;
 		new Thread(() -> {
 			Platform.runLater(() -> {
 				colIndex = 0;

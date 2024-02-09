@@ -213,7 +213,7 @@ public class BusquedaAvanzadaController implements DataControllable<Pair<List<Pa
 				TipoPeticion.FILTRAR_PAQUETES, busquedaPaquetes);
 		try {
 			List<Paquete> paquetes = peticionController.realizarPeticion();
-			if (paquetes.isEmpty()) {
+			if (paquetes == null || paquetes.isEmpty()) {
 				panelBusqueda.setCenter(new Label("No hay paquetes")); // TODO property
 				return;
 			}
@@ -247,9 +247,9 @@ public class BusquedaAvanzadaController implements DataControllable<Pair<List<Pa
 		try {
 			vistaPaquetes = Vista.buildView("viewPaquetes");
 			vistaPaquetes.cargarDato(dato.getKey());
-			panelBusqueda.setCenter(vistaPaquetes.getParent());
+			Platform.runLater(() -> panelBusqueda.setCenter(vistaPaquetes.getParent()));
 		} catch (FXMLException e) {
-			throw new RuntimeException(e);
+			System.err.println(e.getMessage());
 		}
 	}
 }

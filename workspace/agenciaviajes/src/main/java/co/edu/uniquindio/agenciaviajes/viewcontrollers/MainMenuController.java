@@ -86,7 +86,7 @@ public class MainMenuController implements Controllable {
 	@FXML
 	private TextField txtBuscar;
 
-	private String busquedaAnterior;
+	private String busquedaAnterior = "";
 	private boolean isMenuExtended, isMenu2Extended, isBusquedaShown, isMenu3Extended;
 	private Timeline timelineMenu, timelineMenu2, timelineBusqueda, timelineMenu3;
 
@@ -325,7 +325,7 @@ public class MainMenuController implements Controllable {
 			List<Paquete> paquetes = new PeticionController<BusquedaPaquetes, List<Paquete>>(
 					TipoPeticion.FILTRAR_PAQUETES, BusquedaPaquetes.builder().nombrePaquete(busquedaAnterior).build())
 					.realizarPeticion();
-			VistaManager.getInstance().cambiarVistaCliente(TipoVista.BUSQUEDA_AVANZADA, paquetes);
+			VistaManager.getInstance().cambiarVistaCliente(TipoVista.BUSQUEDA_AVANZADA, new Pair<List<Paquete>, String>(paquetes, busquedaAnterior));
 			searchBtnAction();
 		} catch (PeticionException | FXMLException e) {
 			MainPaneController.getInstance().showAlert("Error:" + e.getMessage()); // TODO property
