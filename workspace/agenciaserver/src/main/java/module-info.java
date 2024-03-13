@@ -8,6 +8,7 @@ open module co.edu.uniquindio.agenciaserver {
 	requires javafx.swing;
 	requires transitive javafx.graphics;
 	requires jakarta.mail;
+	requires org.hibernate.commons.annotations;
 
 	exports co.edu.uniquindio.agenciaviajes.model;
 	exports co.edu.uniquindio.agenciaserver.application;

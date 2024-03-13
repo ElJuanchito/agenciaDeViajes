@@ -35,6 +35,7 @@ import co.edu.uniquindio.agenciaviajes.model.Imagen;
 import co.edu.uniquindio.agenciaviajes.model.Loginable;
 import co.edu.uniquindio.agenciaviajes.model.Paquete;
 import co.edu.uniquindio.agenciaviajes.model.Reserva;
+import co.edu.uniquindio.agenciaviajes.services.DataManagerImpl;
 
 public class ClienteHilo implements Runnable {
 
@@ -52,12 +53,13 @@ public class ClienteHilo implements Runnable {
 			ObjectOutputStream obOut = new ObjectOutputStream(sCliente.getOutputStream());
 			Peticion peticion = (Peticion) obIn.readObject();
 
-			DataManager dataManager = HibernateDataManager.getInstance();
+			DataManagerImpl dataManager = DataManagerImpl.getInstance();
 
 			System.out.println(dataManager.listarCliente());
 
 			switch (peticion.getTipo()) {
 			case HACER_LOGIN -> {
+				System.out.println("inici");
 				Loginable user = (Loginable) peticion.getPeticion();
 				Loginable resultado = null;
 				try {
@@ -65,12 +67,13 @@ public class ClienteHilo implements Runnable {
 						resultado = dataManager.verificarAdministrador(user.getUsuario())
 								? (Administrador) dataManager.buscarAdministrador(user.getUsuario())
 								: (Cliente) dataManager.buscarCliente(user.getUsuario());
+						System.out.println(resultado.toString());
 					}
 
-					obOut.writeObject(resultado);
-				} catch (UsuarioNoExistenteException | AdministradorNoExistenteException
-						| ClienteNoExistenteException e) {
-					obOut.writeObject(e);
+					obOut.writeObject(null);
+				} catch (UsuarioNoExistenteException | AdministradorNoExistenteException e) {
+					System.out.println(e.getMessage());
+					obOut.writeObject(null);
 				}
 				break;
 			}
@@ -127,7 +130,7 @@ public class ClienteHilo implements Runnable {
 			case GUARDAR_DESTINO -> {
 				try {
 					Destino destino = (Destino) peticion.getPeticion();
-					dataManager.guardarDestino(destino);
+					dataManager.agregarDestino(destino);
 					obOut.writeObject(destino);
 				} catch (DestinoYaExistenteException e) {
 					obOut.writeObject(e);

@@ -1,4 +1,4 @@
-package co.edu.uniquindio.agenciaserver.services;
+package co.edu.uniquindio.agenciaviajes.services;
 
 import java.util.List;
 
@@ -31,35 +31,19 @@ public interface DataManager {
 	default void guardarCliente(Cliente cliente) throws ClienteYaExistenteException {
 		if (verificarCliente(cliente.getIdentificacion()))
 			throw new ClienteYaExistenteException("El cliente ya existe, no se puede agregar");
-		listarCliente().add(cliente);
 	}
 
 	List<Cliente> listarCliente();
 
-	default void actualizarCliente(Cliente cliente) throws ClienteNoExistenteException {
-		if (!listarCliente().remove(cliente)) {
-			throw new ClienteNoExistenteException("El cliente no fue encontrado para actualizarse");
-		}
-	}
+	void actualizarCliente(Cliente cliente) throws ClienteNoExistenteException;
 
-	default void eliminarCliente(String id) throws ClienteNoExistenteException {
-		if (!listarCliente().remove(buscarCliente(id))) {
-			throw new ClienteNoExistenteException("El cliente no fue encontrado para eliminarse");
-		}
-	}
+	void eliminarCliente(String id) throws ClienteNoExistenteException;
 
-	Cliente buscarCliente(String id);
+	Cliente buscarCliente(String id) throws ClienteNoExistenteException;
 
-	default boolean verificarCliente(String id) {
-		return buscarCliente(id) != null;
-	}
+	boolean verificarCliente(String id);
 
-	default void agregarDestino(Destino destino) throws DestinoYaExistenteException {
-		if (verificarDestino(destino.getId())) {
-			throw new DestinoYaExistenteException("El destino ya existe, no se puede agregar");
-		}
-		listarDestino().add(destino);
-	}
+	void guardarDestino(Destino destino) throws DestinoYaExistenteException;
 
 	List<Destino> listarDestino();
 
